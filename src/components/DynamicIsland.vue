@@ -24,12 +24,26 @@ defineProps({
         type: String,
         default: '20cqh',
     },
+    expanded: {
+        type: Boolean,
+        default: false,
+    },
+    hoverable: {
+        type: Boolean,
+        default: true,
+    },
 })
 </script>
 
 <template>
     <div
-        class="dynamic-island"
+        :class="[
+            'dynamic-island',
+            {
+                'dynamic-island--expanded': expanded,
+                'dynamic-island--hoverable': hoverable,
+            },
+        ]"
         tabindex="0"
         :style="{
             '--dynamic-island-compact-width': compactWidth,
@@ -109,8 +123,9 @@ defineProps({
         border-radius 0.3s ease-in-out,
         box-shadow 0.3s ease-in-out;
 
-    &:hover,
-    &:focus-within {
+    &.dynamic-island--expanded,
+    &.dynamic-island--hoverable:hover,
+    &.dynamic-island--hoverable:focus-within {
         top: 1.1cqh;
         width: var(--dynamic-island-expanded-width);
         height: var(--dynamic-island-expanded-height);
