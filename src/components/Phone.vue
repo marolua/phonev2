@@ -167,10 +167,18 @@
         justify-content: center;
         align-items: center;
         bottom: 1.5cqh;
-        width: 50%;
+        width: 45%;
         height: 3cqh;
         border-radius: 7cqw;
         background-color: #f2f2f266;
+
+        &:hover {
+            cursor: pointer;
+
+            .bar {
+                transform: scaleX(1.05);
+            }
+        }
 
         .bar {
             position: relative;
@@ -182,11 +190,6 @@
             border-radius: 2cqw;
             transition: all 0.3s ease-in-out;
             background-color: #ffffff;
-
-            .bar:hover {
-                cursor: pointer;
-                transform: scaleX(1.05);
-            }
         }
     }
 }
