@@ -167,7 +167,7 @@
         justify-content: center;
         align-items: center;
         bottom: 1.5cqh;
-        width: 60%;
+        width: 50%;
         height: 3cqh;
         border-radius: 7cqw;
         background-color: #f2f2f266;
