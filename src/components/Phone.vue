@@ -5,11 +5,11 @@ import HighDropIsland from './HighDropIsland.vue'
 
 const highDrop = {
     iconText: 'HD',
-    title: 'TExte',
-    subtitle: 'highrider would like to share 1 video',
+    title: 'Partage de fichier',
+    subtitle: 'Théo veux vous partagez des fichiers, texte',
     imageSrc: '',
-    declineText: 'Decline',
-    acceptText: 'Accept',
+    declineText: 'Refuser',
+    acceptText: 'Accepter',
 }
 
 const islandExamples = [

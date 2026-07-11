@@ -90,7 +90,7 @@ defineEmits(['accept', 'decline'])
     height: 100%;
     box-sizing: border-box;
     padding: 2.4cqh 4.2cqw 1.7cqh;
-    border-radius: 7.5cqw;
+    border-radius: 7cqw;
     color: white;
     font-family: "SF Pro Display";
     background-color: rgb(0, 0, 0);
@@ -107,8 +107,8 @@ defineEmits(['accept', 'decline'])
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 8.8cqw;
-    height: 8.8cqw;
+    width: 15cqw;
+    height: 15cqw;
     margin-left: 0.5cqw;
     border-radius: 50%;
     color: white;
