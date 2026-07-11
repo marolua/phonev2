@@ -170,7 +170,6 @@
         width: 45%;
         height: 3cqh;
         border-radius: 7cqw;
-        background-color: #f2f2f266;
 
         &:hover {
             cursor: pointer;
