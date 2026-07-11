@@ -22,7 +22,7 @@
             </div>
 
             <div class="bottom">
-                <div class="button"></div>
+                <div class="bar"></div>
             </div>
         </div>
     </div>
@@ -172,7 +172,7 @@
         border-radius: 7cqw;
         background-color: #f2f2f266;
 
-        .button {
+        .bar {
             position: relative;
             display: flex;
             justify-content: center;
@@ -183,7 +183,7 @@
             transition: all 0.3s ease-in-out;
             background-color: #ffffff;
 
-            .button:hover {
+            .bar:hover {
                 cursor: pointer;
                 transform: scaleX(1.05);
             }
