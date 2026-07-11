@@ -5,23 +5,23 @@ import DynamicIsland from './DynamicIsland.vue'
 const islandExamples = [
     {
         type: 'highdrop',
-        width: '94cqw',
-        height: '23cqh',
+        width: '88cqw',
+        height: '21cqh',
     },
     {
         type: 'call',
-        width: '94cqw',
-        height: '17cqh',
+        width: '88cqw',
+        height: '15cqh',
     },
     {
         type: 'flashlight',
-        width: '84cqw',
-        height: '9cqh',
+        width: '76cqw',
+        height: '7.4cqh',
     },
     {
         type: 'silent',
-        width: '70cqw',
-        height: '7cqh',
+        width: '58cqw',
+        height: '5.8cqh',
     },
 ]
 
@@ -328,21 +328,21 @@ onBeforeUnmount(clearIslandTimers)
 
 .island-card--highdrop {
     display: grid;
-    grid-template-columns: 10cqw minmax(0, 1fr) 25cqw;
-    grid-template-rows: 1fr 5cqh;
-    column-gap: 3cqw;
-    row-gap: 1cqh;
-    padding: 2.2cqh 3.5cqw 1.4cqh;
-    border-radius: 8cqw;
+    grid-template-columns: 9cqw minmax(0, 1fr) 22cqw;
+    grid-template-rows: 1fr 4.3cqh;
+    column-gap: 2.4cqw;
+    row-gap: 0.8cqh;
+    padding: 1.9cqh 3.1cqw 1.25cqh;
+    border-radius: 7.5cqw;
 }
 
 .island-card__main-icon {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 8.8cqw;
-    height: 8.8cqw;
-    margin-top: 2cqh;
+    width: 8cqw;
+    height: 8cqw;
+    margin-top: 1.7cqh;
     border-radius: 50%;
     font-size: 1.7cqh;
     font-weight: 700;
@@ -362,7 +362,7 @@ onBeforeUnmount(clearIslandTimers)
 
 .island-card__copy {
     min-width: 0;
-    padding-top: 2.45cqh;
+    padding-top: 2.15cqh;
     text-align: left;
 }
 
@@ -372,7 +372,7 @@ onBeforeUnmount(clearIslandTimers)
 
 .island-card__title {
     overflow: hidden;
-    font-size: 2.15cqh;
+    font-size: 2cqh;
     font-weight: 800;
     line-height: 1;
     text-overflow: ellipsis;
@@ -384,7 +384,7 @@ onBeforeUnmount(clearIslandTimers)
     overflow: hidden;
     margin-top: 0.7cqh;
     color: rgba(255, 255, 255, 0.9);
-    font-size: 1.45cqh;
+    font-size: 1.35cqh;
     font-weight: 600;
     line-height: 1.05;
     -webkit-box-orient: vertical;
@@ -400,9 +400,9 @@ onBeforeUnmount(clearIslandTimers)
     align-self: start;
     gap: 1cqw;
     width: 100%;
-    height: 14.2cqh;
-    border-radius: 5cqw;
-    font-size: 3.5cqw;
+    height: 12.7cqh;
+    border-radius: 4.5cqw;
+    font-size: 3cqw;
     background: linear-gradient(145deg, #59657e, #3f4860);
 }
 
@@ -410,7 +410,7 @@ onBeforeUnmount(clearIslandTimers)
     display: flex;
     grid-column: 1 / 3;
     grid-row: 2;
-    gap: 3.5cqw;
+    gap: 2.8cqw;
     align-self: start;
 }
 
@@ -419,12 +419,12 @@ onBeforeUnmount(clearIslandTimers)
     flex: 1;
     justify-content: center;
     align-items: center;
-    min-height: 4.8cqh;
+    min-height: 4.2cqh;
     border: 0;
     border-radius: 7cqw;
     color: white;
     font-family: "SF Pro Display";
-    font-size: 1.55cqh;
+    font-size: 1.45cqh;
     font-weight: 700;
     background: rgba(255, 255, 255, 0.34);
     cursor: pointer;
@@ -442,9 +442,9 @@ onBeforeUnmount(clearIslandTimers)
 }
 
 .island-card--call {
-    gap: 2.5cqw;
-    padding: 1.8cqh 3cqw;
-    border-radius: 7cqw;
+    gap: 2.1cqw;
+    padding: 1.45cqh 2.8cqw;
+    border-radius: 6.5cqw;
 }
 
 .island-card--call .island-card__main-icon {
@@ -455,12 +455,12 @@ onBeforeUnmount(clearIslandTimers)
     display: flex;
     flex: 1;
     justify-content: flex-end;
-    gap: 2cqw;
+    gap: 1.5cqw;
 }
 
 .island-card__round-actions button {
-    width: 8cqw;
-    height: 8cqw;
+    width: 7.1cqw;
+    height: 7.1cqw;
     border: 0;
     border-radius: 50%;
     color: white;
@@ -474,14 +474,14 @@ onBeforeUnmount(clearIslandTimers)
 }
 
 .island-card--mini {
-    gap: 2.5cqw;
-    padding: 1.1cqh 3cqw;
-    border-radius: 7cqw;
+    gap: 2cqw;
+    padding: 0.8cqh 2.5cqw;
+    border-radius: 6cqw;
 }
 
 .island-card--mini .island-card__main-icon {
-    width: 7.2cqw;
-    height: 7.2cqw;
+    width: 6.2cqw;
+    height: 6.2cqw;
 }
 
 .island-card__state {
@@ -491,8 +491,8 @@ onBeforeUnmount(clearIslandTimers)
 
 .island-card--silent {
     justify-content: center;
-    gap: 3cqw;
+    gap: 2cqw;
     color: #ff5a4c;
-    border-radius: 5cqw;
+    border-radius: 4.5cqw;
 }
 </style>
