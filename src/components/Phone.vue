@@ -22,10 +22,7 @@
             </div>
 
             <div class="bottom">
-                <div class="app"></div>
-                <div class="app"></div>
-                <div class="app"></div>
-                <div class="app"></div>
+                <div class="button"></div>
             </div>
         </div>
     </div>
@@ -167,29 +164,35 @@
     .bottom {
         position: absolute;
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
         align-items: center;
-        bottom: 2cqh;
-        width: 90.5%;
-        height: 12cqh;
+        bottom: 1.5cqh;
+        width: 60%;
+        height: 3cqh;
         border-radius: 7cqw;
         background-color: #f2f2f266;
 
-        .app {
+        .bottom:hover {
+            .button {
+                cursor: pointer;
+                transform: scaleX(1.05) scaleY(1.1);
+            }
+        }
+
+        .button {
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 15cqw;
-            height: 15cqw;
-            border-radius: 25%;
-            transition: transform 0.1s ease-in-out;
+            width: 35cqw;
+            height: 2cqw;
+            border-radius: 2cqw;
+            transition: all 0.3s ease-in-out;
             background-color: #ffffff;
 
-            &:hover {
+            .button:hover {
                 cursor: pointer;
-                transform: scale(1.05);
-                box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.5);
+                transform: scaleX(1.05) scaleY(1.1);
             }
         }
     }
