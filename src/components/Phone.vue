@@ -1,5 +1,70 @@
 <script setup>
+import { computed, onBeforeUnmount, ref } from 'vue'
 import DynamicIsland from './DynamicIsland.vue'
+
+const islandExamples = [
+    {
+        type: 'highdrop',
+        width: '94cqw',
+        height: '23cqh',
+    },
+    {
+        type: 'call',
+        width: '94cqw',
+        height: '17cqh',
+    },
+    {
+        type: 'flashlight',
+        width: '84cqw',
+        height: '9cqh',
+    },
+    {
+        type: 'silent',
+        width: '70cqw',
+        height: '7cqh',
+    },
+]
+
+const activeIslandIndex = ref(0)
+const isIslandExpanded = ref(false)
+let closeTimer = null
+let nextTimer = null
+
+const activeIsland = computed(() => islandExamples[activeIslandIndex.value])
+
+const clearIslandTimers = () => {
+    clearTimeout(closeTimer)
+    clearTimeout(nextTimer)
+    closeTimer = null
+    nextTimer = null
+}
+
+const runIslandCycle = () => {
+    clearIslandTimers()
+    isIslandExpanded.value = true
+
+    closeTimer = setTimeout(() => {
+        isIslandExpanded.value = false
+
+        nextTimer = setTimeout(() => {
+            activeIslandIndex.value = (activeIslandIndex.value + 1) % islandExamples.length
+            runIslandCycle()
+        }, 650)
+    }, 2300)
+}
+
+const startIslandDemo = () => {
+    if (isIslandExpanded.value) return
+    runIslandCycle()
+}
+
+const stopIslandDemo = () => {
+    clearIslandTimers()
+    isIslandExpanded.value = false
+    activeIslandIndex.value = 0
+}
+
+onBeforeUnmount(clearIslandTimers)
 </script>
 
 <template>
@@ -18,10 +83,21 @@ import DynamicIsland from './DynamicIsland.vue'
             <div class="top">
                 <div class="hour">22:50</div>
 
-                <DynamicIsland expanded-width="94cqw" expanded-height="62cqh">
+                <DynamicIsland
+                    :expanded="isIslandExpanded"
+                    :expanded-width="activeIsland.width"
+                    :expanded-height="activeIsland.height"
+                    :hoverable="false"
+                    @mouseenter="startIslandDemo"
+                    @mouseleave="stopIslandDemo"
+                >
                     <template #expanded>
-                        <div class="dynamic-island-showcase">
-                            <section class="island-card island-card--highdrop">
+                        <Transition name="island-card-swap" mode="out-in">
+                            <section
+                                v-if="activeIsland.type === 'highdrop'"
+                                key="highdrop"
+                                class="island-card island-card--highdrop"
+                            >
                                 <div class="island-card__main-icon">HD</div>
 
                                 <div class="island-card__copy">
@@ -32,8 +108,8 @@ import DynamicIsland from './DynamicIsland.vue'
                                 </div>
 
                                 <div class="island-card__media">
-                                    <span>⭐</span>
-                                    <span>☁️</span>
+                                    <span>★</span>
+                                    <span>●</span>
                                 </div>
 
                                 <div class="island-card__actions">
@@ -42,31 +118,42 @@ import DynamicIsland from './DynamicIsland.vue'
                                 </div>
                             </section>
 
-                            <section class="island-card island-card--call">
-                                <div class="island-card__main-icon island-card__main-icon--gray">👤</div>
+                            <section
+                                v-else-if="activeIsland.type === 'call'"
+                                key="call"
+                                class="island-card island-card--call"
+                            >
+                                <div class="island-card__main-icon island-card__main-icon--gray">A</div>
                                 <div class="island-card__copy island-card__copy--compact">
                                     <div class="island-card__title">Aria Wright</div>
                                     <div class="island-card__subtitle">00:01</div>
                                 </div>
                                 <div class="island-card__round-actions">
                                     <button>▢</button>
-                                    <button>🎙</button>
-                                    <button>🔊</button>
+                                    <button>Mic</button>
+                                    <button>Vol</button>
                                     <button class="island-card__round-button--red">×</button>
                                 </div>
                             </section>
 
-                            <section class="island-card island-card--mini">
-                                <div class="island-card__main-icon island-card__main-icon--glow">🔦</div>
+                            <section
+                                v-else-if="activeIsland.type === 'flashlight'"
+                                key="flashlight"
+                                class="island-card island-card--mini"
+                            >
+                                <div class="island-card__main-icon island-card__main-icon--glow">F</div>
                                 <div class="island-card__title">Flashlight</div>
                                 <div class="island-card__state">On</div>
                             </section>
 
-                            <section class="island-card island-card--silent">
-                                <span>🔕</span>
+                            <section
+                                v-else
+                                key="silent"
+                                class="island-card island-card--silent"
+                            >
                                 <span>Silent</span>
                             </section>
-                        </div>
+                        </Transition>
                     </template>
                 </DynamicIsland>
 
@@ -216,23 +303,27 @@ import DynamicIsland from './DynamicIsland.vue'
     }
 }
 
-.dynamic-island-showcase {
-    display: flex;
-    flex-direction: column;
-    gap: 1.3cqh;
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-    padding: 2.2cqh 3cqw;
-    font-family: "SF Pro Display";
+.island-card-swap-enter-active,
+.island-card-swap-leave-active {
+    transition:
+        opacity 0.18s ease-in-out,
+        transform 0.18s ease-in-out;
+}
+
+.island-card-swap-enter-from,
+.island-card-swap-leave-to {
+    opacity: 0;
+    transform: translateY(-0.8cqh) scale(0.98);
 }
 
 .island-card {
+    width: 100%;
+    height: 100%;
     flex-shrink: 0;
     box-sizing: border-box;
     color: white;
+    font-family: "SF Pro Display";
     background-color: rgb(0, 0, 0);
-    box-shadow: 0 0.8cqh 1.8cqh rgba(0, 0, 0, 0.35);
 }
 
 .island-card--highdrop {
@@ -241,7 +332,6 @@ import DynamicIsland from './DynamicIsland.vue'
     grid-template-rows: 1fr 5cqh;
     column-gap: 3cqw;
     row-gap: 1cqh;
-    height: 20.5cqh;
     padding: 2.2cqh 3.5cqw 1.4cqh;
     border-radius: 8cqw;
 }
@@ -265,6 +355,7 @@ import DynamicIsland from './DynamicIsland.vue'
 }
 
 .island-card__main-icon--glow {
+    margin-top: 0;
     background: rgba(255, 255, 255, 0.18);
     box-shadow: 0 0 2.6cqw rgba(255, 255, 255, 0.35);
 }
@@ -348,13 +439,12 @@ import DynamicIsland from './DynamicIsland.vue'
 .island-card--silent {
     display: flex;
     align-items: center;
-    border-radius: 7cqw;
-    padding: 1.4cqh 3cqw;
 }
 
 .island-card--call {
     gap: 2.5cqw;
-    height: 12cqh;
+    padding: 1.8cqh 3cqw;
+    border-radius: 7cqw;
 }
 
 .island-card--call .island-card__main-icon {
@@ -374,6 +464,7 @@ import DynamicIsland from './DynamicIsland.vue'
     border: 0;
     border-radius: 50%;
     color: white;
+    font-size: 1.2cqh;
     background: rgba(255, 255, 255, 0.14);
     cursor: pointer;
 }
@@ -384,13 +475,13 @@ import DynamicIsland from './DynamicIsland.vue'
 
 .island-card--mini {
     gap: 2.5cqw;
-    height: 8.2cqh;
+    padding: 1.1cqh 3cqw;
+    border-radius: 7cqw;
 }
 
 .island-card--mini .island-card__main-icon {
     width: 7.2cqw;
     height: 7.2cqw;
-    margin-top: 0;
 }
 
 .island-card__state {
@@ -401,9 +492,7 @@ import DynamicIsland from './DynamicIsland.vue'
 .island-card--silent {
     justify-content: center;
     gap: 3cqw;
-    width: 72%;
-    height: 6.8cqh;
-    margin: 0 auto;
     color: #ff5a4c;
+    border-radius: 5cqw;
 }
 </style>
