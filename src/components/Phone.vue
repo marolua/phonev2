@@ -18,25 +18,55 @@ import DynamicIsland from './DynamicIsland.vue'
             <div class="top">
                 <div class="hour">22:50</div>
 
-                <DynamicIsland
-                    title="HighDrop"
-                    subtitle="highrider would like to share 1 video"
-                    expanded-height="23cqh"
-                >
-                    <template #leading>
-                        <div class="dynamic-island-icon">📡</div>
-                    </template>
+                <DynamicIsland expanded-width="94cqw" expanded-height="62cqh">
+                    <template #expanded>
+                        <div class="dynamic-island-showcase">
+                            <section class="island-card island-card--highdrop">
+                                <div class="island-card__main-icon">HD</div>
 
-                    <template #media>
-                        <div class="dynamic-island-preview">
-                            <span>🍌</span>
-                            <span>☁️</span>
+                                <div class="island-card__copy">
+                                    <div class="island-card__title">HighDrop</div>
+                                    <div class="island-card__subtitle">
+                                        highrider would like to share 1 video
+                                    </div>
+                                </div>
+
+                                <div class="island-card__media">
+                                    <span>⭐</span>
+                                    <span>☁️</span>
+                                </div>
+
+                                <div class="island-card__actions">
+                                    <button class="island-card__button">Decline</button>
+                                    <button class="island-card__button island-card__button--blue">Accept</button>
+                                </div>
+                            </section>
+
+                            <section class="island-card island-card--call">
+                                <div class="island-card__main-icon island-card__main-icon--gray">👤</div>
+                                <div class="island-card__copy island-card__copy--compact">
+                                    <div class="island-card__title">Aria Wright</div>
+                                    <div class="island-card__subtitle">00:01</div>
+                                </div>
+                                <div class="island-card__round-actions">
+                                    <button>▢</button>
+                                    <button>🎙</button>
+                                    <button>🔊</button>
+                                    <button class="island-card__round-button--red">×</button>
+                                </div>
+                            </section>
+
+                            <section class="island-card island-card--mini">
+                                <div class="island-card__main-icon island-card__main-icon--glow">🔦</div>
+                                <div class="island-card__title">Flashlight</div>
+                                <div class="island-card__state">On</div>
+                            </section>
+
+                            <section class="island-card island-card--silent">
+                                <span>🔕</span>
+                                <span>Silent</span>
+                            </section>
                         </div>
-                    </template>
-
-                    <template #actions>
-                        <button class="dynamic-island-action">Decline</button>
-                        <button class="dynamic-island-action dynamic-island-action--blue">Accept</button>
                     </template>
                 </DynamicIsland>
 
@@ -145,17 +175,6 @@ import DynamicIsland from './DynamicIsland.vue'
             font-family: "SF Pro Display";
         }
 
-        .dynamic-island-preview {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1cqw;
-            width: 100%;
-            height: 100%;
-            font-size: 4cqw;
-            background: linear-gradient(145deg, #202735, #3a4254);
-        }
-
         .utils {
             position: relative;
             display: flex;
@@ -195,5 +214,196 @@ import DynamicIsland from './DynamicIsland.vue'
             background-color: #ffffff;
         }
     }
+}
+
+.dynamic-island-showcase {
+    display: flex;
+    flex-direction: column;
+    gap: 1.3cqh;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 2.2cqh 3cqw;
+    font-family: "SF Pro Display";
+}
+
+.island-card {
+    flex-shrink: 0;
+    box-sizing: border-box;
+    color: white;
+    background-color: rgb(0, 0, 0);
+    box-shadow: 0 0.8cqh 1.8cqh rgba(0, 0, 0, 0.35);
+}
+
+.island-card--highdrop {
+    display: grid;
+    grid-template-columns: 10cqw minmax(0, 1fr) 25cqw;
+    grid-template-rows: 1fr 5cqh;
+    column-gap: 3cqw;
+    row-gap: 1cqh;
+    height: 20.5cqh;
+    padding: 2.2cqh 3.5cqw 1.4cqh;
+    border-radius: 8cqw;
+}
+
+.island-card__main-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 8.8cqw;
+    height: 8.8cqw;
+    margin-top: 2cqh;
+    border-radius: 50%;
+    font-size: 1.7cqh;
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.island-card__main-icon--gray {
+    color: black;
+    background: rgba(255, 255, 255, 0.72);
+}
+
+.island-card__main-icon--glow {
+    background: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 0 2.6cqw rgba(255, 255, 255, 0.35);
+}
+
+.island-card__copy {
+    min-width: 0;
+    padding-top: 2.45cqh;
+    text-align: left;
+}
+
+.island-card__copy--compact {
+    padding-top: 0;
+}
+
+.island-card__title {
+    overflow: hidden;
+    font-size: 2.15cqh;
+    font-weight: 800;
+    line-height: 1;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.island-card__subtitle {
+    display: -webkit-box;
+    overflow: hidden;
+    margin-top: 0.7cqh;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.45cqh;
+    font-weight: 600;
+    line-height: 1.05;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.island-card__media {
+    display: flex;
+    grid-column: 3;
+    grid-row: 1 / span 2;
+    justify-content: center;
+    align-items: center;
+    align-self: start;
+    gap: 1cqw;
+    width: 100%;
+    height: 14.2cqh;
+    border-radius: 5cqw;
+    font-size: 3.5cqw;
+    background: linear-gradient(145deg, #59657e, #3f4860);
+}
+
+.island-card__actions {
+    display: flex;
+    grid-column: 1 / 3;
+    grid-row: 2;
+    gap: 3.5cqw;
+    align-self: start;
+}
+
+.island-card__button {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    min-height: 4.8cqh;
+    border: 0;
+    border-radius: 7cqw;
+    color: white;
+    font-family: "SF Pro Display";
+    font-size: 1.55cqh;
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.34);
+    cursor: pointer;
+}
+
+.island-card__button--blue {
+    background: #19599a;
+}
+
+.island-card--call,
+.island-card--mini,
+.island-card--silent {
+    display: flex;
+    align-items: center;
+    border-radius: 7cqw;
+    padding: 1.4cqh 3cqw;
+}
+
+.island-card--call {
+    gap: 2.5cqw;
+    height: 12cqh;
+}
+
+.island-card--call .island-card__main-icon {
+    margin-top: 0;
+}
+
+.island-card__round-actions {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    gap: 2cqw;
+}
+
+.island-card__round-actions button {
+    width: 8cqw;
+    height: 8cqw;
+    border: 0;
+    border-radius: 50%;
+    color: white;
+    background: rgba(255, 255, 255, 0.14);
+    cursor: pointer;
+}
+
+.island-card__round-actions .island-card__round-button--red {
+    background: #ff6b5e;
+}
+
+.island-card--mini {
+    gap: 2.5cqw;
+    height: 8.2cqh;
+}
+
+.island-card--mini .island-card__main-icon {
+    width: 7.2cqw;
+    height: 7.2cqw;
+    margin-top: 0;
+}
+
+.island-card__state {
+    margin-left: auto;
+    font-size: 1.7cqh;
+}
+
+.island-card--silent {
+    justify-content: center;
+    gap: 3cqw;
+    width: 72%;
+    height: 6.8cqh;
+    margin: 0 auto;
+    color: #ff5a4c;
 }
 </style>
