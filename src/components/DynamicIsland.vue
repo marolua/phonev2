@@ -40,9 +40,9 @@
     &:hover,
     &:focus-within {
         top: 1.1cqh;
-        width: 86cqw;
-        height: 17.5cqh;
-        border-radius: 7cqw;
+        width: 90cqw;
+        height: 20cqh;
+        border-radius: 10cqw;
         box-shadow: 0 0.8cqh 2.5cqh rgba(0, 0, 0, 0.45);
 
         .dynamic-island__compact {
