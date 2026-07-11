@@ -185,7 +185,7 @@
 
             .button:hover {
                 cursor: pointer;
-                transform: scaleX(1.05) scaleY(1.1);
+                transform: scaleX(1.05);
             }
         }
     }
