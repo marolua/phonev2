@@ -1,6 +1,16 @@
 <script setup>
 import { computed, onBeforeUnmount, ref } from 'vue'
 import DynamicIsland from './DynamicIsland.vue'
+import HighDropIsland from './HighDropIsland.vue'
+
+const highDrop = {
+    iconText: 'HD',
+    title: 'HighDrop',
+    subtitle: 'highrider would like to share 1 video',
+    imageSrc: '',
+    declineText: 'Decline',
+    acceptText: 'Accept',
+}
 
 const islandExamples = [
     {
@@ -96,26 +106,16 @@ onBeforeUnmount(clearIslandTimers)
                             <section
                                 v-if="activeIsland.type === 'highdrop'"
                                 key="highdrop"
-                                class="island-card island-card--highdrop"
+                                class="island-card"
                             >
-                                <div class="island-card__main-icon">HD</div>
-
-                                <div class="island-card__copy">
-                                    <div class="island-card__title">HighDrop</div>
-                                    <div class="island-card__subtitle">
-                                        highrider would like to share 1 video
-                                    </div>
-                                </div>
-
-                                <div class="island-card__media">
-                                    <span>★</span>
-                                    <span>●</span>
-                                </div>
-
-                                <div class="island-card__actions">
-                                    <button class="island-card__button">Decline</button>
-                                    <button class="island-card__button island-card__button--blue">Accept</button>
-                                </div>
+                                <HighDropIsland
+                                    :icon-text="highDrop.iconText"
+                                    :title="highDrop.title"
+                                    :subtitle="highDrop.subtitle"
+                                    :image-src="highDrop.imageSrc"
+                                    :decline-text="highDrop.declineText"
+                                    :accept-text="highDrop.acceptText"
+                                />
                             </section>
 
                             <section
@@ -129,10 +129,10 @@ onBeforeUnmount(clearIslandTimers)
                                     <div class="island-card__subtitle">00:01</div>
                                 </div>
                                 <div class="island-card__round-actions">
-                                    <button>▢</button>
+                                    <button>Cam</button>
                                     <button>Mic</button>
                                     <button>Vol</button>
-                                    <button class="island-card__round-button--red">×</button>
+                                    <button class="island-card__round-button--red">X</button>
                                 </div>
                             </section>
 
@@ -326,16 +326,6 @@ onBeforeUnmount(clearIslandTimers)
     background-color: rgb(0, 0, 0);
 }
 
-.island-card--highdrop {
-    display: grid;
-    grid-template-columns: 9cqw minmax(0, 1fr) 22cqw;
-    grid-template-rows: 1fr 4.3cqh;
-    column-gap: 2.4cqw;
-    row-gap: 0.8cqh;
-    padding: 1.9cqh 3.1cqw 1.25cqh;
-    border-radius: 7.5cqw;
-}
-
 .island-card__main-icon {
     display: flex;
     justify-content: center;
@@ -389,49 +379,6 @@ onBeforeUnmount(clearIslandTimers)
     line-height: 1.05;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
-}
-
-.island-card__media {
-    display: flex;
-    grid-column: 3;
-    grid-row: 1 / span 2;
-    justify-content: center;
-    align-items: center;
-    align-self: start;
-    gap: 1cqw;
-    width: 100%;
-    height: 12.7cqh;
-    border-radius: 4.5cqw;
-    font-size: 3cqw;
-    background: linear-gradient(145deg, #59657e, #3f4860);
-}
-
-.island-card__actions {
-    display: flex;
-    grid-column: 1 / 3;
-    grid-row: 2;
-    gap: 2.8cqw;
-    align-self: start;
-}
-
-.island-card__button {
-    display: flex;
-    flex: 1;
-    justify-content: center;
-    align-items: center;
-    min-height: 4.2cqh;
-    border: 0;
-    border-radius: 7cqw;
-    color: white;
-    font-family: "SF Pro Display";
-    font-size: 1.45cqh;
-    font-weight: 700;
-    background: rgba(255, 255, 255, 0.34);
-    cursor: pointer;
-}
-
-.island-card__button--blue {
-    background: #19599a;
 }
 
 .island-card--call,
