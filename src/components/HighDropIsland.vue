@@ -35,13 +35,15 @@ defineEmits(['accept', 'decline'])
 
 <template>
     <section class="highdrop-island-card">
-        <div class="highdrop-island-card__icon">
-            <slot name="icon">{{ iconText }}</slot>
-        </div>
+        <div class="highdrop-island-card__left">
+            <div class="highdrop-island-card__icon">
+                <slot name="icon">{{ iconText }}</slot>
+            </div>
 
-        <div class="highdrop-island-card__copy">
-            <div class="highdrop-island-card__title">{{ title }}</div>
-            <div class="highdrop-island-card__subtitle">{{ subtitle }}</div>
+            <div class="highdrop-island-card__copy">
+                <div class="highdrop-island-card__title">{{ title }}</div>
+                <div class="highdrop-island-card__subtitle">{{ subtitle }}</div>
+            </div>
         </div>
 
         <div class="highdrop-island-card__preview">
@@ -80,27 +82,34 @@ defineEmits(['accept', 'decline'])
 <style lang="scss">
 .highdrop-island-card {
     display: grid;
-    grid-template-columns: 9cqw minmax(0, 1fr) 22cqw;
-    grid-template-rows: 1fr 4.2cqh;
-    column-gap: 2.4cqw;
-    row-gap: 0.9cqh;
+    grid-template-columns: minmax(0, 1fr) 26.5cqw;
+    grid-template-rows: 1fr 4.4cqh;
+    column-gap: 4cqw;
+    row-gap: 1.6cqh;
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-    padding: 2cqh 3.2cqw 1.35cqh;
+    padding: 2.4cqh 4.2cqw 1.7cqh;
     border-radius: 7.5cqw;
     color: white;
     font-family: "SF Pro Display";
     background-color: rgb(0, 0, 0);
 }
 
+.highdrop-island-card__left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-width: 0;
+}
+
 .highdrop-island-card__icon {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 8cqw;
-    height: 8cqw;
-    margin-top: 1.6cqh;
+    width: 8.8cqw;
+    height: 8.8cqw;
+    margin-left: 0.5cqw;
     border-radius: 50%;
     color: white;
     font-size: 1.6cqh;
@@ -110,7 +119,7 @@ defineEmits(['accept', 'decline'])
 
 .highdrop-island-card__copy {
     min-width: 0;
-    padding-top: 2.2cqh;
+    margin-top: 1.2cqh;
     text-align: left;
 }
 
@@ -126,26 +135,26 @@ defineEmits(['accept', 'decline'])
 .highdrop-island-card__subtitle {
     display: -webkit-box;
     overflow: hidden;
-    margin-top: 0.75cqh;
-    color: rgba(255, 255, 255, 0.82);
-    font-size: 1.28cqh;
-    font-weight: 600;
-    line-height: 1.12;
+    margin-top: 0.6cqh;
+    color: rgba(255, 255, 255, 0.56);
+    font-size: 1.5cqh;
+    font-weight: 500;
+    line-height: 1.08;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
 }
 
 .highdrop-island-card__preview {
     display: flex;
-    grid-column: 3;
+    grid-column: 2;
     grid-row: 1 / span 2;
     justify-content: center;
     align-items: center;
     align-self: start;
     width: 100%;
-    height: 12.8cqh;
+    height: 13.2cqh;
     overflow: hidden;
-    border-radius: 4.5cqw;
+    border-radius: 4.6cqw;
     background: #272d36;
 }
 
@@ -228,9 +237,9 @@ defineEmits(['accept', 'decline'])
 
 .highdrop-island-card__actions {
     display: flex;
-    grid-column: 1 / 3;
+    grid-column: 1;
     grid-row: 2;
-    gap: 2.8cqw;
+    gap: 3cqw;
     align-self: start;
 }
 
@@ -239,12 +248,12 @@ defineEmits(['accept', 'decline'])
     flex: 1;
     justify-content: center;
     align-items: center;
-    min-height: 4.2cqh;
+    min-height: 4.4cqh;
     border: 0;
     border-radius: 7cqw;
     color: white;
     font-family: "SF Pro Display";
-    font-size: 1.4cqh;
+    font-size: 1.55cqh;
     font-weight: 700;
     background: rgba(255, 255, 255, 0.34);
     cursor: pointer;

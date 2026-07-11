@@ -15,8 +15,8 @@ const highDrop = {
 const islandExamples = [
     {
         type: 'highdrop',
-        width: '88cqw',
-        height: '21cqh',
+        width: '92cqw',
+        height: '22.5cqh',
     },
     {
         type: 'call',
