@@ -5,7 +5,7 @@ import HighDropIsland from './HighDropIsland.vue'
 
 const highDrop = {
     iconText: 'HD',
-    title: 'HighDrop',
+    title: 'TExte',
     subtitle: 'highrider would like to share 1 video',
     imageSrc: '',
     declineText: 'Decline',
