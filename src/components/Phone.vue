@@ -172,13 +172,6 @@
         border-radius: 7cqw;
         background-color: #f2f2f266;
 
-        .bottom:hover {
-            .button {
-                cursor: pointer;
-                transform: scaleX(1.05) scaleY(1.1);
-            }
-        }
-
         .button {
             position: relative;
             display: flex;
