@@ -13,16 +13,30 @@ import DynamicIsland from './DynamicIsland.vue'
                 <div class="button-right-power"></div>
             </div>
         </div>
+
         <div class="screen">
             <div class="top">
                 <div class="hour">22:50</div>
 
-                <DynamicIsland>
-                    <template #expanded>
-                        <div class="dynamic-island-content">
-                            <div class="dynamic-island-content__title">Dynamic Island</div>
-                            <div class="dynamic-island-content__text">Ajoute tes éléments ici</div>
+                <DynamicIsland
+                    title="HighDrop"
+                    subtitle="highrider would like to share 1 video"
+                    expanded-height="23cqh"
+                >
+                    <template #leading>
+                        <div class="dynamic-island-icon">📡</div>
+                    </template>
+
+                    <template #media>
+                        <div class="dynamic-island-preview">
+                            <span>🍌</span>
+                            <span>☁️</span>
                         </div>
+                    </template>
+
+                    <template #actions>
+                        <button class="dynamic-island-action">Decline</button>
+                        <button class="dynamic-island-action dynamic-island-action--blue">Accept</button>
                     </template>
                 </DynamicIsland>
 
@@ -38,7 +52,7 @@ import DynamicIsland from './DynamicIsland.vue'
 
 <style lang="scss">
 .full-phone-coque {
-    container-type: size; // ← active les cq units pour les enfants
+    container-type: size;
     position: fixed;
     display: flex;
     justify-content: center;
@@ -47,7 +61,7 @@ import DynamicIsland from './DynamicIsland.vue'
     left: 60%;
     transform: translate(-50%, -50%);
     width: 16.11vw;
-    aspect-ratio: 9 / 18.15; // ← remplace height: 57.78vh, maintient le ratio quoi qu'il arrive
+    aspect-ratio: 9 / 18.15;
     border-radius: 2.7vw;
     border: 0.25vw solid rgb(94, 95, 97);
     background-color: rgb(0, 0, 0);
@@ -131,27 +145,15 @@ import DynamicIsland from './DynamicIsland.vue'
             font-family: "SF Pro Display";
         }
 
-        .dynamic-island-content {
+        .dynamic-island-preview {
             display: flex;
-            flex-direction: column;
             justify-content: center;
+            align-items: center;
+            gap: 1cqw;
             width: 100%;
             height: 100%;
-            box-sizing: border-box;
-            padding: 2cqh 5cqw;
-            font-family: "SF Pro Display";
-            text-align: left;
-        }
-
-        .dynamic-island-content__title {
-            font-size: 2.2cqh;
-            font-weight: 700;
-        }
-
-        .dynamic-island-content__text {
-            margin-top: 0.6cqh;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 1.5cqh;
+            font-size: 4cqw;
+            background: linear-gradient(145deg, #202735, #3a4254);
         }
 
         .utils {
