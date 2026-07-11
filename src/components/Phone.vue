@@ -1,4 +1,5 @@
 <script setup>
+import DynamicIsland from './DynamicIsland.vue'
 </script>
 
 <template>
@@ -15,9 +16,16 @@
         <div class="screen">
             <div class="top">
                 <div class="hour">22:50</div>
-                <div class="dynamic">
-                    <div class="camera"></div>
-                </div>
+
+                <DynamicIsland>
+                    <template #expanded>
+                        <div class="dynamic-island-content">
+                            <div class="dynamic-island-content__title">Dynamic Island</div>
+                            <div class="dynamic-island-content__text">Ajoute tes éléments ici</div>
+                        </div>
+                    </template>
+                </DynamicIsland>
+
                 <div class="utils"></div>
             </div>
 
@@ -105,9 +113,10 @@
     .top {
         position: absolute;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
-        gap: 10.9cqw;
+        box-sizing: border-box;
+        padding: 0 8cqw;
         width: 100%;
         height: 8.65cqh;
         color: white;
@@ -122,34 +131,27 @@
             font-family: "SF Pro Display";
         }
 
-        .dynamic {
-            position: relative;
-            width: 27.9cqw;
-            height: 4.33cqh;
-            border-radius: 50cqw;
-            transition: all 0.3s ease-in-out;
-            background-color: rgb(0, 0, 0);
+        .dynamic-island-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            box-sizing: border-box;
+            padding: 2cqh 5cqw;
+            font-family: "SF Pro Display";
+            text-align: left;
+        }
 
-            ::before {
-                content: '';
-                position: absolute;
-                top: 50%;
-                left: 75%;
-                transform: translate(-50%, -50%);
-                width: 4cqw;
-                height: 4cqw;
-                border-radius: 50%;
-                background: radial-gradient(#6667ac, #0000 50%) 33.3% 10% / 75% 50% no-repeat,
-                    #080928 radial-gradient(#454680, #0000 50%) 60% 85% / 50% 50% no-repeat;
-            }
+        .dynamic-island-content__title {
+            font-size: 2.2cqh;
+            font-weight: 700;
+        }
 
-            &:hover {
-                cursor: pointer;
-                width: 90%;
-                height: 135%;
-                box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.5);
-
-            }
+        .dynamic-island-content__text {
+            margin-top: 0.6cqh;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.5cqh;
         }
 
         .utils {
