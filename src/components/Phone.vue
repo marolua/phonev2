@@ -68,11 +68,11 @@ const showIsland = (index) => {
                             <!-- Dynamic Island large : fond grand format. Ajoute tes divs dedans. -->
                             <section v-if="activeIsland.type === 'large'" key="large"
                                 class="island-layout island-layout--large">
-                                <div class="top">
+                                <div class="large-top">
 
                                 </div>
-                                <div class="bottom">
-                                    
+                                <div class="large-bottom">
+
                                 </div>
                             </section>
 
