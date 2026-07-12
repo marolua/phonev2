@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onBeforeUnmount, ref } from 'vue'
+import { computed, ref } from 'vue'
 import DynamicIsland from './DynamicIsland.vue'
 
 const islandExamples = [
@@ -26,48 +26,31 @@ const islandExamples = [
 ]
 
 const activeIslandIndex = ref(0)
-const isIslandExpanded = ref(false)
-let closeTimer = null
-let nextTimer = null
+const isIslandExpanded = ref(true)
 
 const activeIsland = computed(() => islandExamples[activeIslandIndex.value])
+const isPillActive = computed(() => isIslandExpanded.value && activeIsland.value.type === 'pill')
 
-const clearIslandTimers = () => {
-    clearTimeout(closeTimer)
-    clearTimeout(nextTimer)
-    closeTimer = null
-    nextTimer = null
-}
-
-const runIslandCycle = () => {
-    clearIslandTimers()
+const showIsland = (index) => {
+    activeIslandIndex.value = index
     isIslandExpanded.value = true
-
-    closeTimer = setTimeout(() => {
-        isIslandExpanded.value = false
-
-        nextTimer = setTimeout(() => {
-            activeIslandIndex.value = (activeIslandIndex.value + 1) % islandExamples.length
-            runIslandCycle()
-        }, 650)
-    }, 2300)
 }
-
-const startIslandDemo = () => {
-    if (isIslandExpanded.value) return
-    runIslandCycle()
-}
-
-const stopIslandDemo = () => {
-    clearIslandTimers()
-    isIslandExpanded.value = false
-    activeIslandIndex.value = 0
-}
-
-onBeforeUnmount(clearIslandTimers)
 </script>
 
 <template>
+    <div class="dev-island-controls">
+        <button
+            v-for="(island, index) in islandExamples"
+            :key="island.type"
+            class="dev-island-controls__button"
+            :class="{ 'dev-island-controls__button--active': activeIslandIndex === index }"
+            type="button"
+            @click="showIsland(index)"
+        >
+            {{ island.type }}
+        </button>
+    </div>
+
     <div class="full-phone-coque">
         <div class="button">
             <div class="button-left">
@@ -81,15 +64,13 @@ onBeforeUnmount(clearIslandTimers)
 
         <div class="screen">
             <div class="top">
-                <div class="hour">22:50</div>
+                <div v-show="!isPillActive" class="hour">22:50</div>
 
                 <DynamicIsland
                     :expanded="isIslandExpanded"
                     :expanded-width="activeIsland.width"
                     :expanded-height="activeIsland.height"
                     :hoverable="false"
-                    @mouseenter="startIslandDemo"
-                    @mouseleave="stopIslandDemo"
                 >
                     <template #expanded>
                         <Transition name="island-layout-swap" mode="out-in">
@@ -124,7 +105,7 @@ onBeforeUnmount(clearIslandTimers)
                     </template>
                 </DynamicIsland>
 
-                <div class="utils"></div>
+                <div v-show="!isPillActive" class="utils"></div>
             </div>
 
             <div class="bottom">
