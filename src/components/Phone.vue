@@ -311,24 +311,31 @@ const showIsland = (index) => {
     .large-bottom {
         position: relative;
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
         align-items: center;
+        gap: 5cqw;
         width: 100%;
         height: 32%;
         background-color: rgb(119, 115, 115);
 
         .button-first {
             position: relative;
-            width: 25cqw;
-            height: 6cqh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 37cqw;
+            height: 5.3cqh;
             border-radius: 3cqh;
             background-color: rgb(0, 0, 0);
         }
 
         .button-second {
             position: relative;
-            width: 25cqw;
-            height: 6cqh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 37cqw;
+            height: 5.3cqh;
             border-radius: 3cqh;
             background-color: rgb(0, 0, 0);
         }
