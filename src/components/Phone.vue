@@ -68,7 +68,12 @@ const showIsland = (index) => {
                             <!-- Dynamic Island large : fond grand format. Ajoute tes divs dedans. -->
                             <section v-if="activeIsland.type === 'large'" key="large"
                                 class="island-layout island-layout--large">
+                                <div class="top">
 
+                                </div>
+                                <div class="bottom">
+                                    
+                                </div>
                             </section>
 
                             <!-- Dynamic Island medium : fond moyen format. Ajoute tes divs dedans. -->
@@ -286,6 +291,9 @@ const showIsland = (index) => {
 }
 
 .island-layout--large {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 7.5cqw;
 }
 
