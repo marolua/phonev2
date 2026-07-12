@@ -10,18 +10,18 @@ const islandExamples = [
     },
     {
         type: 'medium',
-        width: '88cqw',
-        height: '15cqh',
+        width: '91cqw',
+        height: '17cqh',
     },
     {
         type: 'small',
-        width: '76cqw',
-        height: '7.4cqh',
+        width: '87cqw',
+        height: '8.5cqh',
     },
     {
         type: 'pill',
-        width: '58cqw',
-        height: '5.8cqh',
+        width: '60cqw',
+        height: '6cqh',
     },
 ]
 
