@@ -6,7 +6,7 @@ const islandExamples = [
     {
         type: 'large',
         width: '91cqw',
-        height: '22cqh',
+        height: '30cqh',
     },
     {
         type: 'medium',
@@ -293,8 +293,29 @@ const showIsland = (index) => {
 .island-layout--large {
     display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
     border-radius: 7.5cqw;
+
+    .large-top {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 50%;
+        background-color: rgb(66, 64, 64);
+    }
+
+    .large-bottom {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 15%;
+        background-color: rgba(255, 255, 255);
+    }
 }
 
 .island-layout--medium {
