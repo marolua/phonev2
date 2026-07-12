@@ -5,8 +5,8 @@ import DynamicIsland from './DynamicIsland.vue'
 const islandExamples = [
     {
         type: 'large',
-        width: '92cqw',
-        height: '22.5cqh',
+        width: '91cqw',
+        height: '22cqh',
     },
     {
         type: 'medium',
