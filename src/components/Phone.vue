@@ -72,7 +72,8 @@ const showIsland = (index) => {
 
                                 </div>
                                 <div class="large-bottom">
-
+                                    <div class="button-first"></div>
+                                    <div class="button-second"></div>
                                 </div>
                             </section>
 
@@ -303,18 +304,34 @@ const showIsland = (index) => {
         justify-content: center;
         align-items: center;
         width: 100%;
-        height: 50%;
+        height: 68%;
         background-color: rgb(66, 64, 64);
     }
 
     .large-bottom {
         position: relative;
         display: flex;
-        justify-content: center;
+        justify-content: space-around;
         align-items: center;
         width: 100%;
-        height: 15%;
-        background-color: rgba(255, 255, 255);
+        height: 32%;
+        background-color: rgb(119, 115, 115);
+
+        .button-first {
+            position: relative;
+            width: 25cqw;
+            height: 6cqh;
+            border-radius: 3cqh;
+            background-color: rgb(0, 0, 0);
+        }
+
+        .button-second {
+            position: relative;
+            width: 25cqw;
+            height: 6cqh;
+            border-radius: 3cqh;
+            background-color: rgb(0, 0, 0);
+        }
     }
 }
 
