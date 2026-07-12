@@ -69,7 +69,7 @@ const showIsland = (index) => {
                             <section v-if="activeIsland.type === 'large'" key="large"
                                 class="island-layout island-layout--large">
                                 <div class="large-top">
-
+                                    <div></div>
                                 </div>
                                 <div class="large-bottom">
                                     <div class="button-first">Refuser</div>
