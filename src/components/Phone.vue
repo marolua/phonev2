@@ -39,14 +39,9 @@ const showIsland = (index) => {
 
 <template>
     <div class="dev-island-controls">
-        <button
-            v-for="(island, index) in islandExamples"
-            :key="island.type"
-            class="dev-island-controls__button"
-            :class="{ 'dev-island-controls__button--active': activeIslandIndex === index }"
-            type="button"
-            @click="showIsland(index)"
-        >
+        <button v-for="(island, index) in islandExamples" :key="island.type" class="dev-island-controls__button"
+            :class="{ 'dev-island-controls__button--active': activeIslandIndex === index }" type="button"
+            @click="showIsland(index)">
             {{ island.type }}
         </button>
     </div>
@@ -66,41 +61,26 @@ const showIsland = (index) => {
             <div class="top">
                 <div v-show="!isPillActive" class="hour">22:50</div>
 
-                <DynamicIsland
-                    :expanded="isIslandExpanded"
-                    :expanded-width="activeIsland.width"
-                    :expanded-height="activeIsland.height"
-                    :hoverable="false"
-                >
+                <DynamicIsland :expanded="isIslandExpanded" :expanded-width="activeIsland.width"
+                    :expanded-height="activeIsland.height" :hoverable="false">
                     <template #expanded>
                         <Transition name="island-layout-swap" mode="out-in">
                             <!-- Dynamic Island large : fond grand format. Ajoute tes divs dedans. -->
-                            <section
-                                v-if="activeIsland.type === 'large'"
-                                key="large"
-                                class="island-layout island-layout--large"
-                            ></section>
+                            <section v-if="activeIsland.type === 'large'" key="large"
+                                class="island-layout island-layout--large">
+
+                            </section>
 
                             <!-- Dynamic Island medium : fond moyen format. Ajoute tes divs dedans. -->
-                            <section
-                                v-else-if="activeIsland.type === 'medium'"
-                                key="medium"
-                                class="island-layout island-layout--medium"
-                            ></section>
+                            <section v-else-if="activeIsland.type === 'medium'" key="medium"
+                                class="island-layout island-layout--medium"></section>
 
                             <!-- Dynamic Island small : fond petit format. Ajoute tes divs dedans. -->
-                            <section
-                                v-else-if="activeIsland.type === 'small'"
-                                key="small"
-                                class="island-layout island-layout--small"
-                            ></section>
+                            <section v-else-if="activeIsland.type === 'small'" key="small"
+                                class="island-layout island-layout--small"></section>
 
                             <!-- Dynamic Island pill : fond très compact. Ajoute tes divs dedans. -->
-                            <section
-                                v-else
-                                key="pill"
-                                class="island-layout island-layout--pill"
-                            ></section>
+                            <section v-else key="pill" class="island-layout island-layout--pill"></section>
                         </Transition>
                     </template>
                 </DynamicIsland>
