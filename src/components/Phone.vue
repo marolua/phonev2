@@ -93,45 +93,33 @@ onBeforeUnmount(clearIslandTimers)
                 >
                     <template #expanded>
                         <Transition name="island-layout-swap" mode="out-in">
+                            <!-- Dynamic Island large : fond grand format. Ajoute tes divs dedans. -->
                             <section
                                 v-if="activeIsland.type === 'large'"
                                 key="large"
                                 class="island-layout island-layout--large"
-                            >
-                                <div class="island-zone island-zone--icon"></div>
-                                <div class="island-zone island-zone--content"></div>
-                                <div class="island-zone island-zone--media"></div>
-                                <div class="island-zone island-zone--actions"></div>
-                            </section>
+                            ></section>
 
+                            <!-- Dynamic Island medium : fond moyen format. Ajoute tes divs dedans. -->
                             <section
                                 v-else-if="activeIsland.type === 'medium'"
                                 key="medium"
                                 class="island-layout island-layout--medium"
-                            >
-                                <div class="island-zone island-zone--leading"></div>
-                                <div class="island-zone island-zone--content"></div>
-                                <div class="island-zone island-zone--actions"></div>
-                            </section>
+                            ></section>
 
+                            <!-- Dynamic Island small : fond petit format. Ajoute tes divs dedans. -->
                             <section
                                 v-else-if="activeIsland.type === 'small'"
                                 key="small"
                                 class="island-layout island-layout--small"
-                            >
-                                <div class="island-zone island-zone--leading"></div>
-                                <div class="island-zone island-zone--content"></div>
-                                <div class="island-zone island-zone--trailing"></div>
-                            </section>
+                            ></section>
 
+                            <!-- Dynamic Island pill : fond très compact. Ajoute tes divs dedans. -->
                             <section
                                 v-else
                                 key="pill"
                                 class="island-layout island-layout--pill"
-                            >
-                                <div class="island-zone island-zone--leading"></div>
-                                <div class="island-zone island-zone--content"></div>
-                            </section>
+                            ></section>
                         </Transition>
                     </template>
                 </DynamicIsland>
@@ -299,102 +287,22 @@ onBeforeUnmount(clearIslandTimers)
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-    color: white;
-    font-family: "SF Pro Display";
     background-color: rgb(0, 0, 0);
 }
 
 .island-layout--large {
-    display: grid;
-    grid-template-columns: 10cqw minmax(0, 1fr) 24cqw;
-    grid-template-rows: 1fr 4.5cqh;
-    gap: 1.4cqh 3cqw;
-    padding: 2.4cqh 4cqw 1.7cqh;
     border-radius: 7.5cqw;
 }
 
 .island-layout--medium {
-    display: grid;
-    grid-template-columns: 10cqw minmax(0, 1fr);
-    grid-template-rows: 1fr 6cqh;
-    gap: 1.2cqh 3cqw;
-    padding: 2cqh 4cqw;
     border-radius: 7cqw;
 }
 
 .island-layout--small {
-    display: grid;
-    grid-template-columns: 8cqw minmax(0, 1fr) 12cqw;
-    gap: 2cqw;
-    align-items: center;
-    padding: 0.9cqh 3cqw;
     border-radius: 6cqw;
 }
 
 .island-layout--pill {
-    display: grid;
-    grid-template-columns: 8cqw minmax(0, 1fr);
-    gap: 2cqw;
-    align-items: center;
-    padding: 0.7cqh 2.5cqw;
     border-radius: 5cqw;
-}
-
-.island-zone {
-    min-width: 0;
-    min-height: 0;
-    border: 0.15cqw dashed rgba(255, 255, 255, 0.22);
-    border-radius: 2cqw;
-}
-
-.island-zone--icon,
-.island-zone--leading {
-    border-radius: 50%;
-}
-
-.island-layout--large .island-zone--icon {
-    grid-column: 1;
-    grid-row: 1;
-    width: 8.5cqw;
-    height: 8.5cqw;
-}
-
-.island-layout--large .island-zone--content {
-    grid-column: 2;
-    grid-row: 1;
-}
-
-.island-layout--large .island-zone--media {
-    grid-column: 3;
-    grid-row: 1 / span 2;
-}
-
-.island-layout--large .island-zone--actions {
-    grid-column: 1 / span 2;
-    grid-row: 2;
-}
-
-.island-layout--medium .island-zone--leading {
-    grid-column: 1;
-    grid-row: 1 / span 2;
-    width: 8.5cqw;
-    height: 8.5cqw;
-    align-self: start;
-}
-
-.island-layout--medium .island-zone--content {
-    grid-column: 2;
-    grid-row: 1;
-}
-
-.island-layout--medium .island-zone--actions {
-    grid-column: 2;
-    grid-row: 2;
-}
-
-.island-layout--small .island-zone--leading,
-.island-layout--pill .island-zone--leading {
-    width: 6cqw;
-    height: 6cqw;
 }
 </style>
