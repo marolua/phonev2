@@ -1,35 +1,25 @@
 <script setup>
 import { computed, onBeforeUnmount, ref } from 'vue'
 import DynamicIsland from './DynamicIsland.vue'
-import HighDropIsland from './HighDropIsland.vue'
-
-const highDrop = {
-    iconText: 'HD',
-    title: 'Partage de fichier',
-    subtitle: 'Théo veux vous partagez des fichiers, texte',
-    imageSrc: '',
-    declineText: 'Refuser',
-    acceptText: 'Accepter',
-}
 
 const islandExamples = [
     {
-        type: 'highdrop',
+        type: 'large',
         width: '92cqw',
         height: '22.5cqh',
     },
     {
-        type: 'call',
+        type: 'medium',
         width: '88cqw',
         height: '15cqh',
     },
     {
-        type: 'flashlight',
+        type: 'small',
         width: '76cqw',
         height: '7.4cqh',
     },
     {
-        type: 'silent',
+        type: 'pill',
         width: '58cqw',
         height: '5.8cqh',
     },
@@ -102,56 +92,45 @@ onBeforeUnmount(clearIslandTimers)
                     @mouseleave="stopIslandDemo"
                 >
                     <template #expanded>
-                        <Transition name="island-card-swap" mode="out-in">
+                        <Transition name="island-layout-swap" mode="out-in">
                             <section
-                                v-if="activeIsland.type === 'highdrop'"
-                                key="highdrop"
-                                class="island-card"
+                                v-if="activeIsland.type === 'large'"
+                                key="large"
+                                class="island-layout island-layout--large"
                             >
-                                <HighDropIsland
-                                    :icon-text="highDrop.iconText"
-                                    :title="highDrop.title"
-                                    :subtitle="highDrop.subtitle"
-                                    :image-src="highDrop.imageSrc"
-                                    :decline-text="highDrop.declineText"
-                                    :accept-text="highDrop.acceptText"
-                                />
+                                <div class="island-zone island-zone--icon"></div>
+                                <div class="island-zone island-zone--content"></div>
+                                <div class="island-zone island-zone--media"></div>
+                                <div class="island-zone island-zone--actions"></div>
                             </section>
 
                             <section
-                                v-else-if="activeIsland.type === 'call'"
-                                key="call"
-                                class="island-card island-card--call"
+                                v-else-if="activeIsland.type === 'medium'"
+                                key="medium"
+                                class="island-layout island-layout--medium"
                             >
-                                <div class="island-card__main-icon island-card__main-icon--gray">A</div>
-                                <div class="island-card__copy island-card__copy--compact">
-                                    <div class="island-card__title">Aria Wright</div>
-                                    <div class="island-card__subtitle">00:01</div>
-                                </div>
-                                <div class="island-card__round-actions">
-                                    <button>Cam</button>
-                                    <button>Mic</button>
-                                    <button>Vol</button>
-                                    <button class="island-card__round-button--red">X</button>
-                                </div>
+                                <div class="island-zone island-zone--leading"></div>
+                                <div class="island-zone island-zone--content"></div>
+                                <div class="island-zone island-zone--actions"></div>
                             </section>
 
                             <section
-                                v-else-if="activeIsland.type === 'flashlight'"
-                                key="flashlight"
-                                class="island-card island-card--mini"
+                                v-else-if="activeIsland.type === 'small'"
+                                key="small"
+                                class="island-layout island-layout--small"
                             >
-                                <div class="island-card__main-icon island-card__main-icon--glow">F</div>
-                                <div class="island-card__title">Flashlight</div>
-                                <div class="island-card__state">On</div>
+                                <div class="island-zone island-zone--leading"></div>
+                                <div class="island-zone island-zone--content"></div>
+                                <div class="island-zone island-zone--trailing"></div>
                             </section>
 
                             <section
                                 v-else
-                                key="silent"
-                                class="island-card island-card--silent"
+                                key="pill"
+                                class="island-layout island-layout--pill"
                             >
-                                <span>Silent</span>
+                                <div class="island-zone island-zone--leading"></div>
+                                <div class="island-zone island-zone--content"></div>
                             </section>
                         </Transition>
                     </template>
@@ -303,143 +282,119 @@ onBeforeUnmount(clearIslandTimers)
     }
 }
 
-.island-card-swap-enter-active,
-.island-card-swap-leave-active {
+.island-layout-swap-enter-active,
+.island-layout-swap-leave-active {
     transition:
         opacity 0.18s ease-in-out,
         transform 0.18s ease-in-out;
 }
 
-.island-card-swap-enter-from,
-.island-card-swap-leave-to {
+.island-layout-swap-enter-from,
+.island-layout-swap-leave-to {
     opacity: 0;
     transform: translateY(-0.8cqh) scale(0.98);
 }
 
-.island-card {
+.island-layout {
     width: 100%;
     height: 100%;
-    flex-shrink: 0;
     box-sizing: border-box;
     color: white;
     font-family: "SF Pro Display";
     background-color: rgb(0, 0, 0);
 }
 
-.island-card__main-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 8cqw;
-    height: 8cqw;
-    margin-top: 1.7cqh;
-    border-radius: 50%;
-    font-size: 1.7cqh;
-    font-weight: 700;
-    background: rgba(255, 255, 255, 0.2);
+.island-layout--large {
+    display: grid;
+    grid-template-columns: 10cqw minmax(0, 1fr) 24cqw;
+    grid-template-rows: 1fr 4.5cqh;
+    gap: 1.4cqh 3cqw;
+    padding: 2.4cqh 4cqw 1.7cqh;
+    border-radius: 7.5cqw;
 }
 
-.island-card__main-icon--gray {
-    color: black;
-    background: rgba(255, 255, 255, 0.72);
+.island-layout--medium {
+    display: grid;
+    grid-template-columns: 10cqw minmax(0, 1fr);
+    grid-template-rows: 1fr 6cqh;
+    gap: 1.2cqh 3cqw;
+    padding: 2cqh 4cqw;
+    border-radius: 7cqw;
 }
 
-.island-card__main-icon--glow {
-    margin-top: 0;
-    background: rgba(255, 255, 255, 0.18);
-    box-shadow: 0 0 2.6cqw rgba(255, 255, 255, 0.35);
-}
-
-.island-card__copy {
-    min-width: 0;
-    padding-top: 2.15cqh;
-    text-align: left;
-}
-
-.island-card__copy--compact {
-    padding-top: 0;
-}
-
-.island-card__title {
-    overflow: hidden;
-    font-size: 2cqh;
-    font-weight: 800;
-    line-height: 1;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.island-card__subtitle {
-    display: -webkit-box;
-    overflow: hidden;
-    margin-top: 0.7cqh;
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 1.35cqh;
-    font-weight: 600;
-    line-height: 1.05;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-}
-
-.island-card--call,
-.island-card--mini,
-.island-card--silent {
-    display: flex;
-    align-items: center;
-}
-
-.island-card--call {
-    gap: 2.1cqw;
-    padding: 1.45cqh 2.8cqw;
-    border-radius: 6.5cqw;
-}
-
-.island-card--call .island-card__main-icon {
-    margin-top: 0;
-}
-
-.island-card__round-actions {
-    display: flex;
-    flex: 1;
-    justify-content: flex-end;
-    gap: 1.5cqw;
-}
-
-.island-card__round-actions button {
-    width: 7.1cqw;
-    height: 7.1cqw;
-    border: 0;
-    border-radius: 50%;
-    color: white;
-    font-size: 1.2cqh;
-    background: rgba(255, 255, 255, 0.14);
-    cursor: pointer;
-}
-
-.island-card__round-actions .island-card__round-button--red {
-    background: #ff6b5e;
-}
-
-.island-card--mini {
+.island-layout--small {
+    display: grid;
+    grid-template-columns: 8cqw minmax(0, 1fr) 12cqw;
     gap: 2cqw;
-    padding: 0.8cqh 2.5cqw;
+    align-items: center;
+    padding: 0.9cqh 3cqw;
     border-radius: 6cqw;
 }
 
-.island-card--mini .island-card__main-icon {
-    width: 6.2cqw;
-    height: 6.2cqw;
-}
-
-.island-card__state {
-    margin-left: auto;
-    font-size: 1.7cqh;
-}
-
-.island-card--silent {
-    justify-content: center;
+.island-layout--pill {
+    display: grid;
+    grid-template-columns: 8cqw minmax(0, 1fr);
     gap: 2cqw;
-    color: #ff5a4c;
-    border-radius: 4.5cqw;
+    align-items: center;
+    padding: 0.7cqh 2.5cqw;
+    border-radius: 5cqw;
+}
+
+.island-zone {
+    min-width: 0;
+    min-height: 0;
+    border: 0.15cqw dashed rgba(255, 255, 255, 0.22);
+    border-radius: 2cqw;
+}
+
+.island-zone--icon,
+.island-zone--leading {
+    border-radius: 50%;
+}
+
+.island-layout--large .island-zone--icon {
+    grid-column: 1;
+    grid-row: 1;
+    width: 8.5cqw;
+    height: 8.5cqw;
+}
+
+.island-layout--large .island-zone--content {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.island-layout--large .island-zone--media {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+}
+
+.island-layout--large .island-zone--actions {
+    grid-column: 1 / span 2;
+    grid-row: 2;
+}
+
+.island-layout--medium .island-zone--leading {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    width: 8.5cqw;
+    height: 8.5cqw;
+    align-self: start;
+}
+
+.island-layout--medium .island-zone--content {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.island-layout--medium .island-zone--actions {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.island-layout--small .island-zone--leading,
+.island-layout--pill .island-zone--leading {
+    width: 6cqw;
+    height: 6cqw;
 }
 </style>
