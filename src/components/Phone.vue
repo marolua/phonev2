@@ -116,6 +116,40 @@ const showIsland = (index) => {
 </template>
 
 <style lang="scss">
+.dev-island-controls {
+    position: fixed;
+    z-index: 20;
+    top: 2vh;
+    left: 2vw;
+    display: flex;
+    gap: 0.5vw;
+    padding: 0.6vw;
+    border-radius: 1vw;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(0.4vw);
+}
+
+.dev-island-controls__button {
+    border: 0;
+    border-radius: 999px;
+    padding: 0.45vw 0.8vw;
+    color: rgba(255, 255, 255, 0.72);
+    font-family: "SF Pro Display";
+    font-size: 0.75vw;
+    text-transform: capitalize;
+    background: rgba(255, 255, 255, 0.12);
+    cursor: pointer;
+    transition:
+        color 0.2s ease-in-out,
+        background 0.2s ease-in-out;
+
+    &:hover,
+    &--active {
+        color: white;
+        background: rgba(255, 255, 255, 0.28);
+    }
+}
+
 .full-phone-coque {
     container-type: size;
     position: fixed;
