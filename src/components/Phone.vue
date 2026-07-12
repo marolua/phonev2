@@ -72,8 +72,8 @@ const showIsland = (index) => {
 
                                 </div>
                                 <div class="large-bottom">
-                                    <div class="button-first"></div>
-                                    <div class="button-second"></div>
+                                    <div class="button-first">Refuser</div>
+                                    <div class="button-second">Accepter</div>
                                 </div>
                             </section>
 
@@ -296,6 +296,7 @@ const showIsland = (index) => {
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    user-select: none;
     border-radius: 7.5cqw;
 
     .large-top {
@@ -316,7 +317,6 @@ const showIsland = (index) => {
         gap: 5cqw;
         width: 100%;
         height: 32%;
-        background-color: rgb(119, 115, 115);
 
         .button-first {
             position: relative;
@@ -326,7 +326,9 @@ const showIsland = (index) => {
             width: 37cqw;
             height: 5.3cqh;
             border-radius: 3cqh;
-            background-color: rgb(0, 0, 0);
+            background-color: rgb(51, 51, 51);
+            font-weight: 450;
+            font-size: 1.8cqh;
         }
 
         .button-second {
@@ -337,7 +339,10 @@ const showIsland = (index) => {
             width: 37cqw;
             height: 5.3cqh;
             border-radius: 3cqh;
-            background-color: rgb(0, 0, 0);
+            background-color: rgba(18, 53, 100);
+            font-weight: 450;
+            font-size: 1.8cqh;
+            color: rgb(43, 112, 200);
         }
     }
 }
