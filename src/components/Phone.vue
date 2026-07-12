@@ -308,6 +308,26 @@ const showIsland = (index) => {
         width: 100%;
         height: 68%;
         background-color: rgb(66, 64, 64);
+
+        .island-left-part {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50%;
+            height: 100%;
+            background-color: rgb(197, 25, 25);
+        }
+
+        .island-right-part {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50%;
+            height: 100%;
+            background-color: rgb(99, 23, 199);
+        }
     }
 
     .large-bottom {
