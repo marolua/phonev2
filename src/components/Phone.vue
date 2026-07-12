@@ -314,7 +314,7 @@ const showIsland = (index) => {
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 50%;
+            width: 65%;
             height: 100%;
             background-color: rgb(197, 25, 25);
         }
@@ -324,7 +324,7 @@ const showIsland = (index) => {
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 50%;
+            width: 35%;
             height: 100%;
             background-color: rgb(99, 23, 199);
         }
