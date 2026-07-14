@@ -72,6 +72,8 @@ const showIsland = (index) => {
                                 <div class="large-top">
                                     <div class="island-left-part">
                                         <img :src="AirDrop" alt="AirDrop" />
+                                        <h2>AirDrop</h2>
+                                        <span class="texte"></span>
                                     </div>
                                     <div class="island-right-part">
                                         <div class="add"></div>
