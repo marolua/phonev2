@@ -73,7 +73,7 @@ const showIsland = (index) => {
                                     <div class="island-left-part">
                                         <img :src="AirDrop" alt="AirDrop" />
                                         <h2>AirDrop</h2>
-                                        <span class="texte">highrider would like to share 1 video</span>
+                                        <span class="texte">Pete Peterson, vous a partager son numéro de téléphone</span>
                                     </div>
                                 </div>
                                 <div class="large-bottom">
