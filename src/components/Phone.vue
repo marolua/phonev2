@@ -330,8 +330,8 @@ const showIsland = (index) => {
 
             img {
                 position: relative;
-                width: 15cqw;
-                height: 15cqw;
+                width: 13cqw;
+                height: 13cqw;
                 border-radius: 50%;
                 filter: brightness(0) invert(1);
             }
@@ -346,11 +346,14 @@ const showIsland = (index) => {
             .texte {
                 display: block;
                 width: 100%;
-                max-width: 34cqw;
+                max-width: 50cqw;
                 max-height: 4.5cqh;
                 overflow: hidden;
-                font-size: 1.45cqh;
+                font-size: 1.5cqh;
+                font-weight: 400;
                 line-height: 1.2;
+                color: rgb(255, 255, 255, 0.8);
+                background-color: rgba(0, 0, 0, 0.2);
             }
         }
 
