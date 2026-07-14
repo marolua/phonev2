@@ -457,7 +457,6 @@ const showIsland = (index) => {
             justify-content: center;
             align-items: center;
             margin-left: 1.5cqw;
-            margin-top: 0.5cqh;
             width: 20%;
             height: 100%;
 
