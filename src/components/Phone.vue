@@ -428,7 +428,7 @@ const showIsland = (index) => {
         justify-content: center;
         align-items: center;
         gap: 1cqw;
-        width: 30%;
+        width: 32%;
         height: 100%;
         font-size: 1.65cqh;
         font-weight: 500;
