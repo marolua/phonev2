@@ -308,7 +308,7 @@ const showIsland = (index) => {
         justify-content: center;
         align-items: center;
         width: 100%;
-        height: 68%;
+        height: 65%;
         background-color: rgb(66, 64, 64);
 
         .island-left-part {
@@ -349,7 +349,7 @@ const showIsland = (index) => {
         align-items: center;
         gap: 5cqw;
         width: 100%;
-        height: 32%;
+        height: 35%;
 
         .button-first {
             position: relative;
