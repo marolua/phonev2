@@ -328,8 +328,8 @@ const showIsland = (index) => {
 
             img {
                 position: relative;
-                width: 10cqw;
-                height: 10cqw;
+                width: 18cqw;
+                height: 18cqw;
                 border-radius: 50%;
             }
         }
