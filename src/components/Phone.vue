@@ -479,7 +479,7 @@ const showIsland = (index) => {
         }
 
         #last {
-            background: linear-gradient(145deg, rgb(233, 64, 64), rgb(227, 139, 139));
+            background: linear-gradient(145deg, rgb(163, 54, 54), rgb(190, 115, 115));
         }
     }
 }
