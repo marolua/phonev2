@@ -97,8 +97,8 @@ const showIsland = (index) => {
                                         <img :src="Inconnu" alt="Inconnu" />
                                     </div>
                                     <div class="medium-text">
-                                        <span>John Doe</span>
-                                        <span>0:33</span>
+                                        <span>John McKenzie</span>
+                                        <span>00:33</span>
                                     </div>
                                 </div>
                                 <div class="medium-bottom">
