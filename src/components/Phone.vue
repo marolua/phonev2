@@ -105,7 +105,7 @@ const showIsland = (index) => {
                                     <div class="medium-button">
                                         <img :src="Volume" alt="Inconnu" />
                                     </div>
-                                    <div class="medium-button">
+                                    <div class="medium-button" id="last">
                                     </div>
                                 </div>
                             </section>
@@ -475,6 +475,11 @@ const showIsland = (index) => {
                 filter: invert(1);
             }
 
+
+        }
+
+        #last {
+            background: linear-gradient(145deg, rgb(233, 64, 64), rgb(227, 139, 139));
         }
     }
 }
