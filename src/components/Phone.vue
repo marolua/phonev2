@@ -70,7 +70,9 @@ const showIsland = (index) => {
                                 class="island-layout island-layout--large">
                                 <div class="large-top">
                                     <div class="island-left-part"></div>
-                                    <div class="island-right-part"></div>
+                                    <div class="island-right-part">
+                                    <div class="add"></div>
+                                    </div>
                                 </div>
                                 <div class="large-bottom">
                                     <div class="button-first">Refuser</div>
@@ -327,6 +329,16 @@ const showIsland = (index) => {
             width: 35%;
             height: 100%;
             background-color: rgb(99, 23, 199);
+
+            .add {
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 25cqw;
+                height: 15cqh;
+                background-color: rgb(23, 199, 23);
+            }
         }
     }
 
