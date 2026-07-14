@@ -88,10 +88,10 @@ const showIsland = (index) => {
                             <!-- Dynamic Island medium : fond moyen format. Ajoute tes divs dedans. -->
                             <section v-else-if="activeIsland.type === 'medium'" key="medium"
                                 class="island-layout island-layout--medium">
-                                <div class="">
+                                <div class="medium-top">
 
                                 </div>
-                                <div class="">
+                                <div class="medium-bottom">
 
                                 </div>
                             </section>
