@@ -96,7 +96,18 @@ const showIsland = (index) => {
 
                                 </div>
                                 <div class="medium-bottom">
+                                    <div class="">
 
+                                    </div>
+                                    <div class="">
+
+                                    </div>
+                                    <div class="">
+
+                                    </div>
+                                    <div class="">
+
+                                    </div>
                                 </div>
                             </section>
 
