@@ -68,12 +68,12 @@ const showIsland = (index) => {
                         <Transition name="island-layout-swap" mode="out-in">
                             <!-- Dynamic Island large : fond grand format. Ajoute tes divs dedans. -->
                             <section v-if="activeIsland.type === 'large'" key="large"
-                                class="island-layout island-layout--large">
+                                    class="island-layout island-layout--large">
                                 <div class="large-top">
                                     <div class="island-left-part">
                                         <img :src="AirDrop" alt="AirDrop" />
-                                        <h2>AirDrop</h2>
-                                        <span class="texte">Highrider would like to share 1 video</span>
+                                        <h2>HighDrop</h2>
+                                        <span class="texte">highrider would like to share 1 video</span>
                                     </div>
                                     <div class="island-right-part">
                                         <div class="add"></div>
@@ -321,33 +321,36 @@ const showIsland = (index) => {
             flex-direction: column;
             justify-content: center;
             align-items: flex-start;
-            gap: 0.45cqh;
+            gap: 0.3cqh;
             box-sizing: border-box;
-            padding-left: 4cqw;
+            padding-left: 6cqw;
             width: 65%;
             height: 100%;
             background-color: rgb(197, 25, 25);
 
             img {
                 position: relative;
-                width: 18cqw;
-                height: 18cqw;
+                width: 11cqw;
+                height: 11cqw;
                 border-radius: 50%;
+                filter: brightness(0) invert(1);
             }
 
             h2 {
                 margin: 0;
-                font-size: 3cqh;
+                font-size: 2.5cqh;
+                font-weight: 500;
                 line-height: 1;
             }
 
             .texte {
                 display: block;
-                max-width: 30cqw;
+                width: 100%;
+                max-width: 34cqw;
                 max-height: 4.5cqh;
                 overflow: hidden;
-                font-size: 1.55cqh;
-                line-height: 1.15;
+                font-size: 1.45cqh;
+                line-height: 1.2;
             }
         }
 
