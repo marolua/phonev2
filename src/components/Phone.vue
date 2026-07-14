@@ -12,12 +12,12 @@ import Camera from '../assets/camera-video.png'
 const islandExamples = [
     {
         type: 'large',
-        width: '91cqw',
+        width: '88cqw',
         height: '25cqh',
     },
     {
         type: 'medium',
-        width: '91cqw',
+        width: '88cqw',
         height: '17cqh',
     },
     {
