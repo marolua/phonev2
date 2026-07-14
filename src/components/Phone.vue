@@ -73,7 +73,7 @@ const showIsland = (index) => {
                                     <div class="island-left-part">
                                         <img :src="AirDrop" alt="AirDrop" />
                                         <h2>HighDrop</h2>
-                                        <span class="texte">highrider would like and want to merde fait chier putain to share 1 video</span>
+                                        <span class="texte">highrider would like to share 1 video</span>
                                     </div>
                                     <div class="island-right-part">
                                         <div class="add"></div>
@@ -319,12 +319,12 @@ const showIsland = (index) => {
             position: relative;
             display: flex;
             flex-direction: column;
-            justify-content: end;
+            justify-content: center;
             align-items: flex-start;
             gap: 0.45cqh;
             box-sizing: border-box;
             padding-left: 4cqw;
-            width: 65%;
+            width: 60%;
             height: 100%;
 
             img {
@@ -346,7 +346,7 @@ const showIsland = (index) => {
             .texte {
                 display: block;
                 width: 100%;
-                max-width: 50cqw;
+                max-width: 45cqw;
                 max-height: 6cqh;
                 overflow: hidden;
                 font-size: 1.68cqh;
@@ -362,7 +362,7 @@ const showIsland = (index) => {
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 35%;
+            width: 40%;
             height: 100%;
             background-color: rgb(99, 23, 199);
 
