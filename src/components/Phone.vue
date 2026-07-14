@@ -93,7 +93,13 @@ const showIsland = (index) => {
                             <section v-else-if="activeIsland.type === 'medium'" key="medium"
                                 class="island-layout island-layout--medium">
                                 <div class="medium-top">
-
+                                    <div class="medium-image">
+                                        <img :src="Inconnu" alt="Inconnu" />
+                                    </div>
+                                    <div class="medium-text">
+                                        <span>John Doe</span>
+                                        <span>0:33</span>
+                                    </div>
                                 </div>
                                 <div class="medium-bottom">
                                     <div class="medium-button">
@@ -440,10 +446,54 @@ const showIsland = (index) => {
         position: relative;
         display: flex;
         justify-content: center;
-        align-items: center;
+        align-items: start;
         width: 100%;
         height: 52%;
-        background-color: rgba(180, 14, 14);
+        // background-color: rgba(180, 14, 14);
+
+        .medium-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 1cqw;
+            width: 20%;
+            height: 100%;
+
+            img {
+                position: relative;
+                width: 12cqw;
+                height: 12cqw;
+                border-radius: 50%;
+                object-fit: contain;
+            }
+        }
+
+        .medium-text {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 0.5cqh;
+            width: 80%;
+            height: 100%;
+            font-size: 1.65cqh;
+            font-weight: 500;
+
+            span:first-child {
+                font-size: 2cqh;
+                font-weight: 600;
+                line-height: 1;
+            }
+
+            span:last-child {
+                font-size: 1.8cqh;
+                font-weight: 450;
+                line-height: 1.15;
+                color: rgb(255, 255, 255, 0.6);
+            }
+        }
     }
 
     .medium-bottom {
