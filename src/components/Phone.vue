@@ -97,6 +97,7 @@ const showIsland = (index) => {
                             <section v-else key="pill" class="island-layout island-layout--pill">
                                 <div class="pill-left">
                                     <img :src="PhoneGreen" alt="PhoneGreen" />
+                                    <span>0:03</span>
                                 </div>
 
                                 <div class="pill-right">
@@ -426,14 +427,18 @@ const showIsland = (index) => {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 20%;
+        gap: 1cqw;
+        width: 30%;
         height: 100%;
-        // background-color: rgba(219, 7, 7);
+        font-size: 1.6cqh;
+        font-weight: 500;
+        background-color: rgba(219, 7, 7);
 
         img {
             position: relative;
             width: 5.5cqw;
             border-radius: 50%;
+            transform: rotate(0.5deg);
             object-fit: contain;
         }
     }
@@ -446,8 +451,6 @@ const showIsland = (index) => {
         width: 25%;
         height: 100%;
         // background-color: rgba(7, 7, 219);
-        font-size: 1.6cqh;
-        font-weight: 500;
     }
 }
 </style>
