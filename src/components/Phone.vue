@@ -68,12 +68,13 @@ const showIsland = (index) => {
                         <Transition name="island-layout-swap" mode="out-in">
                             <!-- Dynamic Island large : fond grand format. Ajoute tes divs dedans. -->
                             <section v-if="activeIsland.type === 'large'" key="large"
-                                    class="island-layout island-layout--large">
+                                class="island-layout island-layout--large">
                                 <div class="large-top">
                                     <div class="island-left-part">
                                         <img :src="AirDrop" alt="AirDrop" />
                                         <h2>AirDrop</h2>
-                                        <span class="texte">Pete Peterson, vous a partager son numéro de téléphone</span>
+                                        <span class="texte">Pete Peterson, vous a partager son numéro de
+                                            téléphone</span>
                                     </div>
                                 </div>
                                 <div class="large-bottom">
@@ -91,7 +92,15 @@ const showIsland = (index) => {
                                 class="island-layout island-layout--small"></section>
 
                             <!-- Dynamic Island pill : fond très compact. Ajoute tes divs dedans. -->
-                            <section v-else key="pill" class="island-layout island-layout--pill"></section>
+                            <section v-else key="pill" class="island-layout island-layout--pill">
+                                <div class="pill-left">
+
+                                </div>
+
+                                <div class="pill-right">
+
+                                </div>
+                            </section>
                         </Transition>
                     </template>
                 </DynamicIsland>
@@ -405,6 +414,29 @@ const showIsland = (index) => {
 }
 
 .island-layout--pill {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     border-radius: 5cqw;
+
+    .pill-left {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 25%;
+        height: 100%;
+        background-color: rgba(219, 7, 7);
+    }
+
+    .pill-right {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 25%;
+        height: 100%;
+        background-color: rgba(7, 7, 219);
+    }
 }
 </style>
