@@ -432,7 +432,6 @@ const showIsland = (index) => {
         height: 100%;
         font-size: 1.65cqh;
         font-weight: 500;
-        // background-color: rgba(219, 7, 7);
         color: rgba(16, 215, 39, 0.828);
 
         img {
@@ -451,7 +450,6 @@ const showIsland = (index) => {
         align-items: center;
         width: 25%;
         height: 100%;
-        // background-color: rgba(7, 7, 219);
 
         img {
             position: relative;
