@@ -478,9 +478,9 @@ const showIsland = (index) => {
             gap: 0.5cqh;
             width: 80%;
             height: 60%;
+            margin: 4cqw 0 0 0;
             font-size: 1.65cqh;
             font-weight: 500;
-            background-color: rgba(217, 10, 10, 0.2);
 
             span:first-child {
                 font-size: 2cqh;
