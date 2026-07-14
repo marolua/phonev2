@@ -323,15 +323,15 @@ const showIsland = (index) => {
             align-items: flex-start;
             gap: 0.3cqh;
             box-sizing: border-box;
-            padding-left: 6cqw;
+            padding-left: 4cqw;
             width: 65%;
             height: 100%;
             background-color: rgb(197, 25, 25);
 
             img {
                 position: relative;
-                width: 11cqw;
-                height: 11cqw;
+                width: 15cqw;
+                height: 15cqw;
                 border-radius: 50%;
                 filter: brightness(0) invert(1);
             }
