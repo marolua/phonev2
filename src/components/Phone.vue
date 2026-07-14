@@ -3,6 +3,7 @@ import { computed, ref } from 'vue'
 import DynamicIsland from './DynamicIsland.vue'
 import AirDrop from '../assets/airdrop.png'
 import PhoneGreen from '../assets/phone-green.png'
+import Onde from '../assets/onde-sonore.png'
 
 const islandExamples = [
     {
