@@ -101,7 +101,7 @@ const showIsland = (index) => {
                                 </div>
 
                                 <div class="pill-right">
-                                    <span>0:03</span>
+                                    <img :src="Onde" alt="Onde" />
                                 </div>
                             </section>
                         </Transition>
@@ -430,9 +430,10 @@ const showIsland = (index) => {
         gap: 1cqw;
         width: 30%;
         height: 100%;
-        font-size: 1.6cqh;
+        font-size: 1.65cqh;
         font-weight: 500;
-        background-color: rgba(219, 7, 7);
+        // background-color: rgba(219, 7, 7);
+        color: rgba(16, 215, 39, 0.828);
 
         img {
             position: relative;
@@ -451,6 +452,14 @@ const showIsland = (index) => {
         width: 25%;
         height: 100%;
         // background-color: rgba(7, 7, 219);
+
+        img {
+            position: relative;
+            width: 5.5cqw;
+            border-radius: 50%;
+            transform: rotate(10deg);
+            object-fit: contain;
+        }
     }
 }
 </style>
