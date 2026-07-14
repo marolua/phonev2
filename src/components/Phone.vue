@@ -450,18 +450,19 @@ const showIsland = (index) => {
         position: relative;
         display: flex;
         justify-content: space-around;
-        align-items: center;
+        align-items: start;
+        gap: 3cqw;
         width: 100%;
         height: 48%;
-        background-color: rgba(14, 180, 14);
+        // background-color: rgba(14, 180, 14);
 
         .medium-button {
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 12.5cqw;
-            height: 12.5cqw;
+            width: 13cqw;
+            height: 13cqw;
             border-radius: 50%;
             background-color: rgb(51, 51, 51);
 
