@@ -7,6 +7,7 @@ import Onde from '../assets/onde-sonore.png'
 import Inconnu from '../assets/inconnu.png'
 import Micro from '../assets/microphone.png'
 import Volume from '../assets/volume-eleve.png'
+import Camera from '../assets/camera-video.png'
 
 const islandExamples = [
     {
