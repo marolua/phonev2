@@ -425,9 +425,16 @@ const showIsland = (index) => {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 25%;
+        width: 20%;
         height: 100%;
         background-color: rgba(219, 7, 7);
+
+        img {
+            position: relative;
+            width: 5.5cqw;
+            border-radius: 50%;
+            object-fit: contain;
+        }
     }
 
     .pill-right {
