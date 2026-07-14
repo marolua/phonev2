@@ -326,14 +326,14 @@ const showIsland = (index) => {
             padding-left: 4cqw;
             width: 65%;
             height: 100%;
-            // background-color: rgb(197, 25, 25);
+            background-color: rgb(197, 25, 25);
 
             img {
                 position: relative;
-                width: 14cqw;
-                height: 14cqw;
+                width: 12cqw;
+                height: 12cqw;
                 border-radius: 50%;
-                margin-bottom: 0.4cqh;
+                margin-bottom: 1.5cqh;
             }
 
             h2 {
@@ -349,7 +349,7 @@ const showIsland = (index) => {
                 max-width: 50cqw;
                 max-height: 6cqh;
                 overflow: hidden;
-                font-size: 1.65cqh;
+                font-size: 1.68cqh;
                 font-weight: 400;
                 line-height: 1.15;
                 color: rgb(255, 255, 255, 0.8);
