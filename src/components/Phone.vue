@@ -326,7 +326,7 @@ const showIsland = (index) => {
             padding-left: 4cqw;
             width: 65%;
             height: 100%;
-            background-color: rgb(197, 25, 25);
+            // background-color: rgb(197, 25, 25);
 
             img {
                 position: relative;
