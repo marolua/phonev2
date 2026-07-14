@@ -316,10 +316,11 @@ const showIsland = (index) => {
             position: relative;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: flex-start;
             gap: 0.45cqh;
             box-sizing: border-box;
+            padding-top: 1cqh;
             padding-left: 4cqw;
             width: 100%;
             height: 100%;
@@ -343,7 +344,7 @@ const showIsland = (index) => {
             .texte {
                 display: block;
                 width: 100%;
-                max-width: 45cqw;
+                max-width: none;
                 max-height: 6cqh;
                 overflow: hidden;
                 font-size: 1.6cqh;
