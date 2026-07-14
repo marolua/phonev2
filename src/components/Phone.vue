@@ -6,6 +6,7 @@ import PhoneGreen from '../assets/phone-green.png'
 import Onde from '../assets/onde-sonore.png'
 import Inconnu from '../assets/inconnu.png'
 import Micro from '../assets/microphone.png'
+import Volume from '../assets/volume-eleve.png'
 
 const islandExamples = [
     {
