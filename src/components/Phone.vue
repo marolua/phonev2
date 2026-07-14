@@ -428,7 +428,7 @@ const showIsland = (index) => {
         justify-content: center;
         align-items: center;
         width: 100%;
-        height: 50%;
+        height: 55%;
         background-color: rgba(180, 14, 14);
     }
 
@@ -438,7 +438,7 @@ const showIsland = (index) => {
         justify-content: center;
         align-items: center;
         width: 100%;
-        height: 50%;
+        height: 45%;
         background-color: rgba(14, 180, 14);
     }
 }
