@@ -357,12 +357,12 @@ const showIsland = (index) => {
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 37cqw;
-            height: 5.3cqh;
+            width: 38cqw;
+            height: 6cqh;
             border-radius: 3cqh;
             background-color: rgb(51, 51, 51);
             font-weight: 450;
-            font-size: 1.8cqh;
+            font-size: 1.85cqh;
         }
 
         .button-second {
@@ -370,12 +370,12 @@ const showIsland = (index) => {
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 37cqw;
-            height: 5.3cqh;
+            width: 38cqw;
+            height: 6cqh;
             border-radius: 3cqh;
             background-color: rgba(18, 53, 100);
             font-weight: 450;
-            font-size: 1.8cqh;
+            font-size: 1.85cqh;
             color: rgb(43, 112, 200);
         }
     }
