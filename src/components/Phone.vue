@@ -319,11 +319,19 @@ const showIsland = (index) => {
         .island-left-part {
             position: relative;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             width: 65%;
             height: 100%;
             background-color: rgb(197, 25, 25);
+
+            img {
+                position: relative;
+                width: 10cqw;
+                height: 10cqw;
+                border-radius: 50%;
+            }
         }
 
         .island-right-part {
