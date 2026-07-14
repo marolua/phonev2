@@ -100,13 +100,12 @@ const showIsland = (index) => {
                                         <img :src="Camera" alt="Inconnu" />
                                     </div>
                                     <div class="medium-button">
-                                        <img :src="Camera" alt="Inconnu" />
+                                        <img :src="Micro" alt="Inconnu" />
                                     </div>
                                     <div class="medium-button">
-                                        <img :src="Camera" alt="Inconnu" />
+                                        <img :src="Volume" alt="Inconnu" />
                                     </div>
                                     <div class="medium-button">
-                                        <img :src="Camera" alt="Inconnu" />
                                     </div>
                                 </div>
                             </section>
@@ -465,7 +464,17 @@ const showIsland = (index) => {
             width: 13cqw;
             height: 13cqw;
             border-radius: 50%;
-            background-color: rgb(34, 34, 34);
+            background-color: rgb(51, 51, 51);
+
+            img {
+                position: relative;
+                width: 100%;
+                height: 5.5cqw;
+                border-radius: 50%;
+                object-fit: contain;
+                filter: invert(1);
+            }
+
         }
     }
 }
