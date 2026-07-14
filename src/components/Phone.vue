@@ -466,7 +466,7 @@ const showIsland = (index) => {
             border-radius: 50%;
             background-color: rgb(51, 51, 51);
 
-            .medium-button:last-child {
+            .medium-button div:last-child {
                 background-color: rgba(219, 9, 9);
             }
 
