@@ -95,7 +95,7 @@ const showIsland = (index) => {
                             <!-- Dynamic Island pill : fond très compact. Ajoute tes divs dedans. -->
                             <section v-else key="pill" class="island-layout island-layout--pill">
                                 <div class="pill-left">
-
+                                    <img :src="PhoneGreen" alt="PhoneGreen" />
                                 </div>
 
                                 <div class="pill-right">
