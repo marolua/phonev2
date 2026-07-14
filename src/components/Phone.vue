@@ -321,7 +321,10 @@ const showIsland = (index) => {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: start;
+            align-items: flex-start;
+            gap: 0.45cqh;
+            box-sizing: border-box;
+            padding-left: 4cqw;
             width: 65%;
             height: 100%;
             background-color: rgb(197, 25, 25);
@@ -331,6 +334,21 @@ const showIsland = (index) => {
                 width: 18cqw;
                 height: 18cqw;
                 border-radius: 50%;
+            }
+
+            h2 {
+                margin: 0;
+                font-size: 3cqh;
+                line-height: 1;
+            }
+
+            .texte {
+                display: block;
+                max-width: 30cqw;
+                max-height: 4.5cqh;
+                overflow: hidden;
+                font-size: 1.55cqh;
+                line-height: 1.15;
             }
         }
 
