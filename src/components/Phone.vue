@@ -96,17 +96,17 @@ const showIsland = (index) => {
 
                                 </div>
                                 <div class="medium-bottom">
-                                    <div class="">
-
+                                    <div class="medium-button">
+                                        <img :src="Camera" alt="Inconnu" />
                                     </div>
-                                    <div class="">
-
+                                    <div class="medium-button">
+                                        <img :src="Camera" alt="Inconnu" />
                                     </div>
-                                    <div class="">
-
+                                    <div class="medium-button">
+                                        <img :src="Camera" alt="Inconnu" />
                                     </div>
-                                    <div class="">
-
+                                    <div class="medium-button">
+                                        <img :src="Camera" alt="Inconnu" />
                                     </div>
                                 </div>
                             </section>
@@ -452,9 +452,21 @@ const showIsland = (index) => {
         display: flex;
         justify-content: center;
         align-items: center;
+        gap: 5cqw;
         width: 100%;
         height: 45%;
         background-color: rgba(14, 180, 14);
+
+        .medium-button {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 13cqw;
+            height: 13cqw;
+            border-radius: 50%;
+            background-color: rgb(34, 34, 34);
+        }
     }
 }
 
