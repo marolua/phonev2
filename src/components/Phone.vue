@@ -477,9 +477,10 @@ const showIsland = (index) => {
             align-items: flex-start;
             gap: 0.5cqh;
             width: 80%;
-            height: 100%;
+            height: 60%;
             font-size: 1.65cqh;
             font-weight: 500;
+            background-color: rgba(217, 10, 10, 0.2);
 
             span:first-child {
                 font-size: 2cqh;
