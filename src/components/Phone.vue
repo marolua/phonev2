@@ -1,6 +1,7 @@
 <script setup>
 import { computed, ref } from 'vue'
 import DynamicIsland from './DynamicIsland.vue'
+import AirDrop from '../assets/airdrop.png'
 
 const islandExamples = [
     {
