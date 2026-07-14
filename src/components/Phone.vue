@@ -99,7 +99,7 @@ const showIsland = (index) => {
                                 </div>
 
                                 <div class="pill-right">
-
+                                    <span>0:03</span>
                                 </div>
                             </section>
                         </Transition>
