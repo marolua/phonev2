@@ -416,7 +416,31 @@ const showIsland = (index) => {
 }
 
 .island-layout--medium {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     border-radius: 7cqw;
+
+    .medium-top {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 50%;
+        background-color: rgba(180, 14, 14);
+    }
+
+    .medium-bottom {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 50%;
+        background-color: rgba(14, 180, 14);
+    }
 }
 
 .island-layout--small {
