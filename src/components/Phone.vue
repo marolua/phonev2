@@ -439,6 +439,7 @@ const showIsland = (index) => {
     display: flex;
     justify-content: center;
     flex-direction: column;
+    user-select: none;
     align-items: center;
     border-radius: 7cqw;
 
