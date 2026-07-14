@@ -71,8 +71,8 @@ const showIsland = (index) => {
                                     class="island-layout island-layout--large">
                                 <div class="large-top">
                                     <div class="island-left-part">
-                                        <img :src="AirDrop" alt="AirDrop" />
-                                        <h2>HighDrop</h2>
+                                        <img :src="AirDrop" alt="PhoneDrop" />
+                                        <h2>PhoneDrop</h2>
                                         <span class="texte">highrider would like to share 1 video</span>
                                     </div>
                                 </div>
