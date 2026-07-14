@@ -339,7 +339,7 @@ const showIsland = (index) => {
                 margin: 0;
                 margin-bottom: 0.5cqh;
                 font-size: 2.35cqh;
-                font-weight: 500;
+                font-weight: 600;
                 line-height: 1;
             }
 
@@ -349,10 +349,10 @@ const showIsland = (index) => {
                 max-width: 45cqw;
                 max-height: 6cqh;
                 overflow: hidden;
-                font-size: 1.68cqh;
-                font-weight: 400;
+                font-size: 1.6cqh;
+                font-weight: 425;
                 line-height: 1.15;
-                color: rgb(255, 255, 255, 0.8);
+                color: rgb(255, 255, 255, 0.6);
                 background-color: rgba(0, 0, 0, 0.2);
             }
         }
