@@ -73,7 +73,7 @@ const showIsland = (index) => {
                                     <div class="island-left-part">
                                         <img :src="AirDrop" alt="AirDrop" />
                                         <h2>AirDrop</h2>
-                                        <span class="texte"></span>
+                                        <span class="texte">Highrider would like to share 1 video</span>
                                     </div>
                                     <div class="island-right-part">
                                         <div class="add"></div>
