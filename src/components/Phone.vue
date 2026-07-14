@@ -314,7 +314,6 @@ const showIsland = (index) => {
         align-items: center;
         width: 100%;
         height: 65%;
-        background-color: rgb(66, 64, 64);
 
         .island-left-part {
             position: relative;
