@@ -462,8 +462,8 @@ const showIsland = (index) => {
 
             img {
                 position: relative;
-                width: 11.5cqw;
-                height: 11.5cqw;
+                width: 11.75cqw;
+                height: 11.75cqw;
                 border-radius: 50%;
                 object-fit: contain;
             }
