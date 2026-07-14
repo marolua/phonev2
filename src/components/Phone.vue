@@ -456,15 +456,15 @@ const showIsland = (index) => {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-left: 1cqw;
+            margin-left: 1.5cqw;
             margin-top: 0.5cqh;
             width: 20%;
             height: 100%;
 
             img {
                 position: relative;
-                width: 12cqw;
-                height: 12cqw;
+                width: 11.5cqw;
+                height: 11.5cqw;
                 border-radius: 50%;
                 object-fit: contain;
             }
