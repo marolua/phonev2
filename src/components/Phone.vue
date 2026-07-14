@@ -310,7 +310,7 @@ const showIsland = (index) => {
         justify-content: center;
         align-items: center;
         width: 100%;
-        height: 55%;
+        height: 60%;
         // background-color: rgba(192, 19, 19);
 
         .island-left-part {
@@ -325,11 +325,12 @@ const showIsland = (index) => {
             padding-left: 4cqw;
             width: 100%;
             height: 100%;
+            background-color: rgba(180, 14, 14);
 
             img {
                 position: relative;
-                width: 8cqw;
-                height: 8cqw;
+                width: 9cqw;
+                height: 9cqw;
                 border-radius: 50%;
                 margin-bottom: 0.7cqh;
                 object-fit: contain;
@@ -338,7 +339,7 @@ const showIsland = (index) => {
             h2 {
                 margin: 0;
                 margin-bottom: 0.5cqh;
-                font-size: 2.35cqh;
+                font-size: 2.5cqh;
                 font-weight: 600;
                 line-height: 1;
             }
@@ -346,10 +347,10 @@ const showIsland = (index) => {
             .texte {
                 display: block;
                 width: 100%;
-                max-width: none;
+                max-width: 90%;
                 max-height: 6cqh;
                 overflow: hidden;
-                font-size: 1.6cqh;
+                font-size: 1.8cqh;
                 font-weight: 425;
                 line-height: 1.15;
                 color: rgb(255, 255, 255, 0.6);
@@ -365,7 +366,7 @@ const showIsland = (index) => {
         align-items: center;
         gap: 5cqw;
         width: 100%;
-        height: 45%;
+        height: 40%;
 
         .button-first {
             position: relative;
