@@ -70,7 +70,9 @@ const showIsland = (index) => {
                             <section v-if="activeIsland.type === 'large'" key="large"
                                 class="island-layout island-layout--large">
                                 <div class="large-top">
-                                    <div class="island-left-part"></div>
+                                    <div class="island-left-part">
+                                        <img :src="AirDrop" alt="AirDrop" />
+                                    </div>
                                     <div class="island-right-part">
                                         <div class="add"></div>
                                     </div>
