@@ -4,6 +4,8 @@ import DynamicIsland from './DynamicIsland.vue'
 import AirDrop from '../assets/airdrop.png'
 import PhoneGreen from '../assets/phone-green.png'
 import Onde from '../assets/onde-sonore.png'
+import Inconnu from '../assets/inconnu.png'
+import Micro from '../assets/microphone.png'
 
 const islandExamples = [
     {
