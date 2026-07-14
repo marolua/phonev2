@@ -7,7 +7,7 @@ const islandExamples = [
     {
         type: 'large',
         width: '91cqw',
-        height: '25.5cqh',
+        height: '25cqh',
     },
     {
         type: 'medium',
@@ -311,7 +311,6 @@ const showIsland = (index) => {
         align-items: center;
         width: 100%;
         height: 60%;
-        // background-color: rgba(192, 19, 19);
 
         .island-left-part {
             position: relative;
@@ -325,14 +324,14 @@ const showIsland = (index) => {
             padding-left: 4cqw;
             width: 100%;
             height: 100%;
-            background-color: rgba(180, 14, 14);
+            // background-color: rgba(180, 14, 14);
 
             img {
                 position: relative;
-                width: 9cqw;
-                height: 9cqw;
+                width: 10cqw;
+                height: 10cqw;
                 border-radius: 50%;
-                margin-bottom: 0.7cqh;
+                margin-bottom: 1.5cqh;
                 object-fit: contain;
             }
 
@@ -351,7 +350,7 @@ const showIsland = (index) => {
                 max-height: 6cqh;
                 overflow: hidden;
                 font-size: 1.8cqh;
-                font-weight: 425;
+                font-weight: 400;
                 line-height: 1.15;
                 color: rgb(255, 255, 255, 0.6);
                 background-color: rgba(0, 0, 0, 0.2);
@@ -366,7 +365,7 @@ const showIsland = (index) => {
         align-items: center;
         gap: 5cqw;
         width: 100%;
-        height: 40%;
+        height: 35%;
 
         .button-first {
             position: relative;
