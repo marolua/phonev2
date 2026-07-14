@@ -450,7 +450,6 @@ const showIsland = (index) => {
         align-items: start;
         width: 100%;
         height: 52%;
-        // background-color: rgba(180, 14, 14);
 
         .medium-image {
             position: relative;
