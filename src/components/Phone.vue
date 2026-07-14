@@ -72,7 +72,7 @@ const showIsland = (index) => {
                                 <div class="large-top">
                                     <div class="island-left-part"></div>
                                     <div class="island-right-part">
-                                    <div class="add"></div>
+                                        <div class="add"></div>
                                     </div>
                                 </div>
                                 <div class="large-bottom">
