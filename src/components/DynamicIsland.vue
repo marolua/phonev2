@@ -126,7 +126,7 @@ defineProps({
     &.dynamic-island--expanded,
     &.dynamic-island--hoverable:hover,
     &.dynamic-island--hoverable:focus-within {
-        top: 1.1cqh;
+        top: 1.65cqh;
         width: var(--dynamic-island-expanded-width);
         height: var(--dynamic-island-expanded-height);
         border-radius: 10cqw;
