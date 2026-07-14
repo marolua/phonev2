@@ -321,7 +321,7 @@ const showIsland = (index) => {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
+            align-items: start;
             width: 65%;
             height: 100%;
             background-color: rgb(197, 25, 25);
