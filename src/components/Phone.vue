@@ -75,9 +75,6 @@ const showIsland = (index) => {
                                         <h2>HighDrop</h2>
                                         <span class="texte">highrider would like to share 1 video</span>
                                     </div>
-                                    <div class="island-right-part">
-                                        <div class="add"></div>
-                                    </div>
                                 </div>
                                 <div class="large-bottom">
                                     <div class="button-first">Refuser</div>
@@ -324,7 +321,7 @@ const showIsland = (index) => {
             gap: 0.45cqh;
             box-sizing: border-box;
             padding-left: 4cqw;
-            width: 60%;
+            width: 100%;
             height: 100%;
 
             img {
@@ -354,27 +351,6 @@ const showIsland = (index) => {
                 line-height: 1.15;
                 color: rgb(255, 255, 255, 0.6);
                 background-color: rgba(0, 0, 0, 0.2);
-            }
-        }
-
-        .island-right-part {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 40%;
-            height: 100%;
-            background-color: rgb(99, 23, 199);
-
-            .add {
-                position: relative;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: 30cqw;
-                height: 15cqh;
-                border-radius: 2cqh;
-                background-color: rgb(23, 199, 23);
             }
         }
     }
