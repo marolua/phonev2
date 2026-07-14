@@ -326,18 +326,18 @@ const showIsland = (index) => {
             padding-left: 4cqw;
             width: 65%;
             height: 100%;
-            background-color: rgb(197, 25, 25);
 
             img {
                 position: relative;
                 width: 12cqw;
                 height: 12cqw;
                 border-radius: 50%;
-                margin-bottom: 1.5cqh;
+                margin-bottom: 1cqh;
             }
 
             h2 {
                 margin: 0;
+                margin-bottom: 0.5cqh;
                 font-size: 2.35cqh;
                 font-weight: 500;
                 line-height: 1;
