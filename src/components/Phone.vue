@@ -7,7 +7,7 @@ const islandExamples = [
     {
         type: 'large',
         width: '91cqw',
-        height: '30cqh',
+        height: '28cqh',
     },
     {
         type: 'medium',
