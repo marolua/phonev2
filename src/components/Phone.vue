@@ -11,22 +11,38 @@ import Camera from '../assets/camera-video.png'
 
 const islandExamples = [
     {
+        id: 'large',
         type: 'large',
         width: '88cqw',
         height: '25cqh',
     },
     {
+        id: 'medium',
         type: 'medium',
         width: '88cqw',
         height: '17cqh',
     },
     {
+        id: 'small',
         type: 'small',
         width: '87cqw',
         height: '8.5cqh',
     },
     {
+        id: 'pill-call',
         type: 'pill',
+        variant: 'call',
+        label: 'pill call',
+        time: '0:03',
+        width: '60cqw',
+        height: '6cqh',
+    },
+    {
+        id: 'pill-timer',
+        type: 'pill',
+        variant: 'timer',
+        label: 'pill timer',
+        time: '05:00',
         width: '60cqw',
         height: '6cqh',
     },
@@ -46,10 +62,10 @@ const showIsland = (index) => {
 
 <template>
     <div class="dev-island-controls">
-        <button v-for="(island, index) in islandExamples" :key="island.type" class="dev-island-controls__button"
+        <button v-for="(island, index) in islandExamples" :key="island.id" class="dev-island-controls__button"
             :class="{ 'dev-island-controls__button--active': activeIslandIndex === index }" type="button"
             @click="showIsland(index)">
-            {{ island.type }}
+            {{ island.label ?? island.type }}
         </button>
     </div>
 
@@ -121,14 +137,22 @@ const showIsland = (index) => {
                                 class="island-layout island-layout--small"></section>
 
                             <!-- Dynamic Island pill : fond très compact. Ajoute tes divs dedans. -->
-                            <section v-else key="pill" class="island-layout island-layout--pill">
-                                <div class="pill-left">
-                                    <img :src="PhoneGreen" alt="PhoneGreen" />
-                                    <span>0:03</span>
-                                </div>
+                            <section v-else :key="`pill-${activeIsland.variant}`"
+                                :class="['island-layout', 'island-layout--pill', `island-layout--pill-${activeIsland.variant}`]">
+                                <template v-if="activeIsland.variant === 'call'">
+                                    <div class="pill-left">
+                                        <img :src="PhoneGreen" alt="Appel en cours" />
+                                        <span>{{ activeIsland.time }}</span>
+                                    </div>
 
-                                <div class="pill-right">
-                                    <img :src="Onde" alt="Onde" />
+                                    <div class="pill-right">
+                                        <img :src="Onde" alt="Onde sonore" />
+                                    </div>
+                                </template>
+
+                                <div v-else-if="activeIsland.variant === 'timer'" class="pill-timer">
+                                    <span class="pill-timer__icon" aria-hidden="true"></span>
+                                    <span class="pill-timer__time">{{ activeIsland.time }}</span>
                                 </div>
                             </section>
                         </Transition>
@@ -579,6 +603,57 @@ const showIsland = (index) => {
             border-radius: 50%;
             object-fit: contain;
         }
+    }
+
+    .pill-timer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-sizing: border-box;
+        padding: 0 4cqw;
+        width: 100%;
+        height: 100%;
+        color: rgb(255, 190, 72);
+        font-size: 1.65cqh;
+        font-weight: 600;
+    }
+
+    .pill-timer__icon {
+        position: relative;
+        width: 4.5cqw;
+        height: 4.5cqw;
+        border: 0.55cqw solid currentColor;
+        border-radius: 50%;
+        box-sizing: border-box;
+
+        &::before,
+        &::after {
+            position: absolute;
+            left: 50%;
+            bottom: 50%;
+            display: block;
+            border-radius: 999px;
+            content: '';
+            background-color: currentColor;
+            transform-origin: bottom center;
+        }
+
+        &::before {
+            width: 0.45cqw;
+            height: 1.5cqw;
+            transform: translateX(-50%);
+        }
+
+        &::after {
+            width: 1.35cqw;
+            height: 0.45cqw;
+            transform: translateY(50%);
+        }
+    }
+
+    .pill-timer__time {
+        min-width: 11cqw;
+        text-align: right;
     }
 }
 </style>
