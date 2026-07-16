@@ -337,46 +337,45 @@ const showIsland = (index) => {
 
 .island-layout--large {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
+    padding: 3cqh 4cqw 2.5cqh;
     user-select: none;
     border-radius: 7.5cqw;
 
     .large-top {
         position: relative;
         display: flex;
-        justify-content: center;
-        align-items: center;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex: 1;
+        min-height: 0;
         width: 100%;
-        height: 60%;
 
         .island-left-part {
             position: relative;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: flex-start;
             gap: 0.45cqh;
             box-sizing: border-box;
-            padding-top: 1cqh;
-            padding-left: 4cqw;
             width: 100%;
-            height: 100%;
-            // background-color: rgba(180, 14, 14);
+            height: auto;
 
             img {
                 position: relative;
                 width: 10cqw;
                 height: 10cqw;
                 border-radius: 50%;
-                margin-bottom: 1.5cqh;
+                margin-bottom: 0.35cqh;
                 object-fit: contain;
             }
 
             h2 {
                 margin: 0;
-                margin-bottom: 0.5cqh;
+                margin-bottom: 0.15cqh;
                 font-size: 2.5cqh;
                 font-weight: 600;
                 line-height: 1;
@@ -386,13 +385,12 @@ const showIsland = (index) => {
                 display: block;
                 width: 100%;
                 max-width: 90%;
-                max-height: 6cqh;
+                max-height: 5.5cqh;
                 overflow: hidden;
                 font-size: 1.8cqh;
                 font-weight: 400;
                 line-height: 1.15;
                 color: rgb(255, 255, 255, 0.6);
-                background-color: rgba(0, 0, 0, 0.2);
             }
         }
     }
@@ -402,9 +400,9 @@ const showIsland = (index) => {
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 5cqw;
+        flex: 0 0 auto;
+        gap: 2.5cqw;
         width: 100%;
-        height: 35%;
 
         .button-first {
             position: relative;
@@ -412,7 +410,7 @@ const showIsland = (index) => {
             justify-content: center;
             align-items: center;
             width: 38cqw;
-            height: 6cqh;
+            height: 5cqh;
             border-radius: 3cqh;
             background-color: rgb(51, 51, 51);
             font-weight: 450;
@@ -425,7 +423,7 @@ const showIsland = (index) => {
             justify-content: center;
             align-items: center;
             width: 38cqw;
-            height: 6cqh;
+            height: 5cqh;
             border-radius: 3cqh;
             background-color: rgba(18, 53, 100);
             font-weight: 450;
