@@ -311,9 +311,9 @@ const showIsland = (index) => {
 
 .center {
         position: absolute;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        display: grid;
+        place-items: center;
+        
         top: 8.65cqh;
         width: 100%;
         border-radius: 0 0 13.4cqw 13.4cqw;
