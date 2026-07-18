@@ -366,7 +366,7 @@ const hideIsland = () => {
                 width: 21.5cqw;
                 height: 21.5cqw;
                 border-radius: 2cqw;
-                background-color: rgb(141, 105, 105);
+                // background-color: rgb(141, 105, 105);
 
                 .application {
                     position: relative;
