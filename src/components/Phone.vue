@@ -351,7 +351,11 @@ const showIsland = (index) => {
     width: 95.9cqw;
     height: 98.1cqh;
     border-radius: 13.4cqw;
-    background: linear-gradient(to bottom, rgb(5, 97, 150), rgb(111, 15, 15));
+    overflow: hidden;
+    background:
+        linear-gradient(145deg, rgba(48, 126, 181, 0.74), rgba(64, 72, 103, 0.55) 44%, rgba(126, 75, 67, 0.75)),
+        radial-gradient(circle at 22% 84%, rgba(226, 183, 112, 0.78), transparent 30%),
+        linear-gradient(160deg, #9cc9d5, #314e72 58%, #5f3b3d);
 
     .top {
         position: absolute;
@@ -383,16 +387,166 @@ const showIsland = (index) => {
         }
     }
 
-.center {
+    .center {
         position: absolute;
-        display: grid;
-        place-items: center;
-        
+        display: flex;
+        justify-content: center;
+        align-items: stretch;
+        overflow: hidden;
         top: 8.65cqh;
         width: 100%;
         border-radius: 0 0 13.4cqw 13.4cqw;
         height: 89.5cqh;
-        background-color: rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(0.4cqw);
+    }
+
+    .home-screen {
+        position: relative;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+        padding: 3.4cqh 5.5cqw 12cqh;
+    }
+
+    .app-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-auto-rows: min-content;
+        gap: 2.35cqh 2.3cqw;
+        align-items: start;
+    }
+
+    .app-icon,
+    .app-dock__item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.45cqh;
+        min-width: 0;
+        padding: 0;
+        border: 0;
+        color: white;
+        font-family: inherit;
+        background: transparent;
+        cursor: pointer;
+
+        &:hover .app-icon__tile {
+            transform: scale(1.08);
+            filter: brightness(1.12);
+        }
+
+        &:active .app-icon__tile {
+            transform: scale(0.94);
+        }
+    }
+
+    .app-icon__tile {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 13.5cqw;
+        aspect-ratio: 1;
+        border-radius: 3.2cqw;
+        color: white;
+        box-shadow: inset 0 0 0 0.15cqw rgba(255, 255, 255, 0.22), 0 0.5cqh 1cqw rgba(0, 0, 0, 0.22);
+        transition: transform 0.16s ease, filter 0.16s ease;
+    }
+
+    .app-icon__label {
+        overflow: hidden;
+        width: 100%;
+        font-size: 1.35cqh;
+        font-weight: 500;
+        line-height: 1.1;
+        text-align: center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        text-shadow: 0 0.15cqh 0.35cqh rgba(0, 0, 0, 0.65);
+    }
+
+    .app-icon__tile--green { background: linear-gradient(145deg, #45e674, #12a94b); }
+    .app-icon__tile--dark { background: linear-gradient(145deg, #686868, #161616); }
+    .app-icon__tile--cream { color: #6c6c6c; background: linear-gradient(145deg, #fffef0, #cfcfc6); }
+    .app-icon__tile--photos { background: conic-gradient(from 35deg, #ffca38, #ee4c7f, #7865e8, #33b8d4, #ffca38); }
+    .app-icon__tile--pink { background: linear-gradient(145deg, #ff4a88, #d40053); }
+    .app-icon__tile--yellow { color: #545454; background: linear-gradient(145deg, #ffe86a, #e6ad00); }
+    .app-icon__tile--silver { color: #303030; background: linear-gradient(145deg, #fafafa, #9a9a9a); }
+    .app-icon__tile--blue { background: linear-gradient(145deg, #5bc9f5, #0878c9); }
+    .app-icon__tile--red { background: linear-gradient(145deg, #dc4c65, #851329); }
+    .app-icon__tile--purple { background: linear-gradient(145deg, #a77cff, #4d26a4); }
+
+    .weather-widget {
+        grid-column: span 2;
+        grid-row: span 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-sizing: border-box;
+        min-height: 29cqh;
+        padding: 1.7cqh 2.4cqw 1.45cqh;
+        border-radius: 3.3cqw;
+        color: white;
+        background: linear-gradient(160deg, rgba(24, 119, 190, 0.95), rgba(46, 101, 172, 0.8));
+        box-shadow: 0 0.5cqh 1cqw rgba(0, 0, 0, 0.18), inset 0 0 0 0.15cqw rgba(255, 255, 255, 0.2);
+        text-shadow: 0 0.15cqh 0.35cqh rgba(0, 0, 0, 0.2);
+    }
+
+    .weather-widget__top,
+    .weather-widget__sun {
+        display: flex;
+        align-items: center;
+    }
+
+    .weather-widget__top {
+        justify-content: space-between;
+        font-size: 1.45cqh;
+        font-weight: 600;
+    }
+
+    .weather-widget strong {
+        margin-top: -0.3cqh;
+        font-size: 6.1cqh;
+        font-weight: 400;
+        line-height: 0.95;
+    }
+
+    .weather-widget__sun {
+        gap: 0.7cqw;
+        font-size: 1.3cqh;
+    }
+
+    .weather-widget small {
+        font-size: 1.15cqh;
+        opacity: 0.72;
+    }
+
+    .app-dock {
+        position: absolute;
+        right: 5.5cqw;
+        bottom: 3.2cqh;
+        left: 5.5cqw;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        align-items: center;
+        justify-items: center;
+        box-sizing: border-box;
+        height: 9.2cqh;
+        padding: 1cqh 2cqw;
+        border: 0.15cqw solid rgba(255, 255, 255, 0.22);
+        border-radius: 3.8cqw;
+        background: rgba(235, 235, 235, 0.28);
+        backdrop-filter: blur(1.8cqw);
+    }
+
+    .app-dock__item {
+        .app-icon__tile {
+            width: 13.5cqw;
+        }
+
+        &:hover .app-icon__tile {
+            transform: scale(1.08);
+        }
     }
 
     .bottom {
