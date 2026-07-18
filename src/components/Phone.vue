@@ -375,15 +375,15 @@ const hideIsland = () => {
                     justify-content: center;
                     align-items: center;
                     gap: 0.85cqh;
-                    width: 95%;
-                    height: 95%;
+                    width: 100%;
+                    height: 100%;
                     border-radius: 2cqw;
-                    background-color: rgb(80, 16, 198);
+                    // background-color: rgb(80, 16, 198);
 
                     img {
                         position: relative;
-                        width: 15cqw;
-                        height: 12.5cqw;
+                        width: auto;
+                        height: 13.75cqw;
                         // border-radius: 50%;
                         object-fit: contain;
                     }
@@ -393,8 +393,9 @@ const hideIsland = () => {
                         display: block;
                         width: 100%;
                         text-align: center;
-                        font-size: 1.4cqh;
-                        font-weight: 500;
+                        font-size: 1.45cqh;
+                        font-weight: 450;
+                        letter-spacing: 0.07cqw;
                         color: rgb(255, 255, 255);
                     }
                 }
