@@ -89,7 +89,7 @@ const hideIsland = () => {
             <div class="top">
                 <div v-show="!isPillActive" class="hour">22:50</div>
 
-                <DynamicIsland v-if="isIslandExpanded" :expanded="isIslandExpanded" :expanded-width="activeIsland.width"
+                <DynamicIsland v-show="isIslandExpanded" :expanded="isIslandExpanded" :expanded-width="activeIsland.width"
                     :expanded-height="activeIsland.height" :hoverable="false">
                     <template #expanded>
                         <Transition name="island-layout-swap" mode="out-in">
