@@ -165,7 +165,9 @@ const hideIsland = () => {
                     </template>
                 </DynamicIsland>
 
-                <div v-show="!isPillActive" class="utils"></div>
+                <div v-show="!isPillActive" class="utils">
+                    
+                </div>
             </div>
 
             <div class="center">
