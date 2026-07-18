@@ -4,7 +4,7 @@ import DynamicIsland from './DynamicIsland.vue';
 import AirDrop from '../assets/airdrop.png';
 import PhoneGreen from '../assets/phone-green.png';
 import Inconnu from '../assets/inconnu.png';
-import { X, Volume2, Video, Mic, Clock, AudioLines } from '@lucide/vue';
+import { X, Volume2, Video, Mic, Clock3, AudioLines } from '@lucide/vue';
 
 const islandExamples = [
     {
