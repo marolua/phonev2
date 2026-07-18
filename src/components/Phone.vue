@@ -5,7 +5,7 @@ import AirDrop from '../assets/airdrop.png';
 import PhoneGreen from '../assets/phone-green.png';
 import Onde from '../assets/onde-sonore.png';
 import Inconnu from '../assets/inconnu.png';
-import { X, Volume2, Video, Mic, Clock3} from '@lucide/vue';
+import { X, Volume2, Video, Mic, Clock, AudioLines } from '@lucide/vue';
 
 const islandExamples = [
     {
@@ -145,7 +145,7 @@ const showIsland = (index) => {
                                     </div>
 
                                     <div class="pill-right">
-                                        <img :src="Onde" alt="Onde sonore" />
+                                        <AudioLines size="24" color="rgb(255, 255, 255)"/>
                                     </div>
                                 </template>
 
