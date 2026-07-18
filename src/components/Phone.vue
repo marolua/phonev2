@@ -323,7 +323,7 @@ const showIsland = (index) => {
         width: 100%;
         border-radius: 0 0 13.4cqw 13.4cqw;
         height: 89.5cqh;
-        background: rgba(255, 255, 255, 0.08);
+        background: rgba(203, 16, 16, 0.5);
         backdrop-filter: blur(0.4cqw);
     }
 
