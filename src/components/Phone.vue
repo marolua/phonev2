@@ -172,7 +172,7 @@ const hideIsland = () => {
             </div>
 
             <div class="center">
-                <div class="">
+                <div class="home-screen">
 
                 </div>
             </div>
@@ -328,19 +328,28 @@ const hideIsland = () => {
 
     .center {
         position: absolute;
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        grid-auto-rows: min-content;
-        gap: 2.5cqh 2cqw;
-        align-items: start;
-        justify-items: center;
-        box-sizing: border-box;
-        padding: 3cqh 5cqw 4cqh;
-        // top: 8.65cqh;
+        display: flex;
+        justify-content: center;
+        align-items: end;
         width: 100%;
         border-radius: 13.4cqw;
         height: 98.1cqh;
-        background: rgba(5, 98, 237, 0.5);
+        // background: rgba(5, 98, 237, 0.5);
+
+        .home-screen {
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            grid-auto-rows: min-content;
+            gap: 2.5cqh 2cqw;
+            align-items: start;
+            justify-items: center;
+            box-sizing: border-box;
+            padding: 3cqh 5cqw 4cqh;
+            width: 100%;
+            height: calc(100% - 8.65cqh);
+            background-color: rgb(186, 10, 10);
+        }
     }
 
     .bottom {
