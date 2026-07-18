@@ -5,7 +5,7 @@ import AirDrop from '../assets/airdrop.png';
 import PhoneGreen from '../assets/phone-green.png';
 import Onde from '../assets/onde-sonore.png';
 import Inconnu from '../assets/inconnu.png';
-import { X, Volume2, Video, Mic} from '@lucide/vue';
+import { X, Volume2, Video, Mic, Clock3} from '@lucide/vue';
 
 const islandExamples = [
     {
@@ -150,7 +150,7 @@ const showIsland = (index) => {
                                 </template>
 
                                 <div v-else-if="activeIsland.variant === 'timer'" class="pill-timer">
-                                    <span class="pill-timer__icon" aria-hidden="true"></span>
+                                    <Clock3 size="22" color="rgb(255, 190, 72)"/>
                                     <span class="pill-timer__time">{{ activeIsland.time }}</span>
                                 </div>
                             </section>
