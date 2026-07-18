@@ -172,7 +172,9 @@ const hideIsland = () => {
             </div>
 
             <div class="center">
-                <!-- Ajoute tes applications ici. Chaque enfant sera placé dans la grille. -->
+                <div class="">
+
+                </div>
             </div>
 
             <div class="bottom">
@@ -301,6 +303,7 @@ const hideIsland = () => {
         height: 8.65cqh;
         color: white;
         font-size: 2.1cqh;
+        z-index: 10;
         border-radius: 13.4cqw 13.4cqw 0 0;
 
         .hour {
@@ -337,7 +340,7 @@ const hideIsland = () => {
         width: 100%;
         border-radius: 13.4cqw;
         height: 98.1cqh;
-        // background: rgba(5, 98, 237, 0.5);
+        background: rgba(5, 98, 237, 0.5);
     }
 
     .bottom {
