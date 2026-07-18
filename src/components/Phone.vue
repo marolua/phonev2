@@ -4,7 +4,30 @@ import DynamicIsland from './DynamicIsland.vue';
 import AirDrop from '../assets/airdrop.png';
 import PhoneGreen from '../assets/phone-green.png';
 import Inconnu from '../assets/inconnu.png';
-import { X, Volume2, Video, Mic, Clock3, AudioLines } from '@lucide/vue';
+import {
+    X,
+    Volume2,
+    Video,
+    Mic,
+    Clock3,
+    AudioLines,
+    Phone as PhoneIcon,
+    MessageCircle,
+    Settings,
+    Contact,
+    Camera,
+    Music,
+    FileText,
+    Calculator,
+    Mail,
+    Home,
+    Megaphone,
+    Image,
+    Map,
+    WalletCards,
+    Gamepad2,
+    CloudSun,
+} from '@lucide/vue';
 
 const islandExamples = [
     {
@@ -50,6 +73,27 @@ const isIslandExpanded = ref(true)
 
 const activeIsland = computed(() => islandExamples[activeIslandIndex.value])
 const isPillActive = computed(() => isIslandExpanded.value && activeIsland.value.type === 'pill')
+
+const apps = [
+    { name: 'Phone', icon: PhoneIcon, color: 'green' },
+    { name: 'Messages', icon: MessageCircle, color: 'green' },
+    { name: 'Settings', icon: Settings, color: 'dark' },
+    { name: 'Contacts', icon: Contact, color: 'cream' },
+    { name: 'Photos', icon: Image, color: 'photos' },
+    { name: 'Camera', icon: Camera, color: 'dark' },
+    { name: 'Music', icon: Music, color: 'pink' },
+    { name: 'Notes', icon: FileText, color: 'yellow' },
+    { name: 'Calculator', icon: Calculator, color: 'silver' },
+    { name: 'Mail', icon: Mail, color: 'blue' },
+    { name: 'CommBank', icon: WalletCards, color: 'yellow' },
+    { name: 'Twitter', icon: MessageCircle, color: 'blue' },
+    { name: 'Home', icon: Home, color: 'cream' },
+    { name: 'Services', icon: Megaphone, color: 'red' },
+    { name: 'Maps', icon: Map, color: 'green' },
+    { name: 'Games', icon: Gamepad2, color: 'purple' },
+]
+
+const dockApps = [apps[0], apps[1], apps[5], apps[6]]
 
 const showIsland = (index) => {
     activeIslandIndex.value = index
@@ -161,7 +205,37 @@ const showIsland = (index) => {
             </div>
 
             <div class="center">
+                <div class="home-screen">
+                    <div class="app-grid">
+                        <article class="weather-widget">
+                            <div class="weather-widget__top">
+                                <span>Melbourne</span>
+                                <Map size="11" stroke-width="3" />
+                            </div>
+                            <strong>27°</strong>
+                            <div class="weather-widget__sun">
+                                <CloudSun size="17" stroke-width="1.8" />
+                                <span>Sunny &amp; Clear skies</span>
+                            </div>
+                            <small>Weather</small>
+                        </article>
 
+                        <button v-for="app in apps" :key="app.name" class="app-icon" type="button">
+                            <span :class="['app-icon__tile', `app-icon__tile--${app.color}`]">
+                                <component :is="app.icon" :size="22" :stroke-width="1.9" />
+                            </span>
+                            <span class="app-icon__label">{{ app.name }}</span>
+                        </button>
+                    </div>
+
+                    <nav class="app-dock" aria-label="Applications favorites">
+                        <button v-for="app in dockApps" :key="`dock-${app.name}`" class="app-dock__item" type="button">
+                            <span :class="['app-icon__tile', `app-icon__tile--${app.color}`]">
+                                <component :is="app.icon" :size="21" :stroke-width="1.9" />
+                            </span>
+                        </button>
+                    </nav>
+                </div>
             </div>
 
             <div class="bottom">
