@@ -277,11 +277,7 @@ const showIsland = (index) => {
     width: 95.9cqw;
     height: 98.1cqh;
     border-radius: 13.4cqw;
-    overflow: hidden;
-    background:
-        linear-gradient(145deg, rgba(48, 126, 181, 0.74), rgba(64, 72, 103, 0.55) 44%, rgba(126, 75, 67, 0.75)),
-        radial-gradient(circle at 22% 84%, rgba(226, 183, 112, 0.78), transparent 30%),
-        linear-gradient(160deg, #9cc9d5, #314e72 58%, #5f3b3d);
+    background: linear-gradient(to bottom, rgb(5, 97, 150), rgb(111, 15, 15));
 
     .top {
         position: absolute;
