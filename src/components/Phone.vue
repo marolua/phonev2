@@ -316,7 +316,7 @@ const showIsland = (index) => {
         align-items: center;
         top: 8.65cqh;
         width: 100%;
-        height: 88.45cqh;
+        height: 89.5cqh;
         background-color: rgba(255, 255, 255, 0.3);
     }
 
