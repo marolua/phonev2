@@ -363,10 +363,10 @@ const hideIsland = () => {
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                width: 20cqw;
-                height: 20cqw;
+                width: 21.5cqw;
+                height: 21.5cqw;
                 border-radius: 2cqw;
-                // background-color: rgb(141, 105, 105);
+                background-color: rgb(141, 105, 105);
 
                 .application {
                     position: relative;
@@ -388,7 +388,7 @@ const hideIsland = () => {
                     img {
                         position: relative;
                         width: auto;
-                        height: 13.75cqw;
+                        height: 15cqw;
                         // border-radius: 50%;
                         object-fit: contain;
                     }
