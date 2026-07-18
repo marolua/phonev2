@@ -173,7 +173,13 @@ const hideIsland = () => {
 
             <div class="center">
                 <div class="home-screen">
+                    <div class="app" v-for="n in 12" :key="n">
+                        <div class="application">
+                            <img :src="Inconnu" alt="App" />
+                            <span>Messages</span>
+                        </div>
 
+                    </div>
                 </div>
             </div>
 
@@ -349,7 +355,28 @@ const hideIsland = () => {
             width: 100%;
             height: calc(100% - 8.65cqh);
             border-radius: 0 0 13.4cqw 13.4cqw;
-            background-color: rgb(186, 10, 10);
+            background-color: rgba(181, 36, 36);
+
+            .app {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 20cqw;
+                height: 20cqw;
+                border-radius: 2cqw;
+                background-color: rgba(255, 255, 255);
+
+                img {
+                    position: relative;
+                    width: 10cqw;
+                    height: 10cqw;
+                    border-radius: 50%;
+                    object-fit: contain;
+                }
+            }
+
         }
     }
 
