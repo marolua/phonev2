@@ -374,11 +374,16 @@ const hideIsland = () => {
                     flex-direction: column;
                     justify-content: center;
                     align-items: center;
-                    gap: 0.85cqh;
+                    gap: 0.6cqh;
                     width: 100%;
                     height: 100%;
                     border-radius: 2cqw;
                     // background-color: rgb(80, 16, 198);
+
+                    &:hover {
+                        cursor: pointer;
+                        background-color: rgba(255, 255, 255, 0.12);
+                    }
 
                     img {
                         position: relative;
@@ -393,10 +398,11 @@ const hideIsland = () => {
                         display: block;
                         width: 100%;
                         text-align: center;
-                        font-size: 1.45cqh;
-                        font-weight: 450;
+                        font-size: 1.3cqh;
+                        font-weight: 500;
                         letter-spacing: 0.07cqw;
-                        color: rgb(255, 255, 255);
+                        color: #fff;
+                        text-shadow: 0 0 .3125rem #00000059;
                     }
                 }
             }
