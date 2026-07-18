@@ -1,13 +1,14 @@
 <script setup>
 import { computed, ref } from 'vue'
-import DynamicIsland from './DynamicIsland.vue'
-import AirDrop from '../assets/airdrop.png'
-import PhoneGreen from '../assets/phone-green.png'
-import Onde from '../assets/onde-sonore.png'
-import Inconnu from '../assets/inconnu.png'
-import Micro from '../assets/microphone.png'
-import Volume from '../assets/volume-eleve.png'
-import Camera from '../assets/camera-video.png'
+import DynamicIsland from './DynamicIsland.vue';
+import AirDrop from '../assets/airdrop.png';
+import PhoneGreen from '../assets/phone-green.png';
+import Onde from '../assets/onde-sonore.png';
+import Inconnu from '../assets/inconnu.png';
+import Micro from '../assets/microphone.png';
+import Volume from '../assets/volume-eleve.png';
+import Camera from '../assets/camera-video.png';
+import {X} from '@lucide/vue';
 
 const islandExamples = [
     {
