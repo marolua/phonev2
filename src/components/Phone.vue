@@ -388,8 +388,8 @@ const hideIsland = () => {
                     img {
                         position: relative;
                         width: auto;
-                        height: 15cqw;
-                        // border-radius: 50%;
+                        height: 15.5cqw;
+                        border-radius: 3.4cqw;
                         object-fit: contain;
                     }
 
@@ -398,9 +398,9 @@ const hideIsland = () => {
                         display: block;
                         width: 100%;
                         text-align: center;
-                        font-size: 1.3cqh;
-                        font-weight: 500;
-                        letter-spacing: 0.07cqw;
+                        font-size: 1.45cqh;
+                        font-weight: 400;
+                        letter-spacing: 0.1cqw;
                         color: #fff;
                         text-shadow: 0 0 .3125rem #00000059;
                     }
