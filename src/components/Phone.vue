@@ -348,6 +348,7 @@ const hideIsland = () => {
             padding: 3cqh 5cqw 4cqh;
             width: 100%;
             height: calc(100% - 8.65cqh);
+            border-radius: 0 0 13.4cqw 13.4cqw;
             background-color: rgb(186, 10, 10);
         }
     }
