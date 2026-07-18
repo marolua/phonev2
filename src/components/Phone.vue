@@ -3,7 +3,6 @@ import { computed, ref } from 'vue'
 import DynamicIsland from './DynamicIsland.vue';
 import AirDrop from '../assets/airdrop.png';
 import PhoneGreen from '../assets/phone-green.png';
-import Onde from '../assets/onde-sonore.png';
 import Inconnu from '../assets/inconnu.png';
 import { X, Volume2, Video, Mic, Clock, AudioLines } from '@lucide/vue';
 
