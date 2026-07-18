@@ -144,12 +144,12 @@ const showIsland = (index) => {
                                     </div>
 
                                     <div class="pill-right">
-                                        <AudioLines size="24" color="rgb(255, 255, 255)"/>
+                                        <AudioLines size="24" color="rgb(255, 255, 255)" />
                                     </div>
                                 </template>
 
                                 <div v-else-if="activeIsland.variant === 'timer'" class="pill-timer">
-                                    <Clock3 size="22" color="rgb(255, 190, 72)"/>
+                                    <Clock3 size="22" color="rgb(255, 190, 72)" />
                                     <span class="pill-timer__time">{{ activeIsland.time }}</span>
                                 </div>
                             </section>
