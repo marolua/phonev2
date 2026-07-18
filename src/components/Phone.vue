@@ -160,6 +160,10 @@ const showIsland = (index) => {
                 <div v-show="!isPillActive" class="utils"></div>
             </div>
 
+            <div class="center">
+
+            </div>
+
             <div class="bottom">
                 <div class="bar"></div>
             </div>
@@ -305,6 +309,17 @@ const showIsland = (index) => {
         }
     }
 
+.center {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 8.65cqh;
+        width: 100%;
+        height: 88.45cqh;
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+
     .bottom {
         position: absolute;
         display: flex;
@@ -314,6 +329,7 @@ const showIsland = (index) => {
         width: 45%;
         height: 3cqh;
         border-radius: 7cqw;
+        background-color: rgba(255, 255, 255, 0.3);
 
         &:hover {
             cursor: pointer;
