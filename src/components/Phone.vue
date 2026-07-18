@@ -291,7 +291,6 @@ const showIsland = (index) => {
         color: white;
         font-size: 2.1cqh;
         border-radius: 13.4cqw 13.4cqw 0 0;
-        background-color: rgba(74, 59, 59, 0.494);
 
         .hour {
             position: relative;
