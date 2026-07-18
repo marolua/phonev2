@@ -129,6 +129,7 @@ const showIsland = (index) => {
                                         <img :src="Volume" alt="Inconnu" />
                                     </div>
                                     <div class="medium-button" id="last">
+                                        <X size="25" color="white" />
                                     </div>
                                 </div>
                             </section>
