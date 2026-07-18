@@ -319,12 +319,11 @@ const showIsland = (index) => {
         justify-items: center;
         box-sizing: border-box;
         padding: 3cqh 5cqw 4cqh;
-        top: 8.65cqh;
+        // top: 8.65cqh;
         width: 100%;
-        border-radius: 0 0 13.4cqw 13.4cqw;
-        height: 89.5cqh;
-        background: rgba(203, 16, 16, 0.5);
-        backdrop-filter: blur(0.4cqw);
+        border-radius: 13.4cqw;
+        height: 98.1cqh;
+        // background: rgba(5, 98, 237, 0.5);
     }
 
     .bottom {
