@@ -315,24 +315,20 @@ const showIsland = (index) => {
 
     .center {
         position: absolute;
-        display: flex;
-        justify-content: center;
-        align-items: stretch;
-        overflow: hidden;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-auto-rows: min-content;
+        gap: 2.5cqh 2cqw;
+        align-items: start;
+        justify-items: center;
+        box-sizing: border-box;
+        padding: 3cqh 5cqw 4cqh;
         top: 8.65cqh;
         width: 100%;
         border-radius: 0 0 13.4cqw 13.4cqw;
         height: 89.5cqh;
         background: rgba(203, 16, 16, 0.5);
         backdrop-filter: blur(0.4cqw);
-    }
-
-    .home-screen {
-        position: relative;
-        box-sizing: border-box;
-        width: 100%;
-        height: 100%;
-        padding: 3.4cqh 5.5cqw 12cqh;
     }
 
     .app-grid {
