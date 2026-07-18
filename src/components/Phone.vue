@@ -5,10 +5,7 @@ import AirDrop from '../assets/airdrop.png';
 import PhoneGreen from '../assets/phone-green.png';
 import Onde from '../assets/onde-sonore.png';
 import Inconnu from '../assets/inconnu.png';
-import Micro from '../assets/microphone.png';
-import Volume from '../assets/volume-eleve.png';
-import Camera from '../assets/camera-video.png';
-import {X} from '@lucide/vue';
+import { X, Volume2, Video, Mic} from '@lucide/vue';
 
 const islandExamples = [
     {
@@ -120,16 +117,16 @@ const showIsland = (index) => {
                                 </div>
                                 <div class="medium-bottom">
                                     <div class="medium-button">
-                                        <img :src="Camera" alt="Inconnu" />
+                                        <Video size="25" color="white" />
                                     </div>
                                     <div class="medium-button">
-                                        <img :src="Micro" alt="Inconnu" />
+                                        <Mic size="23" color="white" />
                                     </div>
                                     <div class="medium-button">
-                                        <img :src="Volume" alt="Inconnu" />
+                                        <Volume2 size="23" color="white" />
                                     </div>
                                     <div class="medium-button" id="last">
-                                        <X size="25" color="white" />
+                                        <X size="24" color="white" />
                                     </div>
                                 </div>
                             </section>
