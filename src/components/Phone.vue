@@ -4,7 +4,7 @@ import DynamicIsland from './DynamicIsland.vue';
 import AirDrop from '../assets/airdrop.png';
 import PhoneGreen from '../assets/phone-green.png';
 import Inconnu from '../assets/inconnu.png';
-import { X, Volume2, Video, Mic, Clock3, AudioLines } from '@lucide/vue';
+import { X, Volume2, Video, Mic, Clock3, AudioLines, BatteryFull, Signal } from '@lucide/vue';
 
 const islandExamples = [
     {
@@ -166,7 +166,8 @@ const hideIsland = () => {
                 </DynamicIsland>
 
                 <div v-show="!isPillActive" class="utils">
-                    
+                    <BatteryFull size="30" color="rgb(255, 255, 255)" />
+                    <Signal size="25" color="rgb(255, 255, 255)" />
                 </div>
             </div>
 
@@ -313,9 +314,12 @@ const hideIsland = () => {
         .utils {
             position: relative;
             display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2cqw;
             width: 13.7cqw;
             height: 4.33cqh;
-            background-color: rgb(255, 255, 255);
+            // background-color: rgb(255, 255, 255);
         }
     }
 
