@@ -4,6 +4,7 @@ import DynamicIsland from './DynamicIsland.vue';
 import AirDrop from '../assets/airdrop.png';
 import PhoneGreen from '../assets/phone-green.png';
 import Inconnu from '../assets/inconnu.png';
+import Message from '../assets/appicons/message.png';
 import { X, Volume2, Video, Mic, Clock3, AudioLines, BatteryFull, Signal } from '@lucide/vue';
 
 const islandExamples = [
@@ -175,7 +176,7 @@ const hideIsland = () => {
                 <div class="home-screen">
                     <div class="app" v-for="n in 12" :key="n">
                         <div class="application">
-                            <img :src="Inconnu" alt="App" />
+                            <img :src="Message" alt="App" />
                             <span>Messages</span>
                         </div>
 
@@ -355,7 +356,6 @@ const hideIsland = () => {
             width: 100%;
             height: calc(100% - 8.65cqh);
             border-radius: 0 0 13.4cqw 13.4cqw;
-            background-color: rgba(181, 36, 36);
 
             .app {
                 position: relative;
@@ -382,9 +382,9 @@ const hideIsland = () => {
 
                     img {
                         position: relative;
-                        width: 10cqw;
-                        height: 10cqw;
-                        border-radius: 50%;
+                        width: 15cqw;
+                        height: 12.5cqw;
+                        // border-radius: 50%;
                         object-fit: contain;
                     }
 
