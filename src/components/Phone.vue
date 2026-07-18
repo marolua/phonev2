@@ -46,7 +46,7 @@ const islandExamples = [
 ]
 
 const activeIslandIndex = ref(0)
-const isIslandExpanded = ref(true)
+const isIslandExpanded = ref(false)
 
 const activeIsland = computed(() => islandExamples[activeIslandIndex.value])
 const isPillActive = computed(() => isIslandExpanded.value && activeIsland.value.type === 'pill')
@@ -55,10 +55,18 @@ const showIsland = (index) => {
     activeIslandIndex.value = index
     isIslandExpanded.value = true
 }
+
+const hideIsland = () => {
+    isIslandExpanded.value = false
+}
 </script>
 
 <template>
     <div class="dev-island-controls">
+        <button class="dev-island-controls__button" type="button" @click="hideIsland">
+            Masquer
+        </button>
+
         <button v-for="(island, index) in islandExamples" :key="island.id" class="dev-island-controls__button"
             :class="{ 'dev-island-controls__button--active': activeIslandIndex === index }" type="button"
             @click="showIsland(index)">
@@ -81,7 +89,7 @@ const showIsland = (index) => {
             <div class="top">
                 <div v-show="!isPillActive" class="hour">22:50</div>
 
-                <DynamicIsland :expanded="isIslandExpanded" :expanded-width="activeIsland.width"
+                <DynamicIsland v-if="isIslandExpanded" :expanded="isIslandExpanded" :expanded-width="activeIsland.width"
                     :expanded-height="activeIsland.height" :hoverable="false">
                     <template #expanded>
                         <Transition name="island-layout-swap" mode="out-in">
