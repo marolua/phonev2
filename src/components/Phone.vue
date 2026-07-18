@@ -366,14 +366,37 @@ const hideIsland = () => {
                 width: 20cqw;
                 height: 20cqw;
                 border-radius: 2cqw;
-                background-color: rgba(255, 255, 255);
+                // background-color: rgb(141, 105, 105);
 
-                img {
+                .application {
                     position: relative;
-                    width: 10cqw;
-                    height: 10cqw;
-                    border-radius: 50%;
-                    object-fit: contain;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 0.85cqh;
+                    width: 95%;
+                    height: 95%;
+                    border-radius: 2cqw;
+                    background-color: rgb(80, 16, 198);
+
+                    img {
+                        position: relative;
+                        width: 10cqw;
+                        height: 10cqw;
+                        border-radius: 50%;
+                        object-fit: contain;
+                    }
+
+                    span {
+                        position: relative;
+                        display: block;
+                        width: 100%;
+                        text-align: center;
+                        font-size: 1.4cqh;
+                        font-weight: 500;
+                        color: rgb(255, 255, 255);
+                    }
                 }
             }
 
