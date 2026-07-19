@@ -4,7 +4,7 @@ import DynamicIsland from './DynamicIsland.vue';
 import AirDrop from '../assets/airdrop.png';
 import PhoneGreen from '../assets/phone-green.png';
 import Inconnu from '../assets/inconnu.png';
-import Message from '../assets/appicons/message.png';
+import { applications } from '../config/applications';
 import { X, Volume2, Video, Mic, Clock3, AudioLines, Signal } from '@lucide/vue';
 
 const islandExamples = [
@@ -51,6 +51,7 @@ const isIslandExpanded = ref(false)
 
 const activeIsland = computed(() => islandExamples[activeIslandIndex.value])
 const isPillActive = computed(() => isIslandExpanded.value && activeIsland.value.type === 'pill')
+const activeApplication = ref(null)
 
 const showIsland = (index) => {
     activeIslandIndex.value = index
@@ -59,6 +60,14 @@ const showIsland = (index) => {
 
 const hideIsland = () => {
     isIslandExpanded.value = false
+}
+
+const openApplication = (application) => {
+    activeApplication.value = application
+
+    // `application.page` est l'identifiant de l'UI à ouvrir.
+    // Le composant de l'application pourra être branché ici plus tard.
+    console.log('Ouverture de l’application :', application.page)
 }
 
 </script>
@@ -190,10 +199,17 @@ const hideIsland = () => {
 
             <div class="center">
                 <div class="home-screen">
-                    <div class="app" v-for="n in 12" :key="n">
-                        <div class="application">
-                            <img :src="Message" alt="App" />
-                            <span>Messages</span>
+                    <div class="app" v-for="application in applications" :key="application.id">
+                        <div
+                            class="application"
+                            role="button"
+                            tabindex="0"
+                            @click="openApplication(application)"
+                            @keydown.enter="openApplication(application)"
+                            @keydown.space.prevent="openApplication(application)"
+                        >
+                            <img :src="application.icon" :alt="application.name" />
+                            <span>{{ application.name }}</span>
                         </div>
 
                     </div>
