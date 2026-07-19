@@ -19,6 +19,13 @@ export const applications = [
         page: 'phone',
     },
     {
+    id: 'messages',
+    name: 'Messages',
+    icon: MessageIcon,
+    page: 'messages',
+    size: 'widget'
+},
+    {
         id: 'settings',
         name: 'Réglages',
         icon: SettingsIcon,

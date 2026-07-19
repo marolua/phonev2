@@ -207,6 +207,9 @@ const openApplication = (application) => {
                             <span>{{ application.name }}</span>
                         </div>
 
+                        <div class="app" :class="{ 'app--widget': application.size === 'widget' }"
+                            v-for="application in applications" :key="application.id"></div>
+
                     </div>
                 </div>
             </div>
@@ -431,6 +434,19 @@ const openApplication = (application) => {
                         text-shadow: 0 0 .3125rem #00000059;
                     }
                 }
+            }
+
+            .app--widget {
+                grid-column: span 2;
+                grid-row: span 2;
+
+                width: 100%;
+                height: 100%;
+            }
+
+            .app--widget .application {
+                width: 100%;
+                height: 100%;
             }
 
         }
