@@ -444,15 +444,6 @@ const openApplication = (application) => {
                 height: 100%;
             }
 
-            .app--widget .application {
-                width: 100%;
-                height: 100%;
-
-                // img {
-                //     display: none;
-                // }
-            }
-
         }
     }
 
