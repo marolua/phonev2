@@ -11,6 +11,9 @@ export const applications = [
     icon: WeatherIcon,
     page: "weather",
     size: "widget",
+    city: "Melbourne",
+    temperature: "27",
+    condition: "Sunny & Clear skies",
   },
   {
     id: "messages",

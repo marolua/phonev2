@@ -414,7 +414,7 @@ const openApplication = (application) => {
                         background-color: rgba(255, 255, 255, 0.12);
                     }
 
-                    img {
+                    > img {
                         position: relative;
                         width: auto;
                         height: 15.5cqw;
@@ -422,7 +422,7 @@ const openApplication = (application) => {
                         object-fit: contain;
                     }
 
-                    span {
+                    > span {
                         position: relative;
                         display: block;
                         width: 100%;

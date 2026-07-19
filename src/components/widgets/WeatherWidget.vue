@@ -2,54 +2,80 @@
 defineProps({
     application: {
         type: Object,
-        required: true
-    }
+        required: true,
+    },
 })
 </script>
 
 <template>
     <div class="weather-widget">
-        <div class="weather-widget__header">
-            <span>Paris</span>
-            <img :src="application.icon" alt="Météo">
-        </div>
+        <div class="weather-widget__city">{{ application.city }}</div>
 
         <div class="weather-widget__temperature">
-            24°
+            {{ application.temperature }}°
         </div>
 
-        <div class="weather-widget__description">
-            Ensoleillé
+        <div class="weather-widget__condition">
+            <span class="weather-widget__sun">☀</span>
+            <span>{{ application.condition }}</span>
         </div>
+
+        <div class="weather-widget__label">Weather</div>
     </div>
 </template>
 
 <style scoped>
 .weather-widget {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
     width: 100%;
     height: 100%;
-    padding: 1cqw;
-    box-sizing: border-box;
-    color: white;
+    min-height: 100%;
+    padding: 2.4cqw 2.8cqw 1.5cqw;
+    overflow: hidden;
+    border-radius: 2.5cqw;
+    color: #fff;
+    background: linear-gradient(145deg, #2579bd 0%, #0b4477 100%);
+    box-shadow: inset 0 0 1.2cqw rgba(255, 255, 255, 0.16);
+    text-align: left;
 }
 
-.weather-widget__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.weather-widget__header img {
-    width: 5cqw;
-    height: 5cqw;
+.weather-widget__city {
+    font-size: 2.4cqh;
+    font-weight: 500;
+    line-height: 1.1;
 }
 
 .weather-widget__temperature {
-    font-size: 5cqh;
-    font-weight: 600;
+    margin-top: 0.4cqh;
+    font-size: 7.2cqh;
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.15cqw;
 }
 
-.weather-widget__description {
-    opacity: 0.7;
+.weather-widget__condition {
+    display: flex;
+    align-items: center;
+    gap: 1cqw;
+    margin-top: auto;
+    font-size: 1.65cqh;
+    font-weight: 500;
+    line-height: 1.1;
+}
+
+.weather-widget__sun {
+    color: #ffe11a;
+    font-size: 3.4cqw;
+    line-height: 1;
+}
+
+.weather-widget__label {
+    align-self: center;
+    margin-top: 1.2cqh;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 1.25cqh;
 }
 </style>
