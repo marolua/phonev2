@@ -5,7 +5,6 @@ import AirDrop from '../assets/airdrop.png';
 import PhoneGreen from '../assets/phone-green.png';
 import Inconnu from '../assets/inconnu.png';
 import Message from '../assets/appicons/message.png';
-import Battery from '../assets/battery.svg';
 import { X, Volume2, Video, Mic, Clock3, AudioLines, Signal } from '@lucide/vue';
 
 const islandExamples = [
@@ -176,7 +175,7 @@ const hideIsland = () => {
                         <rect x="13.4" y="1.4" width="2.8" height="10.1" rx="0.8" fill="currentColor" opacity="1">
                         </rect>
                     </svg>
-                    <img :src="Battery" />
+                    
                 </div>
             </div>
 
