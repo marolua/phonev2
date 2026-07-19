@@ -167,7 +167,14 @@ const hideIsland = () => {
                 </DynamicIsland>
 
                 <div v-show="!isPillActive" class="utils">
-                    <BatteryFull size="30" color="rgb(255, 255, 255)" />
+                    <svg class="!block shrink-0 text-current w-6 max-h-none max-w-none" viewBox="0 0 18 12" fill="none"
+                        preserveAspectRatio="xMidYMid meet" aria-label="cellular-signal">
+                        <rect x="0.5" y="8.6" width="2.8" height="2.9" rx="0.8" fill="currentColor" opacity="1"></rect>
+                        <rect x="4.8" y="6.5" width="2.8" height="5" rx="0.8" fill="currentColor" opacity="1"></rect>
+                        <rect x="9.1" y="4.2" width="2.8" height="7.3" rx="0.8" fill="currentColor" opacity="1"></rect>
+                        <rect x="13.4" y="1.4" width="2.8" height="10.1" rx="0.8" fill="currentColor" opacity="1">
+                        </rect>
+                    </svg>
                     <Signal size="25" color="rgb(255, 255, 255)" />
                 </div>
             </div>
