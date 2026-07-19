@@ -7,7 +7,7 @@ import BankIcon from "../assets/appicons/bank.png";
 // Pour ajouter une application, ajoute simplement un nouvel objet ici.
 export const applications = [
   {
-    id: "messages",
+    id: "messages-widget",
     name: "Messages",
     icon: MessageIcon,
     page: "messages",
