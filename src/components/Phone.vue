@@ -356,7 +356,6 @@ const openApplication = (application) => {
             gap: 1cqw;
             width: 16cqw;
             height: 4.33cqh;
-            // background-color: rgb(182, 9, 9);
         }
     }
 
