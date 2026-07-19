@@ -60,6 +60,7 @@ const showIsland = (index) => {
 const hideIsland = () => {
     isIslandExpanded.value = false
 }
+
 </script>
 
 <template>
