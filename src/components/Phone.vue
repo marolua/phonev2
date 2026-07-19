@@ -4,6 +4,7 @@ import DynamicIsland from './DynamicIsland.vue';
 import AirDrop from '../assets/airdrop.png';
 import PhoneGreen from '../assets/phone-green.png';
 import Inconnu from '../assets/inconnu.png';
+import WeatherWidget from './widgets/WeatherWidget.vue'
 import { applications } from '../config/applications';
 import { X, Volume2, Video, Mic, Clock3, AudioLines, Signal } from '@lucide/vue';
 
@@ -199,17 +200,15 @@ const openApplication = (application) => {
 
             <div class="center">
                 <div class="home-screen">
-                    <div
-                        class="app"
-                        :class="{ 'app--widget': application.size === 'widget' }"
-                        v-for="application in applications"
-                        :key="application.id"
-                    >
-                        <div class="application" role="button" tabindex="0" @click="openApplication(application)"
-                            @keydown.enter="openApplication(application)"
-                            @keydown.space.prevent="openApplication(application)">
-                            <img :src="application.icon" :alt="application.name" />
-                            <span>{{ application.name }}</span>
+                    <div class="app" :class="{ 'app--widget': application.size === 'widget' }"
+                        v-for="application in applications" :key="application.id">
+                        <div class="application" role="button" tabindex="0" @click="openApplication(application)">
+                            <WeatherWidget v-if="application.id === 'weather'" :application="application" />
+
+                            <template v-else>
+                                <img :src="application.icon" :alt="application.name" />
+                                <span>{{ application.name }}</span>
+                            </template>
                         </div>
                     </div>
                 </div>
