@@ -175,13 +175,13 @@ const hideIsland = () => {
                         <rect x="13.4" y="1.4" width="2.8" height="10.1" rx="0.8" fill="currentColor" opacity="1">
                         </rect>
                     </svg>
-                    <svg width="50" height="60" viewBox="0 0 680 190" xmlns="http://www.w3.org/2000/svg" role="img">
+                    <svg width="37" height="20" viewBox="0 0 112 60" xmlns="http://www.w3.org/2000/svg" role="img">
                         <title>Icône de batterie style iPhone à 100%, intérieur blanc</title>
-                        <rect x="240" y="55" width="100" height="90" rx="16" fill="none" stroke="#C7C7CC"
-                            stroke-width="8" />
-                        <rect x="446" y="82" width="16" height="36" rx="6" fill="#C7C7CC" />
-                        <rect x="252" y="67" width="176" height="66" rx="8" fill="#FFFFFF" />
-                        <text x="340" y="100" font-size="40" font-weight="700"
+                        <rect x="6" y="6" width="84" height="48" rx="10" fill="none" stroke="#C7C7CC"
+                            stroke-width="5" />
+                        <rect x="94" y="20" width="8" height="20" rx="3" fill="#C7C7CC" />
+                        <rect x="14" y="14" width="68" height="32" rx="6" fill="#FFFFFF" />
+                        <text x="48" y="30" font-size="22" font-weight="700"
                             font-family="-apple-system, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif"
                             fill="#1D1D1F" text-anchor="middle" dominant-baseline="central">100</text>
                     </svg>
