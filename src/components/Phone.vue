@@ -438,8 +438,8 @@ const openApplication = (application) => {
             }
 
             .app--widget {
-                grid-column: span 2;
-                grid-row: span 2;
+                grid-column: 1 / span 2;
+                grid-row: 1 / span 2;
 
                 width: 100%;
                 height: 100%;
