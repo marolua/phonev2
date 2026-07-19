@@ -175,7 +175,19 @@ const hideIsland = () => {
                         <rect x="13.4" y="1.4" width="2.8" height="10.1" rx="0.8" fill="currentColor" opacity="1">
                         </rect>
                     </svg>
-                    <Signal size="25" color="rgb(255, 255, 255)" />
+                    <svg class="!block shrink-0 text-current h-4 max-h-none max-w-none" viewBox="0 0 36 15" fill="none"
+                        preserveAspectRatio="xMidYMid meet" aria-label="battery-percentage">
+                        <rect x="1" y="1" width="31" height="15" rx="4.2" fill="rgba(255,255,255,0.55)" opacity="0.2">
+                        </rect>
+                        <rect x="32.8" y="4.5" width="2.2" height="6" rx="1" fill="rgba(255,255,255,0.55)"
+                            opacity="0.2"></rect>
+                        <clipPath id=":ra:">
+                            <rect x="1" y="1" width="31" height="20" rx="4.2"></rect>
+                        </clipPath>
+                        <rect x="1" y="1" width="26.35px" height="13" rx="0" clip-path="url(#:ra:)" fill="#ffffff">
+                        </rect><text y="11.9" text-anchor="middle" font-size="13" font-weight="600" fill="#000000"
+                            style="transform: translateX(16.5px); transform-origin: 50% 50%; transform-box: fill-box;">85</text>
+                    </svg>
                 </div>
             </div>
 
