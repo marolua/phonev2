@@ -200,14 +200,9 @@ const openApplication = (application) => {
             <div class="center">
                 <div class="home-screen">
                     <div class="app" v-for="application in applications" :key="application.id">
-                        <div
-                            class="application"
-                            role="button"
-                            tabindex="0"
-                            @click="openApplication(application)"
+                        <div class="application" role="button" tabindex="0" @click="openApplication(application)"
                             @keydown.enter="openApplication(application)"
-                            @keydown.space.prevent="openApplication(application)"
-                        >
+                            @keydown.space.prevent="openApplication(application)">
                             <img :src="application.icon" :alt="application.name" />
                             <span>{{ application.name }}</span>
                         </div>
