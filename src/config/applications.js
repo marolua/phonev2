@@ -4,8 +4,6 @@ import SettingsIcon from "../assets/appicons/settingsapp.png";
 import BankIcon from "../assets/appicons/bank.png";
 import WeatherIcon from "../assets/appicons/weather.png";
 
-// La liste des applications visibles sur l'écran d'accueil.
-// Pour ajouter une application, ajoute simplement un nouvel objet ici.
 export const applications = [
   {
     id: "weather",
