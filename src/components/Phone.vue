@@ -221,10 +221,6 @@ const closeApplication = () => {
 
             <Transition name="application-open">
                 <div v-if="activeApplication" class="application-overlay">
-                    <button class="application-overlay__close" type="button" @click="closeApplication">
-                        <X :size="18" />
-                    </button>
-
                     <component
                         :is="activeApplication.component"
                         :application="activeApplication"
