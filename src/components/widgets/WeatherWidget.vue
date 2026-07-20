@@ -45,9 +45,13 @@ defineProps({
 }
 
 .weather {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 100%;
-    height: 13cqh;
-        border-radius: 2.5cqw;
+    height: 19cqh;
+    border-radius: 2.5cqw;
     background-color: green;
 }
 
@@ -82,9 +86,15 @@ defineProps({
 }
 
 .weather-widget__label {
-    align-self: center;
-    margin-top: 1.2cqh;
+    /* margin-top: 1.2cqh; */
     color: rgba(255, 255, 255, 0.72);
-    font-size: 1.25cqh;
+    width: 100%;
+    text-align: center;
+    font-size: 1.45cqh;
+    font-weight: 400;
+    letter-spacing: 0.1cqw;
+    color: #fff;
+    text-shadow: 0 0 .3125rem #00000059;
+
 }
 </style>

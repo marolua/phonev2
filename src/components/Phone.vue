@@ -338,6 +338,7 @@ const openApplication = (application) => {
         padding: 0 8cqw;
         width: 100%;
         height: 8.65cqh;
+        user-select: none;
         color: white;
         font-size: 2.1cqh;
         z-index: 10;
