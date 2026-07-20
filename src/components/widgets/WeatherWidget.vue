@@ -51,7 +51,7 @@ defineProps({
     width: 100%;
     height: 20.75cqh;
     border-radius: 2.5cqw;
-        background: linear-gradient(145deg, #2579bd 0%, #0b4477 100%);
+    background: linear-gradient(145deg, #2579bd 0%, #0b4477 100%);
 
 }
 
