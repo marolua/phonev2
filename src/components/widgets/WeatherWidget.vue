@@ -35,12 +35,9 @@ defineProps({
     width: 100%;
     height: 100%;
     min-height: 100%;
-    /* padding: 2cqw 2cqw 1cqw; */
+    gap: 0.6cqh;
     overflow: hidden;
-    border-radius: 2.5cqw;
     color: #fff;
-    background: linear-gradient(145deg, #2579bd 0%, #0b4477 100%);
-    box-shadow: inset 0 0 1.2cqw rgba(255, 255, 255, 0.16);
     text-align: left;
 }
 
@@ -49,10 +46,13 @@ defineProps({
     display: flex;
     flex-direction: column;
     justify-content: center;
+    box-sizing: border-box;
+    padding: 2.5cqw 2.8cqw 1cqw;
     width: 100%;
     height: 20.75cqh;
     border-radius: 2.5cqw;
-    background-color: green;
+        background: linear-gradient(145deg, #2579bd 0%, #0b4477 100%);
+
 }
 
 .weather-widget__city {
