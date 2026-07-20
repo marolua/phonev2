@@ -12,7 +12,7 @@ defineProps({
 <template>
     <div class="weather-widget">
         <div class="weather">
-            <div class="weather-widget__city">{{ application.city }} <MousePointer2/></div>
+            <div class="weather-widget__city">{{ application.city }} <MousePointer2 :size="20" :stroke-width="1.5" id="mouse"/></div>
 
             <div class="weather-widget__temperature">
                 {{ application.temperature }}°C
@@ -58,9 +58,12 @@ defineProps({
 }
 
 .weather-widget__city {
-    font-size: 2.4cqh;
+    display: flex;
+    align-items: center;
+    font-size: 2.2cqh;
     font-weight: 500;
     line-height: 1.1;
+
 }
 
 .weather-widget__temperature {
