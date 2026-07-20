@@ -232,7 +232,7 @@ const closeApplication = () => {
                 </div>
             </Transition>
 
-            <div class="bottom">
+            <div class="bottom" @click="closeApplication">
                 <div class="bar"></div>
             </div>
         </div>
@@ -359,7 +359,7 @@ const closeApplication = () => {
         user-select: none;
         color: white;
         font-size: 2.1cqh;
-        z-index: 10;
+        z-index: 20;
         border-radius: 13.4cqw 13.4cqw 0 0;
 
         .hour {
@@ -468,6 +468,7 @@ const closeApplication = () => {
 
     .bottom {
         position: absolute;
+        z-index: 20;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -501,9 +502,9 @@ const closeApplication = () => {
     .application-overlay {
         position: absolute;
         z-index: 15;
-        inset: 8.65cqh 0 0;
+        inset: 0;
         overflow: hidden;
-        border-radius: 0 0 13.4cqw 13.4cqw;
+        border-radius: 13.4cqw;
         background: rgb(12, 12, 14);
     }
 
