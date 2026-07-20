@@ -12,7 +12,9 @@ defineProps({
 <template>
     <div class="weather-widget">
         <div class="weather">
-            <div class="weather-widget__city">{{ application.city }} <MousePointer2 :size="20" :stroke-width="1.5"/></div>
+            <div class="weather-widget__city">{{ application.city }}
+                <MousePointer2 :size="20" :stroke-width="1.5" />
+            </div>
 
             <div class="weather-widget__temperature">
                 {{ application.temperature }}°C
