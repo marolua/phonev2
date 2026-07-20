@@ -51,7 +51,7 @@ defineProps({
     flex-direction: column;
     justify-content: center;
     box-sizing: border-box;
-    padding: 2.5cqw 2.8cqw 1cqw;
+    padding: 2.8cqw 3.2cqw 1.5cqw;
     width: 100%;
     height: 20.8cqh;
     border-radius: 6cqw;
@@ -63,10 +63,10 @@ defineProps({
     display: flex;
     align-items: center;
     font-size: 2.1cqh;
+    margin-top: 0.5cqh;
     gap: 0.5cqw;
     font-weight: 400;
     line-height: 1.1;
-
 }
 
 .weather-widget__temperature {
@@ -75,7 +75,6 @@ defineProps({
     font-weight: 500;
     line-height: 0.95;
     letter-spacing: -0.15cqw;
-    background-color: #0b4477;
 }
 
 .weather-widget__condition {
@@ -87,12 +86,11 @@ defineProps({
     margin-bottom: 1cqh;
     font-weight: 500;
     line-height: 1.1;
-    background-color: green;
 }
 
 .weather-widget__sun {
     color: #ffe11a;
-    font-size: 3.4cqw;
+    font-size: 3.8cqw;
     line-height: 1;
 }
 
