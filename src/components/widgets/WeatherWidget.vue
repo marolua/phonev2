@@ -13,7 +13,7 @@ defineProps({
             <div class="weather-widget__city">{{ application.city }}</div>
 
             <div class="weather-widget__temperature">
-                {{ application.temperature }}°
+                {{ application.temperature }}°C
             </div>
 
             <div class="weather-widget__condition">
