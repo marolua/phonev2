@@ -28,7 +28,7 @@ defineProps({
     box-sizing: border-box;
     width: 100%;
     height: 100%;
-    padding: 4cqh 5cqw;
+    padding: 8cqh 6cqw;
     color: white;
     background: linear-gradient(160deg, #287fc3, #0a416f);
 }
