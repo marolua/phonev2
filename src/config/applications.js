@@ -39,4 +39,28 @@ export const applications = [
     icon: BankIcon,
     page: "bank",
   },
+  {
+    id: "bank",
+    name: "Banque",
+    icon: BankIcon,
+    page: "bank",
+  },
+  {
+    id: "bank",
+    name: "Banque",
+    icon: BankIcon,
+    page: "bank",
+  },
+  {
+    id: "bank",
+    name: "Banque",
+    icon: BankIcon,
+    page: "bank",
+  },
+  {
+    id: "bank",
+    name: "Banque",
+    icon: BankIcon,
+    page: "bank",
+  },
 ];

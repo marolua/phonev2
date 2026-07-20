@@ -81,7 +81,7 @@ defineProps({
     gap: 1cqw;
     margin-top: auto;
     font-size: 1.65cqh;
-    margin-bottom: 1cqh;
+    margin-bottom: 1.5cqh;
     font-weight: 500;
     line-height: 1.1;
 }
