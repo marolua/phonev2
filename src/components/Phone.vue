@@ -472,7 +472,6 @@ const closeApplication = () => {
         width: 45%;
         height: 3cqh;
         border-radius: 7cqw;
-        background-color: rgba(255, 255, 255, 0.3);
 
         &:hover {
             cursor: pointer;
