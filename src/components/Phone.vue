@@ -64,11 +64,16 @@ const hideIsland = () => {
 }
 
 const openApplication = (application) => {
-    activeApplication.value = application
+    if (!application.component) {
+        console.warn(`Aucun composant n'est configuré pour l'application : ${application.id}`)
+        return
+    }
 
-    // `application.page` est l'identifiant de l'UI à ouvrir.
-    // Le composant de l'application pourra être branché ici plus tard.
-    console.log('Ouverture de l’application :', application.page)
+    activeApplication.value = application
+}
+
+const closeApplication = () => {
+    activeApplication.value = null
 }
 
 </script>
@@ -213,6 +218,19 @@ const openApplication = (application) => {
                     </div>
                 </div>
             </div>
+
+            <Transition name="application-open">
+                <div v-if="activeApplication" class="application-overlay">
+                    <button class="application-overlay__close" type="button" @click="closeApplication">
+                        <X :size="18" />
+                    </button>
+
+                    <component
+                        :is="activeApplication.component"
+                        :application="activeApplication"
+                    />
+                </div>
+            </Transition>
 
             <div class="bottom">
                 <div class="bar"></div>
@@ -478,6 +496,44 @@ const openApplication = (application) => {
             transition: all 0.3s ease-in-out;
             background-color: #ffffff;
         }
+    }
+
+    .application-overlay {
+        position: absolute;
+        z-index: 15;
+        inset: 8.65cqh 0 0;
+        overflow: hidden;
+        border-radius: 0 0 13.4cqw 13.4cqw;
+        background: rgb(12, 12, 14);
+    }
+
+    .application-overlay__close {
+        position: absolute;
+        z-index: 2;
+        top: 1.5cqh;
+        right: 4cqw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 6cqw;
+        height: 6cqw;
+        padding: 0;
+        border: 0;
+        border-radius: 50%;
+        color: white;
+        background: rgba(0, 0, 0, 0.35);
+        cursor: pointer;
+    }
+
+    .application-open-enter-active,
+    .application-open-leave-active {
+        transition: opacity 0.28s ease, transform 0.28s ease;
+    }
+
+    .application-open-enter-from,
+    .application-open-leave-to {
+        opacity: 0;
+        transform: translateY(8cqh) scale(0.96);
     }
 }
 

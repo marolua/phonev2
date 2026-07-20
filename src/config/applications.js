@@ -3,6 +3,7 @@ import PhoneIcon from "../assets/appicons/call.png";
 import SettingsIcon from "../assets/appicons/settingsapp.png";
 import BankIcon from "../assets/appicons/bank.png";
 import WeatherIcon from "../assets/appicons/weather.png";
+import WeatherApp from "../components/apps/WeatherApp.vue";
 
 export const applications = [
   {
@@ -11,6 +12,7 @@ export const applications = [
     icon: WeatherIcon,
     page: "weather",
     size: "widget",
+    component: WeatherApp,
     city: "Los Santos",
     temperature: "27",
     condition: "Clear Sky & Sunny",
