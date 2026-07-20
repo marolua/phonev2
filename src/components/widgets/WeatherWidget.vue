@@ -51,7 +51,7 @@ defineProps({
     flex-direction: column;
     justify-content: center;
     box-sizing: border-box;
-    padding: 2.8cqw 3.2cqw 1.5cqw;
+    padding: 2.8cqw 4cqw 1.5cqw;
     width: 100%;
     height: 20.8cqh;
     border-radius: 6cqw;
@@ -71,7 +71,7 @@ defineProps({
 
 .weather-widget__temperature {
     margin-top: 1.5cqh;
-    font-size: 6cqh;
+    font-size: 5.7cqh;
     font-weight: 500;
     line-height: 0.95;
     letter-spacing: -0.15cqw;
