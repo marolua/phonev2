@@ -13,7 +13,7 @@ defineProps({
     <div class="weather-widget">
         <div class="weather">
             <div class="weather-widget__city">{{ application.city }}
-                <MousePointer2 :size="20" :stroke-width="1.5"/>
+                <MousePointer2 :size="20" :stroke-width="2" />
             </div>
 
             <div class="weather-widget__temperature">
@@ -53,8 +53,8 @@ defineProps({
     box-sizing: border-box;
     padding: 2.5cqw 2.8cqw 1cqw;
     width: 100%;
-    height: 20.75cqh;
-    border-radius: 2.5cqw;
+    height: 20.8cqh;
+    border-radius: 6cqw;
     background: linear-gradient(145deg, #2579bd 0%, #0b4477 100%);
 
 }
@@ -62,28 +62,32 @@ defineProps({
 .weather-widget__city {
     display: flex;
     align-items: center;
-    font-size: 2.2cqh;
-    font-weight: 500;
+    font-size: 2.1cqh;
+    gap: 0.5cqw;
+    font-weight: 400;
     line-height: 1.1;
 
 }
 
 .weather-widget__temperature {
-    margin-top: 0.4cqh;
-    font-size: 7.2cqh;
-    font-weight: 300;
+    margin-top: 1.5cqh;
+    font-size: 6cqh;
+    font-weight: 500;
     line-height: 0.95;
     letter-spacing: -0.15cqw;
+    background-color: #0b4477;
 }
 
 .weather-widget__condition {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     gap: 1cqw;
     margin-top: auto;
     font-size: 1.65cqh;
+    margin-bottom: 1cqh;
     font-weight: 500;
     line-height: 1.1;
+    background-color: green;
 }
 
 .weather-widget__sun {
@@ -97,7 +101,7 @@ defineProps({
     color: rgba(255, 255, 255, 0.72);
     width: 100%;
     text-align: center;
-    font-size: 1.45cqh;
+    font-size: 1.5cqh;
     font-weight: 400;
     letter-spacing: 0.1cqw;
     color: #fff;
