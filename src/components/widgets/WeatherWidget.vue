@@ -1,4 +1,6 @@
 <script setup>
+
+import { MousePointer2 } from '@lucide/vue';
 defineProps({
     application: {
         type: Object,
@@ -10,7 +12,7 @@ defineProps({
 <template>
     <div class="weather-widget">
         <div class="weather">
-            <div class="weather-widget__city">{{ application.city }}</div>
+            <div class="weather-widget__city">{{ application.city }} <MousePointer2/></div>
 
             <div class="weather-widget__temperature">
                 {{ application.temperature }}°C
