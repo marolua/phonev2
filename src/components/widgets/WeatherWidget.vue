@@ -35,14 +35,12 @@ defineProps({
     position: relative;
     display: flex;
     flex-direction: column;
-    box-sizing: border-box;
     width: 100%;
+    user-select: none;
     height: 100%;
-    min-height: 100%;
     gap: 0.6cqh;
     overflow: hidden;
     color: #fff;
-    text-align: left;
 }
 
 .weather {
