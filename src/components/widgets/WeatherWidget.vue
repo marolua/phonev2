@@ -9,15 +9,17 @@ defineProps({
 
 <template>
     <div class="weather-widget">
-        <div class="weather-widget__city">{{ application.city }}</div>
+        <div class="weather">
+            <div class="weather-widget__city">{{ application.city }}</div>
 
-        <div class="weather-widget__temperature">
-            {{ application.temperature }}°
-        </div>
+            <div class="weather-widget__temperature">
+                {{ application.temperature }}°
+            </div>
 
-        <div class="weather-widget__condition">
-            <span class="weather-widget__sun">☀</span>
-            <span>{{ application.condition }}</span>
+            <div class="weather-widget__condition">
+                <span class="weather-widget__sun">☀</span>
+                <span>{{ application.condition }}</span>
+            </div>
         </div>
 
         <div class="weather-widget__label">Weather</div>
@@ -33,13 +35,20 @@ defineProps({
     width: 100%;
     height: 100%;
     min-height: 100%;
-    padding: 2.4cqw 2.8cqw 1.5cqw;
+    padding: 2cqw 2cqw 1cqw;
     overflow: hidden;
     border-radius: 2.5cqw;
     color: #fff;
     background: linear-gradient(145deg, #2579bd 0%, #0b4477 100%);
     box-shadow: inset 0 0 1.2cqw rgba(255, 255, 255, 0.16);
     text-align: left;
+}
+
+.weather {
+    width: 100%;
+    height: 13cqh;
+        border-radius: 2.5cqw;
+    background-color: green;
 }
 
 .weather-widget__city {
