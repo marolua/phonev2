@@ -35,7 +35,7 @@ defineProps({
     width: 100%;
     height: 100%;
     min-height: 100%;
-    padding: 2cqw 2cqw 1cqw;
+    /* padding: 2cqw 2cqw 1cqw; */
     overflow: hidden;
     border-radius: 2.5cqw;
     color: #fff;
@@ -50,7 +50,7 @@ defineProps({
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    height: 19cqh;
+    height: 20.75cqh;
     border-radius: 2.5cqw;
     background-color: green;
 }
