@@ -76,19 +76,6 @@ const closeApplication = () => {
     activeApplication.value = null
 }
 
-// const heure = ref('')
-
-// const updateTime = () => {
-//     const date = new Date()
-//     heure.value = date.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', hour12: false })
-// }
-
-// onMounted(() => {
-//     updateTime()
-//     const interval = setInterval(updateTime, 20000)
-//     onUnmounted(() => clearInterval(interval))
-// })
-
 </script>
 
 <template>
