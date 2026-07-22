@@ -76,18 +76,18 @@ const closeApplication = () => {
     activeApplication.value = null
 }
 
-const time = ref('')
+// const heure = ref('')
 
-const updateTime = () => {
-    const date = new Date()
-    time.value = date.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', hour12: false })
-}
+// const updateTime = () => {
+//     const date = new Date()
+//     heure.value = date.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', hour12: false })
+// }
 
-onMounted(() => {
-    updateTime()
-    const interval = setInterval(updateTime, 20000)
-    onUnmounted(() => clearInterval(interval))
-})
+// onMounted(() => {
+//     updateTime()
+//     const interval = setInterval(updateTime, 20000)
+//     onUnmounted(() => clearInterval(interval))
+// })
 
 </script>
 
@@ -117,7 +117,7 @@ onMounted(() => {
 
         <div class="screen">
             <div class="top">
-                <div v-show="!isPillActive" class="hour">{{ time }}</div>
+                <div v-show="!isPillActive" class="hour">22:50</div>
 
                 <DynamicIsland :expanded="isIslandExpanded" :expanded-width="activeIsland.width"
                     :expanded-height="activeIsland.height" :hoverable="false">
@@ -351,8 +351,8 @@ onMounted(() => {
     width: 95.9cqw;
     height: 98.1cqh;
     border-radius: 13.4cqw;
-    background: url('../assets/wallpapers/background6.png');
-    background-size: contain;
+    background: url('../assets/wallpapers/background42.png');
+    background-size: cover;
     background-repeat: no-repeat;
 
     .top {
