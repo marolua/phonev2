@@ -359,7 +359,7 @@ onMounted(() => {
         justify-content: space-between;
         align-items: center;
         box-sizing: border-box;
-        padding: 0 8cqw;
+        padding: 0 9cqw;
         width: 100%;
         height: 8.65cqh;
         user-select: none;
