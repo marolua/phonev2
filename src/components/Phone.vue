@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import DynamicIsland from './DynamicIsland.vue';
 import AirDrop from '../assets/airdrop.png';
 import PhoneGreen from '../assets/phone-green.png';
@@ -76,6 +76,19 @@ const closeApplication = () => {
     activeApplication.value = null
 }
 
+const time = ref('')
+
+const updateTime = () => {
+    const date = new Date()
+    time.value = date.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', hour12: false })
+}
+
+onMounted(() => {
+    updateTime()
+    const interval = setInterval(updateTime, 20000)
+    onUnmounted(() => clearInterval(interval))
+})
+
 </script>
 
 <template>
@@ -104,7 +117,7 @@ const closeApplication = () => {
 
         <div class="screen">
             <div class="top">
-                <div v-show="!isPillActive" class="hour">22:50</div>
+                <div v-show="!isPillActive" class="hour">{{ time }}</div>
 
                 <DynamicIsland :expanded="isIslandExpanded" :expanded-width="activeIsland.width"
                     :expanded-height="activeIsland.height" :hoverable="false">
@@ -221,10 +234,7 @@ const closeApplication = () => {
 
             <Transition name="application-open">
                 <div v-if="activeApplication" class="application-overlay">
-                    <component
-                        :is="activeApplication.component"
-                        :application="activeApplication"
-                    />
+                    <component :is="activeApplication.component" :application="activeApplication" />
                 </div>
             </Transition>
 
@@ -429,7 +439,7 @@ const closeApplication = () => {
                         background-color: rgba(255, 255, 255, 0.12);
                     }
 
-                    > img {
+                    >img {
                         position: relative;
                         width: auto;
                         height: 15.5cqw;
@@ -437,7 +447,7 @@ const closeApplication = () => {
                         object-fit: contain;
                     }
 
-                    > span {
+                    >span {
                         position: relative;
                         display: block;
                         width: 100%;
