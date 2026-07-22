@@ -351,7 +351,9 @@ onMounted(() => {
     width: 95.9cqw;
     height: 98.1cqh;
     border-radius: 13.4cqw;
-    background-image: url('../assets/wallpapers/background.png');
+    background-image: url('../assets/wallpapers/background6.png');
+    background-size: contain;
+    background-repeat: no-repeat;
 
     .top {
         position: absolute;
