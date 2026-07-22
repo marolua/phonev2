@@ -351,7 +351,7 @@ onMounted(() => {
     width: 95.9cqw;
     height: 98.1cqh;
     border-radius: 13.4cqw;
-    background: linear-gradient(to bottom, rgb(5, 97, 150), rgb(111, 15, 15));
+    background-image: url('../assets/wallpapers/background.png');
 
     .top {
         position: absolute;
