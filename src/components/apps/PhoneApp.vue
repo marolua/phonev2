@@ -68,6 +68,28 @@ import { Clock, Search } from '@lucide/vue';
                 <div class="recent-call">
 
                 </div>
+                <div class="recent-call">
+
+                </div>
+                <div class="recent-call">
+
+                </div>
+                <div class="recent-call">
+
+                </div>
+                <div class="recent-call">
+
+                </div>
+                <div class="recent-call">
+
+                </div>
+                <div class="recent-call">
+
+                </div>
+                <div class="recent-call">
+
+                </div>
+
             </div>
         </div>
         <div class="bottom-app-phone">
@@ -99,6 +121,7 @@ import { Clock, Search } from '@lucide/vue';
         width: 100%;
         height: 82%;
         margin-top: 1.5cqh;
+
         background-color: blue;
 
         .input-group {
@@ -136,7 +159,8 @@ import { Clock, Search } from '@lucide/vue';
             display: flex;
             flex-direction: column;
             justify-content: center;
-            width: 100%;;
+            width: 100%;
+            ;
             height: 92.5%;
             max-height: 92.5%;
             overflow-y: auto;
