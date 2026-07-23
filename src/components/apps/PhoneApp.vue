@@ -23,7 +23,7 @@
     max-height: 100%;
     box-sizing: border-box;
     overflow: hidden;
-    padding: 15cqw 3cqh 2.5cqw;
+    padding: 15cqw 3cqh 2.5cqw 3cqh;
     background-color: rgb(10, 10, 10);
 
     .container {
