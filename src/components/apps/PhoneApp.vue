@@ -29,7 +29,6 @@ import { Clock, Search } from '@lucide/vue';
 </template>
 
 <style lang="scss">
-
 ::-webkit-scrollbar {
     width: 0px;
 }
@@ -111,6 +110,17 @@ import { Clock, Search } from '@lucide/vue';
                     justify-content: center;
                     flex-direction: column;
                     height: 100%;
+
+                    .name {
+                        color: rgba(255, 3, 3, 0.65);
+                        font-size: 2.1cqh;
+                        font-weight: 500;
+                    }
+
+                    span {
+                        color: rgba(255, 255, 255, 0.439);
+                        font-weight: lighter;
+                    }
                 }
             }
         }
