@@ -4,11 +4,11 @@ import { Clock, Search } from '@lucide/vue';
 
 <template>
     <div class="phone-app">
-        <h1>Recent</h1>
+        <span class="title">Recent</span>
         <div class="container">
 
             <div class="input-group">
-                <Search class="search-icon" />
+                <Search class="search-icon" color="rgb(255, 255, 255, 0.8)" :size="20" />
                 <input type="text" placeholder="Rechercher">
             </div>
         </div>
@@ -30,13 +30,18 @@ import { Clock, Search } from '@lucide/vue';
     padding: 15cqw 3cqh 0cqw;
     background-color: rgb(10, 10, 10);
 
+    .title {
+        font-size: 8cqw;
+        font-weight: 600;
+    }
+
     .container {
         display: flex;
         flex-direction: column;
         width: 100%;
         height: 75%;
-        margin-top: -2cqh;
-        background-color: blue;
+        margin-top: 1.5cqh;
+        // background-color: blue;
 
         .input-group {
             position: relative;
@@ -47,15 +52,16 @@ import { Clock, Search } from '@lucide/vue';
                 width: 100%;
                 height: 5cqh;
                 border: none;
-                padding-left: 45px;
+                padding-left: 10cqw;
                 color: white;
                 border-radius: 2.5cqw;
-                font-size: 16px;
+                font-size: 1.8cqh;
+                font-family: "SF Pro";
                 background-color: rgb(50, 50, 50);
                 outline: none;
 
                 &::placeholder {
-                    color: white;
+                    color: rgba(255, 255, 255, 0.6);
                 }
             }
 
