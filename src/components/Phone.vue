@@ -53,6 +53,13 @@ const isIslandExpanded = ref(false)
 const activeIsland = computed(() => islandExamples[activeIslandIndex.value])
 const isPillActive = computed(() => isIslandExpanded.value && activeIsland.value.type === 'pill')
 const activeApplication = ref(null)
+const screenElement = ref(null)
+const applicationTransitionOrigin = ref({ x: 50, y: 50 })
+
+const applicationTransitionStyle = computed(() => ({
+    '--application-origin-x': `${applicationTransitionOrigin.value.x}%`,
+    '--application-origin-y': `${applicationTransitionOrigin.value.y}%`,
+}))
 
 const showIsland = (index) => {
     activeIslandIndex.value = index
@@ -63,10 +70,20 @@ const hideIsland = () => {
     isIslandExpanded.value = false
 }
 
-const openApplication = (application) => {
+const openApplication = (application, event) => {
     if (!application.component) {
         console.warn(`Aucun composant n'est configuré pour l'application : ${application.id}`)
         return
+    }
+
+    const screenRect = screenElement.value?.getBoundingClientRect()
+    const applicationRect = event?.currentTarget?.getBoundingClientRect()
+
+    if (screenRect && applicationRect) {
+        applicationTransitionOrigin.value = {
+            x: ((applicationRect.left + applicationRect.width / 2 - screenRect.left) / screenRect.width) * 100,
+            y: ((applicationRect.top + applicationRect.height / 2 - screenRect.top) / screenRect.height) * 100,
+        }
     }
 
     activeApplication.value = application
@@ -102,7 +119,7 @@ const closeApplication = () => {
             </div>
         </div>
 
-        <div class="screen">
+        <div ref="screenElement" class="screen">
             <div class="top">
                 <div v-show="!isPillActive" class="hour">22:50</div>
 
@@ -207,7 +224,8 @@ const closeApplication = () => {
                 <div class="home-screen">
                     <div class="app" :class="{ 'app--widget': application.size === 'widget' }"
                         v-for="application in applications" :key="application.id">
-                        <div class="application" role="button" tabindex="0" @click="openApplication(application)">
+                        <div class="application" role="button" tabindex="0"
+                            @click="openApplication(application, $event)">
                             <WeatherWidget v-if="application.id === 'weather'" :application="application" />
 
                             <template v-else>
@@ -220,7 +238,7 @@ const closeApplication = () => {
             </div>
 
             <Transition name="application-open">
-                <div v-if="activeApplication" class="application-overlay">
+                <div v-if="activeApplication" class="application-overlay" :style="applicationTransitionStyle">
                     <component :is="activeApplication.component" :application="activeApplication" />
                 </div>
             </Transition>
@@ -500,6 +518,7 @@ const closeApplication = () => {
         overflow: hidden;
         border-radius: 13.4cqw;
         background: rgb(12, 12, 14);
+        transform-origin: var(--application-origin-x, 50%) var(--application-origin-y, 50%);
     }
 
     .application-overlay__close {
@@ -528,7 +547,7 @@ const closeApplication = () => {
     .application-open-enter-from,
     .application-open-leave-to {
         opacity: 0;
-        transform: translateY(8cqh) scale(0.96);
+        transform: scale(0.08);
     }
 }
 
