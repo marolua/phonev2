@@ -18,7 +18,9 @@ import { Clock, Search } from '@lucide/vue';
                         <span>Mobile</span>
                     </div>
 
-                    <span class="time">3 minute ago</span>
+                    <div class="time">
+                        <span>3 minute ago</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -99,6 +101,8 @@ import { Clock, Search } from '@lucide/vue';
 
             .recent-call {
                 display: flex;
+                justify-content: space-between;
+                align-items: center;
                 width: 100%;
                 height: 8cqh;
                 background-color: black;
@@ -118,10 +122,15 @@ import { Clock, Search } from '@lucide/vue';
                     }
 
                     span {
-                        color: rgba(255, 255, 255, 0.439);
+                        color: rgba(255, 255, 255, 0.5);
                         font-weight: lighter;
                     }
                 }
+            }
+
+            .time {
+                font-size: 1.7cqh;
+                color: rgba(255, 255, 255, 0.5);
             }
         }
 
