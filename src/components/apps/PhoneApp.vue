@@ -45,6 +45,7 @@ import { Clock, Search } from '@lucide/vue';
     height: 100%;
     max-height: 100%;
     box-sizing: border-box;
+    user-select: none;
     padding: 15cqw 3cqh 0cqw;
     background-color: rgb(10, 10, 10);
 
