@@ -15,6 +15,59 @@ import { Clock, Search } from '@lucide/vue';
                 <div class="recent-call">
 
                 </div>
+                <div class="recent-call">
+
+                </div>
+                <div class="recent-call">
+
+                </div>
+                <div class="recent-call">
+
+                </div>
+                <div class="recent-call">
+
+                </div>
+                <div class="recent-call">
+
+                </div>
+                <div class="recent-call">
+
+                </div>
+                <div class="recent-call">
+
+                </div>
+
+                <div class="recent-call">
+
+                </div>
+                <div class="recent-call">
+
+                </div>
+                <div class="recent-call">
+
+                </div>
+                <div class="recent-call">
+
+                </div>
+                <div class="recent-call">
+
+                </div>
+                <div class="recent-call">
+
+                </div>
+
+                <div class="recent-call">
+
+                </div>
+                <div class="recent-call">
+
+                </div>
+                <div class="recent-call">
+
+                </div>
+                <div class="recent-call">
+
+                </div>
             </div>
         </div>
         <div class="bottom-app-phone">
