@@ -24,7 +24,11 @@ import { Clock, Search } from '@lucide/vue';
             </div>
         </div>
         <div class="bottom-app-phone">
+            <div class="categories">
+                <div class="categorie">
 
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -148,7 +152,16 @@ import { Clock, Search } from '@lucide/vue';
         width: 100%;
         min-height: 18%;
         flex-shrink: 0;
+        border-radius: 6cqh;
         background-color: red;
+
+        .categories {
+            display: flex;
+            width: 100%;
+            height: 75%;
+            border-radius: 6cqh;
+            background-color: rgb(96, 96, 97);
+        }
     }
 }
 </style>
