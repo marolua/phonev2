@@ -4,6 +4,7 @@ import SettingsIcon from "../assets/appicons/settingsapp.png";
 import BankIcon from "../assets/appicons/bank.png";
 import WeatherIcon from "../assets/appicons/weather.png";
 import WeatherApp from "../components/apps/WeatherApp.vue";
+import ContactIcon from '../assets/appicons/contact.png';
 
 export const applications = [
   {
@@ -18,16 +19,16 @@ export const applications = [
     condition: "Clear Sky & Sunny",
   },
   {
-    id: "messages",
-    name: "Messages",
-    icon: MessageIcon,
-    page: "messages",
-  },
-  {
     id: "phone",
     name: "Téléphone",
     icon: PhoneIcon,
     page: "phone",
+  },
+  {
+    id: "messages",
+    name: "Messages",
+    icon: MessageIcon,
+    page: "messages",
   },
   {
     id: "settings",
@@ -36,8 +37,8 @@ export const applications = [
     page: "settings",
   },
   {
-    id: "bank-1",
-    name: "Banque",
+    id: "contacts",
+    name: "Contacts",
     icon: BankIcon,
     page: "bank",
   },
