@@ -1,12 +1,12 @@
 <script setup>
-
+import { Clock, Search } from '@lucide/vue';
 </script>
 
 <template>
     <div class="phone-app">
         <h1>Recent</h1>
         <div class="container">
-
+            <input type="text" placeholder="Rechercher">
         </div>
         <div class="bottom-app-phone">
 
@@ -23,7 +23,7 @@
     max-height: 100%;
     box-sizing: border-box;
     overflow: hidden;
-    padding: 15cqw 3cqh 2.5cqw 3cqh;
+    padding: 15cqw 3cqh 0cqw;
     background-color: rgb(10, 10, 10);
 
     .container {
@@ -32,6 +32,15 @@
         width: 100%;
         height: 75%;
         background-color: blue;
+
+        input[type=text] {
+            height: 5cqh;
+            border: none;
+            border-radius: 3cqw;
+            background-color: rgb(50, 50, 50);
+            outline: none;
+        }
+
     }
 
     .bottom-app-phone {
