@@ -12,84 +12,14 @@ import { Clock, Search } from '@lucide/vue';
             </div>
 
             <div class="container-recent-call">
-                <div class="recent-call">
+                <div class="recent-call" v-for="i in 5">
+                    <div class="information">
+                        <span class="name">Jane Doe</span>
+                        <span>Mobile</span>
+                    </div>
 
+                    <span class="time">3 minute ago</span>
                 </div>
-                <div class="recent-call">
-
-                </div>
-                <div class="recent-call">
-
-                </div>
-                <div class="recent-call">
-
-                </div>
-                <div class="recent-call">
-
-                </div>
-                <div class="recent-call">
-
-                </div>
-                <div class="recent-call">
-
-                </div>
-                <div class="recent-call">
-
-                </div>
-
-                <div class="recent-call">
-
-                </div>
-                <div class="recent-call">
-
-                </div>
-                <div class="recent-call">
-
-                </div>
-                <div class="recent-call">
-
-                </div>
-                <div class="recent-call">
-
-                </div>
-                <div class="recent-call">
-
-                </div>
-
-                <div class="recent-call">
-
-                </div>
-                <div class="recent-call">
-
-                </div>
-                <div class="recent-call">
-
-                </div>
-                <div class="recent-call">
-
-                </div>
-                <div class="recent-call">
-
-                </div>
-                <div class="recent-call">
-
-                </div>
-                <div class="recent-call">
-
-                </div>
-                <div class="recent-call">
-
-                </div>
-                <div class="recent-call">
-
-                </div>
-                <div class="recent-call">
-
-                </div>
-                <div class="recent-call">
-
-                </div>
-
             </div>
         </div>
         <div class="bottom-app-phone">
@@ -99,6 +29,11 @@ import { Clock, Search } from '@lucide/vue';
 </template>
 
 <style lang="scss">
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+
 .phone-app {
     display: flex;
     flex-direction: column;
@@ -121,8 +56,6 @@ import { Clock, Search } from '@lucide/vue';
         width: 100%;
         height: 82%;
         margin-top: 1.5cqh;
-
-        background-color: blue;
 
         .input-group {
             position: relative;
@@ -160,8 +93,7 @@ import { Clock, Search } from '@lucide/vue';
             flex-direction: column;
             justify-content: center;
             width: 100%;
-            ;
-            height: 92.5%;
+            gap: 0px;
             max-height: 92.5%;
             overflow-y: auto;
             background-color: green;
@@ -170,7 +102,16 @@ import { Clock, Search } from '@lucide/vue';
                 display: flex;
                 width: 100%;
                 height: 8cqh;
-                background-color: aqua;
+                background-color: black;
+                flex-shrink: 0;
+
+
+                .information {
+                    display: flex;
+                    justify-content: center;
+                    flex-direction: column;
+                    height: 100%;
+                }
             }
         }
 
