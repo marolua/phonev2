@@ -12,7 +12,7 @@ import { Clock, Search } from '@lucide/vue';
             </div>
 
             <div class="container-recent-call">
-                <div class="recent-call" v-for="i in 50">
+                <div class="recent-call" v-for="i in 20">
                     <div class="information">
                         <span class="name">Jane Doe</span>
                         <span>Mobile</span>
@@ -92,14 +92,15 @@ import { Clock, Search } from '@lucide/vue';
         .container-recent-call {
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             width: 100%;
+            flex: 1;
+            min-height: 0;
             gap: 1cqh;
             max-height: 92.5%;
             overflow-y: auto;
             box-sizing: border-box;
             padding: 3cqw;
-            // background-color: green;
 
             .recent-call {
                 display: flex;
@@ -108,7 +109,6 @@ import { Clock, Search } from '@lucide/vue';
                 width: 100%;
                 user-select: none;
                 height: 8cqh;
-                // background-color: black;
                 flex-shrink: 0;
 
                 &:hover {
