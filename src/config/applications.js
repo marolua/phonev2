@@ -13,7 +13,6 @@ export const applications = [
     icon: WeatherIcon,
     page: "weather",
     size: "widget",
-    component: WeatherApp,
     city: "Los Santos",
     temperature: "27",
     condition: "Clear Sky & Sunny",
