@@ -54,7 +54,7 @@ import { Clock, Search } from '@lucide/vue';
         display: flex;
         flex-direction: column;
         width: 100%;
-        height: 82%;
+        // height: 82%;
         margin-top: 1.5cqh;
 
         .input-group {
