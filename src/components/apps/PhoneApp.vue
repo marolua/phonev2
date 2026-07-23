@@ -97,15 +97,16 @@ import { Clock, Search } from '@lucide/vue';
             gap: 0px;
             max-height: 92.5%;
             overflow-y: auto;
-            background-color: green;
+            // background-color: green;
 
             .recent-call {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
                 width: 100%;
+                user-select: none;
                 height: 8cqh;
-                background-color: black;
+                // background-color: black;
                 flex-shrink: 0;
 
 
