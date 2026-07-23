@@ -8,7 +8,7 @@
         <div class="container">
 
         </div>
-        <div class="bottom">
+        <div class="bottom-app-phone">
 
         </div>
     </div>
@@ -23,21 +23,21 @@
     max-height: 100%;
     box-sizing: border-box;
     overflow: hidden;
-    padding: 15cqw 3.5cqh 2.5cqw;
+    padding: 15cqw 3cqh 2.5cqw;
     background-color: rgb(10, 10, 10);
 
     .container {
         display: flex;
         flex-direction: column;
         width: 100%;
-        height: 50%;
+        height: 75%;
         background-color: blue;
     }
 
-    .bottom {
+    .bottom-app-phone {
         display: flex;
         width: 100%;
-        height: 5cqh;
+        height: 20%;
         background-color: red;
     }
 }
