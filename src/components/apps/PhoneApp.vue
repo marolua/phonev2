@@ -57,7 +57,7 @@ import { Clock, Search } from '@lucide/vue';
                 border-radius: 2.5cqw;
                 font-size: 1.8cqh;
                 font-family: "SF Pro";
-                background-color: rgb(50, 50, 50);
+                background-color: rgba(50, 50, 50, 0.5);
                 outline: none;
 
                 &::placeholder {
