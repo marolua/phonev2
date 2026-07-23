@@ -90,6 +90,7 @@ import { Clock, Search } from '@lucide/vue';
     .title {
         font-size: 8cqw;
         font-weight: 600;
+        flex-shrink: 0;
     }
 
     .container {
@@ -104,6 +105,7 @@ import { Clock, Search } from '@lucide/vue';
             position: relative;
             display: flex;
             width: 100%;
+            flex-shrink: 0;
 
             input[type=text] {
                 width: 100%;
