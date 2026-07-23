@@ -6,7 +6,11 @@ import { Clock, Search } from '@lucide/vue';
     <div class="phone-app">
         <h1>Recent</h1>
         <div class="container">
-            <input type="text" placeholder="Rechercher">
+
+            <div class="input-group">
+                <Search />
+                <input type="text" placeholder="Rechercher">
+            </div>
         </div>
         <div class="bottom-app-phone">
 
@@ -33,12 +37,17 @@ import { Clock, Search } from '@lucide/vue';
         height: 75%;
         background-color: blue;
 
-        input[type=text] {
-            height: 5cqh;
-            border: none;
-            border-radius: 3cqw;
-            background-color: rgb(50, 50, 50);
-            outline: none;
+        .input-group {
+            display: flex;
+            width: 100%;
+
+            input[type=text] {
+                height: 5cqh;
+                border: none;
+                border-radius: 3cqw;
+                background-color: rgb(50, 50, 50);
+                outline: none;
+            }
         }
 
     }
