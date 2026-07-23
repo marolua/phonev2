@@ -39,8 +39,8 @@ export const applications = [
   {
     id: "contacts",
     name: "Contacts",
-    icon: BankIcon,
-    page: "bank",
+    icon: ContactIcon,
+    page: "contact",
   },
   {
     id: "bank-2",
