@@ -8,7 +8,7 @@ import { Clock, Search } from '@lucide/vue';
         <div class="container">
 
             <div class="input-group">
-                <Search />
+                <Search class="search-icon" />
                 <input type="text" placeholder="Rechercher">
             </div>
         </div>
@@ -35,18 +35,35 @@ import { Clock, Search } from '@lucide/vue';
         flex-direction: column;
         width: 100%;
         height: 75%;
+        margin-top: -2cqh;
         background-color: blue;
 
         .input-group {
+            position: relative;
             display: flex;
             width: 100%;
 
             input[type=text] {
+                width: 100%;
                 height: 5cqh;
                 border: none;
-                border-radius: 3cqw;
+                padding-left: 45px;
+                color: white;
+                border-radius: 2.5cqw;
+                font-size: 16px;
                 background-color: rgb(50, 50, 50);
                 outline: none;
+
+                &::placeholder {
+                    color: white;
+                }
+            }
+
+            .search-icon {
+                position: absolute;
+                left: 2cqw;
+                top: 1.18cqh;
+                pointer-events: none;
             }
         }
 
