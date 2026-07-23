@@ -84,7 +84,6 @@ import { Clock, Search } from '@lucide/vue';
     height: 100%;
     max-height: 100%;
     box-sizing: border-box;
-    overflow: hidden;
     padding: 15cqw 3cqh 0cqw;
     background-color: rgb(10, 10, 10);
 
@@ -137,6 +136,7 @@ import { Clock, Search } from '@lucide/vue';
             justify-content: center;
             width: 100%;;
             max-height: 92.5%;
+            overflow-y: auto;
             background-color: green;
 
             .recent-call {
