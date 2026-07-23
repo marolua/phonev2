@@ -12,12 +12,11 @@ import { Clock, Search } from '@lucide/vue';
             </div>
 
             <div class="container-recent-call">
-                <div class="recent-call" v-for="i in 5">
+                <div class="recent-call" v-for="i in 50">
                     <div class="information">
                         <span class="name">Jane Doe</span>
                         <span>Mobile</span>
                     </div>
-
                     <div class="time">
                         <span>3 minute ago</span>
                     </div>
@@ -94,9 +93,11 @@ import { Clock, Search } from '@lucide/vue';
             flex-direction: column;
             justify-content: center;
             width: 100%;
-            gap: 0px;
+            gap: 1cqh;
             max-height: 92.5%;
             overflow-y: auto;
+            box-sizing: border-box;
+            padding: 3cqw;
             // background-color: green;
 
             .recent-call {
@@ -108,6 +109,10 @@ import { Clock, Search } from '@lucide/vue';
                 height: 8cqh;
                 // background-color: black;
                 flex-shrink: 0;
+
+                &:hover {
+                    cursor: pointer;
+                }
 
 
                 .information {
@@ -140,7 +145,8 @@ import { Clock, Search } from '@lucide/vue';
     .bottom-app-phone {
         display: flex;
         width: 100%;
-        height: 18%;
+        min-height: 18%;
+        flex-shrink: 0;
         background-color: red;
     }
 }
