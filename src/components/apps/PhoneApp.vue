@@ -135,6 +135,7 @@ import { Clock, Search } from '@lucide/vue';
             flex-direction: column;
             justify-content: center;
             width: 100%;;
+            height: 92.5%;
             max-height: 92.5%;
             overflow-y: auto;
             background-color: green;
