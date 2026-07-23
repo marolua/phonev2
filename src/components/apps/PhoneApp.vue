@@ -4,15 +4,41 @@
 
 <template>
     <div class="phone-app">
+        <h1>Recent</h1>
+        <div class="container">
 
+        </div>
+        <div class="bottom">
+
+        </div>
     </div>
 </template>
 
 <style lang="scss">
-    .phone-app {
+.phone-app {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 15cqw 3.5cqh 2.5cqw;
+    background-color: rgb(10, 10, 10);
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 50%;
+        background-color: blue;
+    }
+
+    .bottom {
         display: flex;
         width: 100%;
-        height: 100%;
-        background-color: rgb(10, 10, 10);
+        height: 5cqh;
+        background-color: red;
     }
+}
 </style>
