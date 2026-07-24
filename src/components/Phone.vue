@@ -808,11 +808,20 @@ const closeApplication = () => {
             width: 6cqh;
             height: 6cqh;
             border-radius: 50%;
-            background-color: red;
+            background: linear-gradient(120deg, rgb(5, 215, 5), rgb(2, 106, 21));
 
             img {
                 width: auto;
                 height: 3.5cqh;
+            }
+        }
+
+        #refuse-call {
+            
+            background: linear-gradient(120deg, rgb(215, 5, 5), rgb(106, 2, 2));
+
+            img {
+                transform: rotate(90deg);
             }
         }
     }
