@@ -793,9 +793,21 @@ const closeApplication = () => {
     }
     .right-part {
         display: flex;
+        justify-content: space-around;
+        align-items: center;
         width: 35%;
         height: 100%;
-        background-color: red;
+        // background-color: red;
+
+        .x-call {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 6cqh;
+            height: 6cqh;
+            border-radius: 50%;
+            background-color: red;
+        }
     }
 }
 
