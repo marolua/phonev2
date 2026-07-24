@@ -155,6 +155,11 @@ const addContact = () => {
         </div>
 
         <div v-else-if="activeCategory === 'contacts'" class="container contacts-container">
+            <div class="input-group contacts-search">
+                <Search class="search-icon" color="rgb(255, 255, 255, 0.8)" size="2.6cqh" />
+                <input v-model="contactSearch" type="text" placeholder="Rechercher dans les contacts">
+            </div>
+
             <div class="contacts-header">
                 <span>Mes contacts</span>
                 <button class="add-contact" type="button" aria-label="Ajouter un contact" @click="showCreateContact = true">
@@ -168,8 +173,8 @@ const addContact = () => {
                 <small>Vos contacts apparaîtront ici.</small>
             </div>
 
-            <div v-else class="contacts-list">
-                <div v-for="contact in contacts" :key="contact.id" class="contact-item">
+            <div v-else-if="filteredContacts.length > 0" class="contacts-list">
+                <button v-for="contact in filteredContacts" :key="contact.id" type="button" class="contact-item" @click="openContact(contact)">
                     <div class="contact-avatar">
                         {{ contact.firstName.charAt(0).toUpperCase() }}
                     </div>
@@ -177,7 +182,13 @@ const addContact = () => {
                         <span>{{ contact.firstName }} {{ contact.lastName }}</span>
                         <small>{{ contact.phone }}</small>
                     </div>
-                </div>
+                </button>
+            </div>
+
+            <div v-else class="empty-state">
+                <Search size="6cqh" />
+                <span>Aucun résultat</span>
+                <small>Essayez un autre nom ou numéro.</small>
             </div>
         </div>
 
@@ -189,7 +200,7 @@ const addContact = () => {
                 </button>
             </div>
             <div class="keyboard-actions">
-                <button class="call-button" type="button" aria-label="Appeler">
+                <button class="call-button" type="button" aria-label="Appeler" :disabled="!phoneNumber" @click="startCall(phoneNumber)">
                     <Phone size="2.8cqh" />
                 </button>
                 <button class="delete-button" type="button" aria-label="Effacer" @click="removeLastDigit">
