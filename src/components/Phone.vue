@@ -180,10 +180,9 @@ const closeApplication = () => {
                                 </div>
                                 <div class="right-part">
                                     <div class="x-call">
-
                                     </div>
                                     <div class="x-call">
-
+                                        <img :src="PhoneGreen" alt="">
                                     </div>
                                 </div>
                             </section>
@@ -787,15 +786,16 @@ const closeApplication = () => {
 
     .left-part {
         display: flex;
-        width: 65%;
+        width: 63%;
         height: 100%;
         background-color: green;
     }
+
     .right-part {
         display: flex;
         justify-content: space-around;
         align-items: center;
-        width: 35%;
+        width: 37%;
         height: 100%;
         // background-color: red;
 
@@ -807,6 +807,11 @@ const closeApplication = () => {
             height: 6cqh;
             border-radius: 50%;
             background-color: red;
+
+            img {
+                width: auto;
+                height: 3.5cqh;
+            }
         }
     }
 }
