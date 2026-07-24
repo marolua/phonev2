@@ -797,7 +797,7 @@ const closeApplication = () => {
         width: 63%;
         height: 100%;
         box-sizing: border-box;
-        padding: 0 0 0 2cqw;
+        padding: 0 0 0 2.5cqw;
 
         img {
             width: auto;
@@ -808,6 +808,7 @@ const closeApplication = () => {
             display: flex;
             justify-content: center;
             flex-direction: column;
+            margin-left: 2.5cqw;
             width: 72%;
             height: 100%;
 
@@ -817,7 +818,7 @@ const closeApplication = () => {
             }
 
             .name {
-                font-size: 2cqh;
+                font-size: 1.9cqh;
                 color: white;
                 font-weight: 500;
             }
