@@ -795,8 +795,9 @@ const closeApplication = () => {
 
     .right-part {
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
         align-items: center;
+        gap: 3cqw;
         width: 37%;
         height: 100%;
         // background-color: red;
@@ -812,7 +813,7 @@ const closeApplication = () => {
 
             img {
                 width: auto;
-                height: 3.5cqh;
+                height: 3.25cqh;
             }
         }
 
@@ -820,7 +821,7 @@ const closeApplication = () => {
             background: linear-gradient(120deg, rgb(215, 5, 5), rgb(106, 2, 2));
 
             img {
-                transform: rotate(90deg);
+                transform: rotate(135deg);
             }
         }
     }
