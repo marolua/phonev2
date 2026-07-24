@@ -1,5 +1,5 @@
 <script setup>
-import { ClockFading, Search } from '@lucide/vue';
+import { ClockFading, Search, User, Keyboard } from '@lucide/vue';
 </script>
 
 <template>
@@ -25,9 +25,17 @@ import { ClockFading, Search } from '@lucide/vue';
         </div>
         <div class="bottom-app-phone">
             <div class="categories">
-                <div class="categorie" v-for="i in 3">
+                <div class="categorie">
                     <ClockFading size="3cqh" />
                     <span>Appels</span>
+                </div>
+                <div class="categorie">
+                    <User size="3cqh" />
+                    <span>Contacts</span>
+                </div>
+                <div class="categorie">
+                    <Keyboard size="3cqh" />
+                    <span>Clavier</span>
                 </div>
             </div>
         </div>
