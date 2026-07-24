@@ -158,16 +158,16 @@ const closeApplication = () => {
                                 </div>
                                 <div class="medium-bottom">
                                     <div class="medium-button">
-                                        <Video size="25" color="white" />
+                                        <Video size="3cqh" color="white" />
                                     </div>
                                     <div class="medium-button">
-                                        <Mic size="23" color="white" />
+                                        <Mic size="3cqh" color="white" />
                                     </div>
                                     <div class="medium-button">
-                                        <Volume2 size="23" color="white" />
+                                        <Volume2 size="3cqh" color="white" />
                                     </div>
                                     <div class="medium-button" id="last">
-                                        <X size="24" color="white" />
+                                        <X size="3cqh" color="white" />
                                     </div>
                                 </div>
                             </section>
@@ -186,12 +186,12 @@ const closeApplication = () => {
                                     </div>
 
                                     <div class="pill-right">
-                                        <AudioLines size="24" color="rgb(255, 255, 255)" />
+                                        <AudioLines size="3.5cqh" color="rgb(255, 255, 255)" />
                                     </div>
                                 </template>
 
                                 <div v-else-if="activeIsland.variant === 'timer'" class="pill-timer">
-                                    <Clock3 size="22" color="rgb(255, 190, 72)" />
+                                    <Clock3 size="3cqh" color="rgb(255, 190, 72)" />
                                     <span class="pill-timer__time">{{ activeIsland.time }}</span>
                                 </div>
                             </section>

@@ -7,7 +7,7 @@ import { ClockFading, Search } from '@lucide/vue';
         <span class="title">Recent</span>
         <div class="container">
             <div class="input-group">
-                <Search class="search-icon" color="rgb(255, 255, 255, 0.8)" :size="20" />
+                <Search class="search-icon" color="rgb(255, 255, 255, 0.8)" size="2.6cqh" />
                 <input type="text" placeholder="Rechercher">
             </div>
 
@@ -26,7 +26,7 @@ import { ClockFading, Search } from '@lucide/vue';
         <div class="bottom-app-phone">
             <div class="categories">
                 <div class="categorie" v-for="i in 3">
-                    <ClockFading size="25"/>
+                    <ClockFading size="3cqh"/>
                     <span>Appels</span>
                 </div>
             </div>
