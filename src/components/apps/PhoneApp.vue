@@ -1,5 +1,5 @@
 <script setup>
-import { Clock, Search } from '@lucide/vue';
+import { ClockFading, Search } from '@lucide/vue';
 </script>
 
 <template>
@@ -25,8 +25,8 @@ import { Clock, Search } from '@lucide/vue';
         </div>
         <div class="bottom-app-phone">
             <div class="categories">
-                <div class="categorie">
-                    
+                <div class="categorie" v-for="i in 3">
+                    <ClockFading/>
                 </div>
             </div>
         </div>
@@ -136,6 +136,7 @@ import { Clock, Search } from '@lucide/vue';
                     span {
                         color: rgba(255, 255, 255, 0.5);
                         font-weight: lighter;
+                        font-size: 1.85cqh;
                     }
                 }
             }
@@ -150,6 +151,7 @@ import { Clock, Search } from '@lucide/vue';
 
     .bottom-app-phone {
         display: flex;
+        justify-content: center;
         width: 100%;
         min-height: 18%;
         flex-shrink: 0;
@@ -158,10 +160,23 @@ import { Clock, Search } from '@lucide/vue';
 
         .categories {
             display: flex;
+            justify-content: space-around;
+            align-items: center;
             width: 100%;
             height: 75%;
             border-radius: 6cqh;
             background-color: rgb(96, 96, 97);
+
+            .categorie {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                width: 30%;
+                height: 90%;
+                background-color: blue;
+
+            }
         }
     }
 }
