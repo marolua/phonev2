@@ -26,7 +26,8 @@ import { ClockFading, Search } from '@lucide/vue';
         <div class="bottom-app-phone">
             <div class="categories">
                 <div class="categorie" v-for="i in 3">
-                    <ClockFading/>
+                    <ClockFading size="25"/>
+                    <span>Appels</span>
                 </div>
             </div>
         </div>
