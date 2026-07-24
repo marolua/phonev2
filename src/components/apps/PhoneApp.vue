@@ -176,10 +176,18 @@ import { ClockFading, Search } from '@lucide/vue';
                 gap: 0.75cqh;
                 width: 30%;
                 height: 90%;
-                border-radius: 6cqh;
-                background-color: blue;
+                border-radius: 5.7cqh;
+                transition: all ease-in-out 0.2s;
                 font-size: 1.6cqh;
                 font-weight: 500;
+
+                &:hover {
+                    cursor: pointer;
+                }
+
+                .categorie-selected {
+                    color: blue;
+                }
             }
         }
     }
