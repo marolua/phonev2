@@ -3,6 +3,7 @@ import { computed, onMounted, ref } from 'vue'
 import DynamicIsland from './DynamicIsland.vue';
 import AirDrop from '../assets/airdrop.png';
 import PhoneGreen from '../assets/phone-green.png';
+import PhoneWhite from '../assets/phone-white.png';
 import Inconnu from '../assets/inconnu.png';
 import WeatherWidget from './widgets/WeatherWidget.vue'
 import { applications } from '../config/applications';
@@ -182,7 +183,7 @@ const closeApplication = () => {
                                     <div class="x-call">
                                     </div>
                                     <div class="x-call">
-                                        <img :src="PhoneGreen" alt="">
+                                        <img :src="PhoneWhite" alt="">
                                     </div>
                                 </div>
                             </section>
