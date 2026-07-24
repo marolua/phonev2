@@ -175,7 +175,10 @@ const closeApplication = () => {
                             <!-- Dynamic Island small : fond petit format. Ajoute tes divs dedans. -->
                             <section v-else-if="activeIsland.type === 'small'" key="small"
                                 class="island-layout island-layout--small">
-                                
+                                <div class="left-part">
+
+                                </div>
+                                <div class="right-part"></div>
                             </section>
 
                             <!-- Dynamic Island pill : fond très compact. Ajoute tes divs dedans. -->
@@ -772,7 +775,21 @@ const closeApplication = () => {
 }
 
 .island-layout--small {
+    display: flex;
     border-radius: 6cqw;
+
+    .left-part {
+        display: flex;
+        width: 65%;
+        height: 100%;
+        background-color: green;
+    }
+    .right-part {
+        display: flex;
+        width: 35%;
+        height: 100%;
+        background-color: red;
+    }
 }
 
 .island-layout--pill {
