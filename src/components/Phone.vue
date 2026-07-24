@@ -180,7 +180,7 @@ const closeApplication = () => {
                                     <img :src="Inconnu" alt="">
                                     <div class="content">
                                         <span>mobile</span>
-                                        <span class="name">Tania Castillo</span>
+                                        <span class="name">Terence McKenzie</span>
                                     </div>
                                 </div>
                                 <div class="right-part">
@@ -797,21 +797,21 @@ const closeApplication = () => {
         width: 63%;
         height: 100%;
         box-sizing: border-box;
-        padding: 1cqw;
+        padding: 0 0 0 2.5cqw;
         // background-color: green;
 
         img {
             width: auto;
-            height: 6.5cqh;
+            height: 6cqh;
         }
 
         .content {
             display: flex;
             justify-content: center;
             flex-direction: column;
-            width: 65%;
+            width: 72%;
             height: 100%;
-            // background-color: blue;
+            background-color: blue;
 
             span {
                 font-size: 1.7cqh;
