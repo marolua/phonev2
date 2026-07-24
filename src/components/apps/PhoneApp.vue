@@ -173,10 +173,13 @@ import { ClockFading, Search } from '@lucide/vue';
                 justify-content: center;
                 align-items: center;
                 flex-direction: column;
+                gap: 0.75cqh;
                 width: 30%;
                 height: 90%;
+                border-radius: 6cqh;
                 background-color: blue;
-
+                font-size: 1.6cqh;
+                font-weight: 500;
             }
         }
     }
