@@ -798,7 +798,7 @@ const closeApplication = () => {
         height: 100%;
         box-sizing: border-box;
         padding: 1cqw;
-        background-color: green;
+        // background-color: green;
 
         img {
             width: auto;
@@ -811,11 +811,11 @@ const closeApplication = () => {
             flex-direction: column;
             width: 65%;
             height: 100%;
-            background-color: blue;
+            // background-color: blue;
 
             span {
                 font-size: 1.7cqh;
-                color: rgba(255, 255, 255, 0.75);
+                color: rgba(255, 255, 255, 0.6);
             }
 
             .name {
