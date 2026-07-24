@@ -125,39 +125,41 @@ const addContact = () => {
             </div>
         </div>
 
-        <div v-if="showCreateContact" class="contact-modal-backdrop" @click.self="closeCreateContact">
-            <form class="contact-modal" @submit.prevent="addContact">
-                <div class="modal-header">
-                    <button type="button" class="modal-action cancel-action" @click="closeCreateContact">Annuler</button>
-                    <span>Nouveau contact</span>
-                    <button type="submit" class="modal-action save-action" :disabled="!newContact.firstName.trim() || !newContact.phone.trim()">
-                        Ajouter
-                    </button>
-                </div>
-
-                <div class="contact-form">
-                    <div class="new-contact-avatar">
-                        <User size="5cqh" />
+        <Transition name="contact-sheet">
+            <div v-if="showCreateContact" class="contact-modal-backdrop" @click.self="closeCreateContact">
+                <form class="contact-modal" @submit.prevent="addContact">
+                    <div class="modal-header">
+                        <button type="button" class="modal-action cancel-action" @click="closeCreateContact">Annuler</button>
+                        <span>Nouveau contact</span>
+                        <button type="submit" class="modal-action save-action" :disabled="!newContact.firstName.trim() || !newContact.phone.trim()">
+                            Ajouter
+                        </button>
                     </div>
-                    <label>
-                        <span>Prénom</span>
-                        <input v-model="newContact.firstName" type="text" placeholder="Prénom" autocomplete="given-name" />
-                    </label>
-                    <label>
-                        <span>Nom</span>
-                        <input v-model="newContact.lastName" type="text" placeholder="Nom" autocomplete="family-name" />
-                    </label>
-                    <label>
-                        <span>Téléphone</span>
-                        <input v-model="newContact.phone" type="tel" placeholder="Numéro de téléphone" autocomplete="tel" />
-                    </label>
-                </div>
 
-                <button type="button" class="close-modal" aria-label="Fermer" @click="closeCreateContact">
-                    <X size="2.2cqh" />
-                </button>
-            </form>
-        </div>
+                    <div class="contact-form">
+                        <div class="new-contact-avatar">
+                            <User size="5cqh" />
+                        </div>
+                        <label>
+                            <span>Prénom</span>
+                            <input v-model="newContact.firstName" type="text" placeholder="Prénom" autocomplete="given-name" />
+                        </label>
+                        <label>
+                            <span>Nom</span>
+                            <input v-model="newContact.lastName" type="text" placeholder="Nom" autocomplete="family-name" />
+                        </label>
+                        <label>
+                            <span>Téléphone</span>
+                            <input v-model="newContact.phone" type="tel" placeholder="Numéro de téléphone" autocomplete="tel" />
+                        </label>
+                    </div>
+
+                    <button type="button" class="close-modal" aria-label="Fermer" @click="closeCreateContact">
+                        <X size="2.2cqh" />
+                    </button>
+                </form>
+            </div>
+        </Transition>
     </div>
 </template>
 
@@ -493,9 +495,8 @@ const addContact = () => {
         inset: 0;
         z-index: 10;
         display: flex;
-        align-items: center;
+        align-items: flex-end;
         justify-content: center;
-        padding: 5cqw;
         box-sizing: border-box;
         background: rgba(0, 0, 0, 0.62);
         backdrop-filter: blur(0.7cqh);
@@ -504,12 +505,26 @@ const addContact = () => {
     .contact-modal {
         position: relative;
         width: 100%;
+        height: 75%;
+        box-sizing: border-box;
         overflow: hidden;
         border: 1px solid rgba(255, 255, 255, 0.14);
-        border-radius: 3cqh;
+        border-radius: 3cqh 3cqh 0 0;
         color: white;
         background: rgba(38, 38, 40, 0.96);
         box-shadow: 0 2cqh 8cqh rgba(0, 0, 0, 0.45);
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 1cqh;
+            left: 50%;
+            width: 10cqw;
+            height: 0.5cqh;
+            border-radius: 1cqh;
+            background: rgba(255, 255, 255, 0.35);
+            transform: translateX(-50%);
+        }
 
         .modal-header {
             display: flex;
@@ -545,6 +560,9 @@ const addContact = () => {
             display: flex;
             flex-direction: column;
             gap: 1.5cqh;
+            height: calc(100% - 7cqh);
+            box-sizing: border-box;
+            overflow-y: auto;
             padding: 3cqh 4cqw 4cqh;
 
             .new-contact-avatar {
@@ -599,6 +617,24 @@ const addContact = () => {
             top: 1.5cqh;
             right: 2cqw;
             display: none;
+        }
+    }
+
+    .contact-sheet-enter-active,
+    .contact-sheet-leave-active {
+        transition: opacity 0.3s ease;
+
+        .contact-modal {
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+    }
+
+    .contact-sheet-enter-from,
+    .contact-sheet-leave-to {
+        opacity: 0;
+
+        .contact-modal {
+            transform: translateY(100%);
         }
     }
 }
