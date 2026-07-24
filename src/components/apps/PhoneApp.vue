@@ -1,6 +1,6 @@
 <script setup>
-import { ref } from 'vue';
-import { ClockFading, Search, User, Keyboard, UserPlus, Phone, Delete, X } from '@lucide/vue';
+import { computed, ref } from 'vue';
+import { ArrowLeft, ClockFading, Delete, Grid3X3, Keyboard, Mail, MessageCircle, MicOff, MoreHorizontal, Phone, PhoneOff, Search, User, UserPlus, Video, Volume2, X } from '@lucide/vue';
 
 const activeCategory = ref('calls');
 
@@ -15,6 +15,19 @@ const phoneNumber = ref('');
 const showCreateContact = ref(false);
 const newContact = ref({ firstName: '', lastName: '', phone: '' });
 const contacts = ref([]);
+const contactSearch = ref('');
+const selectedContact = ref(null);
+const activeCall = ref(null);
+
+const filteredContacts = computed(() => {
+    const search = contactSearch.value.trim().toLowerCase();
+    if (!search) return contacts.value;
+
+    return contacts.value.filter((contact) => {
+        const searchableText = `${contact.firstName} ${contact.lastName} ${contact.phone}`.toLowerCase();
+        return searchableText.includes(search);
+    });
+});
 
 const appendKey = (key) => {
     phoneNumber.value += key;
@@ -22,6 +35,23 @@ const appendKey = (key) => {
 
 const removeLastDigit = () => {
     phoneNumber.value = phoneNumber.value.slice(0, -1);
+};
+
+const openContact = (contact) => {
+    selectedContact.value = contact;
+};
+
+const closeContact = () => {
+    selectedContact.value = null;
+};
+
+const startCall = (number, contact = null) => {
+    if (!number?.trim()) return;
+    activeCall.value = { number: number.trim(), contact };
+};
+
+const endCall = () => {
+    activeCall.value = null;
 };
 
 const closeCreateContact = () => {
@@ -44,6 +74,65 @@ const addContact = () => {
 
 <template>
     <div class="phone-app">
+        <div v-if="activeCall" class="call-screen">
+            <div class="call-screen-header">
+                <span>Appel en cours...</span>
+                <strong>{{ activeCall.contact ? `${activeCall.contact.firstName} ${activeCall.contact.lastName}` : activeCall.number }}</strong>
+            </div>
+
+            <div class="call-screen-content">
+                <div class="call-avatar">
+                    {{ activeCall.contact ? activeCall.contact.firstName.charAt(0).toUpperCase() : '?' }}
+                </div>
+                <strong v-if="activeCall.contact" class="call-contact-name">
+                    {{ activeCall.contact.firstName }} {{ activeCall.contact.lastName }}
+                </strong>
+                <span class="call-number">{{ activeCall.number }}</span>
+            </div>
+
+            <div class="call-actions">
+                <button type="button"><Volume2 size="2.5cqh" /><span>Haut-parleur</span></button>
+                <button type="button"><Video size="2.5cqh" /><span>FaceTime</span></button>
+                <button type="button"><MicOff size="2.5cqh" /><span>Muet</span></button>
+                <button type="button"><MoreHorizontal size="2.5cqh" /><span>Plus</span></button>
+                <button type="button" class="end-call-button" @click="endCall"><PhoneOff size="2.5cqh" /><span>Fin</span></button>
+                <button type="button"><Grid3X3 size="2.5cqh" /><span>Clavier</span></button>
+            </div>
+        </div>
+
+        <div v-else-if="selectedContact" class="contact-detail-page">
+            <div class="detail-header">
+                <button type="button" class="detail-back" aria-label="Retour" @click="closeContact">
+                    <ArrowLeft size="2.5cqh" />
+                </button>
+                <button type="button" class="detail-edit">Modifier</button>
+            </div>
+
+            <div class="detail-identity">
+                <div class="detail-avatar">
+                    {{ selectedContact.firstName.charAt(0).toUpperCase() }}
+                </div>
+                <h2>{{ selectedContact.firstName }} {{ selectedContact.lastName }}</h2>
+            </div>
+
+            <div class="detail-actions">
+                <button type="button"><MessageCircle size="2.5cqh" /><span>Message</span></button>
+                <button type="button" @click="startCall(selectedContact.phone, selectedContact)"><Phone size="2.5cqh" /><span>Appeler</span></button>
+                <button type="button"><Mail size="2.5cqh" /><span>Mail</span></button>
+            </div>
+
+            <div class="detail-number-card">
+                <div>
+                    <small>mobile</small>
+                    <strong>{{ selectedContact.phone }}</strong>
+                </div>
+                <button type="button" aria-label="Appeler" @click="startCall(selectedContact.phone, selectedContact)">
+                    <Phone size="2.2cqh" />
+                </button>
+            </div>
+        </div>
+
+        <template v-else>
         <span class="title">{{ activeCategory === 'calls' ? 'Récents' : activeCategory === 'contacts' ? 'Contacts' : 'Clavier' }}</span>
 
         <div v-if="activeCategory === 'calls'" class="container">
