@@ -26,7 +26,7 @@ import { ClockFading, Search } from '@lucide/vue';
         <div class="bottom-app-phone">
             <div class="categories">
                 <div class="categorie" v-for="i in 3">
-                    <ClockFading size="3cqh"/>
+                    <ClockFading size="3cqh" />
                     <span>Appels</span>
                 </div>
             </div>
@@ -157,16 +157,20 @@ import { ClockFading, Search } from '@lucide/vue';
         min-height: 18%;
         flex-shrink: 0;
         border-radius: 6cqh;
-        background-color: red;
+        // background-color: red;
 
         .categories {
             display: flex;
             justify-content: space-around;
             align-items: center;
             width: 100%;
-            height: 75%;
+            height: 68%;
             border-radius: 6cqh;
-            background-color: rgb(96, 96, 97);
+            background: linear-gradient(165deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.02) 55%, rgba(255, 255, 255, 0.06) 100%);
+            box-shadow:
+                0 10px 26px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                inset 0 -6px 10px -6px rgba(0, 0, 0, 0.4);
 
             .categorie {
                 display: flex;
