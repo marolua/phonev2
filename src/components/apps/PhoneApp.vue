@@ -1,5 +1,6 @@
 <script setup>
 import { Clock, Search } from '@lucide/vue';
+import LiquidGlass from '../LiquidGlass.vue';
 </script>
 
 <template>
@@ -26,7 +27,7 @@ import { Clock, Search } from '@lucide/vue';
         <div class="bottom-app-phone">
             <div class="categories">
                 <div class="categorie">
-
+                    
                 </div>
             </div>
         </div>
