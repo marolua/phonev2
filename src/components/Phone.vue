@@ -179,7 +179,8 @@ const closeApplication = () => {
                                 <div class="left-part">
                                     <img :src="Inconnu" alt="">
                                     <div class="content">
-
+                                        <span>mobile</span>
+                                        <span class="name">Tania Castillo</span>
                                     </div>
                                 </div>
                                 <div class="right-part">
@@ -791,16 +792,37 @@ const closeApplication = () => {
 
     .left-part {
         display: flex;
+        justify-content: space-around;
         align-items: center;
         width: 63%;
         height: 100%;
         box-sizing: border-box;
-        padding: 2.5cqw;
+        padding: 1cqw;
         background-color: green;
 
         img {
             width: auto;
             height: 6.5cqh;
+        }
+
+        .content {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            width: 65%;
+            height: 100%;
+            background-color: blue;
+
+            span {
+                font-size: 1.7cqh;
+                color: rgba(255, 255, 255, 0.75);
+            }
+
+            .name {
+                font-size: 2cqh;
+                color: white;
+                font-weight: 500;
+            }
         }
     }
 
