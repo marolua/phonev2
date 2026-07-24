@@ -817,7 +817,6 @@ const closeApplication = () => {
         }
 
         #refuse-call {
-            
             background: linear-gradient(120deg, rgb(215, 5, 5), rgb(106, 2, 2));
 
             img {
