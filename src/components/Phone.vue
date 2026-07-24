@@ -797,7 +797,7 @@ const closeApplication = () => {
         width: 63%;
         height: 100%;
         box-sizing: border-box;
-        padding: 0 0 0 2.5cqw;
+        padding: 0 0 0 2cqw;
 
         img {
             width: auto;
