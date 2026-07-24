@@ -180,7 +180,7 @@ const closeApplication = () => {
 
                                 </div>
                                 <div class="right-part">
-                                    <div class="x-call">
+                                    <div class="x-call" id="refuse-call">
                                         <img :src="PhoneWhite" alt="">
                                     </div>
                                     <div class="x-call">
