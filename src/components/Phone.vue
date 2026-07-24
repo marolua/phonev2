@@ -178,7 +178,14 @@ const closeApplication = () => {
                                 <div class="left-part">
 
                                 </div>
-                                <div class="right-part"></div>
+                                <div class="right-part">
+                                    <div class="refuse-call">
+
+                                    </div>
+                                    <div class="accept-call">
+
+                                    </div>
+                                </div>
                             </section>
 
                             <!-- Dynamic Island pill : fond très compact. Ajoute tes divs dedans. -->
