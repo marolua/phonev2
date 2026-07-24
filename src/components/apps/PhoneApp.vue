@@ -260,6 +260,7 @@ const addContact = () => {
                 </form>
             </div>
         </Transition>
+        </template>
     </div>
 </template>
 
