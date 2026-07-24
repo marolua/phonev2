@@ -1,6 +1,5 @@
 <script setup>
 import { Clock, Search } from '@lucide/vue';
-import LiquidGlass from '../LiquidGlass.vue';
 </script>
 
 <template>
