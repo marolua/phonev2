@@ -800,7 +800,6 @@ const closeApplication = () => {
         gap: 3cqw;
         width: 37%;
         height: 100%;
-        // background-color: red;
 
         .x-call {
             display: flex;
