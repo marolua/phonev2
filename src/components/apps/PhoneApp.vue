@@ -166,11 +166,10 @@ import { ClockFading, Search } from '@lucide/vue';
             width: 100%;
             height: 68%;
             border-radius: 6cqh;
-            background: linear-gradient(165deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.02) 55%, rgba(255, 255, 255, 0.06) 100%);
             box-shadow:
-                0 10px 26px rgba(0, 0, 0, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3),
-                inset 0 -6px 10px -6px rgba(0, 0, 0, 0.4);
+                0 10px 26px rgba(0, 0, 0, 0.9),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5),
+                inset 0 -6px 10px -6px rgba(0, 0, 0, 0.3);
 
             .categorie {
                 display: flex;
