@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import { ClockFading, Search, User, Keyboard, UserPlus, Phone, Delete } from '@lucide/vue';
+import { ClockFading, Search, User, Keyboard, UserPlus, Phone, Delete, X } from '@lucide/vue';
 
 const activeCategory = ref('calls');
 
@@ -12,6 +12,9 @@ const categories = [
 
 const keypad = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '*', '0', '#'];
 const phoneNumber = ref('');
+const showCreateContact = ref(false);
+const newContact = ref({ firstName: '', lastName: '', phone: '' });
+const contacts = ref([]);
 
 const appendKey = (key) => {
     phoneNumber.value += key;
@@ -19,6 +22,23 @@ const appendKey = (key) => {
 
 const removeLastDigit = () => {
     phoneNumber.value = phoneNumber.value.slice(0, -1);
+};
+
+const closeCreateContact = () => {
+    showCreateContact.value = false;
+    newContact.value = { firstName: '', lastName: '', phone: '' };
+};
+
+const addContact = () => {
+    if (!newContact.value.firstName.trim() || !newContact.value.phone.trim()) return;
+
+    contacts.value.push({
+        id: Date.now(),
+        firstName: newContact.value.firstName.trim(),
+        lastName: newContact.value.lastName.trim(),
+        phone: newContact.value.phone.trim(),
+    });
+    closeCreateContact();
 };
 </script>
 
@@ -48,15 +68,27 @@ const removeLastDigit = () => {
         <div v-else-if="activeCategory === 'contacts'" class="container contacts-container">
             <div class="contacts-header">
                 <span>Mes contacts</span>
-                <button class="add-contact" type="button" aria-label="Ajouter un contact">
+                <button class="add-contact" type="button" aria-label="Ajouter un contact" @click="showCreateContact = true">
                     <UserPlus size="2.4cqh" />
                 </button>
             </div>
 
-            <div class="empty-state">
+            <div v-if="contacts.length === 0" class="empty-state">
                 <User size="6cqh" />
                 <span>Aucun contact</span>
                 <small>Vos contacts apparaîtront ici.</small>
+            </div>
+
+            <div v-else class="contacts-list">
+                <div v-for="contact in contacts" :key="contact.id" class="contact-item">
+                    <div class="contact-avatar">
+                        {{ contact.firstName.charAt(0).toUpperCase() }}
+                    </div>
+                    <div class="contact-information">
+                        <span>{{ contact.firstName }} {{ contact.lastName }}</span>
+                        <small>{{ contact.phone }}</small>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -92,6 +124,40 @@ const removeLastDigit = () => {
                 </button>
             </div>
         </div>
+
+        <div v-if="showCreateContact" class="contact-modal-backdrop" @click.self="closeCreateContact">
+            <form class="contact-modal" @submit.prevent="addContact">
+                <div class="modal-header">
+                    <button type="button" class="modal-action cancel-action" @click="closeCreateContact">Annuler</button>
+                    <span>Nouveau contact</span>
+                    <button type="submit" class="modal-action save-action" :disabled="!newContact.firstName.trim() || !newContact.phone.trim()">
+                        Ajouter
+                    </button>
+                </div>
+
+                <div class="contact-form">
+                    <div class="new-contact-avatar">
+                        <User size="5cqh" />
+                    </div>
+                    <label>
+                        <span>Prénom</span>
+                        <input v-model="newContact.firstName" type="text" placeholder="Prénom" autocomplete="given-name" />
+                    </label>
+                    <label>
+                        <span>Nom</span>
+                        <input v-model="newContact.lastName" type="text" placeholder="Nom" autocomplete="family-name" />
+                    </label>
+                    <label>
+                        <span>Téléphone</span>
+                        <input v-model="newContact.phone" type="tel" placeholder="Numéro de téléphone" autocomplete="tel" />
+                    </label>
+                </div>
+
+                <button type="button" class="close-modal" aria-label="Fermer" @click="closeCreateContact">
+                    <X size="2.2cqh" />
+                </button>
+            </form>
+        </div>
     </div>
 </template>
 
@@ -101,6 +167,7 @@ const removeLastDigit = () => {
 }
 
 .phone-app {
+    position: relative;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -254,6 +321,52 @@ const removeLastDigit = () => {
                     font-size: 1.7cqh;
                 }
             }
+
+            .contacts-list {
+                display: flex;
+                flex-direction: column;
+                gap: 1cqh;
+                overflow-y: auto;
+                padding: 1cqh 2cqw;
+
+                .contact-item {
+                    display: flex;
+                    align-items: center;
+                    gap: 2cqw;
+                    min-height: 7cqh;
+                    padding: 1cqh 1cqw;
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+                }
+
+                .contact-avatar {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 5cqh;
+                    height: 5cqh;
+                    flex-shrink: 0;
+                    border-radius: 50%;
+                    color: white;
+                    background: #4d8dff;
+                    font-size: 2.2cqh;
+                }
+
+                .contact-information {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.4cqh;
+
+                    span {
+                        color: rgba(255, 255, 255, 0.9);
+                        font-size: 2cqh;
+                    }
+
+                    small {
+                        color: rgba(255, 255, 255, 0.5);
+                        font-size: 1.7cqh;
+                    }
+                }
+            }
         }
 
         &.keyboard-container {
@@ -372,6 +485,120 @@ const removeLastDigit = () => {
                 }
 
             }
+        }
+    }
+
+    .contact-modal-backdrop {
+        position: absolute;
+        inset: 0;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 5cqw;
+        box-sizing: border-box;
+        background: rgba(0, 0, 0, 0.62);
+        backdrop-filter: blur(0.7cqh);
+    }
+
+    .contact-modal {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 3cqh;
+        color: white;
+        background: rgba(38, 38, 40, 0.96);
+        box-shadow: 0 2cqh 8cqh rgba(0, 0, 0, 0.45);
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 7cqh;
+            padding: 0 3cqw;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 2cqh;
+            font-weight: 600;
+        }
+
+        .modal-action {
+            padding: 0;
+            border: 0;
+            color: #4d8dff;
+            background: transparent;
+            font-family: inherit;
+            font-size: 1.7cqh;
+            cursor: pointer;
+
+            &:disabled {
+                color: rgba(77, 141, 255, 0.35);
+                cursor: default;
+            }
+        }
+
+        .cancel-action {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5cqh;
+            padding: 3cqh 4cqw 4cqh;
+
+            .new-contact-avatar {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                align-self: center;
+                width: 10cqh;
+                height: 10cqh;
+                margin-bottom: 1cqh;
+                border-radius: 50%;
+                color: rgba(255, 255, 255, 0.8);
+                background: rgba(255, 255, 255, 0.12);
+            }
+
+            label {
+                display: flex;
+                flex-direction: column;
+                gap: 0.6cqh;
+
+                span {
+                    padding-left: 1cqw;
+                    color: rgba(255, 255, 255, 0.55);
+                    font-size: 1.5cqh;
+                }
+
+                input {
+                    width: 100%;
+                    box-sizing: border-box;
+                    padding: 1.5cqh 2cqw;
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    border-radius: 1.4cqh;
+                    outline: none;
+                    color: white;
+                    background: rgba(255, 255, 255, 0.1);
+                    font-family: inherit;
+                    font-size: 1.8cqh;
+
+                    &::placeholder {
+                        color: rgba(255, 255, 255, 0.35);
+                    }
+
+                    &:focus {
+                        border-color: #4d8dff;
+                    }
+                }
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.5cqh;
+            right: 2cqw;
+            display: none;
         }
     }
 }
