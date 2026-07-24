@@ -179,10 +179,10 @@ const closeApplication = () => {
 
                                 </div>
                                 <div class="right-part">
-                                    <div class="refuse-call">
+                                    <div class="x-call">
 
                                     </div>
-                                    <div class="accept-call">
+                                    <div class="x-call">
 
                                     </div>
                                 </div>
