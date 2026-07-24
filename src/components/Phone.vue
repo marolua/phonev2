@@ -181,6 +181,7 @@ const closeApplication = () => {
                                 </div>
                                 <div class="right-part">
                                     <div class="x-call">
+                                        <img :src="PhoneWhite" alt="">
                                     </div>
                                     <div class="x-call">
                                         <img :src="PhoneWhite" alt="">
