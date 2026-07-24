@@ -177,7 +177,10 @@ const closeApplication = () => {
                             <section v-else-if="activeIsland.type === 'small'" key="small"
                                 class="island-layout island-layout--small">
                                 <div class="left-part">
+                                    <img :src="Inconnu" alt="">
+                                    <div class="content">
 
+                                    </div>
                                 </div>
                                 <div class="right-part">
                                     <div class="x-call" id="refuse-call">
@@ -788,9 +791,17 @@ const closeApplication = () => {
 
     .left-part {
         display: flex;
+        align-items: center;
         width: 63%;
         height: 100%;
+        box-sizing: border-box;
+        padding: 2.5cqw;
         background-color: green;
+
+        img {
+            width: auto;
+            height: 6.5cqh;
+        }
     }
 
     .right-part {
