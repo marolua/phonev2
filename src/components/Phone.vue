@@ -174,7 +174,9 @@ const closeApplication = () => {
 
                             <!-- Dynamic Island small : fond petit format. Ajoute tes divs dedans. -->
                             <section v-else-if="activeIsland.type === 'small'" key="small"
-                                class="island-layout island-layout--small"></section>
+                                class="island-layout island-layout--small">
+                                
+                            </section>
 
                             <!-- Dynamic Island pill : fond très compact. Ajoute tes divs dedans. -->
                             <section v-else :key="`pill-${activeIsland.variant}`"
