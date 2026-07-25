@@ -75,13 +75,11 @@
             display: flex;
             justify-content: space-around;
             align-items: center;
-            // gap: 9cqw;
             width: 100%;
             height: 35%;
-            // background-color: red;
 
             .button-prompt {
-                font-size: 2.2cqh;
+                font-size: 2cqh;
                 font-family: "SF Pro";
                 font-weight: 500;
                 color: rgb(0, 64, 255);
@@ -92,10 +90,10 @@
             }
 
             .bar {
-                width: 0.6cqw;
+                width: 0.5cqw;
                 border-radius: 2cqw;
                 height: 3cqh;
-                background-color: grey;
+                background-color: rgba(128, 128, 128, 0.65);
             }
         }
     }
