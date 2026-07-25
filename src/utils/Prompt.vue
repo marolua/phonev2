@@ -2,6 +2,10 @@
 import { computed, ref, watch } from 'vue'
 
 const props = defineProps({
+    visible: {
+        type: Boolean,
+        default: false,
+    },
     variant: {
         type: String,
         default: 'with-text-and-choice',
@@ -67,6 +71,7 @@ function cancel() {
 </script>
 
 <template>
+    <template v-if="props.visible">
     <div v-if="props.variant === 'with-text'" class="container-prompt-with-texte">
         <div class="prompt-with">
             <div class="top-prompt-with">
@@ -112,6 +117,7 @@ function cancel() {
             </div>
         </div>
     </div>
+    </template>
 
     <!-- <div class="container-prompt-with-texte">
         <div class="prompt-with">
