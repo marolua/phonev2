@@ -9,9 +9,7 @@
     <div class="container-prompt-without-texte">
         <div class="prompt-without">
             <div class="top-prompt-without">
-                <span class="title-prompt">
-                    Delete Conversation
-                </span>
+                <span class="title-prompt">Delete Conversation</span>
                 <span class="description">Are you sure you want to delete this conversation?</span>
             </div>
             <div class="bottom-prompt-without">
