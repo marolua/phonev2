@@ -428,18 +428,18 @@ const addContact = () => {
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
-        padding: 8cqh 5cqw 4cqh;
+        padding: 8cqh 5cqw 6cqh;
         overflow: hidden;
         background:
-            radial-gradient(circle at 50% 38%, rgba(82, 67, 68, 0.35), transparent 31%),
-            linear-gradient(160deg, #171719 0%, #09090b 54%, #171012 100%);
+            radial-gradient(circle at 82% 57%, rgba(70, 35, 31, 0.34), transparent 36%),
+            linear-gradient(160deg, #050505 0%, #0b0809 52%, #160d0d 100%);
 
         &::before {
             position: absolute;
             inset: 0;
             pointer-events: none;
             content: '';
-            background: linear-gradient(120deg, rgba(255, 255, 255, 0.05), transparent 30%, transparent 70%, rgba(255, 90, 90, 0.06));
+            background: linear-gradient(120deg, rgba(255, 255, 255, 0.025), transparent 30%, transparent 70%, rgba(255, 90, 90, 0.045));
         }
 
         .call-screen-header {
@@ -447,81 +447,14 @@ const addContact = () => {
             display: flex;
             align-items: center;
             flex-direction: column;
-            gap: 0.8cqh;
-            color: rgba(255, 255, 255, 0.62);
+            gap: 0.6cqh;
+            color: rgba(255, 255, 255, 0.65);
             font-size: 1.65cqh;
-
-            .call-status {
-                display: flex;
-                align-items: center;
-                gap: 0.8cqw;
-                color: #8ef0a5;
-                font-size: 1.45cqh;
-                letter-spacing: 0.04cqw;
-
-                i {
-                    width: 0.8cqh;
-                    height: 0.8cqh;
-                    border-radius: 50%;
-                    background: #63dc81;
-                    box-shadow: 0 0 1cqh rgba(99, 220, 129, 0.8);
-                }
-            }
 
             strong {
                 color: white;
-                font-size: 2.35cqh;
+                font-size: 2.65cqh;
                 font-weight: 600;
-            }
-        }
-
-        .call-screen-content {
-            position: relative;
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-            gap: 0.9cqh;
-            margin-top: -8cqh;
-
-            .call-avatar {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                width: 22cqh;
-                height: 22cqh;
-                overflow: hidden;
-                border: 0.45cqh solid rgba(255, 255, 255, 0.14);
-                border-radius: 50%;
-                color: white;
-                background: linear-gradient(145deg, #3f414d, #1c1d22);
-                box-shadow: 0 1.5cqh 5cqh rgba(0, 0, 0, 0.42), 0 0 0 1cqh rgba(255, 255, 255, 0.025);
-                font-size: 9cqh;
-                font-weight: 600;
-
-                img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                }
-            }
-
-            .call-contact-name {
-                margin-top: 1cqh;
-                color: white;
-                font-size: 2.7cqh;
-                font-weight: 600;
-            }
-
-            .call-number {
-                color: rgba(255, 255, 255, 0.52);
-                font-size: 1.8cqh;
-            }
-
-            .call-duration {
-                margin-top: 0.4cqh;
-                color: rgba(255, 255, 255, 0.38);
-                font-size: 1.5cqh;
-                letter-spacing: 0.08cqw;
             }
         }
 
@@ -529,19 +462,19 @@ const addContact = () => {
             position: relative;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2.7cqh 3cqw;
+            gap: 4.2cqh 3cqw;
             width: 100%;
 
             button {
                 display: flex;
                 align-items: center;
                 flex-direction: column;
-                gap: 0.8cqh;
+                gap: 0.9cqh;
                 border: 0;
                 color: rgba(255, 255, 255, 0.85);
                 background: transparent;
                 font-family: inherit;
-                font-size: 1.35cqh;
+                font-size: 1.4cqh;
                 cursor: pointer;
                 transition: transform 0.2s ease, color 0.2s ease;
 
@@ -550,9 +483,9 @@ const addContact = () => {
                 }
 
                 svg {
-                    width: 6.8cqh;
-                    height: 6.8cqh;
-                    padding: 1.95cqh;
+                    width: 8.2cqh;
+                    height: 8.2cqh;
+                    padding: 2.35cqh;
                     box-sizing: border-box;
                     border-radius: 50%;
                     color: white;
