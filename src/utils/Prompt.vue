@@ -136,7 +136,7 @@ const props = defineProps({
             border-top: 0.15cqw solid rgba(128, 128, 128, 0.55);
 
             .action-prompt {
-                font-size: 2.2cqh;
+                font-size: 2cqh;
                 font-family: "SF Pro Display";
                 font-weight: 600;
                 color: rgb(0, 157, 255);
@@ -166,7 +166,7 @@ const props = defineProps({
     .prompt-with-choice {
         display: flex;
         flex-direction: column;
-        width: 80%;
+        width: 75%;
         height: 28%;
         box-sizing: border-box;
         overflow: hidden;
@@ -181,25 +181,25 @@ const props = defineProps({
             box-sizing: border-box;
             width: 100%;
             height: 77%;
-            gap: 1.3cqh;
+            gap: 1.5cqh;
             padding: 2.5cqh 4cqw 1.5cqh;
             text-align: center;
 
             .title-prompt {
-                font-size: 2.15cqh;
+                font-size: 2.2cqh;
                 font-weight: 750;
                 line-height: 1.2;
             }
 
             .description {
                 max-width: 95%;
-                font-size: 1.7cqh;
+                font-size: 1.75cqh;
                 line-height: 1.25;
             }
 
             .input-prompt {
                 width: 88%;
-                height: 5.3cqh;
+                height: 4.5cqh;
                 box-sizing: border-box;
                 padding: 0.5cqh 2cqw;
                 border: 0;
@@ -228,7 +228,7 @@ const props = defineProps({
             border-top: 0.15cqw solid rgba(128, 128, 128, 0.55);
 
             .button-prompt {
-                font-size: 2.35cqh;
+                font-size: 2cqh;
                 font-family: "SF Pro Display";
                 font-weight: 500;
                 color: rgb(0, 157, 255);
