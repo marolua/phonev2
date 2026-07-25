@@ -93,7 +93,6 @@ defineProps({
 }
 
 .weather-widget__label {
-    /* margin-top: 1.2cqh; */
     color: rgba(255, 255, 255, 0.72);
     width: 100%;
     text-align: center;
