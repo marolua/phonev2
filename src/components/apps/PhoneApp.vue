@@ -210,7 +210,6 @@ const addContact = () => {
                     </button>
                 </div>
             </div>
-        </Transition>
 
         <template v-else>
             <span class="title">{{ activeCategory === 'calls' ? 'Récents' : activeCategory === 'contacts' ? 'Contacts' :
