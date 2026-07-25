@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <div class="container-prompt-with-texte">
+    <!-- <div class="container-prompt-with-texte">
         <div class="prompt-with">
             <div class="top-prompt-with">
                 <span class="title-prompt">A Short Title Is Best</span>
@@ -14,7 +14,7 @@
                 <span class="action-prompt">Action</span>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- <div class="container-prompt-without-texte">
         <div class="prompt-without">
             <div class="top-prompt-without">
@@ -28,6 +28,9 @@
             </div>
         </div>
     </div> -->
+    <div class="container-prompt-with-texte-and-choice">
+        
+    </div>
 </template>
 
 <style lang="scss">
