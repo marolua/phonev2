@@ -1095,11 +1095,18 @@ const addContact = () => {
                     justify-content: center;
                     width: 5cqh;
                     height: 5cqh;
+                    overflow: hidden;
                     flex-shrink: 0;
                     border-radius: 50%;
                     color: white;
-                    background: #4d8dff;
+                    background: linear-gradient(145deg, #52628e, #282c42);
                     font-size: 2.2cqh;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
                 }
 
                 .contact-information {
@@ -1327,13 +1334,35 @@ const addContact = () => {
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                flex-direction: column;
                 align-self: center;
                 width: 10cqh;
                 height: 10cqh;
+                overflow: hidden;
                 margin-bottom: 1cqh;
                 border-radius: 50%;
                 color: rgba(255, 255, 255, 0.8);
-                background: rgba(255, 255, 255, 0.12);
+                background: linear-gradient(145deg, #52628e, #282c42);
+                cursor: pointer;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+
+                small {
+                    margin-top: -2.5cqh;
+                    padding: 0.4cqh 1cqw;
+                    border-radius: 1cqh;
+                    color: white;
+                    background: rgba(0, 0, 0, 0.58);
+                    font-size: 1.2cqh;
+                }
+
+                input {
+                    display: none;
+                }
             }
 
             label {
