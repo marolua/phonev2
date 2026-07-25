@@ -18,7 +18,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <!-- <div class="container-prompt-with-texte">
+    <div class="container-prompt-with-texte">
         <div class="prompt-with">
             <div class="top-prompt-with">
                 <span class="title-prompt">A Short Title Is Best</span>
@@ -29,7 +29,8 @@ const props = defineProps({
                 <span class="action-prompt">Action</span>
             </div>
         </div>
-    </div> -->
+    </div>
+    
     <!-- <div class="container-prompt-without-texte">
         <div class="prompt-without">
             <div class="top-prompt-without">
@@ -43,7 +44,8 @@ const props = defineProps({
             </div>
         </div>
     </div> -->
-    <div class="container-prompt-with-texte-and-choice">
+    
+    <!-- <div class="container-prompt-with-texte-and-choice">
         <div class="prompt-with-choice">
             <div class="top-prompt-with-choice">
                 <span class="title-prompt">Give Key</span>
@@ -57,7 +59,7 @@ const props = defineProps({
                 <span class="button-prompt">Proceed</span>
             </div>
         </div>
-    </div>
+    </div> -->
 </template>
 
 <style lang="scss">
@@ -119,7 +121,7 @@ const props = defineProps({
                 outline: none;
                 color: white;
                 font: 400 1.9cqh "SF Pro Display", sans-serif;
-                background-color: rgba(255, 255, 255, 0.1);
+                background-color: rgba(15, 15, 15, 0.9);
 
                 &::placeholder {
                     color: rgba(255, 255, 255, 0.5);
@@ -207,7 +209,7 @@ const props = defineProps({
                 outline: none;
                 color: white;
                 font: 400 1.9cqh "SF Pro Display", sans-serif;
-                background-color: rgba(0, 0, 0, 0.9);
+                background-color: rgba(15, 15, 15, 0.9);
                 -moz-appearance: textfield;
 
                 &::-webkit-inner-spin-button,
