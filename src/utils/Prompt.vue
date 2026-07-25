@@ -63,7 +63,7 @@
             .title-prompt {
                 font-size: 2.15cqh;
                 font-weight: 750;
-                line-height: 1.1;
+                line-height: 1.4;
             }
 
             .description {
