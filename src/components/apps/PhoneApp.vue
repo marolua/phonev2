@@ -690,7 +690,7 @@ const addContact = () => {
                     align-items: center;
                     gap: 2cqw;
                     min-height: 7cqh;
-                    padding: 1cqh 1cqw;
+                    padding: 1.5cqh 1cqw;
                     border: 0;
                     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
                     text-align: left;
