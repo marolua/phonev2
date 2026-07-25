@@ -46,7 +46,7 @@
         box-sizing: border-box;
         height: 18%;
         overflow: hidden;
-        background-color: rgba(40, 40, 40, 0.97);
+        background-color: rgba(40, 40, 40, 0.90);
 
         .top-prompt-without {
             position: relative;
