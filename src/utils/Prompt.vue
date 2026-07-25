@@ -192,6 +192,13 @@
                 color: white;
                 font: 400 1.9cqh "SF Pro Display", sans-serif;
                 background-color: rgba(0, 0, 0, 0.9);
+                -moz-appearance: textfield;
+
+                &::-webkit-inner-spin-button,
+                &::-webkit-outer-spin-button {
+                    margin: 0;
+                    -webkit-appearance: none;
+                }
 
                 &:focus {
                     box-shadow: 0 0 0 0.15cqw rgb(0, 157, 255);
