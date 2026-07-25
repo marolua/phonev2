@@ -18,7 +18,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <!-- <div class="container-prompt-with-texte">
+    <div class="container-prompt-with-texte">
         <div class="prompt-with">
             <div class="top-prompt-with">
                 <span class="title-prompt">A Short Title Is Best</span>
@@ -29,7 +29,7 @@ const props = defineProps({
                 <span class="action-prompt">Action</span>
             </div>
         </div>
-    </div> -->
+    </div>
     
     <!-- <div class="container-prompt-without-texte">
         <div class="prompt-without">
@@ -45,21 +45,21 @@ const props = defineProps({
         </div>
     </div> -->
     
-    <div class="container-prompt-with-texte-and-choice">
+    <!-- <div class="container-prompt-with-texte-and-choice">
         <div class="prompt-with-choice">
             <div class="top-prompt-with-choice">
-                <span class="title-prompt">Give Key</span>
-                <span class="description">Insert the ID of the person you want to<br />give a key to</span>
+                <span class="title-prompt">Donner une Clé</span>
+                <span class="description">Inserer l'id de la personne a qui vous voulez donner la clé</span>
                 <input class="input-prompt" :type="props.inputType" :value="props.inputValue"
                     :placeholder="props.inputPlaceholder" :min="props.inputType === 'number' ? 0 : undefined" />
             </div>
             <div class="bottom-prompt-with-choice">
-                <span class="button-prompt">Cancel</span>
+                <span class="button-prompt">Annuler</span>
                 <span class="bar"></span>
-                <span class="button-prompt">Proceed</span>
+                <span class="button-prompt">Execute</span>
             </div>
         </div>
-    </div>
+    </div> -->
 </template>
 
 <style lang="scss">
