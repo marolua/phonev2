@@ -414,27 +414,8 @@ const addContact = () => {
             gap: 1.2cqh;
             margin-top: -12cqh;
 
-            .call-avatar {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                width: 18cqh;
-                height: 18cqh;
-                margin-bottom: 1cqh;
-                border-radius: 50%;
-                color: white;
-                background: #37373a;
-                font-size: 8cqh;
-                font-weight: 600;
-            }
-
             .call-contact-name {
                 font-size: 3cqh;
-            }
-
-            .call-number {
-                color: rgba(255, 255, 255, 0.65);
-                font-size: 2cqh;
             }
         }
 
