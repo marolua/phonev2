@@ -428,7 +428,7 @@ const addContact = () => {
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
-        padding: 8cqh 5cqw 6cqh;
+        padding: 11cqh 5cqw 9cqh;
         overflow: hidden;
         background:
             radial-gradient(circle at 82% 57%, rgba(70, 35, 31, 0.34), transparent 36%),
@@ -462,7 +462,7 @@ const addContact = () => {
             position: relative;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 4.2cqh 3cqw;
+            gap: 2.2cqh 2cqw;
             width: 100%;
 
             button {
@@ -483,9 +483,9 @@ const addContact = () => {
                 }
 
                 svg {
-                    width: 8.2cqh;
-                    height: 8.2cqh;
-                    padding: 2.35cqh;
+                    width: 7.2cqh;
+                    height: 7.2cqh;
+                    padding: 2.05cqh;
                     box-sizing: border-box;
                     border-radius: 50%;
                     color: white;
