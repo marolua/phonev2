@@ -5,6 +5,9 @@ import BankIcon from "../assets/appicons/bank.png";
 import WeatherIcon from "../assets/appicons/weather.png";
 import ContactIcon from "../assets/appicons/contact.png";
 import PhoneApp from "../components/apps/PhoneApp.vue";
+import MessageApp from "../components/apps/Message.vue";
+import ContactApp from "../components/apps/Contact.vue";
+import SettingsApp from "../components/apps/Settings.vue";
 
 export const applications = [
   {
@@ -27,6 +30,7 @@ export const applications = [
   {
     id: "messages",
     name: "Messages",
+    component: MessageApp,
     icon: MessageIcon,
     page: "messages",
   },
