@@ -178,7 +178,7 @@ const addContact = () => {
 
                 <div v-if="!editingContact" class="detail-actions">
                     <button type="button">
-                        <MessageCircle size="2cqh" /><span>Message</span>
+                        <MessageCircle size="2.5cqh" /><span>Message</span>
                     </button>
                     <button type="button" @click="startCall(selectedContact.phone, selectedContact)">
                         <Phone size="2cqh" /><span>Appeler</span>
@@ -570,7 +570,7 @@ const addContact = () => {
                 color: #1686ff;
                 background: transparent;
                 font-family: inherit;
-                font-size: 1.4cqh;
+                font-size: 1.5cqh;
                 cursor: pointer;
 
                 svg {
