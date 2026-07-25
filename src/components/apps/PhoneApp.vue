@@ -179,26 +179,12 @@ const addContact = () => {
 
 <template>
     <div class="phone-app">
-        <Prompt
-            :visible="showDeletePhotoPrompt"
-            variant="without-text"
-            title="Supprimer la photo ?"
-            description="Voulez-vous vraiment supprimer cette photo ?"
-            cancel-text="Annuler"
-            confirm-text="Supprimer"
-            @confirm="confirmDeletePhoto"
-            @cancel="cancelDeletePhoto"
-        />
-        <Prompt
-            :visible="showDeleteContactPrompt"
-            variant="without-text"
-            title="Supprimer le contact ?"
-            description="Voulez-vous vraiment supprimer ce contact ?"
-            cancel-text="Annuler"
-            confirm-text="Supprimer"
-            @confirm="confirmDeleteContact"
-            @cancel="cancelDeleteContact"
-        />
+        <Prompt :visible="showDeletePhotoPrompt" variant="without-text" title="Supprimer la photo ?"
+            description="Voulez-vous vraiment supprimer cette photo ?" cancel-text="Annuler" confirm-text="Supprimer"
+            @confirm="confirmDeletePhoto" @cancel="cancelDeletePhoto" />
+        <Prompt :visible="showDeleteContactPrompt" variant="without-text" title="Supprimer le contact ?"
+            description="Voulez-vous vraiment supprimer ce contact ?" cancel-text="Annuler" confirm-text="Supprimer"
+            @confirm="confirmDeleteContact" @cancel="cancelDeleteContact" />
 
         <div v-if="activeCall" class="call-screen">
             <div class="call-screen-header">
