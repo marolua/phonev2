@@ -15,9 +15,9 @@
                 <span class="description">Are you sure you want to delete this conversation?</span>
             </div>
             <div class="bottom-prompt-without">
-                <span class="button-prompt">Cancel</span>
+                <span class="button-prompt">Accepte</span>
                 <span class="bar"></span>
-                <span class="button-prompt">Delete</span>
+                <span class="button-prompt">Refuser</span>
             </div>
         </div>
     </div>
@@ -78,7 +78,7 @@
             position: relative;
             display: flex;
             justify-content: center;
-            gap: 10cqw;
+            gap: 9cqw;
             align-items: center;
             width: 100%;
             height: 35%;
