@@ -706,6 +706,23 @@ const addContact = () => {
                 cursor: pointer;
             }
         }
+
+        .delete-contact {
+            width: 100%;
+            margin-top: 2cqh;
+            padding: 1.5cqh 2cqw;
+            border: 0;
+            border-radius: 1.5cqh;
+            color: #ff453a;
+            background: rgba(118, 118, 128, 0.2);
+            font-family: inherit;
+            font-size: 1.8cqh;
+            cursor: pointer;
+
+            &:active {
+                background: rgba(255, 69, 58, 0.18);
+            }
+        }
     }
 
     @keyframes contact-detail-slide-in {
