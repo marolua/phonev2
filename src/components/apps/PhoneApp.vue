@@ -554,7 +554,6 @@ const addContact = () => {
         }
 
         .detail-actions {
-            --detail-action-icon-size: 7cqh;
             display: flex;
             gap: 5cqw;
             margin-top: 3cqh;
@@ -572,17 +571,10 @@ const addContact = () => {
                 cursor: pointer;
 
                 svg {
-                    width: 6.8cqh;
-                    height: 6.8cqh;
                     box-sizing: border-box;
                     border: 1px solid rgba(255, 255, 255, 0.18);
                     border-radius: 50%;
                     background: rgba(44, 44, 46, 0.85);
-                }
-
-                .detail-action-icon {
-                    width: var(--detail-action-icon-size) !important;
-                    height: var(--detail-action-icon-size) !important;
                 }
             }
         }
