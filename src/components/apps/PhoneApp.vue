@@ -694,12 +694,13 @@ const addContact = () => {
                     border: 0;
                     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
                     text-align: left;
+                    transition: all ease-in-out 0.2s;
                     font-family: inherit;
                     background: transparent;
                     cursor: pointer;
 
                     &:hover {
-                        background: rgba(255, 255, 255, 0.05);
+                        transform: scale(1.02);
                     }
                 }
 
