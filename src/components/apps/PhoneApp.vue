@@ -175,7 +175,7 @@ const addContact = () => {
 
                 <div v-if="!editingContact" class="detail-actions">
                     <button type="button">
-                        <MessageCircle class="detail-action-icon" size="1.5cqh" /><span>Message</span>
+                        <MessageCircle class="detail-action-icon" size="2cqh" /><span>Message</span>
                     </button>
                     <button type="button" @click="startCall(selectedContact.phone, selectedContact)">
                         <Phone class="detail-action-icon" size="1cqh" /><span>Appeler</span>
