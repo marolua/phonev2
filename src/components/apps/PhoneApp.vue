@@ -683,7 +683,7 @@ const addContact = () => {
                 flex-direction: column;
                 gap: 1cqh;
                 overflow-y: auto;
-                padding: 0 2cqw 1cqh;
+                padding: 0 1cqw 1cqh;
 
                 .contact-item {
                     display: flex;
