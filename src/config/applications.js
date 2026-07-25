@@ -12,7 +12,6 @@ export const applications = [
   {
     id: "weather",
     name: "Météo",
-    icon: WeatherIcon,
     page: "weather",
     size: "widget",
     city: "Los Santos",
