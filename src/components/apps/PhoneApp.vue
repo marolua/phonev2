@@ -662,7 +662,7 @@ const addContact = () => {
                 color: #ff6b67;
                 background: transparent;
                 font-family: inherit;
-                font-size: 1.45cqh;
+                font-size: 1.75cqh;
                 cursor: pointer;
             }
 
