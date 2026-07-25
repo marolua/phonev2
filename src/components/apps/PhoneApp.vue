@@ -902,12 +902,12 @@ const addContact = () => {
     }
 
     .contact-detail-page {
-        animation: contact-detail-slide-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+        animation: contact-detail-slide-in 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
         will-change: transform;
     }
 
     .contact-detail-page.contact-detail-closing {
-        animation: contact-detail-slide-out 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+        animation: contact-detail-slide-out 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
 
     .title {
