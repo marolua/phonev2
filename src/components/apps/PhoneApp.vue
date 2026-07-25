@@ -149,20 +149,22 @@ const addContact = () => {
             </div>
         </div>
 
-        <Transition v-else-if="selectedContact" name="contact-detail">
-            <div class="contact-detail-page">
+        <div v-else-if="selectedContact || isClosingContact" class="contact-detail-page"
+            :class="{ 'contact-detail-closing': isClosingContact }">
                 <div class="detail-header">
-                    <button type="button" class="detail-back" aria-label="Retour" @click="closeContact">
+                    <button v-if="!editingContact" type="button" class="detail-back" aria-label="Retour"
+                        @click="closeContact">
                         <ArrowLeft size="2.5cqh" />
                     </button>
+                    <button v-else type="button" class="detail-cancel" @click="cancelEditingContact">
+                        Annuler
+                    </button>
+                    <span v-if="editingContact" class="detail-edit-title">Modifier</span>
                     <div class="detail-edit-actions">
-                        <button v-if="editingContact" type="button" class="detail-cancel" @click="cancelEditingContact">
-                            <X size="2.5cqh" />
-                        </button>
                         <button type="button" class="detail-edit"
                             :disabled="editingContact && (!editableContact.firstName.trim() || !editableContact.phone.trim())"
                             @click="editingContact ? saveContact() : startEditingContact()">
-                            {{ editingContact ? 'Enregistrer' : 'Modifier' }}
+                            {{ editingContact ? 'OK' : 'Modifier' }}
                         </button>
                     </div>
                 </div>
