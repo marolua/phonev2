@@ -166,7 +166,7 @@ const props = defineProps({
     .prompt-with-choice {
         display: flex;
         flex-direction: column;
-        width: 75%;
+        width: 70%;
         height: 28%;
         box-sizing: border-box;
         overflow: hidden;
@@ -180,7 +180,7 @@ const props = defineProps({
             align-items: center;
             box-sizing: border-box;
             width: 100%;
-            height: 77%;
+            height: 76%;
             gap: 1.5cqh;
             padding: 2.5cqh 4cqw 1.5cqh;
             text-align: center;
