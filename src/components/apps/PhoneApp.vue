@@ -1,6 +1,7 @@
 <script setup>
 import { computed, ref } from 'vue';
 import { ArrowLeft, Camera, ClockFading, Delete, Grid3X3, ImagePlus, Keyboard, Mail, MessageCircle, MicOff, MoreHorizontal, Phone, PhoneOff, Search, User, UserPlus, Video, Volume2, X } from '@lucide/vue';
+import Prompt from '../../utils/Prompt.vue';
 
 const activeCategory = ref('calls');
 
@@ -21,6 +22,7 @@ const selectedContact = ref(null);
 const isClosingContact = ref(false);
 const editingContact = ref(false);
 const editableContact = ref(emptyContact());
+const showDeletePhotoPrompt = ref(false);
 const activeCall = ref(null);
 const isSpeakerOn = ref(false);
 const isMuted = ref(false);
@@ -93,7 +95,21 @@ const startEditingContact = () => {
 };
 
 const cancelEditingContact = () => {
+    showDeletePhotoPrompt.value = false;
     editingContact.value = false;
+};
+
+const askDeletePhoto = () => {
+    showDeletePhotoPrompt.value = true;
+};
+
+const cancelDeletePhoto = () => {
+    showDeletePhotoPrompt.value = false;
+};
+
+const confirmDeletePhoto = () => {
+    editableContact.value.photo = '';
+    showDeletePhotoPrompt.value = false;
 };
 
 const saveContact = () => {
@@ -152,6 +168,17 @@ const addContact = () => {
 
 <template>
     <div class="phone-app">
+        <Prompt
+            :visible="showDeletePhotoPrompt"
+            variant="without-text"
+            title="Supprimer la photo ?"
+            description="Voulez-vous vraiment supprimer cette photo ?"
+            cancel-text="Annuler"
+            confirm-text="Supprimer"
+            @confirm="confirmDeletePhoto"
+            @cancel="cancelDeletePhoto"
+        />
+
         <div v-if="activeCall" class="call-screen">
             <div class="call-screen-header">
                 <span>Appel en cours...</span>
@@ -233,7 +260,7 @@ const addContact = () => {
                 </template>
                 <h2 v-else>{{ selectedContact.firstName }} {{ selectedContact.lastName }}</h2>
                 <button v-if="editingContact && editableContact.photo" type="button" class="remove-photo"
-                    @click="editableContact.photo = ''">Supprimer la photo</button>
+                    @click="askDeletePhoto">Supprimer la photo</button>
             </div>
 
             <div v-if="!editingContact" class="detail-actions">
