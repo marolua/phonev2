@@ -57,7 +57,7 @@
             box-sizing: border-box;
             padding: 1.5cqh 4cqw 0;
             text-align: center;
-            gap: 0.45cqh;
+            gap: 0.75cqh;
             height: 64%;
             width: 100%;
             // background-color: green;
