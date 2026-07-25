@@ -160,20 +160,20 @@ const addContact = () => {
 
             <div class="call-actions">
                 <button type="button" :class="{ 'call-action-active': isSpeakerOn }" @click="isSpeakerOn = !isSpeakerOn">
-                    <Volume2 size="2.5cqh" /><span>Haut-parleur</span>
+                    <div class="call-action-icon"><Volume2 size="2.8cqh" /></div><span>Haut-parleur</span>
                 </button>
-                <button type="button"><Video size="2.5cqh" /><span>FaceTime</span></button>
+                <button type="button"><div class="call-action-icon"><Video size="2.8cqh" /></div><span>FaceTime</span></button>
                 <button type="button" :class="{ 'call-action-active': isMuted }" @click="isMuted = !isMuted">
-                    <MicOff size="2.5cqh" /><span>Muet</span>
+                    <div class="call-action-icon"><MicOff size="2.8cqh" /></div><span>Muet</span>
                 </button>
                 <button type="button">
-                    <MoreHorizontal size="2.5cqh" /><span>Plus</span>
+                    <div class="call-action-icon"><MoreHorizontal size="2.8cqh" /></div><span>Plus</span>
                 </button>
                 <button type="button" class="end-call-button" @click="endCall">
-                    <PhoneOff size="2.5cqh" /><span>Fin</span>
+                    <div class="call-action-icon"><PhoneOff size="2.8cqh" /></div><span>Fin</span>
                 </button>
                 <button type="button">
-                    <Grid3X3 size="2.5cqh" /><span>Clavier</span>
+                    <div class="call-action-icon"><Grid3X3 size="2.8cqh" /></div><span>Clavier</span>
                 </button>
             </div>
         </div>
@@ -471,6 +471,7 @@ const addContact = () => {
                 flex-direction: column;
                 gap: 0.9cqh;
                 border: 0;
+                padding: 0;
                 color: rgba(255, 255, 255, 0.85);
                 background: transparent;
                 font-family: inherit;
@@ -482,21 +483,28 @@ const addContact = () => {
                     transform: scale(0.94);
                 }
 
-                svg {
+                .call-action-icon {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                     width: 7.2cqh;
                     height: 7.2cqh;
-                    padding: 2.05cqh;
                     box-sizing: border-box;
                     border-radius: 50%;
                     color: white;
                     background: rgba(255, 255, 255, 0.14);
                     backdrop-filter: blur(1cqh);
+
+                    svg {
+                        width: 2.8cqh;
+                        height: 2.8cqh;
+                    }
                 }
 
                 &.call-action-active {
                     color: #81b6ff;
 
-                    svg {
+                    .call-action-icon {
                         color: #0b0b0d;
                         background: #f4f7ff;
                     }
@@ -506,7 +514,7 @@ const addContact = () => {
             .end-call-button {
                 color: #ffb5ae;
 
-                svg {
+                .call-action-icon {
                     background: linear-gradient(145deg, #ff6257, #db2e3b);
                     box-shadow: 0 0.8cqh 2.5cqh rgba(255, 59, 48, 0.28);
                 }
