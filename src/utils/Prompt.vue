@@ -58,7 +58,6 @@
             gap: 1cqh;
             height: 64%;
             width: 100%;
-            // background-color: green;
 
             .title-prompt {
                 font-size: 2.15cqh;
