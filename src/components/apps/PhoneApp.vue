@@ -17,7 +17,6 @@ const newContact = ref({ firstName: '', lastName: '', phone: '' });
 const contacts = ref([]);
 const contactSearch = ref('');
 const selectedContact = ref(null);
-const contactTransition = ref('contact-detail-forward');
 const editingContact = ref(false);
 const editableContact = ref({ firstName: '', lastName: '', phone: '' });
 const activeCall = ref(null);
@@ -41,13 +40,11 @@ const removeLastDigit = () => {
 };
 
 const openContact = (contact) => {
-    contactTransition.value = 'contact-detail-forward';
     selectedContact.value = contact;
     editingContact.value = false;
 };
 
 const closeContact = () => {
-    contactTransition.value = 'contact-detail-back';
     editingContact.value = false;
     selectedContact.value = null;
 };
@@ -142,7 +139,7 @@ const addContact = () => {
             </div>
         </div>
 
-        <Transition v-else-if="selectedContact" :name="contactTransition">
+        <Transition v-else-if="selectedContact" name="contact-detail">
             <div class="contact-detail-page">
                 <div class="detail-header">
                     <button type="button" class="detail-back" aria-label="Retour" @click="closeContact">
@@ -599,7 +596,7 @@ const addContact = () => {
             padding: 1cqh 3cqw;
             box-sizing: border-box;
             border-radius: 2.5cqh;
-            background: rgba(15, 15, 15, 0.9);
+            background: rgba(20, 20, 20, 0.9);
 
             div {
                 display: flex;
