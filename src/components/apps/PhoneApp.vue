@@ -178,13 +178,13 @@ const addContact = () => {
 
                 <div v-if="!editingContact" class="detail-actions">
                     <button type="button">
-                        <MessageCircle size="2.5cqh" /><span>Message</span>
+                        <MessageCircle class="detail-action-icon" size="2.5cqh" /><span>Message</span>
                     </button>
                     <button type="button" @click="startCall(selectedContact.phone, selectedContact)">
-                        <Phone size="2cqh" /><span>Appeler</span>
+                        <Phone class="detail-action-icon" size="2cqh" /><span>Appeler</span>
                     </button>
                     <button type="button">
-                        <Mail size="2cqh" /><span>Mail</span>
+                        <Mail class="detail-action-icon" size="2cqh" /><span>Mail</span>
                     </button>
                 </div>
 
@@ -582,6 +582,11 @@ const addContact = () => {
                     border-radius: 50%;
                     background: rgba(44, 44, 46, 0.85);
                 }
+
+                .detail-action-icon {
+                    width: 7cqh !important;
+                    height: 7cqh !important;
+                }
             }
         }
 
@@ -591,15 +596,15 @@ const addContact = () => {
             justify-content: space-between;
             width: 100%;
             margin-top: 4cqh;
-            padding: 1.7cqh 3cqw;
+            padding: 1cqh 3cqw;
             box-sizing: border-box;
             border-radius: 2.5cqh;
-            background: rgba(35, 35, 35, 0.9);
+            background: rgba(15, 15, 15, 0.9);
 
             div {
                 display: flex;
                 flex-direction: column;
-                gap: 0.7cqh;
+                gap: 0.5cqh;
 
                 small {
                     color: rgba(255, 255, 255, 0.45);
@@ -607,7 +612,7 @@ const addContact = () => {
                 }
 
                 strong {
-                    font-size: 2.2cqh;
+                    font-size: 2cqh;
                 }
 
                 input {
