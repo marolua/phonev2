@@ -149,8 +149,9 @@ const addContact = () => {
                         <ArrowLeft size="2.5cqh" />
                     </button>
                     <div class="detail-edit-actions">
-                        <button v-if="editingContact" type="button" class="detail-cancel"
-                            @click="cancelEditingContact">Annuler</button>
+                        <button v-if="editingContact" type="button" class="detail-cancel" @click="cancelEditingContact">
+                            <X size="2.5cqh" />
+                        </button>
                         <button type="button" class="detail-edit"
                             :disabled="editingContact && (!editableContact.firstName.trim() || !editableContact.phone.trim())"
                             @click="editingContact ? saveContact() : startEditingContact()">
@@ -161,7 +162,8 @@ const addContact = () => {
 
                 <div class="detail-identity">
                     <div class="detail-avatar">
-                        {{ (editingContact ? editableContact.firstName : selectedContact.firstName).charAt(0).toUpperCase() }}
+                        {{ (editingContact ? editableContact.firstName :
+                            selectedContact.firstName).charAt(0).toUpperCase() }}
                     </div>
                     <template v-if="editingContact">
                         <div class="detail-name-fields">
@@ -465,6 +467,12 @@ const addContact = () => {
             justify-content: space-between;
             width: 100%;
 
+            .detail-edit-actions {
+                display: flex;
+                align-items: center;
+                gap: 1.5cqw;
+            }
+
             button {
                 display: flex;
                 align-items: center;
@@ -487,6 +495,17 @@ const addContact = () => {
                 padding: 0 3cqw;
                 color: #1686ff;
                 font-size: 1.7cqh;
+
+                &:disabled {
+                    opacity: 0.4;
+                    cursor: default;
+                }
+            }
+
+            .detail-cancel {
+                padding: 0 2.3cqw;
+                color: rgba(255, 255, 255, 0.65);
+                font-size: 1.6cqh;
             }
         }
 
@@ -513,6 +532,27 @@ const addContact = () => {
             h2 {
                 margin: 0;
                 font-size: 3.2cqh;
+            }
+
+            .detail-name-fields {
+                display: flex;
+                gap: 1.5cqw;
+
+                input {
+                    width: 27cqw;
+                    padding: 1cqh 1.5cqw;
+                    border: 1px solid rgba(255, 255, 255, 0.18);
+                    border-radius: 1.2cqh;
+                    outline: none;
+                    color: white;
+                    background: rgba(44, 44, 46, 0.85);
+                    font-family: inherit;
+                    font-size: 1.7cqh;
+
+                    &:focus {
+                        border-color: #1686ff;
+                    }
+                }
             }
         }
 
@@ -569,6 +609,22 @@ const addContact = () => {
                 strong {
                     font-size: 2.2cqh;
                 }
+
+                input {
+                    width: 42cqw;
+                    padding: 0.7cqh 1cqw;
+                    border: 1px solid rgba(255, 255, 255, 0.18);
+                    border-radius: 1cqh;
+                    outline: none;
+                    color: white;
+                    background: rgba(255, 255, 255, 0.08);
+                    font-family: inherit;
+                    font-size: 2cqh;
+
+                    &:focus {
+                        border-color: #1686ff;
+                    }
+                }
             }
 
             button {
@@ -584,6 +640,19 @@ const addContact = () => {
                 cursor: pointer;
             }
         }
+    }
+
+    .contact-detail-forward-enter-active,
+    .contact-detail-back-leave-active {
+        transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .contact-detail-forward-enter-from {
+        transform: translateX(100%);
+    }
+
+    .contact-detail-back-leave-to {
+        transform: translateX(100%);
     }
 
     .title {
