@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <div class="container-prompt-with-texte">
+    <!-- <div class="container-prompt-with-texte">
         <div class="prompt-with">
             <div class="top-prompt-with">
                 <span class="title-prompt">A Short Title Is Best</span>
@@ -14,8 +14,8 @@
                 <span class="action-prompt">Action</span>
             </div>
         </div>
-    </div>
-    <!-- <div class="container-prompt-without-texte">
+    </div> -->
+    <div class="container-prompt-without-texte">
         <div class="prompt-without">
             <div class="top-prompt-without">
                 <span class="title-prompt">Supprimer la conversation</span>
@@ -27,7 +27,7 @@
                 <span class="button-prompt">Refuser</span>
             </div>
         </div>
-    </div> -->
+    </div>
 </template>
 
 <style lang="scss">
@@ -141,9 +141,9 @@
         display: flex;
         flex-direction: column;
         border-radius: 3.5cqw;
-        width: 67.5%;
+        width: 70%;
         box-sizing: border-box;
-        height: 18%;
+        height: 20%;
         overflow: hidden;
         background-color: rgba(40, 40, 40, 0.90);
 
