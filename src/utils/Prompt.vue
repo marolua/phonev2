@@ -348,7 +348,6 @@ function cancel() {
                 color: white;
                 font: 400 1.9cqh "SF Pro Display", sans-serif;
                 background-color: rgba(15, 15, 15, 0.9);
-                -moz-appearance: textfield;
 
                 &::-webkit-inner-spin-button,
                 &::-webkit-outer-spin-button {
