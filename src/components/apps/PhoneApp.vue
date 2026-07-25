@@ -23,6 +23,7 @@ const isClosingContact = ref(false);
 const editingContact = ref(false);
 const editableContact = ref(emptyContact());
 const showDeletePhotoPrompt = ref(false);
+const showDeleteContactPrompt = ref(false);
 const activeCall = ref(null);
 const isSpeakerOn = ref(false);
 const isMuted = ref(false);
@@ -78,6 +79,7 @@ const openContact = (contact) => {
 const closeContact = () => {
     if (!selectedContact.value || isClosingContact.value) return;
 
+    showDeleteContactPrompt.value = false;
     editingContact.value = false;
     isClosingContact.value = true;
 
@@ -128,9 +130,18 @@ const saveContact = () => {
 
 const deleteContact = () => {
     if (!selectedContact.value) return;
-    if (!window.confirm('Supprimer ce contact ?')) return;
+    showDeleteContactPrompt.value = true;
+};
+
+const cancelDeleteContact = () => {
+    showDeleteContactPrompt.value = false;
+};
+
+const confirmDeleteContact = () => {
+    if (!selectedContact.value) return;
 
     contacts.value = contacts.value.filter((contact) => contact.id !== selectedContact.value.id);
+    showDeleteContactPrompt.value = false;
     closeContact();
 };
 
@@ -177,6 +188,16 @@ const addContact = () => {
             confirm-text="Supprimer"
             @confirm="confirmDeletePhoto"
             @cancel="cancelDeletePhoto"
+        />
+        <Prompt
+            :visible="showDeleteContactPrompt"
+            variant="without-text"
+            title="Supprimer le contact ?"
+            description="Voulez-vous vraiment supprimer ce contact ?"
+            cancel-text="Annuler"
+            confirm-text="Supprimer"
+            @confirm="confirmDeleteContact"
+            @cancel="cancelDeleteContact"
         />
 
         <div v-if="activeCall" class="call-screen">
