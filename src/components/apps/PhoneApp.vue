@@ -173,7 +173,7 @@ const addContact = () => {
                     <div class="call-action-icon"><PhoneOff size="2.8cqh" /></div><span>Fin</span>
                 </button>
                 <button type="button">
-                    <div class="call-action-icon"><Grid3X3 size="2.8cqh" /></div><span>Clavier</span>
+                    <div class="call-action-icon"><Keyboard size="2.8cqh" /></div><span>Clavier</span>
                 </button>
             </div>
         </div>
