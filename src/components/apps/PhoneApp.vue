@@ -473,6 +473,8 @@ const addContact = () => {
             display: flex;
             align-items: center;
             justify-content: space-between;
+            position: relative;
+            min-height: 5cqh;
             width: 100%;
 
             .detail-edit-actions {
@@ -501,7 +503,9 @@ const addContact = () => {
 
             .detail-edit {
                 padding: 0 3cqw;
+                border: 0;
                 color: #1686ff;
+                background: transparent;
                 font-size: 1.7cqh;
 
                 &:disabled {
@@ -511,9 +515,21 @@ const addContact = () => {
             }
 
             .detail-cancel {
-                padding: 0 2.3cqw;
-                color: rgba(255, 255, 255, 0.65);
-                font-size: 1.6cqh;
+                height: auto;
+                padding: 0;
+                border: 0;
+                color: #1686ff;
+                background: transparent;
+                font-size: 1.7cqh;
+            }
+
+            .detail-edit-title {
+                position: absolute;
+                left: 50%;
+                color: rgba(255, 255, 255, 0.9);
+                font-size: 1.8cqh;
+                font-weight: 600;
+                transform: translateX(-50%);
             }
         }
 
@@ -543,22 +559,46 @@ const addContact = () => {
             }
 
             .detail-name-fields {
-                display: flex;
-                gap: 1.5cqw;
+            display: flex;
+                flex-direction: column;
+                width: 100%;
+                gap: 0;
+                overflow: hidden;
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                border-radius: 1.5cqh;
+                background: rgba(118, 118, 128, 0.2);
 
-                input {
-                    width: 27cqw;
-                    padding: 1cqh 1.5cqw;
-                    border: 1px solid rgba(255, 255, 255, 0.18);
-                    border-radius: 1.2cqh;
-                    outline: none;
-                    color: white;
-                    background: rgba(44, 44, 46, 0.85);
-                    font-family: inherit;
-                    font-size: 1.7cqh;
+                label {
+                    display: flex;
+                    align-items: center;
+                    min-height: 6cqh;
+                    padding: 0 2cqw;
 
-                    &:focus {
-                        border-color: #1686ff;
+                    &:not(:last-child) {
+                        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                    }
+
+                    span {
+                        width: 18cqw;
+                        flex-shrink: 0;
+                        color: rgba(255, 255, 255, 0.55);
+                        font-size: 1.6cqh;
+                    }
+
+                    input {
+                        width: 100%;
+                        min-width: 0;
+                        padding: 0;
+                        border: 0;
+                        outline: none;
+                        color: white;
+                        background: transparent;
+                        font-family: inherit;
+                        font-size: 1.8cqh;
+
+                        &::placeholder {
+                            color: rgba(255, 255, 255, 0.35);
+                        }
                     }
                 }
             }
@@ -642,18 +682,17 @@ const addContact = () => {
                 }
 
                 input {
-                    width: 42cqw;
-                    padding: 0.7cqh 1cqw;
-                    border: 1px solid rgba(255, 255, 255, 0.18);
-                    border-radius: 1cqh;
+                    width: 100%;
+                    padding: 0;
+                    border: 0;
                     outline: none;
                     color: white;
-                    background: rgba(255, 255, 255, 0.08);
+                    background: transparent;
                     font-family: inherit;
                     font-size: 2cqh;
 
                     &:focus {
-                        border-color: #1686ff;
+                        border: 0;
                     }
                 }
             }
@@ -673,15 +712,33 @@ const addContact = () => {
         }
     }
 
-    .contact-detail-enter-active,
-    .contact-detail-leave-active {
-        transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    @keyframes contact-detail-slide-in {
+        from {
+            transform: translate3d(100%, 0, 0);
+        }
+
+        to {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+    @keyframes contact-detail-slide-out {
+        from {
+            transform: translate3d(0, 0, 0);
+        }
+
+        to {
+            transform: translate3d(100%, 0, 0);
+        }
+    }
+
+    .contact-detail-page {
+        animation: contact-detail-slide-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
         will-change: transform;
     }
 
-    .contact-detail-enter-from,
-    .contact-detail-leave-to {
-        transform: translate3d(100%, 0, 0);
+    .contact-detail-page.contact-detail-closing {
+        animation: contact-detail-slide-out 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
 
     .title {
