@@ -13,13 +13,15 @@
 
 <style lang="scss">
 .container-prompt-without-texte {
-    position: relative;
+    position: absolute;
+    inset: 0;
     display: flex;
     width: 100%;
     height: 100%;
     border-radius: 13.4cqw;
-    background-color: rgba(255, 255, 255, 0.75);
-    filter: drop-shadow(0px -6px 100px #000000);
+    background-color: rgba(0, 0, 0, 0.38);
+    backdrop-filter: blur(0.8cqh);
+    -webkit-backdrop-filter: blur(0.8cqh);
     z-index: 50;
 }
 </style>
