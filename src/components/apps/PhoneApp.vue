@@ -577,37 +577,24 @@ const addContact = () => {
                 border-radius: 1.5cqh;
                 background: rgba(118, 118, 128, 0.2);
 
-                label {
-                    display: flex;
-                    align-items: center;
+                input {
+                    width: 100%;
                     min-height: 6cqh;
+                    box-sizing: border-box;
                     padding: 0 2cqw;
+                    border: 0;
+                    outline: none;
+                    color: white;
+                    background: transparent;
+                    font-family: inherit;
+                    font-size: 1.8cqh;
 
                     &:not(:last-child) {
                         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
                     }
 
-                    span {
-                        width: 18cqw;
-                        flex-shrink: 0;
+                    &::placeholder {
                         color: rgba(255, 255, 255, 0.55);
-                        font-size: 1.6cqh;
-                    }
-
-                    input {
-                        width: 100%;
-                        min-width: 0;
-                        padding: 0;
-                        border: 0;
-                        outline: none;
-                        color: white;
-                        background: transparent;
-                        font-family: inherit;
-                        font-size: 1.8cqh;
-
-                        &::placeholder {
-                            color: rgba(255, 255, 255, 0.35);
-                        }
                     }
                 }
             }
