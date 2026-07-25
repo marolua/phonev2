@@ -976,10 +976,6 @@ const addContact = () => {
                     &::placeholder {
                         color: rgba(255, 255, 255, 0.35);
                     }
-
-                    &:focus {
-                        border-color: #4d8dff;
-                    }
                 }
             }
         }
