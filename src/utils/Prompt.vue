@@ -9,8 +9,8 @@
     <div class="container-prompt-without-texte">
         <div class="prompt-without">
             <div class="top-prompt-without">
-                <span class="title-prompt">Delete Conversation</span>
-                <span class="description">Are you sure you want to delete this conversation?</span>
+                <span class="title-prompt">Supprimer la conversation</span>
+                <span class="description">Êtes-vous sur de vouloir supprimer cette conversation?</span>
             </div>
             <div class="bottom-prompt-without">
                 <span class="button-prompt">Accepte</span>
@@ -55,19 +55,19 @@
             box-sizing: border-box;
             padding: 1.5cqh 4cqw 0;
             text-align: center;
-            gap: 0.75cqh;
+            gap: 1cqh;
             height: 64%;
             width: 100%;
             // background-color: green;
 
             .title-prompt {
-                font-size: 2.1cqh;
-                font-weight: 600;
+                font-size: 2.15cqh;
+                font-weight: 750;
                 line-height: 1.1;
             }
 
             .description {
-                font-size: 1.55cqh;
+                font-size: 1.7cqh;
                 line-height: 1.25;
             }
         }
