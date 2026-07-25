@@ -151,65 +151,65 @@ const addContact = () => {
 
         <div v-else-if="selectedContact || isClosingContact" class="contact-detail-page"
             :class="{ 'contact-detail-closing': isClosingContact }">
-                <div class="detail-header">
-                    <button v-if="!editingContact" type="button" class="detail-back" aria-label="Retour"
-                        @click="closeContact">
-                        <ArrowLeft size="2.5cqh" />
-                    </button>
-                    <button v-else type="button" class="detail-cancel" @click="cancelEditingContact">
-                        Annuler
-                    </button>
-                    <span v-if="editingContact" class="detail-edit-title">Modifier</span>
-                    <div class="detail-edit-actions">
-                        <button type="button" class="detail-edit"
-                            :disabled="editingContact && (!editableContact.firstName.trim() || !editableContact.phone.trim())"
-                            @click="editingContact ? saveContact() : startEditingContact()">
-                            {{ editingContact ? 'OK' : 'Modifier' }}
-                        </button>
-                    </div>
-                </div>
-
-                <div class="detail-identity">
-                    <div class="detail-avatar">
-                        {{ (editingContact ? editableContact.firstName :
-                            selectedContact.firstName).charAt(0).toUpperCase() }}
-                    </div>
-                    <template v-if="editingContact">
-                        <div class="detail-name-fields">
-                            <input v-model="editableContact.firstName" type="text" placeholder="Prénom"
-                                autocomplete="given-name" />
-                            <input v-model="editableContact.lastName" type="text" placeholder="Nom"
-                                autocomplete="family-name" />
-                        </div>
-                    </template>
-                    <h2 v-else>{{ selectedContact.firstName }} {{ selectedContact.lastName }}</h2>
-                </div>
-
-                <div v-if="!editingContact" class="detail-actions">
-                    <button type="button">
-                        <MessageCircle class="detail-action-icon" size="3cqh" /><span>Message</span>
-                    </button>
-                    <button type="button" @click="startCall(selectedContact.phone, selectedContact)">
-                        <Phone class="detail-action-icon" size="3cqh" /><span>Appeler</span>
-                    </button>
-                    <button type="button">
-                        <Mail class="detail-action-icon" size="3cqh" /><span>Mail</span>
-                    </button>
-                </div>
-
-                <div class="detail-number-card">
-                    <div>
-                        <small>mobile</small>
-                        <strong v-if="!editingContact">{{ selectedContact.phone }}</strong>
-                        <input v-else v-model="editableContact.phone" type="tel" placeholder="Numéro de téléphone"
-                            autocomplete="tel" />
-                    </div>
-                    <button v-if="!editingContact" type="button" aria-label="Appeler"
-                        @click="startCall(selectedContact.phone, selectedContact)">
-                        <Phone size="2.2cqh" />
+            <div class="detail-header">
+                <button v-if="!editingContact" type="button" class="detail-back" aria-label="Retour"
+                    @click="closeContact">
+                    <ArrowLeft size="2.5cqh" />
+                </button>
+                <button v-else type="button" class="detail-cancel" @click="cancelEditingContact">
+                    Annuler
+                </button>
+                <span v-if="editingContact" class="detail-edit-title">Modifier</span>
+                <div class="detail-edit-actions">
+                    <button type="button" class="detail-edit"
+                        :disabled="editingContact && (!editableContact.firstName.trim() || !editableContact.phone.trim())"
+                        @click="editingContact ? saveContact() : startEditingContact()">
+                        {{ editingContact ? 'OK' : 'Modifier' }}
                     </button>
                 </div>
             </div>
+
+            <div class="detail-identity">
+                <div class="detail-avatar">
+                    {{ (editingContact ? editableContact.firstName :
+                        selectedContact.firstName).charAt(0).toUpperCase() }}
+                </div>
+                <template v-if="editingContact">
+                    <div class="detail-name-fields">
+                        <input v-model="editableContact.firstName" type="text" placeholder="Prénom"
+                            autocomplete="given-name" />
+                        <input v-model="editableContact.lastName" type="text" placeholder="Nom"
+                            autocomplete="family-name" />
+                    </div>
+                </template>
+                <h2 v-else>{{ selectedContact.firstName }} {{ selectedContact.lastName }}</h2>
+            </div>
+
+            <div v-if="!editingContact" class="detail-actions">
+                <button type="button">
+                    <MessageCircle class="detail-action-icon" size="3cqh" /><span>Message</span>
+                </button>
+                <button type="button" @click="startCall(selectedContact.phone, selectedContact)">
+                    <Phone class="detail-action-icon" size="3cqh" /><span>Appeler</span>
+                </button>
+                <button type="button">
+                    <Mail class="detail-action-icon" size="3cqh" /><span>Mail</span>
+                </button>
+            </div>
+
+            <div class="detail-number-card">
+                <div>
+                    <small>mobile</small>
+                    <strong v-if="!editingContact">{{ selectedContact.phone }}</strong>
+                    <input v-else v-model="editableContact.phone" type="tel" placeholder="Numéro de téléphone"
+                        autocomplete="tel" />
+                </div>
+                <button v-if="!editingContact" type="button" aria-label="Appeler"
+                    @click="startCall(selectedContact.phone, selectedContact)">
+                    <Phone size="2.2cqh" />
+                </button>
+            </div>
+        </div>
 
         <template v-else>
             <span class="title">{{ activeCategory === 'calls' ? 'Récents' : activeCategory === 'contacts' ? 'Contacts' :
