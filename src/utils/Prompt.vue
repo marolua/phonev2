@@ -71,8 +71,9 @@ function cancel() {
 </script>
 
 <template>
-    <template v-if="props.visible">
-    <div v-if="props.variant === 'with-text'" class="container-prompt-with-texte">
+    <Transition name="prompt-zoom">
+        <div v-if="props.visible" class="prompt-transition-wrapper">
+            <div v-if="props.variant === 'with-text'" class="container-prompt-with-texte">
         <div class="prompt-with">
             <div class="top-prompt-with">
                 <span class="title-prompt">{{ props.title }}</span>
@@ -85,9 +86,9 @@ function cancel() {
                 <span class="action-prompt" role="button" tabindex="0" @click="confirm">{{ confirmLabel }}</span>
             </div>
         </div>
-    </div>
+            </div>
 
-    <div v-else-if="props.variant === 'with-text-and-choice'" class="container-prompt-with-texte-and-choice">
+            <div v-else-if="props.variant === 'with-text-and-choice'" class="container-prompt-with-texte-and-choice">
         <div class="prompt-with-choice">
             <div class="top-prompt-with-choice">
                 <span class="title-prompt">{{ props.title }}</span>
@@ -102,9 +103,9 @@ function cancel() {
                 <span class="button-prompt" role="button" tabindex="0" @click="confirm">{{ confirmLabel }}</span>
             </div>
         </div>
-    </div>
+            </div>
 
-    <div v-else class="container-prompt-without-texte">
+            <div v-else class="container-prompt-without-texte">
         <div class="prompt-without">
             <div class="top-prompt-without">
                 <span class="title-prompt">{{ props.title }}</span>
@@ -116,8 +117,9 @@ function cancel() {
                 <span class="button-prompt" role="button" tabindex="0" @click="confirm">{{ confirmLabel }}</span>
             </div>
         </div>
-    </div>
-    </template>
+            </div>
+        </div>
+    </Transition>
 
     <!-- <div class="container-prompt-with-texte">
         <div class="prompt-with">
@@ -164,6 +166,39 @@ function cancel() {
 </template>
 
 <style lang="scss">
+.prompt-transition-wrapper {
+    position: absolute;
+    inset: 0;
+    z-index: 50;
+}
+
+.prompt-zoom-enter-active,
+.prompt-zoom-leave-active {
+    transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.prompt-zoom-enter-from,
+.prompt-zoom-leave-to {
+    opacity: 0;
+}
+
+.prompt-zoom-enter-from .prompt-with,
+.prompt-zoom-enter-from .prompt-with-choice,
+.prompt-zoom-enter-from .prompt-without,
+.prompt-zoom-leave-to .prompt-with,
+.prompt-zoom-leave-to .prompt-with-choice,
+.prompt-zoom-leave-to .prompt-without {
+    transform: scale(0.94);
+}
+
+.prompt-with,
+.prompt-with-choice,
+.prompt-without {
+    transform: scale(1);
+    transform-origin: center;
+    transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 .container-prompt-with-texte {
     position: absolute;
     inset: 0;

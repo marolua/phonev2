@@ -420,6 +420,7 @@ const closeApplication = () => {
         justify-content: center;
         align-items: end;
         width: 100%;
+        user-select: none;
         border-radius: 13.4cqw;
         height: 98.1cqh;
         // background: rgba(5, 98, 237, 0.5);
