@@ -77,7 +77,8 @@ const addContact = () => {
         <div v-if="activeCall" class="call-screen">
             <div class="call-screen-header">
                 <span>Appel en cours...</span>
-                <strong>{{ activeCall.contact ? `${activeCall.contact.firstName} ${activeCall.contact.lastName}` : activeCall.number }}</strong>
+                <strong>{{ activeCall.contact ? `${activeCall.contact.firstName} ${activeCall.contact.lastName}` :
+                    activeCall.number }}</strong>
             </div>
 
             <div class="call-screen-content">
@@ -91,12 +92,22 @@ const addContact = () => {
             </div>
 
             <div class="call-actions">
-                <button type="button"><Volume2 size="2.5cqh" /><span>Haut-parleur</span></button>
+                <button type="button">
+                    <Volume2 size="2.5cqh" /><span>Haut-parleur</span>
+                </button>
                 <button type="button"><Video size="2.5cqh" /><span>FaceTime</span></button>
-                <button type="button"><MicOff size="2.5cqh" /><span>Muet</span></button>
-                <button type="button"><MoreHorizontal size="2.5cqh" /><span>Plus</span></button>
-                <button type="button" class="end-call-button" @click="endCall"><PhoneOff size="2.5cqh" /><span>Fin</span></button>
-                <button type="button"><Grid3X3 size="2.5cqh" /><span>Clavier</span></button>
+                <button type="button">
+                    <MicOff size="2.5cqh" /><span>Muet</span>
+                </button>
+                <button type="button">
+                    <MoreHorizontal size="2.5cqh" /><span>Plus</span>
+                </button>
+                <button type="button" class="end-call-button" @click="endCall">
+                    <PhoneOff size="2.5cqh" /><span>Fin</span>
+                </button>
+                <button type="button">
+                    <Grid3X3 size="2.5cqh" /><span>Clavier</span>
+                </button>
             </div>
         </div>
 
@@ -116,9 +127,15 @@ const addContact = () => {
             </div>
 
             <div class="detail-actions">
-                <button type="button"><MessageCircle size="2.5cqh" /><span>Message</span></button>
-                <button type="button" @click="startCall(selectedContact.phone, selectedContact)"><Phone size="2.5cqh" /><span>Appeler</span></button>
-                <button type="button"><Mail size="2.5cqh" /><span>Mail</span></button>
+                <button type="button">
+                    <MessageCircle size="2.5cqh" /><span>Message</span>
+                </button>
+                <button type="button" @click="startCall(selectedContact.phone, selectedContact)">
+                    <Phone size="2.5cqh" /><span>Appeler</span>
+                </button>
+                <button type="button">
+                    <Mail size="2.5cqh" /><span>Mail</span>
+                </button>
             </div>
 
             <div class="detail-number-card">
@@ -133,133 +150,137 @@ const addContact = () => {
         </div>
 
         <template v-else>
-        <span class="title">{{ activeCategory === 'calls' ? 'Récents' : activeCategory === 'contacts' ? 'Contacts' : 'Clavier' }}</span>
+            <span class="title">{{ activeCategory === 'calls' ? 'Récents' : activeCategory === 'contacts' ? 'Contacts' :
+                'Clavier' }}</span>
 
-        <div v-if="activeCategory === 'calls'" class="container">
-            <div class="input-group">
-                <Search class="search-icon" color="rgb(255, 255, 255, 0.8)" size="2.6cqh" />
-                <input type="text" placeholder="Rechercher">
-            </div>
+            <div v-if="activeCategory === 'calls'" class="container">
+                <div class="input-group">
+                    <Search class="search-icon" color="rgb(255, 255, 255, 0.8)" size="2.6cqh" />
+                    <input type="text" placeholder="Rechercher">
+                </div>
 
-            <div class="container-recent-call">
-                <div class="recent-call" v-for="i in 20">
-                    <div class="information">
-                        <span class="name">Jane Doe</span>
-                        <span>Mobile</span>
-                    </div>
-                    <div class="time">
-                        <span>3 minute ago</span>
+                <div class="container-recent-call">
+                    <div class="recent-call" v-for="i in 20">
+                        <div class="information">
+                            <span class="name">Jane Doe</span>
+                            <span>Mobile</span>
+                        </div>
+                        <div class="time">
+                            <span>3 minute ago</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div v-else-if="activeCategory === 'contacts'" class="container contacts-container">
-            <div class="input-group contacts-search">
-                <Search class="search-icon" color="rgb(255, 255, 255, 0.8)" size="2.6cqh" />
-                <input v-model="contactSearch" type="text" placeholder="Rechercher dans les contacts">
-            </div>
+            <div v-else-if="activeCategory === 'contacts'" class="container contacts-container">
+                <div class="input-group contacts-search">
+                    <Search class="search-icon" color="rgb(255, 255, 255, 0.8)" size="2.6cqh" />
+                    <input v-model="contactSearch" type="text" placeholder="Rechercher dans les contacts">
+                </div>
 
-            <div class="contacts-header">
-                <span>Mes contacts</span>
-                <button class="add-contact" type="button" aria-label="Ajouter un contact" @click="showCreateContact = true">
-                    <UserPlus size="2.4cqh" />
-                </button>
-            </div>
-
-            <div v-if="contacts.length === 0" class="empty-state">
-                <User size="6cqh" />
-                <span>Aucun contact</span>
-                <small>Vos contacts apparaîtront ici.</small>
-            </div>
-
-            <div v-else-if="filteredContacts.length > 0" class="contacts-list">
-                <button v-for="contact in filteredContacts" :key="contact.id" type="button" class="contact-item" @click="openContact(contact)">
-                    <div class="contact-avatar">
-                        {{ contact.firstName.charAt(0).toUpperCase() }}
-                    </div>
-                    <div class="contact-information">
-                        <span>{{ contact.firstName }} {{ contact.lastName }}</span>
-                        <small>{{ contact.phone }}</small>
-                    </div>
-                </button>
-            </div>
-
-            <div v-else class="empty-state">
-                <Search size="6cqh" />
-                <span>Aucun résultat</span>
-                <small>Essayez un autre nom ou numéro.</small>
-            </div>
-        </div>
-
-        <div v-else class="container keyboard-container">
-            <div class="phone-number">{{ phoneNumber || ' ' }}</div>
-            <div class="keypad">
-                <button v-for="key in keypad" :key="key" type="button" class="keypad-key" @click="appendKey(key)">
-                    {{ key }}
-                </button>
-            </div>
-            <div class="keyboard-actions">
-                <button class="call-button" type="button" aria-label="Appeler" :disabled="!phoneNumber" @click="startCall(phoneNumber)">
-                    <Phone size="2.8cqh" />
-                </button>
-                <button class="delete-button" type="button" aria-label="Effacer" @click="removeLastDigit">
-                    <Delete size="2.4cqh" />
-                </button>
-            </div>
-        </div>
-
-        <div class="bottom-app-phone">
-            <div class="categories">
-                <button
-                    v-for="category in categories"
-                    :key="category.id"
-                    type="button"
-                    class="categorie"
-                    :class="{ 'categorie-selected': activeCategory === category.id }"
-                    @click="activeCategory = category.id"
-                >
-                    <component :is="category.icon" size="3cqh" />
-                    <span>{{ category.label }}</span>
-                </button>
-            </div>
-        </div>
-
-        <Transition name="contact-sheet">
-            <div v-if="showCreateContact" class="contact-modal-backdrop" @click.self="closeCreateContact">
-                <form class="contact-modal" @submit.prevent="addContact">
-                    <div class="modal-header">
-                        <button type="button" class="modal-action cancel-action" @click="closeCreateContact">Annuler</button>
-                        <span>Nouveau contact</span>
-                        <button type="submit" class="modal-action save-action" :disabled="!newContact.firstName.trim() || !newContact.phone.trim()">
-                            Ajouter
-                        </button>
-                    </div>
-
-                    <div class="contact-form">
-                        <div class="new-contact-avatar">
-                            <User size="5cqh" />
-                        </div>
-                        <label>
-                            <span>Prénom</span>
-                            <input v-model="newContact.firstName" type="text" placeholder="Prénom" autocomplete="given-name" />
-                        </label>
-                        <label>
-                            <span>Nom</span>
-                            <input v-model="newContact.lastName" type="text" placeholder="Nom" autocomplete="family-name" />
-                        </label>
-                        <label>
-                            <span>Téléphone</span>
-                            <input v-model="newContact.phone" type="tel" placeholder="Numéro de téléphone" autocomplete="tel" />
-                        </label>
-                    </div>
-
-                    <button type="button" class="close-modal" aria-label="Fermer" @click="closeCreateContact">
-                        <X size="2.2cqh" />
+                <div class="contacts-header">
+                    <span>Mes contacts</span>
+                    <button class="add-contact" type="button" aria-label="Ajouter un contact"
+                        @click="showCreateContact = true">
+                        <UserPlus size="2.4cqh" />
                     </button>
-                </form>
+                </div>
+
+                <div v-if="contacts.length === 0" class="empty-state">
+                    <User size="6cqh" />
+                    <span>Aucun contact</span>
+                    <small>Vos contacts apparaîtront ici.</small>
+                </div>
+
+                <div v-else-if="filteredContacts.length > 0" class="contacts-list">
+                    <button v-for="contact in filteredContacts" :key="contact.id" type="button" class="contact-item"
+                        @click="openContact(contact)">
+                        <div class="contact-avatar">
+                            {{ contact.firstName.charAt(0).toUpperCase() }}
+                        </div>
+                        <div class="contact-information">
+                            <span>{{ contact.firstName }} {{ contact.lastName }}</span>
+                            <small>{{ contact.phone }}</small>
+                        </div>
+                    </button>
+                </div>
+
+                <div v-else class="empty-state">
+                    <Search size="6cqh" />
+                    <span>Aucun résultat</span>
+                    <small>Essayez un autre nom ou numéro.</small>
+                </div>
             </div>
-        </Transition>
+
+            <div v-else class="container keyboard-container">
+                <div class="phone-number">{{ phoneNumber || ' ' }}</div>
+                <div class="keypad">
+                    <button v-for="key in keypad" :key="key" type="button" class="keypad-key" @click="appendKey(key)">
+                        {{ key }}
+                    </button>
+                </div>
+                <div class="keyboard-actions">
+                    <button class="call-button" type="button" aria-label="Appeler" :disabled="!phoneNumber"
+                        @click="startCall(phoneNumber)">
+                        <Phone size="2.8cqh" />
+                    </button>
+                    <button class="delete-button" type="button" aria-label="Effacer" @click="removeLastDigit">
+                        <Delete size="2.4cqh" />
+                    </button>
+                </div>
+            </div>
+
+            <div class="bottom-app-phone">
+                <div class="categories">
+                    <button v-for="category in categories" :key="category.id" type="button" class="categorie"
+                        :class="{ 'categorie-selected': activeCategory === category.id }"
+                        @click="activeCategory = category.id">
+                        <component :is="category.icon" size="3cqh" />
+                        <span>{{ category.label }}</span>
+                    </button>
+                </div>
+            </div>
+
+            <Transition name="contact-sheet">
+                <div v-if="showCreateContact" class="contact-modal-backdrop" @click.self="closeCreateContact">
+                    <form class="contact-modal" @submit.prevent="addContact">
+                        <div class="modal-header">
+                            <button type="button" class="modal-action cancel-action"
+                                @click="closeCreateContact">Annuler</button>
+                            <span>Nouveau contact</span>
+                            <button type="submit" class="modal-action save-action"
+                                :disabled="!newContact.firstName.trim() || !newContact.phone.trim()">
+                                Ajouter
+                            </button>
+                        </div>
+
+                        <div class="contact-form">
+                            <div class="new-contact-avatar">
+                                <User size="5cqh" />
+                            </div>
+                            <label>
+                                <span>Prénom</span>
+                                <input v-model="newContact.firstName" type="text" placeholder="Prénom"
+                                    autocomplete="given-name" />
+                            </label>
+                            <label>
+                                <span>Nom</span>
+                                <input v-model="newContact.lastName" type="text" placeholder="Nom"
+                                    autocomplete="family-name" />
+                            </label>
+                            <label>
+                                <span>Téléphone</span>
+                                <input v-model="newContact.phone" type="tel" placeholder="Numéro de téléphone"
+                                    autocomplete="tel" />
+                            </label>
+                        </div>
+
+                        <button type="button" class="close-modal" aria-label="Fermer" @click="closeCreateContact">
+                            <X size="2.2cqh" />
+                        </button>
+                    </form>
+                </div>
+            </Transition>
         </template>
     </div>
 </template>
@@ -527,7 +548,7 @@ const addContact = () => {
         height: 100%;
         margin-top: 1.5cqh;
 
-            .input-group {
+        .input-group {
             position: relative;
             display: flex;
             width: 100%;
@@ -807,6 +828,10 @@ const addContact = () => {
             height: 68%;
             border-radius: 6cqh;
             background-color: rgba(51, 51, 51, 0.3);
+            box-shadow:
+                0 10px 26px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.85),
+                inset 0 -6px 10px -6px rgba(0, 0, 0, 0.15);
 
             .categorie {
                 display: flex;
