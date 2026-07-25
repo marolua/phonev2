@@ -1,5 +1,20 @@
 <script setup>
+import { computed, ref, watch } from 'vue'
+
 const props = defineProps({
+    variant: {
+        type: String,
+        default: 'without-text',
+        validator: (value) => ['without-text', 'with-text', 'with-text-and-choice'].includes(value),
+    },
+    title: {
+        type: String,
+        default: 'Delete Conversation',
+    },
+    description: {
+        type: String,
+        default: 'Are you sure you want to delete this conversation?',
+    },
     inputType: {
         type: String,
         default: 'number',
@@ -7,13 +22,47 @@ const props = defineProps({
     },
     inputValue: {
         type: [String, Number],
-        default: '0',
+        default: undefined,
     },
     inputPlaceholder: {
         type: String,
+        default: 'Placeholder',
+    },
+    confirmText: {
+        type: String,
         default: '',
     },
+    cancelText: {
+        type: String,
+        default: 'Cancel',
+    },
 })
+
+const emit = defineEmits(['confirm', 'cancel', 'update:inputValue'])
+
+const inputValue = ref(props.inputValue ?? (props.variant === 'with-text-and-choice' ? '0' : ''))
+
+const confirmLabel = computed(() => {
+    if (props.confirmText) return props.confirmText
+    return props.variant === 'without-text' ? 'Delete' : 'Proceed'
+})
+
+watch(
+    () => [props.inputValue, props.variant],
+    ([value, variant]) => {
+        inputValue.value = value ?? (variant === 'with-text-and-choice' ? '0' : '')
+    },
+)
+
+watch(inputValue, (value) => emit('update:inputValue', value))
+
+function confirm() {
+    emit('confirm', inputValue.value)
+}
+
+function cancel() {
+    emit('cancel')
+}
 
 </script>
 
