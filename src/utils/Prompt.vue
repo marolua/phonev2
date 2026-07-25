@@ -203,7 +203,7 @@ const props = defineProps({
                 width: 88%;
                 height: 4.5cqh;
                 box-sizing: border-box;
-                padding: 0.5cqh 2cqw;
+                padding: 0.5cqh 3cqw;
                 border: 0;
                 border-radius: 1.4cqw;
                 outline: none;
