@@ -38,12 +38,14 @@ export const applications = [
     id: "settings",
     name: "Réglages",
     icon: SettingsIcon,
+    component: SettingsApp,
     page: "settings",
   },
   {
     id: "contacts",
     name: "Contacts",
     icon: ContactIcon,
+    component: ContactApp,
     page: "contact",
   },
   {
