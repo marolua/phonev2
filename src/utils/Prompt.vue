@@ -20,7 +20,7 @@
     height: 100%;
     border-radius: 13.4cqw;
     background-color: rgba(0, 0, 0, 0.38);
-    backdrop-filter: blur(0.8cqh);
+    backdrop-filter: blur(0.5cqh);
     -webkit-backdrop-filter: blur(0.8cqh);
     z-index: 50;
 }
