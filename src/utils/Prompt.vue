@@ -150,8 +150,8 @@
     .prompt-with-choice {
         display: flex;
         flex-direction: column;
-        width: 91%;
-        height: 30%;
+        width: 80%;
+        height: 28%;
         box-sizing: border-box;
         overflow: hidden;
         border-radius: 3.5cqw;
