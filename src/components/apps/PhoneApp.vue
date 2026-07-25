@@ -175,13 +175,13 @@ const addContact = () => {
 
                 <div v-if="!editingContact" class="detail-actions">
                     <button type="button">
-                        <MessageCircle class="detail-action-icon" size="4cqh" /><span>Message</span>
+                        <MessageCircle class="detail-action-icon" size="3cqh" /><span>Message</span>
                     </button>
                     <button type="button" @click="startCall(selectedContact.phone, selectedContact)">
-                        <Phone class="detail-action-icon" size="4cqh" /><span>Appeler</span>
+                        <Phone class="detail-action-icon" size="3cqh" /><span>Appeler</span>
                     </button>
                     <button type="button">
-                        <Mail class="detail-action-icon" size="4cqh" /><span>Mail</span>
+                        <Mail class="detail-action-icon" size="3cqh" /><span>Mail</span>
                     </button>
                 </div>
 
