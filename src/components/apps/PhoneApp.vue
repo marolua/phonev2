@@ -1,6 +1,6 @@
 <script setup>
 import { computed, ref } from 'vue';
-import { ArrowLeft, ClockFading, Delete, Grid3X3, Keyboard, Mail, MessageCircle, MicOff, MoreHorizontal, Phone, PhoneOff, Search, User, UserPlus, Video, Volume2, X } from '@lucide/vue';
+import { ArrowLeft, Camera, ClockFading, Delete, Grid3X3, ImagePlus, Keyboard, Mail, MessageCircle, MicOff, MoreHorizontal, Phone, PhoneOff, Search, User, UserPlus, Video, Volume2, X } from '@lucide/vue';
 
 const activeCategory = ref('calls');
 
@@ -13,15 +13,41 @@ const categories = [
 const keypad = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '*', '0', '#'];
 const phoneNumber = ref('');
 const showCreateContact = ref(false);
-const newContact = ref({ firstName: '', lastName: '', phone: '' });
+const emptyContact = () => ({ firstName: '', lastName: '', phone: '', photo: '' });
+const newContact = ref(emptyContact());
 const contacts = ref([]);
 const contactSearch = ref('');
 const selectedContact = ref(null);
 const isClosingContact = ref(false);
 const editingContact = ref(false);
-const editableContact = ref({ firstName: '', lastName: '', phone: '' });
+const editableContact = ref(emptyContact());
 const activeCall = ref(null);
+const isSpeakerOn = ref(false);
+const isMuted = ref(false);
 const contactAnimationDuration = 450;
+
+const getInitial = (contact) => contact?.firstName?.trim()?.charAt(0).toUpperCase() || '?';
+
+const handlePhotoChange = (event, target) => {
+    const file = event.target.files?.[0];
+    event.target.value = '';
+
+    if (!file) return;
+    if (!file.type.startsWith('image/')) {
+        window.alert('Choisis un fichier image.');
+        return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+        window.alert('La photo doit faire moins de 5 Mo.');
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = () => {
+        target.photo = reader.result;
+    };
+    reader.readAsDataURL(file);
+};
 
 const filteredContacts = computed(() => {
     const search = contactSearch.value.trim().toLowerCase();
@@ -79,6 +105,7 @@ const saveContact = () => {
         firstName: editableContact.value.firstName.trim(),
         lastName: editableContact.value.lastName.trim(),
         phone: editableContact.value.phone.trim(),
+        photo: editableContact.value.photo,
     });
     editingContact.value = false;
 };
@@ -93,16 +120,20 @@ const deleteContact = () => {
 
 const startCall = (number, contact = null) => {
     if (!number?.trim()) return;
+    isSpeakerOn.value = false;
+    isMuted.value = false;
     activeCall.value = { number: number.trim(), contact };
 };
 
 const endCall = () => {
     activeCall.value = null;
+    isSpeakerOn.value = false;
+    isMuted.value = false;
 };
 
 const closeCreateContact = () => {
     showCreateContact.value = false;
-    newContact.value = { firstName: '', lastName: '', phone: '' };
+    newContact.value = emptyContact();
 };
 
 const addContact = () => {
@@ -113,6 +144,7 @@ const addContact = () => {
         firstName: newContact.value.firstName.trim(),
         lastName: newContact.value.lastName.trim(),
         phone: newContact.value.phone.trim(),
+        photo: newContact.value.photo,
     });
     closeCreateContact();
 };
