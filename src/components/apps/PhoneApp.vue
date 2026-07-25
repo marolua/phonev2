@@ -17,9 +17,11 @@ const newContact = ref({ firstName: '', lastName: '', phone: '' });
 const contacts = ref([]);
 const contactSearch = ref('');
 const selectedContact = ref(null);
+const isClosingContact = ref(false);
 const editingContact = ref(false);
 const editableContact = ref({ firstName: '', lastName: '', phone: '' });
 const activeCall = ref(null);
+const contactAnimationDuration = 450;
 
 const filteredContacts = computed(() => {
     const search = contactSearch.value.trim().toLowerCase();
@@ -40,13 +42,21 @@ const removeLastDigit = () => {
 };
 
 const openContact = (contact) => {
+    isClosingContact.value = false;
     selectedContact.value = contact;
     editingContact.value = false;
 };
 
 const closeContact = () => {
+    if (!selectedContact.value || isClosingContact.value) return;
+
     editingContact.value = false;
-    selectedContact.value = null;
+    isClosingContact.value = true;
+
+    setTimeout(() => {
+        selectedContact.value = null;
+        isClosingContact.value = false;
+    }, contactAnimationDuration);
 };
 
 const startEditingContact = () => {
