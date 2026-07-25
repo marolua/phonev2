@@ -205,7 +205,7 @@ const addContact = () => {
                 </button>
             </div>
 
-            <div class="detail-number-card">
+            <div class="detail-number-card" :class="{ 'detail-number-card-editing': editingContact }">
                 <div>
                     <small>mobile</small>
                     <strong v-if="!editingContact">{{ selectedContact.phone }}</strong>
@@ -662,6 +662,12 @@ const addContact = () => {
             box-sizing: border-box;
             border-radius: 2.5cqh;
             background: rgba(20, 20, 20, 0.9);
+
+            &.detail-number-card-editing {
+                div {
+                    width: 100%;
+                }
+            }
 
             div {
                 display: flex;
