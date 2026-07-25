@@ -15,9 +15,9 @@
                 <span class="description">Are you sure you want to delete this conversation?</span>
             </div>
             <div class="bottom-prompt-without">
-                <span class="accepte">Accepter</span>
+                <span class="button-prompt">Accepter</span>
                 <span class="bar"></span>
-                <span class="refuse">Refuser</span>
+                <span class="button-prompt">Refuser</span>
             </div>
         </div>
     </div>
@@ -40,10 +40,13 @@
 
     .prompt-without {
         display: flex;
+        flex-direction: column;
         border-radius: 3.5cqw;
         width: 70%;
-        height: 22%;
-        background-color: rgb(51, 51, 51);
+        box-sizing: border-box;
+        padding: 2cqw 2cqw 3cqw 2cqw;
+        height: 20%;
+        background-color: rgba(15, 15, 15, 0.9);
 
         .top-prompt-without {
             position: relative;
@@ -58,12 +61,41 @@
             // background-color: green;
 
             .title-prompt {
-                font-size: 2.25cqh;
+                font-size: 2.1cqh;
                 font-weight: 500;
             }
 
             .description {
-                font-size: 1.7cqh;
+                font-size: 1.6cqh;
+            }
+        }
+
+        .bottom-prompt-without {
+            position: relative;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            // gap: 9cqw;
+            width: 100%;
+            height: 35%;
+            // background-color: red;
+
+            .button-prompt {
+                font-size: 2.2cqh;
+                font-family: "SF Pro";
+                font-weight: 500;
+                color: rgb(0, 64, 255);
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+
+            .bar {
+                width: 0.6cqw;
+                border-radius: 2cqw;
+                height: 3cqh;
+                background-color: grey;
             }
         }
     }
