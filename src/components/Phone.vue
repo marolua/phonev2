@@ -194,7 +194,6 @@ const closeApplication = () => {
                                 </div>
                             </section>
 
-                            <!-- Dynamic Island pill : fond très compact. Ajoute tes divs dedans. -->
                             <section v-else :key="`pill-${activeIsland.variant}`"
                                 :class="['island-layout', 'island-layout--pill', `island-layout--pill-${activeIsland.variant}`]">
                                 <template v-if="activeIsland.variant === 'call'">
@@ -423,7 +422,6 @@ const closeApplication = () => {
         user-select: none;
         border-radius: 13.4cqw;
         height: 98.1cqh;
-        // background: rgba(5, 98, 237, 0.5);
 
         .home-screen {
             position: relative;
@@ -448,7 +446,6 @@ const closeApplication = () => {
                 width: 21.5cqw;
                 height: 21.5cqw;
                 border-radius: 2cqw;
-                // background-color: rgb(141, 105, 105);
 
                 .application {
                     position: relative;
@@ -460,7 +457,6 @@ const closeApplication = () => {
                     width: 100%;
                     height: 100%;
                     border-radius: 2cqw;
-                    // background-color: rgb(80, 16, 198);
 
                     &:hover {
                         cursor: pointer;
@@ -760,7 +756,6 @@ const closeApplication = () => {
         gap: 10cqw;
         width: 100%;
         height: 48%;
-        // background-color: rgba(14, 180, 14);
 
         .medium-button {
             position: relative;
