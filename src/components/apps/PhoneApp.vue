@@ -83,6 +83,14 @@ const saveContact = () => {
     editingContact.value = false;
 };
 
+const deleteContact = () => {
+    if (!selectedContact.value) return;
+    if (!window.confirm('Supprimer ce contact ?')) return;
+
+    contacts.value = contacts.value.filter((contact) => contact.id !== selectedContact.value.id);
+    closeContact();
+};
+
 const startCall = (number, contact = null) => {
     if (!number?.trim()) return;
     activeCall.value = { number: number.trim(), contact };
