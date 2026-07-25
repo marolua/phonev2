@@ -515,9 +515,7 @@ const addContact = () => {
 
             .detail-edit {
                 padding: 0 3cqw;
-                border: 0;
                 color: #1686ff;
-                background: transparent;
                 font-size: 1.7cqh;
 
                 &:disabled {
@@ -527,11 +525,9 @@ const addContact = () => {
             }
 
             .detail-cancel {
-                height: auto;
+                width: 5cqh;
                 padding: 0;
-                border: 0;
                 color: #1686ff;
-                background: transparent;
                 font-size: 1.7cqh;
             }
 
