@@ -667,22 +667,63 @@ const addContact = () => {
             gap: 2cqh;
             margin-top: 3cqh;
 
+            .detail-avatar-wrap {
+                position: relative;
+            }
+
             .detail-avatar {
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 width: 16cqh;
                 height: 16cqh;
+                overflow: hidden;
                 border-radius: 50%;
                 color: white;
-                background: #37373a;
+                background: linear-gradient(145deg, #52628e, #282c42);
                 font-size: 7cqh;
                 font-weight: 600;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            .avatar-picker {
+                position: absolute;
+                right: -0.5cqw;
+                bottom: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 5cqh;
+                height: 5cqh;
+                border: 0.35cqh solid #171719;
+                border-radius: 50%;
+                color: white;
+                background: #4d8dff;
+                cursor: pointer;
+
+                input {
+                    display: none;
+                }
             }
 
             h2 {
                 margin: 0;
                 font-size: 3.2cqh;
+            }
+
+            .remove-photo {
+                padding: 0;
+                border: 0;
+                color: #ff6b67;
+                background: transparent;
+                font-family: inherit;
+                font-size: 1.45cqh;
+                cursor: pointer;
             }
 
             .detail-name-fields {
