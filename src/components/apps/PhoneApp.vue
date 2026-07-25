@@ -428,7 +428,7 @@ const addContact = () => {
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
-        padding: 11cqh 5cqw 9cqh;
+        padding: 14cqh 5cqw 9cqh;
         overflow: hidden;
         background:
             radial-gradient(circle at 82% 57%, rgba(70, 35, 31, 0.34), transparent 36%),
@@ -462,7 +462,7 @@ const addContact = () => {
             position: relative;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2.2cqh 2cqw;
+            gap: 2.2cqh 0.6cqw;
             width: 100%;
 
             button {
@@ -474,7 +474,7 @@ const addContact = () => {
                 color: rgba(255, 255, 255, 0.85);
                 background: transparent;
                 font-family: inherit;
-                font-size: 1.4cqh;
+                font-size: 1.6cqh;
                 cursor: pointer;
                 transition: transform 0.2s ease, color 0.2s ease;
 
