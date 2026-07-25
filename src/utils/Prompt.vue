@@ -94,10 +94,6 @@
                 &::placeholder {
                     color: rgba(255, 255, 255, 0.5);
                 }
-
-                &:focus {
-                    border-color: rgb(0, 157, 255);
-                }
             }
         }
 
