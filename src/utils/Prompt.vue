@@ -18,18 +18,18 @@ const props = defineProps({
 </script>
 
 <template>
-    <div class="container-prompt-with-texte">
+    <!-- <div class="container-prompt-with-texte">
         <div class="prompt-with">
             <div class="top-prompt-with">
-                <span class="title-prompt">A Short Title Is Best</span>
-                <span class="description">A description should be a short, complete sentence.</span>
+                <span class="title-prompt">Un texte court</span>
+                <span class="description">Petit description, peut completer la sentence</span>
                 <input class="input-prompt" type="text" placeholder="Placeholder" />
             </div>
             <div class="bottom-prompt-with">
-                <span class="action-prompt">Action</span>
+                <span class="action-prompt">Valider</span>
             </div>
         </div>
-    </div>
+    </div> -->
     
     <!-- <div class="container-prompt-without-texte">
         <div class="prompt-without">
@@ -45,7 +45,7 @@ const props = defineProps({
         </div>
     </div> -->
     
-    <!-- <div class="container-prompt-with-texte-and-choice">
+    <div class="container-prompt-with-texte-and-choice">
         <div class="prompt-with-choice">
             <div class="top-prompt-with-choice">
                 <span class="title-prompt">Donner une Clé</span>
@@ -56,10 +56,10 @@ const props = defineProps({
             <div class="bottom-prompt-with-choice">
                 <span class="button-prompt">Annuler</span>
                 <span class="bar"></span>
-                <span class="button-prompt">Execute</span>
+                <span class="button-prompt">Executer</span>
             </div>
         </div>
-    </div> -->
+    </div>
 </template>
 
 <style lang="scss">
