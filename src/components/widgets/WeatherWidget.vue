@@ -13,7 +13,7 @@ defineProps({
     <div class="weather-widget">
         <div class="weather">
             <div class="weather-widget__city">{{ application.city }}
-                <MousePointer2 :size="20" :stroke-width="2" />
+                <MousePointer2 size="2.3cqh" :stroke-width="2" />
             </div>
 
             <div class="weather-widget__temperature">
