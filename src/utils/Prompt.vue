@@ -15,9 +15,9 @@
                 <span class="description">Are you sure you want to delete this conversation?</span>
             </div>
             <div class="bottom-prompt-without">
-                <span class="button-prompt">Accepter</span>
+                <span class="button-prompt">Accept</span>
                 <span class="bar"></span>
-                <span class="button-prompt">Refuser</span>
+                <span class="button-prompt">Decline</span>
             </div>
         </div>
     </div>
