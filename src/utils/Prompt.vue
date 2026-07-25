@@ -63,7 +63,7 @@
             box-sizing: border-box;
             width: 100%;
             height: 82%;
-            gap: 0.8cqh;
+            gap: 1cqh;
             padding: 2.5cqh 4cqw 1.5cqh;
             text-align: center;
 
