@@ -6,7 +6,7 @@
     <!-- <div class="container-prompt-with-texte">
 
     </div> -->
-    <div class="container-prompt-without-texte">
+    <!-- <div class="container-prompt-without-texte">
         <div class="prompt-without">
             <div class="top-prompt-without">
                 <span class="title-prompt">Supprimer la conversation</span>
@@ -18,7 +18,7 @@
                 <span class="button-prompt">Refuser</span>
             </div>
         </div>
-    </div>
+    </div> -->
 </template>
 
 <style lang="scss">
