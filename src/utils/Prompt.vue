@@ -1,4 +1,19 @@
 <script setup>
+const props = defineProps({
+    inputType: {
+        type: String,
+        default: 'number',
+        validator: (value) => ['text', 'number'].includes(value),
+    },
+    inputValue: {
+        type: [String, Number],
+        default: '0',
+    },
+    inputPlaceholder: {
+        type: String,
+        default: '',
+    },
+})
 
 </script>
 
@@ -33,7 +48,8 @@
             <div class="top-prompt-with-choice">
                 <span class="title-prompt">Give Key</span>
                 <span class="description">Insert the ID of the person you want to<br />give a key to</span>
-                <input class="input-prompt" type="number" value="0" min="0" />
+                <input class="input-prompt" :type="props.inputType" :value="props.inputValue"
+                    :placeholder="props.inputPlaceholder" :min="props.inputType === 'number' ? 0 : undefined" />
             </div>
             <div class="bottom-prompt-with-choice">
                 <span class="button-prompt">Cancel</span>
@@ -164,7 +180,7 @@
             align-items: center;
             box-sizing: border-box;
             width: 100%;
-            height: 82%;
+            height: 77%;
             gap: 1.3cqh;
             padding: 2.5cqh 4cqw 1.5cqh;
             text-align: center;
@@ -182,10 +198,10 @@
             }
 
             .input-prompt {
-                width: 100%;
+                width: 88%;
                 height: 5.3cqh;
                 box-sizing: border-box;
-                padding: 0 1.2cqw;
+                padding: 0.5cqh 2cqw;
                 border: 0;
                 border-radius: 1.4cqw;
                 outline: none;
@@ -211,12 +227,12 @@
             justify-content: center;
             align-items: center;
             width: 100%;
-            height: 18%;
+            height: 23%;
             gap: 8cqw;
             border-top: 0.15cqw solid rgba(128, 128, 128, 0.55);
 
             .button-prompt {
-                font-size: 2.2cqh;
+                font-size: 2.35cqh;
                 font-family: "SF Pro Display";
                 font-weight: 500;
                 color: rgb(0, 157, 255);
