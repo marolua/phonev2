@@ -77,7 +77,8 @@
         .bottom-prompt-without {
             position: relative;
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
+            gap: 10cqw;
             align-items: center;
             width: 100%;
             height: 35%;
