@@ -559,10 +559,14 @@ const addContact = () => {
             margin-top: 3cqh;
 
             button {
+                position: relative;
                 display: flex;
                 align-items: center;
                 flex-direction: column;
-                gap: 0.8cqh;
+                width: 8cqh;
+                min-height: 8.8cqh;
+                box-sizing: border-box;
+                padding: 7.5cqh 0 0;
                 border: 0;
                 color: #1686ff;
                 background: transparent;
@@ -570,11 +574,33 @@ const addContact = () => {
                 font-size: 1.5cqh;
                 cursor: pointer;
 
-                svg {
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 50%;
+                    width: 6.8cqh;
+                    height: 6.8cqh;
                     box-sizing: border-box;
                     border: 1px solid rgba(255, 255, 255, 0.18);
                     border-radius: 50%;
                     background: rgba(44, 44, 46, 0.85);
+                    transform: translateX(-50%);
+                }
+
+                svg {
+                    position: absolute;
+                    top: 3.4cqh;
+                    left: 50%;
+                    z-index: 1;
+                    background: transparent;
+                    transform: translate(-50%, -50%);
+                }
+
+                span {
+                    position: relative;
+                    z-index: 1;
+                    white-space: nowrap;
                 }
             }
         }
