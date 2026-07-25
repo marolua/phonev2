@@ -154,20 +154,8 @@ const addContact = () => {
     <div class="phone-app">
         <div v-if="activeCall" class="call-screen">
             <div class="call-screen-header">
-                <span class="call-status"><i></i> Appel en cours</span>
-                <strong>{{ activeCall.contact ? `${activeCall.contact.firstName} ${activeCall.contact.lastName}` : activeCall.number }}</strong>
-            </div>
-
-            <div class="call-screen-content">
-                <div class="call-avatar">
-                    <img v-if="activeCall.contact?.photo" :src="activeCall.contact.photo" alt="" />
-                    <span v-else>{{ getInitial(activeCall.contact) }}</span>
-                </div>
-                <strong v-if="activeCall.contact" class="call-contact-name">
-                    {{ activeCall.contact.firstName }} {{ activeCall.contact.lastName }}
-                </strong>
-                <span class="call-number">{{ activeCall.number }}</span>
-                <span class="call-duration">00:12</span>
+                <span>Appel en cours...</span>
+                <strong>{{ activeCall.number }}</strong>
             </div>
 
             <div class="call-actions">
