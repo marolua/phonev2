@@ -154,27 +154,28 @@ const addContact = () => {
     <div class="phone-app">
         <div v-if="activeCall" class="call-screen">
             <div class="call-screen-header">
-                <span>Appel en cours...</span>
-                <strong>{{ activeCall.contact ? `${activeCall.contact.firstName} ${activeCall.contact.lastName}` :
-                    activeCall.number }}</strong>
+                <span class="call-status"><i></i> Appel en cours</span>
+                <strong>{{ activeCall.contact ? `${activeCall.contact.firstName} ${activeCall.contact.lastName}` : activeCall.number }}</strong>
             </div>
 
             <div class="call-screen-content">
                 <div class="call-avatar">
-                    {{ activeCall.contact ? activeCall.contact.firstName.charAt(0).toUpperCase() : '?' }}
+                    <img v-if="activeCall.contact?.photo" :src="activeCall.contact.photo" alt="" />
+                    <span v-else>{{ getInitial(activeCall.contact) }}</span>
                 </div>
                 <strong v-if="activeCall.contact" class="call-contact-name">
                     {{ activeCall.contact.firstName }} {{ activeCall.contact.lastName }}
                 </strong>
                 <span class="call-number">{{ activeCall.number }}</span>
+                <span class="call-duration">00:12</span>
             </div>
 
             <div class="call-actions">
-                <button type="button">
+                <button type="button" :class="{ 'call-action-active': isSpeakerOn }" @click="isSpeakerOn = !isSpeakerOn">
                     <Volume2 size="2.5cqh" /><span>Haut-parleur</span>
                 </button>
                 <button type="button"><Video size="2.5cqh" /><span>FaceTime</span></button>
-                <button type="button">
+                <button type="button" :class="{ 'call-action-active': isMuted }" @click="isMuted = !isMuted">
                     <MicOff size="2.5cqh" /><span>Muet</span>
                 </button>
                 <button type="button">
@@ -210,9 +211,17 @@ const addContact = () => {
             </div>
 
             <div class="detail-identity">
-                <div class="detail-avatar">
-                    {{ (editingContact ? editableContact.firstName :
-                        selectedContact.firstName).charAt(0).toUpperCase() }}
+                <div class="detail-avatar-wrap">
+                    <div class="detail-avatar">
+                        <img v-if="(editingContact ? editableContact.photo : selectedContact.photo)"
+                            :src="editingContact ? editableContact.photo : selectedContact.photo" alt="" />
+                        <span v-else>{{ getInitial(editingContact ? editableContact : selectedContact) }}</span>
+                    </div>
+                    <label v-if="editingContact" class="avatar-picker" title="Changer la photo">
+                        <Camera size="2.2cqh" />
+                        <input type="file" accept="image/*"
+                            @change="handlePhotoChange($event, editableContact)" />
+                    </label>
                 </div>
                 <template v-if="editingContact">
                     <div class="detail-name-fields">
@@ -223,6 +232,8 @@ const addContact = () => {
                     </div>
                 </template>
                 <h2 v-else>{{ selectedContact.firstName }} {{ selectedContact.lastName }}</h2>
+                <button v-if="editingContact && editableContact.photo" type="button" class="remove-photo"
+                    @click="editableContact.photo = ''">Supprimer la photo</button>
             </div>
 
             <div v-if="!editingContact" class="detail-actions">
@@ -302,7 +313,8 @@ const addContact = () => {
                     <button v-for="contact in filteredContacts" :key="contact.id" type="button" class="contact-item"
                         @click="openContact(contact)">
                         <div class="contact-avatar">
-                            {{ contact.firstName.charAt(0).toUpperCase() }}
+                            <img v-if="contact.photo" :src="contact.photo" alt="" />
+                            <span v-else>{{ getInitial(contact) }}</span>
                         </div>
                         <div class="contact-information">
                             <span>{{ contact.firstName }} {{ contact.lastName }}</span>
@@ -361,9 +373,15 @@ const addContact = () => {
                         </div>
 
                         <div class="contact-form">
-                            <div class="new-contact-avatar">
-                                <User size="5cqh" />
-                            </div>
+                            <label class="new-contact-avatar" title="Ajouter une photo">
+                                <img v-if="newContact.photo" :src="newContact.photo" alt="Aperçu de la photo" />
+                                <template v-else>
+                                    <ImagePlus size="5cqh" />
+                                    <small>Ajouter une photo</small>
+                                </template>
+                                <input type="file" accept="image/*"
+                                    @change="handlePhotoChange($event, newContact)" />
+                            </label>
                             <label>
                                 <span>Prénom</span>
                                 <input v-model="newContact.firstName" type="text" placeholder="Prénom"
