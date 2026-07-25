@@ -1,7 +1,7 @@
 <script setup>
 import { computed, onMounted, ref } from 'vue'
 import DynamicIsland from './DynamicIsland.vue';
-import AirDrop from '../assets/airdrop.png';
+import AirDrop from '../assets/airdrop.svg';
 import PhoneGreen from '../assets/phone-green.png';
 import PhoneWhite from '../assets/phone-white.png';
 import Inconnu from '../assets/inconnu.png';
