@@ -45,7 +45,7 @@ const props = defineProps({
         </div>
     </div> -->
     
-    <div class="container-prompt-with-texte-and-choice">
+    <!-- <div class="container-prompt-with-texte-and-choice">
         <div class="prompt-with-choice">
             <div class="top-prompt-with-choice">
                 <span class="title-prompt">Donner une Clé</span>
@@ -59,7 +59,7 @@ const props = defineProps({
                 <span class="button-prompt">Executer</span>
             </div>
         </div>
-    </div>
+    </div> -->
 </template>
 
 <style lang="scss">
