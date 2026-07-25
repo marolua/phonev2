@@ -163,10 +163,10 @@ const addContact = () => {
                 <button v-if="!editingContact" type="button" class="detail-back" aria-label="Retour"
                     @click="closeContact">
                     <ArrowLeft size="2.5cqh" />
-                    </button>
-                    <button v-else type="button" class="detail-cancel" @click="cancelEditingContact">
-                        <X size="2.5cqh" />
-                    </button>
+                </button>
+                <button v-else type="button" class="detail-cancel" @click="cancelEditingContact">
+                    <X size="2.5cqh" />
+                </button>
                 <span v-if="editingContact" class="detail-edit-title">Modifier</span>
                 <div class="detail-edit-actions">
                     <button type="button" class="detail-edit"
@@ -205,7 +205,7 @@ const addContact = () => {
                 </button>
             </div>
 
-                <div class="detail-number-card">
+            <div class="detail-number-card">
                 <div>
                     <small>mobile</small>
                     <strong v-if="!editingContact">{{ selectedContact.phone }}</strong>
@@ -215,12 +215,12 @@ const addContact = () => {
                 <button v-if="!editingContact" type="button" aria-label="Appeler"
                     @click="startCall(selectedContact.phone, selectedContact)">
                     <Phone size="2.2cqh" />
-                    </button>
-                </div>
-
-                <button v-if="editingContact" type="button" class="delete-contact" @click="deleteContact">
-                    Supprimer le contact
                 </button>
+            </div>
+
+            <button v-if="editingContact" type="button" class="delete-contact" @click="deleteContact">
+                Supprimer le contact
+            </button>
         </div>
 
         <template v-else>
@@ -568,7 +568,7 @@ const addContact = () => {
             }
 
             .detail-name-fields {
-            display: flex;
+                display: flex;
                 flex-direction: column;
                 width: 100%;
                 gap: 0;
