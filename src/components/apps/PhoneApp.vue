@@ -537,6 +537,7 @@ const addContact = () => {
             display: flex;
             align-items: center;
             flex-direction: column;
+            width: 100%;
             gap: 2cqh;
             margin-top: 3cqh;
 
