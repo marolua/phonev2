@@ -42,7 +42,7 @@
         display: flex;
         flex-direction: column;
         border-radius: 3.5cqw;
-        width: 96%;
+        width: 65%;
         box-sizing: border-box;
         height: 18%;
         overflow: hidden;
