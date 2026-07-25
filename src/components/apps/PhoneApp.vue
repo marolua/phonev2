@@ -588,6 +588,7 @@ const addContact = () => {
         align-items: center;
         flex-direction: column;
         padding: 8cqh 5cqw 5cqh;
+        background-color: rgb(10, 10, 10);
 
         .detail-header {
             display: flex;
