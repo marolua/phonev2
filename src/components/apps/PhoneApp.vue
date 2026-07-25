@@ -520,8 +520,10 @@ const addContact = () => {
         .call-actions {
             position: relative;
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2.2cqh 0.6cqw;
+            justify-content: center;
+            align-items: center;
+            grid-template-columns: repeat(3, 0.32fr);
+            gap: 2.2cqh 0.0cqw;
             width: 100%;
 
             button {
