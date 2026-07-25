@@ -4,7 +4,16 @@
 
 <template>
     <!-- <div class="container-prompt-with-texte">
-
+        <div class="prompt-with">
+            <div class="top-prompt-with">
+                <span class="title-prompt">A Short Title Is Best</span>
+                <span class="description">A description should be a short, complete sentence.</span>
+                <input class="input-prompt" type="text" placeholder="Placeholder" />
+            </div>
+            <div class="bottom-prompt-with">
+                <span class="action-prompt">Action</span>
+            </div>
+        </div>
     </div> -->
     <!-- <div class="container-prompt-without-texte">
         <div class="prompt-without">

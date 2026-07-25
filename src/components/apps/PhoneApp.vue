@@ -159,21 +159,34 @@ const addContact = () => {
             </div>
 
             <div class="call-actions">
-                <button type="button" :class="{ 'call-action-active': isSpeakerOn }" @click="isSpeakerOn = !isSpeakerOn">
-                    <div class="call-action-icon"><Volume2 size="2.8cqh" /></div><span>Haut-parleur</span>
-                </button>
-                <button type="button"><div class="call-action-icon"><Video size="2.8cqh" /></div><span>FaceTime</span></button>
-                <button type="button" :class="{ 'call-action-active': isMuted }" @click="isMuted = !isMuted">
-                    <div class="call-action-icon"><MicOff size="2.8cqh" /></div><span>Muet</span>
+                <button type="button" :class="{ 'call-action-active': isSpeakerOn }"
+                    @click="isSpeakerOn = !isSpeakerOn">
+                    <div class="call-action-icon">
+                        <Volume2 size="2.8cqh" />
+                    </div><span>Haut-parleur</span>
                 </button>
                 <button type="button">
-                    <div class="call-action-icon"><MoreHorizontal size="2.8cqh" /></div><span>Plus</span>
+                    <div class="call-action-icon"><Video size="2.8cqh" /></div><span>FaceTime</span>
+                </button>
+                <button type="button" :class="{ 'call-action-active': isMuted }" @click="isMuted = !isMuted">
+                    <div class="call-action-icon">
+                        <MicOff size="2.8cqh" />
+                    </div><span>Muet</span>
+                </button>
+                <button type="button">
+                    <div class="call-action-icon">
+                        <MoreHorizontal size="2.8cqh" />
+                    </div><span>Plus</span>
                 </button>
                 <button type="button" class="end-call-button" @click="endCall">
-                    <div class="call-action-icon"><PhoneOff size="2.8cqh" /></div><span>Fin</span>
+                    <div class="call-action-icon">
+                        <PhoneOff size="2.8cqh" />
+                    </div><span>Fin</span>
                 </button>
                 <button type="button">
-                    <div class="call-action-icon"><Keyboard size="2.8cqh" /></div><span>Clavier</span>
+                    <div class="call-action-icon">
+                        <Keyboard size="2.8cqh" />
+                    </div><span>Clavier</span>
                 </button>
             </div>
         </div>
@@ -207,8 +220,7 @@ const addContact = () => {
                     </div>
                     <label v-if="editingContact" class="avatar-picker" title="Changer la photo">
                         <Camera size="2.2cqh" />
-                        <input type="file" accept="image/*"
-                            @change="handlePhotoChange($event, editableContact)" />
+                        <input type="file" accept="image/*" @change="handlePhotoChange($event, editableContact)" />
                     </label>
                 </div>
                 <template v-if="editingContact">
@@ -367,8 +379,7 @@ const addContact = () => {
                                     <ImagePlus size="5cqh" />
                                     <small>Ajouter une photo</small>
                                 </template>
-                                <input type="file" accept="image/*"
-                                    @change="handlePhotoChange($event, newContact)" />
+                                <input type="file" accept="image/*" @change="handlePhotoChange($event, newContact)" />
                             </label>
                             <label>
                                 <span>Prénom</span>
