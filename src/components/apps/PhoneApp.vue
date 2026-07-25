@@ -17,6 +17,9 @@ const newContact = ref({ firstName: '', lastName: '', phone: '' });
 const contacts = ref([]);
 const contactSearch = ref('');
 const selectedContact = ref(null);
+const contactTransition = ref('contact-detail-forward');
+const editingContact = ref(false);
+const editableContact = ref({ firstName: '', lastName: '', phone: '' });
 const activeCall = ref(null);
 
 const filteredContacts = computed(() => {
@@ -38,11 +41,39 @@ const removeLastDigit = () => {
 };
 
 const openContact = (contact) => {
+    contactTransition.value = 'contact-detail-forward';
     selectedContact.value = contact;
+    editingContact.value = false;
 };
 
 const closeContact = () => {
+    contactTransition.value = 'contact-detail-back';
+    editingContact.value = false;
     selectedContact.value = null;
+};
+
+const startEditingContact = () => {
+    if (!selectedContact.value) return;
+
+    editableContact.value = { ...selectedContact.value };
+    editingContact.value = true;
+};
+
+const cancelEditingContact = () => {
+    editingContact.value = false;
+};
+
+const saveContact = () => {
+    if (!selectedContact.value || !editableContact.value.firstName.trim() || !editableContact.value.phone.trim()) {
+        return;
+    }
+
+    Object.assign(selectedContact.value, {
+        firstName: editableContact.value.firstName.trim(),
+        lastName: editableContact.value.lastName.trim(),
+        phone: editableContact.value.phone.trim(),
+    });
+    editingContact.value = false;
 };
 
 const startCall = (number, contact = null) => {
