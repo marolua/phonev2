@@ -4,16 +4,16 @@ import { computed, ref, watch } from 'vue'
 const props = defineProps({
     variant: {
         type: String,
-        default: 'without-text',
+        default: 'with-text-and-choice',
         validator: (value) => ['without-text', 'with-text', 'with-text-and-choice'].includes(value),
     },
     title: {
         type: String,
-        default: 'Delete Conversation',
+        default: 'Give Key',
     },
     description: {
         type: String,
-        default: 'Are you sure you want to delete this conversation?',
+        default: 'Insert the ID of the person you want to give a key to',
     },
     inputType: {
         type: String,
@@ -166,6 +166,7 @@ function cancel() {
     align-items: center;
     width: 100%;
     height: 100%;
+    user-select: none;
     border-radius: 13.4cqw;
     background-color: rgba(0, 0, 0, 0.38);
     backdrop-filter: blur(0.5cqh);
@@ -254,6 +255,7 @@ function cancel() {
     align-items: center;
     width: 100%;
     height: 100%;
+    user-select: none;
     border-radius: 13.4cqw;
     background-color: rgba(0, 0, 0, 0.38);
     backdrop-filter: blur(0.5cqh);
@@ -352,6 +354,7 @@ function cancel() {
     justify-content: center;
     align-items: center;
     width: 100%;
+    user-select: none;
     height: 100%;
     border-radius: 13.4cqw;
     background-color: rgba(0, 0, 0, 0.38);
