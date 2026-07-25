@@ -175,13 +175,13 @@ const addContact = () => {
 
                 <div v-if="!editingContact" class="detail-actions">
                     <button type="button">
-                        <MessageCircle class="detail-action-icon" size="2.5cqh" /><span>Message</span>
+                        <MessageCircle class="detail-action-icon" size="1.5cqh" /><span>Message</span>
                     </button>
                     <button type="button" @click="startCall(selectedContact.phone, selectedContact)">
-                        <Phone class="detail-action-icon" size="2cqh" /><span>Appeler</span>
+                        <Phone class="detail-action-icon" size="1cqh" /><span>Appeler</span>
                     </button>
                     <button type="button">
-                        <Mail class="detail-action-icon" size="2cqh" /><span>Mail</span>
+                        <Mail class="detail-action-icon" size="1cqh" /><span>Mail</span>
                     </button>
                 </div>
 
@@ -572,9 +572,8 @@ const addContact = () => {
                 cursor: pointer;
 
                 svg {
-                    width: 7cqh;
-                    height: 7cqh;
-                    padding: 2cqh;
+                    width: 6.8cqh;
+                    height: 6.8cqh;
                     box-sizing: border-box;
                     border: 1px solid rgba(255, 255, 255, 0.18);
                     border-radius: 50%;
@@ -639,7 +638,7 @@ const addContact = () => {
                 border: 1px solid rgba(255, 255, 255, 0.2);
                 border-radius: 50%;
                 color: #1686ff;
-                background: rgba(55, 55, 58, 0.9);
+                background: rgba(45, 45, 45, 0.9);
                 cursor: pointer;
             }
         }
