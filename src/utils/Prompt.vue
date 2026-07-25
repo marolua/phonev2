@@ -74,49 +74,52 @@ function cancel() {
     <Transition name="prompt-zoom">
         <div v-if="props.visible" class="prompt-transition-wrapper">
             <div v-if="props.variant === 'with-text'" class="container-prompt-with-texte">
-        <div class="prompt-with">
-            <div class="top-prompt-with">
-                <span class="title-prompt">{{ props.title }}</span>
-                <span class="description">{{ props.description }}</span>
-                <input v-model="inputValue" class="input-prompt" :type="props.inputType"
-                    :placeholder="props.inputPlaceholder"
-                    :min="props.inputType === 'number' ? 0 : undefined" />
-            </div>
-            <div class="bottom-prompt-with">
-                <span class="action-prompt" role="button" tabindex="0" @click="confirm">{{ confirmLabel }}</span>
-            </div>
-        </div>
+                <div class="prompt-with">
+                    <div class="top-prompt-with">
+                        <span class="title-prompt">{{ props.title }}</span>
+                        <span class="description">{{ props.description }}</span>
+                        <input v-model="inputValue" class="input-prompt" :type="props.inputType"
+                            :placeholder="props.inputPlaceholder" :min="props.inputType === 'number' ? 0 : undefined" />
+                    </div>
+                    <div class="bottom-prompt-with">
+                        <span class="action-prompt" role="button" tabindex="0" @click="confirm">{{ confirmLabel
+                            }}</span>
+                    </div>
+                </div>
             </div>
 
             <div v-else-if="props.variant === 'with-text-and-choice'" class="container-prompt-with-texte-and-choice">
-        <div class="prompt-with-choice">
-            <div class="top-prompt-with-choice">
-                <span class="title-prompt">{{ props.title }}</span>
-                <span class="description">{{ props.description }}</span>
-                <input v-model="inputValue" class="input-prompt" :type="props.inputType"
-                    :placeholder="props.inputPlaceholder"
-                    :min="props.inputType === 'number' ? 0 : undefined" />
-            </div>
-            <div class="bottom-prompt-with-choice">
-                <span class="button-prompt" role="button" tabindex="0" @click="cancel">{{ props.cancelText }}</span>
-                <span class="bar"></span>
-                <span class="button-prompt" role="button" tabindex="0" @click="confirm">{{ confirmLabel }}</span>
-            </div>
-        </div>
+                <div class="prompt-with-choice">
+                    <div class="top-prompt-with-choice">
+                        <span class="title-prompt">{{ props.title }}</span>
+                        <span class="description">{{ props.description }}</span>
+                        <input v-model="inputValue" class="input-prompt" :type="props.inputType"
+                            :placeholder="props.inputPlaceholder" :min="props.inputType === 'number' ? 0 : undefined" />
+                    </div>
+                    <div class="bottom-prompt-with-choice">
+                        <span class="button-prompt" role="button" tabindex="0" @click="cancel">{{ props.cancelText
+                            }}</span>
+                        <span class="bar"></span>
+                        <span class="button-prompt" role="button" tabindex="0" @click="confirm">{{ confirmLabel
+                            }}</span>
+                    </div>
+                </div>
             </div>
 
             <div v-else class="container-prompt-without-texte">
-        <div class="prompt-without">
-            <div class="top-prompt-without">
-                <span class="title-prompt">{{ props.title }}</span>
-                <span class="description">{{ props.description }}</span>
-            </div>
-            <div class="bottom-prompt-without">
-                <span class="button-prompt" role="button" tabindex="0" @click="cancel">{{ props.cancelText }}</span>
-                <span class="bar"></span>
-                <span class="button-prompt" role="button" tabindex="0" @click="confirm">{{ confirmLabel }}</span>
-            </div>
-        </div>
+                <div class="prompt-without">
+                    <div class="top-prompt-without">
+                        <span class="title-prompt">{{ props.title }}</span>
+                        <span class="description">{{ props.description }}</span>
+                    </div>
+                    <div class="bottom-prompt-without">
+                        <span class="button-prompt" role="button" tabindex="0" @click="cancel">{{ props.cancelText
+                            }}</span>
+                        <span class="bar"></span>
+                        <span class="button-prompt" role="button" tabindex="0" @click="confirm">{{ confirmLabel
+                            }}</span>
+                    </div>
+                </div>
             </div>
         </div>
     </Transition>
@@ -133,7 +136,7 @@ function cancel() {
             </div>
         </div>
     </div> -->
-    
+
     <!-- <div class="container-prompt-without-texte">
         <div class="prompt-without">
             <div class="top-prompt-without">
@@ -147,7 +150,7 @@ function cancel() {
             </div>
         </div>
     </div> -->
-    
+
     <!-- <div class="container-prompt-with-texte-and-choice">
         <div class="prompt-with-choice">
             <div class="top-prompt-with-choice">
