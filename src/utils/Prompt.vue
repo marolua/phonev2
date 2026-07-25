@@ -215,10 +215,6 @@ const props = defineProps({
                     margin: 0;
                     -webkit-appearance: none;
                 }
-
-                &:focus {
-                    box-shadow: 0 0 0 0.15cqw rgb(0, 157, 255);
-                }
             }
         }
 
