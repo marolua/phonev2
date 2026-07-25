@@ -49,7 +49,7 @@
         display: flex;
         flex-direction: column;
         width: 67.5%;
-        height: 30%;
+        height: 28%;
         box-sizing: border-box;
         overflow: hidden;
         border-radius: 3.5cqw;
