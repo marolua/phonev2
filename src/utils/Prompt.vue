@@ -7,7 +7,9 @@
 
     </div> -->
     <div class="container-prompt-without-texte">
-
+        <div class="prompt-without">
+            
+        </div>
     </div>
 </template>
 
@@ -21,7 +23,7 @@
     border-radius: 13.4cqw;
     background-color: rgba(0, 0, 0, 0.38);
     backdrop-filter: blur(0.5cqh);
-    -webkit-backdrop-filter: blur(0.8cqh);
+    -webkit-backdrop-filter: blur(0.5cqh);
     z-index: 50;
 }
 </style>
