@@ -3,7 +3,7 @@ import PhoneIcon from "../assets/appicons/call.png";
 import SettingsIcon from "../assets/appicons/settingsapp.png";
 import BankIcon from "../assets/appicons/bank.png";
 import WeatherIcon from "../assets/appicons/weather.png";
-import ContactIcon from '../assets/appicons/contact.png';
+import ContactIcon from "../assets/appicons/contact.png";
 import PhoneApp from "../components/apps/PhoneApp.vue";
 
 export const applications = [
