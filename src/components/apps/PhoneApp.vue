@@ -554,6 +554,7 @@ const addContact = () => {
         }
 
         .detail-actions {
+            --detail-action-icon-size: 7cqh;
             display: flex;
             gap: 5cqw;
             margin-top: 3cqh;
@@ -581,8 +582,8 @@ const addContact = () => {
                 }
 
                 .detail-action-icon {
-                    width: 7cqh !important;
-                    height: 7cqh !important;
+                    width: var(--detail-action-icon-size) !important;
+                    height: var(--detail-action-icon-size) !important;
                 }
             }
         }
@@ -644,17 +645,15 @@ const addContact = () => {
         }
     }
 
-    .contact-detail-forward-enter-active,
-    .contact-detail-back-leave-active {
-        transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    .contact-detail-enter-active,
+    .contact-detail-leave-active {
+        transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+        will-change: transform;
     }
 
-    .contact-detail-forward-enter-from {
-        transform: translateX(100%);
-    }
-
-    .contact-detail-back-leave-to {
-        transform: translateX(100%);
+    .contact-detail-enter-from,
+    .contact-detail-leave-to {
+        transform: translate3d(100%, 0, 0);
     }
 
     .title {
