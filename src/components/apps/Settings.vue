@@ -129,11 +129,11 @@ const goBack = (section) => {
 <template>
     <div class="settings-app">
         <template v-if="activeSection === 'home'">
-            <span class="title">Réglages</span>
+            <span class="title">Settings</span>
 
             <div class="input-group">
                 <Search class="search-icon" color="rgb(255, 255, 255, 0.8)" size="2.6cqh" />
-                <input v-model="search" type="text" placeholder="Rechercher">
+                <input v-model="search" type="text" placeholder="Search">
             </div>
 
             <button class="profile-card" type="button" @click="openSection('general')">
@@ -152,22 +152,22 @@ const goBack = (section) => {
                             <Plane size="2.5cqh" />
                         </span>
                         <span class="row-content">
-                            <strong>Mode avion</strong>
-                            <small>Désactive les appels et les données cellulaires</small>
+                            <strong>Airplane Mode</strong>
+                            <small>Disable calls, cellular data etc.</small>
                         </span>
                         <button class="ios-toggle" :class="{ active: airplaneMode }" type="button"
-                            :aria-pressed="airplaneMode" aria-label="Mode avion" @click="airplaneMode = !airplaneMode">
+                            :aria-pressed="airplaneMode" aria-label="Airplane Mode" @click="airplaneMode = !airplaneMode">
                             <span></span>
                         </button>
                     </div>
                     <div class="settings-row toggle-row" role="listitem">
                         <span class="row-icon row-icon-purple"><Video size="2.5cqh" /></span>
                         <span class="row-content">
-                            <strong>Mode streamer</strong>
-                            <small>Masque les informations sensibles</small>
+                            <strong>Streamer Mode</strong>
+                            <small>Blurs sensitive information</small>
                         </span>
                         <button class="ios-toggle" :class="{ active: streamerMode }" type="button"
-                            :aria-pressed="streamerMode" aria-label="Mode streamer"
+                            :aria-pressed="streamerMode" aria-label="Streamer Mode"
                             @click="streamerMode = !streamerMode">
                             <span></span>
                         </button>
