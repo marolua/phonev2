@@ -83,18 +83,18 @@ const sections = [
         color: '#5e5ce6',
     },
     {
-        id: 'wallpaper',
-        title: 'Fond d’écran',
-        description: 'Choisir le fond d’écran du téléphone',
-        icon: Image,
-        color: '#ff9f0a',
-    },
-    {
         id: 'display',
         title: 'Luminosité et affichage',
         description: 'Luminosité et taille de l’écran',
         icon: SunMedium,
         color: '#ffcc00',
+    },
+    {
+        id: 'wallpaper',
+        title: 'Fond d’écran',
+        description: 'Choisir le fond d’écran du téléphone',
+        icon: Image,
+        color: '#5bdaf4',
     },
     {
         id: 'face-id',
@@ -347,17 +347,6 @@ const closeSection = () => {
     color: white;
     background-color: rgb(10, 10, 10);
     font-family: "SF Pro";
-
-    &::before {
-        position: absolute;
-        inset: 0;
-        z-index: 0;
-        pointer-events: none;
-        content: '';
-        background:
-            radial-gradient(circle at 95% 0%, rgba(92, 92, 230, 0.12), transparent 32%),
-            linear-gradient(180deg, rgba(255, 255, 255, 0.025), transparent 28%);
-    }
 
     > * {
         position: relative;
