@@ -2,12 +2,15 @@
 import { computed, ref } from 'vue';
 import {
     ArrowLeft,
+    Bell,
     Check,
     ChevronRight,
     Globe,
     HardDrive,
     Image,
     Info,
+    Mic,
+    Plane,
     Palette,
     Search,
     ShieldCheck,
@@ -15,6 +18,8 @@ import {
     SlidersHorizontal,
     SunMedium,
     User,
+    Video,
+    Volume2,
 } from '@lucide/vue';
 import { brightness, displayScale, selectedWallpaper } from '../../stores/phoneSettings';
 
@@ -26,6 +31,8 @@ const profile = {
 
 const activeSection = ref('home');
 const search = ref('');
+const airplaneMode = ref(false);
+const streamerMode = ref(false);
 
 const wallpaperModules = import.meta.glob('../../assets/wallpapers/*.png', {
     eager: true,
@@ -48,6 +55,27 @@ const initials = computed(() => `${profile.firstName.charAt(0)}${profile.lastNam
 
 const sections = [
     {
+        id: 'notifications',
+        title: 'Notifications',
+        description: 'Choisir les applications qui peuvent envoyer des notifications',
+        icon: Bell,
+        color: '#ff5964',
+    },
+    {
+        id: 'sound',
+        title: 'Son et vibrations',
+        description: 'Gérer les sons et les vibrations',
+        icon: Volume2,
+        color: '#ff2d7a',
+    },
+    {
+        id: 'microphone',
+        title: 'Microphone',
+        description: 'Choisir le microphone utilisé pour les enregistrements',
+        icon: Mic,
+        color: '#55d98b',
+    },
+    {
         id: 'general',
         title: 'Général',
         description: 'Informations et préférences du téléphone',
@@ -67,6 +95,13 @@ const sections = [
         description: 'Luminosité et taille de l’écran',
         icon: SunMedium,
         color: '#ffcc00',
+    },
+    {
+        id: 'face-id',
+        title: 'Face ID et code',
+        description: 'Gérer la sécurité de ton téléphone',
+        icon: ShieldCheck,
+        color: '#30d158',
     },
 ];
 
