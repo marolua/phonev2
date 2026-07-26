@@ -211,74 +211,87 @@ const goBack = (section) => {
 
         <template v-else-if="activeSection === 'general'">
             <div class="settings-header">
-                <button type="button" class="back-button" aria-label="Retour" @click="closeSection">
+                <button type="button" class="back-button" aria-label="Back" @click="closeSection">
                     <ArrowLeft size="2.5cqh" />
-                    <span>Réglages</span>
+                    <span>Settings</span>
                 </button>
-                <span>Général</span>
+                <span>General</span>
             </div>
 
-            <div class="subpage-scroll">
-                <div class="subpage-profile">
-                    <div class="profile-avatar profile-avatar-large">{{ initials }}</div>
-                    <strong>{{ profile.firstName }} {{ profile.lastName }}</strong>
-                    <small>ID téléphone : {{ profile.phoneId }}</small>
-                </div>
-
+            <div class="subpage-scroll ios-page">
                 <div class="ios-group">
-                    <div class="info-row">
-                        <span>
-                            <User size="2.3cqh" /> Prénom
-                        </span>
-                        <strong>{{ profile.firstName }}</strong>
-                    </div>
-                    <div class="info-row">
-                        <span>
-                            <User size="2.3cqh" /> Nom
-                        </span>
-                        <strong>{{ profile.lastName }}</strong>
-                    </div>
-                    <div class="info-row">
-                        <span>
-                            <Smartphone size="2.3cqh" /> Numéro du téléphone
-                        </span>
-                        <strong>{{ profile.phoneId }}</strong>
-                    </div>
+                    <button class="ios-row" type="button" @click="openSection('about')">
+                        <span>About</span>
+                        <ChevronRight size="2.4cqh" />
+                    </button>
+                    <button class="ios-row" type="button">
+                        <span>Software Update</span>
+                        <ChevronRight size="2.4cqh" />
+                    </button>
+                    <button class="ios-row" type="button" @click="openSection('storage')">
+                        <span>Phone Storage</span>
+                        <ChevronRight size="2.4cqh" />
+                    </button>
                 </div>
 
                 <div class="ios-group">
                     <button class="ios-row" type="button">
-                        <span class="row-icon row-icon-blue">
-                            <Info size="2.3cqh" />
-                        </span>
-                        <span>Informations</span>
-                        <ChevronRight size="2.3cqh" />
+                        <span>Date &amp; Time</span>
+                        <ChevronRight size="2.4cqh" />
                     </button>
                     <button class="ios-row" type="button">
-                        <span class="row-icon row-icon-green">
-                            <Globe size="2.3cqh" />
-                        </span>
-                        <span>Langue et région</span>
-                        <strong class="row-value">Français</strong>
-                    </button>
-                    <button class="ios-row" type="button">
-                        <span class="row-icon row-icon-purple">
-                            <HardDrive size="2.3cqh" />
-                        </span>
-                        <span>Stockage du téléphone</span>
-                        <ChevronRight size="2.3cqh" />
-                    </button>
-                    <button class="ios-row" type="button">
-                        <span class="row-icon row-icon-red">
-                            <ShieldCheck size="2.3cqh" />
-                        </span>
-                        <span>Confidentialité et sécurité</span>
-                        <ChevronRight size="2.3cqh" />
+                        <span>Language &amp; Region</span>
+                        <ChevronRight size="2.4cqh" />
                     </button>
                 </div>
 
-                <small class="settings-note">Les informations affichées ici pourront être personnalisées plus
-                    tard.</small>
+                <div class="ios-group ios-group-danger">
+                    <button class="ios-row" type="button">
+                        <span>Reset Phone</span>
+                    </button>
+                </div>
+            </div>
+        </template>
+
+        <template v-else-if="activeSection === 'about'">
+            <div class="settings-header">
+                <button type="button" class="back-button" aria-label="Back" @click="goBack('general')">
+                    <ArrowLeft size="2.5cqh" />
+                    <span>General</span>
+                </button>
+                <span>About</span>
+            </div>
+
+            <div class="subpage-scroll ios-page">
+                <div class="ios-group about-group">
+                    <div class="info-row"><span>Name</span><strong>Test</strong></div>
+                    <div class="info-row"><span>Version</span><strong>2.0.0</strong></div>
+                    <div class="info-row"><span>Model Name</span><strong>LB Phone</strong></div>
+                    <div class="info-row"><span>Serial Number</span><strong>DSDWWWSSSF3</strong></div>
+                    <div class="info-row"><span>Developed by</span><strong>Breze &amp; Loaf Scripts</strong></div>
+                    <div class="info-row"><span>Purchase at</span><a href="https://store.lbscripts.com" target="_blank" rel="noreferrer">https://store.lbscripts.com</a></div>
+                </div>
+            </div>
+        </template>
+
+        <template v-else-if="activeSection === 'storage'">
+            <div class="settings-header">
+                <button type="button" class="back-button" aria-label="Back" @click="goBack('general')">
+                    <ArrowLeft size="2.5cqh" />
+                    <span>General</span>
+                </button>
+                <span>Phone Storage</span>
+            </div>
+
+            <div class="subpage-scroll ios-page">
+                <div class="ios-group about-group">
+                    <div class="info-row"><span>Songs</span><strong>0</strong></div>
+                    <div class="info-row"><span>Videos</span><strong>0</strong></div>
+                    <div class="info-row"><span>Photos</span><strong>0</strong></div>
+                    <div class="info-row"><span>Applications</span><strong>28</strong></div>
+                    <div class="info-row"><span>Capacity</span><strong>128 GB</strong></div>
+                    <div class="info-row"><span>Available</span><strong>119.4 GB</strong></div>
+                </div>
             </div>
         </template>
 
