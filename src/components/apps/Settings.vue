@@ -721,8 +721,22 @@ const goBack = (section) => {
     .ios-group {
         overflow: hidden;
         border-radius: 1.8cqh;
-        background: rgba(30, 30, 30, 0.92);
-        box-shadow: 0 0.6cqh 1.8cqh rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        background: rgb(42, 42, 42);
+        box-shadow: none;
+    }
+
+    .ios-page {
+        gap: 3.5cqh;
+
+        .ios-group {
+            border-radius: 1.8cqh;
+        }
+    }
+
+    .ios-group-danger {
+        .ios-row {
+            color: #ff453a;
+        }
     }
 
     .info-row,
@@ -753,6 +767,16 @@ const goBack = (section) => {
             color: rgba(255, 255, 255, 0.48);
             font-size: 1.65cqh;
             font-weight: 400;
+        }
+
+        a {
+            max-width: 58%;
+            overflow: hidden;
+            color: #0a84ff;
+            font-size: 1.6cqh;
+            text-align: right;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
     }
 
