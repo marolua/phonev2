@@ -95,7 +95,6 @@ import Inconnu from "../../assets/inconnu.png"
             justify-content: center;
             width: 75%;
             height: 100%;
-            // background-color: blue;
 
             .name {
                 font-size: 2.2cqh;
