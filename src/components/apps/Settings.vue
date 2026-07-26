@@ -796,6 +796,15 @@ const goBack = (section) => {
         background: transparent;
         text-align: left;
         cursor: pointer;
+        transition: all 0.2s ease;
+        
+        &:active {
+            opacity: 0.7;
+        }
+        
+        &:hover {
+            opacity: 0.85;
+        }
 
         >svg {
             color: rgba(255, 255, 255, 0.42);
