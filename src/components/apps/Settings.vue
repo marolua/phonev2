@@ -1,5 +1,6 @@
 <script setup>
 import { Search } from '@lucide/vue';
+import Inconnu from "../../assets/inconnu.png"
 </script>
 
 <template>
@@ -63,6 +64,15 @@ import { Search } from '@lucide/vue';
             top: 1.18cqh;
             pointer-events: none;
         }
+    }
+
+    .profil {
+        display: flex;
+        margin-top: 1.5cqh;
+        width: 100%;
+        height: 10cqh;
+        border-radius: 2cqh;
+        background-color: rgb(51, 51, 51);
     }
 }
 </style>
