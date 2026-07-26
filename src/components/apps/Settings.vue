@@ -1,10 +1,15 @@
 <script setup>
-
+import { Search } from '@lucide/vue';
 </script>
 
 <template>
     <div class="settings-app">
         <span class="title">Réglages</span>
+
+        <div class="input-group">
+            <Search class="search-icon" color="rgb(255, 255, 255, 0.8)" size="2.6cqh" />
+            <input type="text" placeholder="Rechercher">
+        </div>
     </div>
 </template>
 
@@ -26,5 +31,37 @@
         font-weight: 600;
         flex-shrink: 0;
     }
+
+     .input-group {
+            position: relative;
+            display: flex;
+            margin-top: 1cqh;
+            width: 100%;
+            flex-shrink: 0;
+
+            input[type=text] {
+                width: 100%;
+                height: 5cqh;
+                border: none;
+                padding-left: 10cqw;
+                color: white;
+                border-radius: 2.5cqw;
+                font-size: 1.8cqh;
+                font-family: "SF Pro";
+                background-color: rgba(50, 50, 50, 0.5);
+                outline: none;
+
+                &::placeholder {
+                    color: rgba(255, 255, 255, 0.6);
+                }
+            }
+
+            .search-icon {
+                position: absolute;
+                left: 2cqw;
+                top: 1.18cqh;
+                pointer-events: none;
+            }
+        }
 }
 </style>
