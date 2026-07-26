@@ -11,7 +11,13 @@ import Inconnu from "../../assets/inconnu.png"
             <input type="text" placeholder="Rechercher">
         </div>
 
-        <div class="profil"></div>
+        <div class="profil">
+            <img :src="Inconnu" alt="">
+            <div class="information">
+                <span class="name">John McKenzie</span>
+                <span class="idphone">521756</span>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -68,11 +74,41 @@ import Inconnu from "../../assets/inconnu.png"
 
     .profil {
         display: flex;
+        align-items: center;
         margin-top: 1.5cqh;
+        box-sizing: border-box;
+        padding: 0 0 0 1.5cqh;
         width: 100%;
-        height: 10cqh;
+        gap: 3cqw;
+        height: 9cqh;
         border-radius: 2cqh;
-        background-color: rgb(51, 51, 51);
+        background-color: rgb(50, 50, 50);
+
+        img {
+            width: auto;
+            height: 6.5cqh;
+        }
+
+        .information {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 75%;
+            height: 100%;
+            // background-color: blue;
+
+            .name {
+                font-size: 2.2cqh;
+                font-weight: 500;
+                line-height: 1.5;
+                color: white;
+            }
+
+            .idphone {
+                font-size: 1.7cqh;
+                color: rgba(255, 255, 255, 0.6);
+            }
+        }
     }
 }
 </style>
