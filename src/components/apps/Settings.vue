@@ -144,14 +144,15 @@ const closeSection = () => {
             <div class="settings-list" role="list">
                 <div class="settings-group settings-group-toggles">
                     <div class="settings-row toggle-row" role="listitem">
-                        <span class="row-icon row-icon-yellow"><Plane size="2.5cqh" /></span>
+                        <span class="row-icon row-icon-yellow">
+                            <Plane size="2.5cqh" />
+                        </span>
                         <span class="row-content">
                             <strong>Mode avion</strong>
                             <small>Désactive les appels et les données cellulaires</small>
                         </span>
                         <button class="ios-toggle" :class="{ active: airplaneMode }" type="button"
-                            :aria-pressed="airplaneMode" aria-label="Mode avion"
-                            @click="airplaneMode = !airplaneMode">
+                            :aria-pressed="airplaneMode" aria-label="Mode avion" @click="airplaneMode = !airplaneMode">
                             <span></span>
                         </button>
                     </div>
@@ -222,43 +223,58 @@ const closeSection = () => {
 
                 <div class="ios-group">
                     <div class="info-row">
-                        <span><User size="2.3cqh" /> Prénom</span>
+                        <span>
+                            <User size="2.3cqh" /> Prénom
+                        </span>
                         <strong>{{ profile.firstName }}</strong>
                     </div>
                     <div class="info-row">
-                        <span><User size="2.3cqh" /> Nom</span>
+                        <span>
+                            <User size="2.3cqh" /> Nom
+                        </span>
                         <strong>{{ profile.lastName }}</strong>
                     </div>
                     <div class="info-row">
-                        <span><Smartphone size="2.3cqh" /> Numéro du téléphone</span>
+                        <span>
+                            <Smartphone size="2.3cqh" /> Numéro du téléphone
+                        </span>
                         <strong>{{ profile.phoneId }}</strong>
                     </div>
                 </div>
 
                 <div class="ios-group">
                     <button class="ios-row" type="button">
-                        <span class="row-icon row-icon-blue"><Info size="2.3cqh" /></span>
+                        <span class="row-icon row-icon-blue">
+                            <Info size="2.3cqh" />
+                        </span>
                         <span>Informations</span>
                         <ChevronRight size="2.3cqh" />
                     </button>
                     <button class="ios-row" type="button">
-                        <span class="row-icon row-icon-green"><Globe size="2.3cqh" /></span>
+                        <span class="row-icon row-icon-green">
+                            <Globe size="2.3cqh" />
+                        </span>
                         <span>Langue et région</span>
                         <strong class="row-value">Français</strong>
                     </button>
                     <button class="ios-row" type="button">
-                        <span class="row-icon row-icon-purple"><HardDrive size="2.3cqh" /></span>
+                        <span class="row-icon row-icon-purple">
+                            <HardDrive size="2.3cqh" />
+                        </span>
                         <span>Stockage du téléphone</span>
                         <ChevronRight size="2.3cqh" />
                     </button>
                     <button class="ios-row" type="button">
-                        <span class="row-icon row-icon-red"><ShieldCheck size="2.3cqh" /></span>
+                        <span class="row-icon row-icon-red">
+                            <ShieldCheck size="2.3cqh" />
+                        </span>
                         <span>Confidentialité et sécurité</span>
                         <ChevronRight size="2.3cqh" />
                     </button>
                 </div>
 
-                <small class="settings-note">Les informations affichées ici pourront être personnalisées plus tard.</small>
+                <small class="settings-note">Les informations affichées ici pourront être personnalisées plus
+                    tard.</small>
             </div>
         </template>
 
@@ -308,8 +324,8 @@ const closeSection = () => {
                         <span>Luminosité</span>
                         <strong>{{ brightness }}%</strong>
                     </div>
-                    <input v-model.number="brightness" class="settings-slider" type="range" min="35" max="100"
-                        step="1" aria-label="Luminosité">
+                    <input v-model.number="brightness" class="settings-slider" type="range" min="35" max="100" step="1"
+                        aria-label="Luminosité">
                 </div>
 
                 <div class="ios-group slider-group">
@@ -322,7 +338,8 @@ const closeSection = () => {
                         max="115" step="1" aria-label="Taille de l’affichage">
                 </div>
 
-                <p class="section-intro display-help">Ces réglages sont appliqués directement à l’affichage du téléphone.</p>
+                <p class="section-intro display-help">Ces réglages sont appliqués directement à l’affichage du
+                    téléphone.</p>
             </div>
         </template>
     </div>
@@ -348,7 +365,7 @@ const closeSection = () => {
     background-color: rgb(10, 10, 10);
     font-family: "SF Pro";
 
-    > * {
+    >* {
         position: relative;
         z-index: 1;
     }
@@ -707,7 +724,7 @@ const closeSection = () => {
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        > span:first-child {
+        >span:first-child {
             display: flex;
             align-items: center;
             flex: 1;
@@ -731,7 +748,7 @@ const closeSection = () => {
         text-align: left;
         cursor: pointer;
 
-        > svg {
+        >svg {
             color: rgba(255, 255, 255, 0.42);
         }
 
@@ -745,10 +762,21 @@ const closeSection = () => {
             color: white;
         }
 
-        .row-icon-blue { background: #0a84ff; }
-        .row-icon-green { background: #30d158; }
-        .row-icon-purple { background: #af52de; }
-        .row-icon-red { background: #ff453a; }
+        .row-icon-blue {
+            background: #0a84ff;
+        }
+
+        .row-icon-green {
+            background: #30d158;
+        }
+
+        .row-icon-purple {
+            background: #af52de;
+        }
+
+        .row-icon-red {
+            background: #ff453a;
+        }
     }
 
     .settings-note,
@@ -823,9 +851,17 @@ const closeSection = () => {
             font-weight: 600;
         }
 
-        .preview-small { font-size: 2cqh; }
-        .preview-medium { font-size: 3cqh; }
-        .preview-large { font-size: 4cqh; }
+        .preview-small {
+            font-size: 2cqh;
+        }
+
+        .preview-medium {
+            font-size: 3cqh;
+        }
+
+        .preview-large {
+            font-size: 4cqh;
+        }
     }
 
     .slider-group {
