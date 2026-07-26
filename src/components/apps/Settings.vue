@@ -413,15 +413,14 @@ const closeSection = () => {
         border: 0;
         border-radius: 2cqh;
         color: white;
-        background: linear-gradient(135deg, rgba(47, 47, 50, 0.98), rgba(29, 29, 31, 0.98));
-        box-shadow: 0 0.8cqh 2cqh rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+        background: rgb(28, 28, 28);
         font-family: inherit;
         text-align: left;
         cursor: pointer;
         transition: transform 0.18s ease, background 0.18s ease;
 
         &:active {
-            background: rgb(54, 54, 57);
+            background: rgb(45, 45, 45);
             transform: scale(0.985);
         }
 
@@ -480,10 +479,9 @@ const closeSection = () => {
 
     .settings-group {
         overflow: hidden;
-        border: 1px solid rgba(255, 255, 255, 0.055);
+        border: 0;
         border-radius: 1.9cqh;
-        background: #292929;
-        box-shadow: 0 0.8cqh 2.5cqh rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.035);
+        background: rgb(42, 42, 42);
 
         .settings-row {
             min-height: 8.6cqh;
