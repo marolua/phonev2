@@ -57,49 +57,49 @@ const sections = [
     {
         id: 'notifications',
         title: 'Notifications',
-        description: 'Choisir les applications qui peuvent envoyer des notifications',
+        description: 'Choose which apps can send notifications',
         icon: Bell,
         color: '#ff5964',
     },
     {
         id: 'sound',
-        title: 'Son et vibrations',
-        description: 'Gérer les sons et les vibrations',
+        title: 'Sound & Haptics',
+        description: 'Change sounds and vibrations',
         icon: Volume2,
         color: '#ff2d7a',
     },
     {
         id: 'microphone',
         title: 'Microphone',
-        description: 'Choisir le microphone utilisé pour les enregistrements',
+        description: 'Choose which microphone to use for recordings',
         icon: Mic,
         color: '#55d98b',
     },
     {
         id: 'general',
-        title: 'Général',
-        description: 'Informations et préférences du téléphone',
+        title: 'General',
+        description: 'General settings for your phone',
         icon: SlidersHorizontal,
         color: '#5e5ce6',
     },
     {
         id: 'display',
-        title: 'Luminosité et affichage',
-        description: 'Luminosité et taille de l’écran',
+        title: 'Display & Brightness',
+        description: 'Adjust display & brightness',
         icon: SunMedium,
         color: '#ffcc00',
     },
     {
         id: 'wallpaper',
-        title: 'Fond d’écran',
-        description: 'Choisir le fond d’écran du téléphone',
+        title: 'Wallpaper',
+        description: 'Change wallpaper and other background settings',
         icon: Image,
         color: '#5bdaf4',
     },
     {
         id: 'face-id',
-        title: 'Face ID et code',
-        description: 'Gérer la sécurité de ton téléphone',
+        title: 'Face ID & Passcode',
+        description: 'Manage security for your phone',
         icon: ShieldCheck,
         color: '#30d158',
     },
@@ -119,6 +119,10 @@ const openSection = (section) => {
 
 const closeSection = () => {
     activeSection.value = 'home';
+};
+
+const goBack = (section) => {
+    activeSection.value = section;
 };
 </script>
 
