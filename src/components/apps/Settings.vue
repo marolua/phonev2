@@ -578,18 +578,22 @@ const goBack = (section) => {
         gap: 2.5cqw;
         padding: 1.2cqh 2cqw;
         border: 0;
-        border-radius: 1.8cqh;
+        border-radius: 1.2cqh;
         color: white;
-        background: rgba(30, 30, 30, 0.9);
-        box-shadow: 0 0.6cqh 1.8cqh rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        background: rgba(45, 45, 48, 1);
+        box-shadow: none;
         font-family: inherit;
         text-align: left;
         cursor: pointer;
-        transition: transform 0.18s ease, background 0.18s ease;
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 
         &:active {
-            background: rgba(54, 54, 54, 0.95);
-            transform: scale(0.985);
+            background: rgba(60, 60, 65, 1);
+            transform: scale(0.98);
+        }
+        
+        &:hover {
+            background: rgba(55, 55, 58, 1);
         }
 
         .row-icon {
