@@ -9,6 +9,7 @@ import WeatherWidget from './widgets/WeatherWidget.vue'
 import Prompt from '../utils/Prompt.vue';
 import { applications } from '../config/applications';
 import { X, Volume2, Video, Mic, Clock3, AudioLines, Signal } from '@lucide/vue';
+import { brightness, displayScale, selectedWallpaper } from '../stores/phoneSettings';
 
 const islandExamples = [
     {
@@ -61,6 +62,12 @@ const applicationTransitionOrigin = ref({ x: 50, y: 50 })
 const applicationTransitionStyle = computed(() => ({
     '--application-origin-x': `${applicationTransitionOrigin.value.x}%`,
     '--application-origin-y': `${applicationTransitionOrigin.value.y}%`,
+}))
+
+const screenStyle = computed(() => ({
+    backgroundImage: `url(${selectedWallpaper.value})`,
+    '--screen-brightness': brightness.value / 100,
+    '--display-scale': displayScale.value / 100,
 }))
 
 const showIsland = (index) => {
@@ -121,7 +128,7 @@ const closeApplication = () => {
             </div>
         </div>
 
-        <div ref="screenElement" class="screen">
+        <div ref="screenElement" class="screen" :style="screenStyle">
             <div class="top">
                 <div v-show="!isPillActive" class="hour">22:50</div>
 
@@ -375,9 +382,12 @@ const closeApplication = () => {
     width: 95.9cqw;
     height: 98.1cqh;
     border-radius: 13.4cqw;
-    background: url('../assets/wallpapers/background42.png');
+    background-color: #111;
     background-size: cover;
     background-repeat: no-repeat;
+    filter: brightness(var(--screen-brightness, 1));
+    transform: scale(var(--display-scale, 1));
+    transition: filter 0.2s ease, transform 0.2s ease, background-image 0.25s ease;
 
     .top {
         position: absolute;
