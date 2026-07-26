@@ -82,7 +82,7 @@ import Inconnu from "../../assets/inconnu.png"
         gap: 3cqw;
         height: 9cqh;
         border-radius: 2cqh;
-        background-color: rgb(50, 50, 50);
+        background-color: rgb(28, 28, 28);
 
         img {
             width: auto;
