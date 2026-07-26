@@ -483,10 +483,69 @@ const closeSection = () => {
     .settings-list {
         display: flex;
         flex-direction: column;
-        gap: 1cqh;
+        gap: 2.5cqh;
         min-height: 0;
-        margin-top: 2cqh;
+        margin-top: 2.8cqh;
         overflow-y: auto;
+    }
+
+    .settings-group {
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.055);
+        border-radius: 1.9cqh;
+        background: #292929;
+        box-shadow: 0 0.8cqh 2.5cqh rgba(0, 0, 0, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.035);
+
+        .settings-row {
+            min-height: 8.6cqh;
+            border-radius: 0;
+            background: transparent;
+            box-shadow: none;
+
+            &:not(:last-child) {
+                border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+            }
+        }
+    }
+
+    .settings-group-toggles {
+        .settings-row {
+            min-height: 8.2cqh;
+        }
+    }
+
+    .ios-toggle {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 10.5cqh;
+        height: 5.8cqh;
+        flex-shrink: 0;
+        padding: 0.35cqh;
+        border: 0;
+        border-radius: 999px;
+        background: #f5f5f5;
+        cursor: pointer;
+        transition: background 0.2s ease;
+
+        span {
+            display: block;
+            width: 5.1cqh;
+            height: 5.1cqh;
+            border-radius: 50%;
+            background: #bdbdbd;
+            box-shadow: 0 0.25cqh 0.7cqh rgba(0, 0, 0, 0.25);
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        &.active {
+            background: #34c759;
+
+            span {
+                background: white;
+                transform: translateX(4.55cqh);
+            }
+        }
     }
 
     .settings-row {
@@ -520,6 +579,16 @@ const closeSection = () => {
             height: 5.5cqh;
             flex-shrink: 0;
             border-radius: 1.4cqh;
+            color: white;
+        }
+
+        .row-icon-yellow {
+            background: #ffe033;
+            color: white;
+        }
+
+        .row-icon-purple {
+            background: #8173f5;
             color: white;
         }
 
