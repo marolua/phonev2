@@ -445,17 +445,21 @@ const goBack = (section) => {
         margin-top: 1.5cqh;
         padding: 1cqh 2cqw 1cqh 1.5cqh;
         border: 0;
-        border-radius: 2cqh;
+        border-radius: 1.2cqh;
         color: white;
-        background: rgb(28, 28, 28);
+        background: rgba(45, 45, 48, 1);
         font-family: inherit;
         text-align: left;
         cursor: pointer;
-        transition: transform 0.18s ease, background 0.18s ease;
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 
         &:active {
-            background: rgb(45, 45, 45);
-            transform: scale(0.985);
+            background: rgba(60, 60, 65, 1);
+            transform: scale(0.98);
+        }
+        
+        &:hover {
+            background: rgba(55, 55, 58, 1);
         }
 
         .information {
