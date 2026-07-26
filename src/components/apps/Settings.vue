@@ -142,17 +142,60 @@ const closeSection = () => {
             </button>
 
             <div class="settings-list" role="list">
-                <button v-for="section in visibleSections" :key="section.id" class="settings-row" type="button"
-                    role="listitem" @click="openSection(section.id)">
-                    <span class="row-icon" :style="{ backgroundColor: section.color }">
-                        <component :is="section.icon" size="2.5cqh" />
-                    </span>
-                    <span class="row-content">
-                        <strong>{{ section.title }}</strong>
-                        <small>{{ section.description }}</small>
-                    </span>
-                    <ChevronRight class="row-chevron" size="2.5cqh" />
-                </button>
+                <div class="settings-group settings-group-toggles">
+                    <div class="settings-row toggle-row" role="listitem">
+                        <span class="row-icon row-icon-yellow"><Plane size="2.5cqh" /></span>
+                        <span class="row-content">
+                            <strong>Mode avion</strong>
+                            <small>Désactive les appels et les données cellulaires</small>
+                        </span>
+                        <button class="ios-toggle" :class="{ active: airplaneMode }" type="button"
+                            :aria-pressed="airplaneMode" aria-label="Mode avion"
+                            @click="airplaneMode = !airplaneMode">
+                            <span></span>
+                        </button>
+                    </div>
+                    <div class="settings-row toggle-row" role="listitem">
+                        <span class="row-icon row-icon-purple"><Video size="2.5cqh" /></span>
+                        <span class="row-content">
+                            <strong>Mode streamer</strong>
+                            <small>Masque les informations sensibles</small>
+                        </span>
+                        <button class="ios-toggle" :class="{ active: streamerMode }" type="button"
+                            :aria-pressed="streamerMode" aria-label="Mode streamer"
+                            @click="streamerMode = !streamerMode">
+                            <span></span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="settings-group">
+                    <button v-for="section in visibleSections.slice(0, 3)" :key="section.id" class="settings-row"
+                        type="button" role="listitem" @click="openSection(section.id)">
+                        <span class="row-icon" :style="{ backgroundColor: section.color }">
+                            <component :is="section.icon" size="2.5cqh" />
+                        </span>
+                        <span class="row-content">
+                            <strong>{{ section.title }}</strong>
+                            <small>{{ section.description }}</small>
+                        </span>
+                        <ChevronRight class="row-chevron" size="2.5cqh" />
+                    </button>
+                </div>
+
+                <div class="settings-group">
+                    <button v-for="section in visibleSections.slice(3)" :key="section.id" class="settings-row"
+                        type="button" role="listitem" @click="openSection(section.id)">
+                        <span class="row-icon" :style="{ backgroundColor: section.color }">
+                            <component :is="section.icon" size="2.5cqh" />
+                        </span>
+                        <span class="row-content">
+                            <strong>{{ section.title }}</strong>
+                            <small>{{ section.description }}</small>
+                        </span>
+                        <ChevronRight class="row-chevron" size="2.5cqh" />
+                    </button>
+                </div>
 
                 <div v-if="visibleSections.length === 0" class="no-results">
                     <Search size="5cqh" />
