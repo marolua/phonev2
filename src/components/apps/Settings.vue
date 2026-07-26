@@ -4,7 +4,7 @@
 
 <template>
     <div class="settings-app">
-
+        <span class="title">Parametres</span>
     </div>
 </template>
 
@@ -20,5 +20,11 @@
     user-select: none;
     padding: 15cqw 3cqh 0cqw;
     background-color: rgb(10, 10, 10);
+
+    .title {
+        font-size: 8cqw;
+        font-weight: 600;
+        flex-shrink: 0;
+    }
 }
 </style>
