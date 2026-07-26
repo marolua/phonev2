@@ -67,7 +67,10 @@ const applicationTransitionStyle = computed(() => ({
 const screenStyle = computed(() => ({
     backgroundImage: `url(${selectedWallpaper.value})`,
     '--screen-brightness': brightness.value / 100,
-    '--display-scale': displayScale.value / 100,
+}))
+
+const phoneStyle = computed(() => ({
+    '--phone-scale': displayScale.value / 100,
 }))
 
 const showIsland = (index) => {
@@ -117,7 +120,7 @@ const closeApplication = () => {
         </button>
     </div>
 
-    <div class="full-phone-coque">
+    <div class="full-phone-coque" :style="phoneStyle">
         <div class="button">
             <div class="button-left">
                 <div class="button-left-volume"></div>
@@ -319,12 +322,13 @@ const closeApplication = () => {
     align-items: center;
     top: 50%;
     left: 60%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(var(--phone-scale, 1));
     width: 16.11vw;
     aspect-ratio: 9 / 18.15;
     border-radius: 2.7vw;
     border: 0.25vw solid rgb(94, 95, 97);
     background-color: rgb(0, 0, 0);
+    transition: transform 0.25s ease-in-out;
 }
 
 .button .button-left {
@@ -386,8 +390,7 @@ const closeApplication = () => {
     background-size: cover;
     background-repeat: no-repeat;
     filter: brightness(var(--screen-brightness, 1));
-    transform: scale(var(--display-scale, 1));
-    transition: filter 0.2s ease, transform 0.2s ease, background-image 0.25s ease;
+    transition: filter 0.2s ease, background-image 0.25s ease;
 
     .top {
         position: absolute;
