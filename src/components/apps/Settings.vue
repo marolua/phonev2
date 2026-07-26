@@ -868,18 +868,22 @@ const goBack = (section) => {
         overflow: hidden;
         padding: 0;
         border: 2px solid transparent;
-        border-radius: 1.4cqh;
+        border-radius: 1.2cqh;
         background: #222;
         cursor: pointer;
-        transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 
         &.selected {
             border-color: #0a84ff;
-            box-shadow: 0 0 0 0.35cqh rgba(10, 132, 255, 0.25);
+            box-shadow: 0 0 0 0.4cqh rgba(10, 132, 255, 0.3);
         }
 
         &:active {
-            transform: scale(0.96);
+            transform: scale(0.95);
+        }
+        
+        &:hover {
+            transform: scale(1.02);
         }
 
         img {
@@ -968,6 +972,9 @@ const goBack = (section) => {
         margin: 2cqh 0 0;
         accent-color: #ffcc00;
         cursor: pointer;
+        height: 0.6cqh;
+        border-radius: 0.3cqh;
+        transition: all 0.2s ease;
     }
 
     .display-slider {
