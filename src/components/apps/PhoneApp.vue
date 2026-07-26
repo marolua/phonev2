@@ -2,8 +2,16 @@
 import { computed, ref } from 'vue';
 import { ArrowLeft, Camera, ClockFading, Delete, Grid3X3, ImagePlus, Keyboard, Mail, MessageCircle, MicOff, MoreHorizontal, Phone, PhoneOff, Search, User, UserPlus, Video, Volume2, X } from '@lucide/vue';
 import Prompt from '../../utils/Prompt.vue';
+import { contacts } from '../../stores/contacts';
 
-const activeCategory = ref('calls');
+const props = defineProps({
+    contactsOnly: {
+        type: Boolean,
+        default: false,
+    },
+});
+
+const activeCategory = ref(props.contactsOnly ? 'contacts' : 'calls');
 
 const categories = [
     { id: 'calls', label: 'Appels', icon: ClockFading },
@@ -16,7 +24,6 @@ const phoneNumber = ref('');
 const showCreateContact = ref(false);
 const emptyContact = () => ({ firstName: '', lastName: '', phone: '', photo: '' });
 const newContact = ref(emptyContact());
-const contacts = ref([]);
 const contactSearch = ref('');
 const selectedContact = ref(null);
 const isClosingContact = ref(false);
@@ -304,7 +311,7 @@ const addContact = () => {
             <span class="title">{{ activeCategory === 'calls' ? 'Récents' : activeCategory === 'contacts' ? 'Contacts' :
                 'Clavier' }}</span>
 
-            <div v-if="activeCategory === 'calls'" class="container">
+            <div v-if="activeCategory === 'calls' && !props.contactsOnly" class="container">
                 <div class="input-group">
                     <Search class="search-icon" color="rgb(255, 255, 255, 0.8)" size="2.6cqh" />
                     <input type="text" placeholder="Rechercher">
@@ -364,7 +371,7 @@ const addContact = () => {
                 </div>
             </div>
 
-            <div v-else class="container keyboard-container">
+            <div v-else-if="!props.contactsOnly" class="container keyboard-container">
                 <div class="phone-number">{{ phoneNumber || ' ' }}</div>
                 <div class="keypad">
                     <button v-for="key in keypad" :key="key" type="button" class="keypad-key" @click="appendKey(key)">
@@ -382,7 +389,7 @@ const addContact = () => {
                 </div>
             </div>
 
-            <div class="bottom-app-phone">
+            <div v-if="!props.contactsOnly" class="bottom-app-phone">
                 <div class="categories">
                     <button v-for="category in categories" :key="category.id" type="button" class="categorie"
                         :class="{ 'categorie-selected': activeCategory === category.id }"
