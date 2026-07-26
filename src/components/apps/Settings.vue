@@ -551,7 +551,7 @@ const goBack = (section) => {
         border-radius: 999px;
         background: #f5f5f5;
         cursor: pointer;
-        transition: background 0.2s ease;
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 
         span {
             display: block;
@@ -560,15 +560,17 @@ const goBack = (section) => {
             border-radius: 50%;
             background: #bdbdbd;
             box-shadow: 0 0.25cqh 0.7cqh rgba(0, 0, 0, 0.25);
-            transition: transform 0.2s ease, background 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
         &.active {
             background: #34c759;
+            box-shadow: 0 0 0 0.3cqh rgba(52, 199, 89, 0.2);
 
             span {
                 background: white;
                 transform: translateX(4.55cqh);
+                box-shadow: 0 0.3cqh 0.9cqh rgba(0, 0, 0, 0.3);
             }
         }
     }
@@ -689,9 +691,14 @@ const goBack = (section) => {
             font-family: inherit;
             font-size: 1.75cqh;
             cursor: pointer;
+            transition: all 0.2s ease;
 
             &:active {
-                opacity: 0.6;
+                opacity: 0.5;
+            }
+            
+            &:hover {
+                opacity: 0.7;
             }
         }
     }
