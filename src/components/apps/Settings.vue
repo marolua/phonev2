@@ -130,6 +130,7 @@ const closeSection = () => {
             <div class="settings-header">
                 <button type="button" class="back-button" aria-label="Retour" @click="closeSection">
                     <ArrowLeft size="2.5cqh" />
+                    <span>Réglages</span>
                 </button>
                 <span>Général</span>
             </div>
@@ -187,6 +188,7 @@ const closeSection = () => {
             <div class="settings-header">
                 <button type="button" class="back-button" aria-label="Retour" @click="closeSection">
                     <ArrowLeft size="2.5cqh" />
+                    <span>Réglages</span>
                 </button>
                 <span>Fond d’écran</span>
             </div>
@@ -210,6 +212,7 @@ const closeSection = () => {
             <div class="settings-header">
                 <button type="button" class="back-button" aria-label="Retour" @click="closeSection">
                     <ArrowLeft size="2.5cqh" />
+                    <span>Réglages</span>
                 </button>
                 <span>Luminosité et affichage</span>
             </div>
@@ -267,10 +270,28 @@ const closeSection = () => {
     background-color: rgb(10, 10, 10);
     font-family: "SF Pro";
 
+    &::before {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        content: '';
+        background:
+            radial-gradient(circle at 95% 0%, rgba(92, 92, 230, 0.12), transparent 32%),
+            linear-gradient(180deg, rgba(255, 255, 255, 0.025), transparent 28%);
+    }
+
+    > * {
+        position: relative;
+        z-index: 1;
+    }
+
     .title {
         flex-shrink: 0;
+        margin-left: 0.5cqw;
         font-size: 8cqw;
         font-weight: 600;
+        letter-spacing: -0.12cqw;
     }
 
     .input-group {
@@ -290,8 +311,15 @@ const closeSection = () => {
             border-radius: 2.5cqw;
             color: white;
             background-color: rgba(50, 50, 50, 0.5);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
             font-family: inherit;
             font-size: 1.8cqh;
+            transition: background-color 0.2s ease, box-shadow 0.2s ease;
+
+            &:focus {
+                background-color: rgba(62, 62, 65, 0.7);
+                box-shadow: 0 0 0 0.2cqh rgba(10, 132, 255, 0.45);
+            }
 
             &::placeholder {
                 color: rgba(255, 255, 255, 0.6);
@@ -318,13 +346,16 @@ const closeSection = () => {
         border: 0;
         border-radius: 2cqh;
         color: white;
-        background-color: rgb(28, 28, 28);
+        background: linear-gradient(135deg, rgba(47, 47, 50, 0.98), rgba(29, 29, 31, 0.98));
+        box-shadow: 0 0.8cqh 2cqh rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.07);
         font-family: inherit;
         text-align: left;
         cursor: pointer;
+        transition: transform 0.18s ease, background 0.18s ease;
 
         &:active {
-            background-color: rgb(42, 42, 42);
+            background: rgb(54, 54, 57);
+            transform: scale(0.985);
         }
 
         .information {
@@ -391,13 +422,16 @@ const closeSection = () => {
         border: 0;
         border-radius: 1.8cqh;
         color: white;
-        background: rgba(30, 30, 30, 0.92);
+        background: rgba(30, 30, 30, 0.9);
+        box-shadow: 0 0.6cqh 1.8cqh rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.04);
         font-family: inherit;
         text-align: left;
         cursor: pointer;
+        transition: transform 0.18s ease, background 0.18s ease;
 
         &:active {
             background: rgba(54, 54, 54, 0.95);
+            transform: scale(0.985);
         }
 
         .row-icon {
@@ -467,15 +501,22 @@ const closeSection = () => {
             left: 0;
             display: flex;
             align-items: center;
-            justify-content: center;
-            width: 5cqh;
+            gap: 0.5cqw;
+            justify-content: flex-start;
+            width: auto;
             height: 5cqh;
-            padding: 0;
+            padding: 0 1cqw 0 0;
             border: 0;
-            border-radius: 50%;
-            color: white;
-            background: rgba(55, 55, 58, 0.85);
+            border-radius: 1.5cqh;
+            color: #0a84ff;
+            background: transparent;
+            font-family: inherit;
+            font-size: 1.75cqh;
             cursor: pointer;
+
+            &:active {
+                opacity: 0.6;
+            }
         }
     }
 
@@ -513,6 +554,7 @@ const closeSection = () => {
         overflow: hidden;
         border-radius: 1.8cqh;
         background: rgba(30, 30, 30, 0.92);
+        box-shadow: 0 0.6cqh 1.8cqh rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.04);
     }
 
     .info-row,
@@ -602,9 +644,15 @@ const closeSection = () => {
         border-radius: 1.4cqh;
         background: #222;
         cursor: pointer;
+        transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
 
         &.selected {
             border-color: #0a84ff;
+            box-shadow: 0 0 0 0.35cqh rgba(10, 132, 255, 0.25);
+        }
+
+        &:active {
+            transform: scale(0.96);
         }
 
         img {
