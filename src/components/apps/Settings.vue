@@ -409,21 +409,21 @@ const goBack = (section) => {
             padding-left: 10cqw;
             border: none;
             outline: none;
-            border-radius: 2.5cqw;
+            border-radius: 1.2cqh;
             color: white;
-            background-color: rgba(50, 50, 50, 0.5);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+            background-color: rgba(50, 50, 50, 1);
+            box-shadow: inset 0 0 0 0 rgba(255, 255, 255, 0.06);
             font-family: inherit;
             font-size: 1.8cqh;
-            transition: background-color 0.2s ease, box-shadow 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 
             &:focus {
-                background-color: rgba(62, 62, 65, 0.7);
-                box-shadow: 0 0 0 0.2cqh rgba(10, 132, 255, 0.45);
+                background-color: rgba(62, 62, 65, 1);
+                box-shadow: inset 0 0 0 0.1cqh rgba(10, 132, 255, 0.3);
             }
 
             &::placeholder {
-                color: rgba(255, 255, 255, 0.6);
+                color: rgba(255, 255, 255, 0.5);
             }
         }
 
