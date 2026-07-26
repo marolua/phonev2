@@ -4,7 +4,7 @@
 
 <template>
     <div class="settings-app">
-        <span class="title">Parametres</span>
+        <span class="title">Réglages</span>
     </div>
 </template>
 
