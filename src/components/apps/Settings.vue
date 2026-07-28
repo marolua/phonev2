@@ -18,6 +18,10 @@ import Inconnu from "../../assets/inconnu.png"
                 <span class="idphone">521756</span>
             </div>
         </div>
+
+        <div class="container-cat">
+
+        </div>
     </div>
 </template>
 
@@ -114,6 +118,10 @@ import Inconnu from "../../assets/inconnu.png"
                 color: rgba(255, 255, 255, 0.6);
             }
         }
+    }
+
+    .container-cat {
+        
     }
 }
 
