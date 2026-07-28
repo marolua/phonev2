@@ -1,5 +1,5 @@
 <script setup>
-import { Search } from '@lucide/vue';
+import { Search, ChevronRight, Volume2 } from '@lucide/vue';
 import Inconnu from "../../assets/inconnu.png"
 </script>
 
@@ -20,7 +20,9 @@ import Inconnu from "../../assets/inconnu.png"
         </div>
 
         <div class="container-cat">
+            <div class="button">
 
+            </div>
         </div>
     </div>
 </template>
@@ -128,6 +130,15 @@ import Inconnu from "../../assets/inconnu.png"
         width: 100%;
         height: 75%;
         background-color: red;
+
+        .button {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 8cqh;
+            border-radius: 2.5cqw;
+            background-color: green;
+        }
     }
 }
 
