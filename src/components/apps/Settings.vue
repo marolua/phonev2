@@ -90,7 +90,7 @@ import Inconnu from "../../assets/inconnu.png"
         width: 100%;
         gap: 3cqw;
         height: 9cqh;
-        border-radius: 2cqh;
+        border-radius: 1.2cqh;
         background-color: rgb(28, 28, 28);
 
         .pic {
@@ -129,7 +129,7 @@ import Inconnu from "../../assets/inconnu.png"
         display: flex;
         flex-direction: column;
         box-sizing: border-box;
-        padding: 1.5cqh 0 0 0;
+        padding: 3cqh 0 0 0;
         width: 100%;
         height: 75%;
         // background-color: red;
@@ -138,10 +138,10 @@ import Inconnu from "../../assets/inconnu.png"
             display: flex;
             align-items: center;
             box-sizing: border-box;
-            padding: 1cqh;
+            padding: 1.75cqh;
             width: 100%;
             height: 8cqh;
-            border-radius: 2.5cqw;
+            border-radius: 5cqw;
             background-color: rgb(30, 30, 30);
 
             .icon {
@@ -150,7 +150,7 @@ import Inconnu from "../../assets/inconnu.png"
                 align-items: center;
                 width: 4.5cqh;
                 height: 4.5cqh;
-                border-radius: 2cqw;
+                border-radius: 3cqw;
                 background-color: blue;
             }
         }
