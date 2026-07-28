@@ -23,8 +23,10 @@ import Inconnu from "../../assets/inconnu.png"
             <div class="button">
                 <span class="icon"><Volume2 size="2.5cqh"/></span>
                 <div class="information">
-
+                    <span class="name">Son & Vibration</span>
+                    <span class="description">Changer le volume du son</span>
                 </div>
+                <ChevronRight size="2.5cqh" class="part-icon"/>
             </div>
         </div>
     </div>
@@ -138,10 +140,10 @@ import Inconnu from "../../assets/inconnu.png"
             display: flex;
             align-items: center;
             box-sizing: border-box;
-            padding: 1.75cqh;
+            padding: 0 0 0 1.75cqh;
             width: 100%;
             height: 8cqh;
-            border-radius: 5cqw;
+            border-radius: 4cqw;
             background-color: rgb(30, 30, 30);
 
             .icon {
@@ -152,6 +154,30 @@ import Inconnu from "../../assets/inconnu.png"
                 height: 4.5cqh;
                 border-radius: 3cqw;
                 background-color: blue;
+            }
+
+            .information {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                margin-left: 3.5cqw;
+                width: 70%;
+                height: 100%;
+
+                .name {
+                    font-size: 2cqh;
+                    color: white;
+                }
+
+                .description {
+                    font-size: 1.5cqh;
+                    color: rgba(255, 255, 255, 0.5);
+                }
+            }
+
+            .part-icon {
+                margin-left: 4cqw;
+                color: rgba(255, 255, 255, 0.65);
             }
         }
     }
