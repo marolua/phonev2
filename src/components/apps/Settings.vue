@@ -143,7 +143,7 @@ import Inconnu from "../../assets/inconnu.png"
             padding: 0 0 0 1.75cqh;
             width: 100%;
             height: 8cqh;
-            transition: all ease-in-out 0.2s;
+            transition: all ease-in-out 0.15s;
             border-radius: 4cqw;
             background-color: rgb(30, 30, 30);
 
