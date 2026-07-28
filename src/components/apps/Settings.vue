@@ -132,7 +132,7 @@ import Inconnu from "../../assets/inconnu.png"
         padding: 1.5cqh 0 0 0;
         width: 100%;
         height: 75%;
-        background-color: red;
+        // background-color: red;
 
         .button {
             display: flex;
@@ -142,7 +142,7 @@ import Inconnu from "../../assets/inconnu.png"
             width: 100%;
             height: 8cqh;
             border-radius: 2.5cqw;
-            background-color: rgb(50, 50, 50);
+            background-color: rgb(30, 30, 30);
 
             .icon {
                 display: flex;
