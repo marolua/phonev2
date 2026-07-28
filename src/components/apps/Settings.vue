@@ -121,7 +121,11 @@ import Inconnu from "../../assets/inconnu.png"
     }
 
     .container-cat {
-        
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 75%;
+        background-color: red;
     }
 }
 
