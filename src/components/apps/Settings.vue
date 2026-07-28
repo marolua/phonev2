@@ -12,7 +12,8 @@ import Inconnu from "../../assets/inconnu.png"
         </div>
 
         <div class="profil">
-            <img :src="Inconnu" alt="">
+            <!-- <img :src="Inconnu" alt=""> -->
+            <div class="pic">JM</div>
             <div class="information">
                 <span class="name">John McKenzie</span>
                 <span class="idphone">521756</span>
@@ -84,9 +85,15 @@ import Inconnu from "../../assets/inconnu.png"
         border-radius: 2cqh;
         background-color: rgb(28, 28, 28);
 
-        img {
-            width: auto;
+        .pic {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 6.5cqh;
+            font-size: 2.75cqh;
             height: 6.5cqh;
+            border-radius: 50%;
+            background: linear-gradient(145deg, rgb(90, 90, 90), rgb(50, 50, 50));
         }
 
         .information {
