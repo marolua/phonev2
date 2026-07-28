@@ -131,7 +131,7 @@ import Inconnu from "../../assets/inconnu.png"
         display: flex;
         flex-direction: column;
         box-sizing: border-box;
-        padding: 3cqh 0 0 0;
+        padding: 3.5cqh 0 0 0;
         width: 100%;
         height: 75%;
         // background-color: red;
