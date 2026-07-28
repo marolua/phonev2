@@ -12,7 +12,6 @@ import Inconnu from "../../assets/inconnu.png"
         </div>
 
         <div class="profil">
-            <!-- <img :src="Inconnu" alt=""> -->
             <div class="pic">JM</div>
             <div class="information">
                 <span class="name">John McKenzie</span>
