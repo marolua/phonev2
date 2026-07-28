@@ -123,6 +123,8 @@ import Inconnu from "../../assets/inconnu.png"
     .container-cat {
         display: flex;
         flex-direction: column;
+        box-sizing: border-box;
+        padding: 1.5cqh 0 0 0;
         width: 100%;
         height: 75%;
         background-color: red;
