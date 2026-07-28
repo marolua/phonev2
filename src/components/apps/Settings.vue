@@ -183,7 +183,7 @@ import Inconnu from "../../assets/inconnu.png"
 
             &:hover {
                 cursor: pointer;
-                transform: scale(1.005);
+                transform: scale(1.05);
             }
         }
     }
