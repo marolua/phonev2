@@ -137,7 +137,7 @@ import Inconnu from "../../assets/inconnu.png"
             width: 100%;
             height: 8cqh;
             border-radius: 2.5cqw;
-            background-color: green;
+            background-color: rgb(50, 50, 50);
         }
     }
 }
