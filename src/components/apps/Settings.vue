@@ -134,7 +134,6 @@ import Inconnu from "../../assets/inconnu.png"
         padding: 3.5cqh 0 0 0;
         width: 100%;
         height: 75%;
-        // background-color: red;
 
         .button {
             display: flex;
