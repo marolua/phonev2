@@ -21,7 +21,10 @@ import Inconnu from "../../assets/inconnu.png"
 
         <div class="container-cat">
             <div class="button">
+                <span class="icon"><Volume2/></span>
+                <div class="information">
 
+                </div>
             </div>
         </div>
     </div>
@@ -134,10 +137,22 @@ import Inconnu from "../../assets/inconnu.png"
         .button {
             display: flex;
             align-items: center;
+            box-sizing: border-box;
+            padding: 1cqh;
             width: 100%;
             height: 8cqh;
             border-radius: 2.5cqw;
             background-color: rgb(50, 50, 50);
+
+            .icon {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 4cqh;
+                height: 4cqh;
+                border-radius: 2cqw;
+                background-color: blue;
+            }
         }
     }
 }
