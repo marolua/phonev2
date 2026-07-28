@@ -21,7 +21,7 @@ import Inconnu from "../../assets/inconnu.png"
 
         <div class="container-cat">
             <div class="button">
-                <span class="icon"><Volume2/></span>
+                <span class="icon"><Volume2 size="2.5cqh"/></span>
                 <div class="information">
 
                 </div>
@@ -148,8 +148,8 @@ import Inconnu from "../../assets/inconnu.png"
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                width: 4cqh;
-                height: 4cqh;
+                width: 4.5cqh;
+                height: 4.5cqh;
                 border-radius: 2cqw;
                 background-color: blue;
             }
