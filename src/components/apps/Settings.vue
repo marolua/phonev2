@@ -28,6 +28,33 @@ import Inconnu from "../../assets/inconnu.png"
                 </div>
                 <ChevronRight size="2.5cqh" class="part-icon"/>
             </div>
+
+            <div class="more-button">
+                <div class="button">
+                <span class="icon"><Volume2 size="2.5cqh"/></span>
+                <div class="information">
+                    <span class="name">Son & Vibration</span>
+                    <span class="description">Changer le volume du son</span>
+                </div>
+                <ChevronRight size="2.5cqh" class="part-icon"/>
+            </div>
+            <div class="button">
+                <span class="icon"><Volume2 size="2.5cqh"/></span>
+                <div class="information">
+                    <span class="name">Son & Vibration</span>
+                    <span class="description">Changer le volume du son</span>
+                </div>
+                <ChevronRight size="2.5cqh" class="part-icon"/>
+            </div>
+            <div class="button">
+                <span class="icon"><Volume2 size="2.5cqh"/></span>
+                <div class="information">
+                    <span class="name">Son & Vibration</span>
+                    <span class="description">Changer le volume du son</span>
+                </div>
+                <ChevronRight size="2.5cqh" class="part-icon"/>
+            </div>
+            </div>
         </div>
     </div>
 </template>
