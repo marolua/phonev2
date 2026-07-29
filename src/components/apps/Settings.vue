@@ -212,6 +212,21 @@ import Inconnu from "../../assets/inconnu.png"
                 background-color: rgb(35, 35, 35);
             }
         }
+
+        .more-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 100%;
+            height: 45%;
+
+            .button:first-child {
+                border-bottom-left-radius: 0px;
+                border-bottom-right-radius: 0px;
+                border-bottom: 1px rgb(90, 90, 90) solid;
+            }
+        }
     }
 }
 
