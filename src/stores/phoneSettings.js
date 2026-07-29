@@ -5,8 +5,8 @@ export const selectedWallpaper = ref(defaultWallpaper);
 export const brightness = ref(100);
 export const displayScale = ref(100);
 export const iconBackgroundColors = ref({
-  volume: "#4f46e5",
-  general: "#8b5cf6",
+  volume: "#e55646",
+  general: "#5d5c5f",
   size: "#f59e0b",
   wallpaper: "#ef4444",
   phone: "#10b981"
