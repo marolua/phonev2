@@ -378,8 +378,8 @@ const closeSoundSettings = () => {
 
         .detail-back {
             border: none;
-            background: rgba(255, 255, 255, 0.08);
-            color: white;
+            background: #E5E5EA;
+            color: rgb(28, 28, 30);
             width: 5.2cqh;
             height: 5.2cqh;
             border-radius: 50%;
