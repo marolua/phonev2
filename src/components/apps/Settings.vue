@@ -374,35 +374,35 @@ const closeSoundSettings = () => {
         margin-bottom: 2.5cqh;
     }
 
-        .detail-back {
-            border: none;
-            background: #E5E5EA;
-            color: rgb(28, 28, 30);
-            width: 5.2cqh;
-            height: 5.2cqh;
-            border-radius: 50%;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-        }
+    .detail-back {
+        border: none;
+        background: #E5E5EA;
+        color: rgb(28, 28, 30);
+        width: 5.2cqh;
+        height: 5.2cqh;
+        border-radius: 50%;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
 
-        .detail-title-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.4cqh;
-        }
+    .detail-title-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4cqh;
+    }
 
-        .detail-title {
-            font-size: 2.4cqh;
-            font-weight: 600;
-            color: white;
-        }
+    .detail-title {
+        font-size: 2.4cqh;
+        font-weight: 600;
+        color: rgb(28, 28, 30);
+    }
 
-        .detail-subtitle {
-            font-size: 1.5cqh;
-            color: rgba(255, 255, 255, 0.55);
-        }
+    .detail-subtitle {
+        font-size: 1.5cqh;
+        color: rgba(60, 60, 67, 0.65);
+    }
 
         .detail-card {
             display: flex;
@@ -545,5 +545,4 @@ const closeSoundSettings = () => {
             opacity: 0;
         }
     }
-}
 </style>
