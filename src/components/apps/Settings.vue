@@ -21,58 +21,83 @@ import { iconBackgroundColors } from "../../stores/phoneSettings";
 
         <div class="container-cat">
             <div class="button">
-                <span class="icon">
+                <span class="icon" :style="{ backgroundColor: iconBackgroundColors.volume }">
                     <Volume2 size="2.5cqh" />
                 </span>
                 <div class="information">
                     <span class="name">Son & Vibration</span>
                     <span class="description">Changer le volume du son</span>
                 </div>
-                <ChevronRight size="2.5cqh" class="part-icon" />
+                <div class="actions">
+                    <label class="color-picker" @click.stop>
+                        <input type="color" v-model="iconBackgroundColors.volume" />
+                    </label>
+                    <ChevronRight size="2.5cqh" class="part-icon" />
+                </div>
             </div>
 
             <div class="more-button">
                 <div class="button">
-                    <span class="icon">
+                    <span class="icon" :style="{ backgroundColor: iconBackgroundColors.general }">
                         <Settings size="2.5cqh" />
                     </span>
                     <div class="information">
                         <span class="name">Général</span>
                         <span class="description">Parametres généraux de votre téléphone</span>
                     </div>
-                    <ChevronRight size="2.5cqh" class="part-icon" />
+                    <div class="actions">
+                        <label class="color-picker" @click.stop>
+                            <input type="color" v-model="iconBackgroundColors.general" />
+                        </label>
+                        <ChevronRight size="2.5cqh" class="part-icon" />
+                    </div>
                 </div>
                 <div class="button">
-                    <span class="icon">
+                    <span class="icon" :style="{ backgroundColor: iconBackgroundColors.size }">
                         <ALargeSmall size="2.5cqh" />
                     </span>
                     <div class="information">
                         <span class="name">Taille & Luminosité</span>
                         <span class="description">Ajuster la taille & luminosité</span>
                     </div>
-                    <ChevronRight size="2.5cqh" class="part-icon" />
+                    <div class="actions">
+                        <label class="color-picker" @click.stop>
+                            <input type="color" v-model="iconBackgroundColors.size" />
+                        </label>
+                        <ChevronRight size="2.5cqh" class="part-icon" />
+                    </div>
                 </div>
                 <div class="button">
-                    <span class="icon">
+                    <span class="icon" :style="{ backgroundColor: iconBackgroundColors.wallpaper }">
                         <Wallpaper size="2.5cqh" />
                     </span>
                     <div class="information">
                         <span class="name">Fond d'écran</span>
                         <span class="description">Changer le fond d'écran de votre téléphone</span>
                     </div>
-                    <ChevronRight size="2.5cqh" class="part-icon" />
+                    <div class="actions">
+                        <label class="color-picker" @click.stop>
+                            <input type="color" v-model="iconBackgroundColors.wallpaper" />
+                        </label>
+                        <ChevronRight size="2.5cqh" class="part-icon" />
+                    </div>
                 </div>
             </div>
 
             <div class="button">
-                <span class="icon">
+                <span class="icon" :style="{ backgroundColor: iconBackgroundColors.phone }">
                     <Phone size="2.5cqh" />
                 </span>
                 <div class="information">
                     <span class="name">Téléphone</span>
                     <span class="description">Contact bloqué & numéro</span>
                 </div>
-                <ChevronRight size="2.5cqh" class="part-icon" />
+                <div class="actions">
+                    <label class="color-picker" @click.stop>
+                        <input type="color" v-model="iconBackgroundColors.phone" />
+                    </label>
+                    <ChevronRight size="2.5cqh" class="part-icon" />
+                </div>
             </div>
         </div>
     </div>
