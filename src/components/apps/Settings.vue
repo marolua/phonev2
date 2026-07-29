@@ -29,9 +29,6 @@ import { iconBackgroundColors } from "../../stores/phoneSettings";
                     <span class="description">Changer le volume du son</span>
                 </div>
                 <div class="actions">
-                    <label class="color-picker" @click.stop>
-                        <input type="color" v-model="iconBackgroundColors.volume" />
-                    </label>
                     <ChevronRight size="2.5cqh" class="part-icon" />
                 </div>
             </div>
@@ -46,9 +43,6 @@ import { iconBackgroundColors } from "../../stores/phoneSettings";
                         <span class="description">Parametres généraux de votre téléphone</span>
                     </div>
                     <div class="actions">
-                        <!-- <label class="color-picker" @click.stop>
-                            <input type="color" v-model="iconBackgroundColors.general" />
-                        </label> -->
                         <ChevronRight size="2.5cqh" class="part-icon" />
                     </div>
                 </div>
@@ -61,9 +55,6 @@ import { iconBackgroundColors } from "../../stores/phoneSettings";
                         <span class="description">Ajuster la taille & luminosité</span>
                     </div>
                     <div class="actions">
-                        <label class="color-picker" @click.stop>
-                            <input type="color" v-model="iconBackgroundColors.size" />
-                        </label>
                         <ChevronRight size="2.5cqh" class="part-icon" />
                     </div>
                 </div>
