@@ -352,29 +352,27 @@ const closeSoundSettings = () => {
                 border-top: 1px rgb(90, 90, 90) solid;
             }
         }
+    }
 
-        .settings-detail {
-            position: absolute;
-            top: -15cqw;
-            left: -3cqh;
-            right: -3cqh;
-            bottom: 0;
-            display: flex;
-            flex-direction: column;
-            padding: 6cqh 3cqw 3cqh 3cqw;
-            background: #F2F2F7;
-            color: rgb(28, 28, 30);
-            z-index: 5;
-            border-radius: 0;
-            box-sizing: border-box;
-        }
+    .settings-detail {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        padding: 6cqh 3cqw 3cqh 3cqw;
+        background: #F2F2F7;
+        color: rgb(28, 28, 30);
+        z-index: 5;
+        border-radius: 0;
+        box-sizing: border-box;
+    }
 
-        .settings-detail .detail-header {
-            display: flex;
-            align-items: center;
-            gap: 3cqw;
-            margin-bottom: 2.5cqh;
-        }
+    .settings-detail .detail-header {
+        display: flex;
+        align-items: center;
+        gap: 3cqw;
+        margin-bottom: 2.5cqh;
+    }
 
         .detail-back {
             border: none;
