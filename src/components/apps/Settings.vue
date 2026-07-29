@@ -226,6 +226,16 @@ import Inconnu from "../../assets/inconnu.png"
                 border-bottom-right-radius: 0px;
                 border-bottom: 1px rgb(90, 90, 90) solid;
             }
+
+            .button:nth-child(2){
+                border-radius: 0;
+            } 
+
+            .button:last-child {
+                border-top-left-radius: 0px;
+                border-top-right-radius: 0px;
+                border-top: 1px rgb(90, 90, 90) solid;
+            }
         }
     }
 }
