@@ -182,7 +182,7 @@ import Inconnu from "../../assets/inconnu.png"
 
             &:hover {
                 cursor: pointer;
-                background-color: rgb(35, 35, 3);
+                background-color: rgb(35, 35, 35);
             }
         }
     }
