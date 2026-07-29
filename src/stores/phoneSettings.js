@@ -7,7 +7,7 @@ export const displayScale = ref(100);
 export const iconBackgroundColors = ref({
   volume: "#e55646",
   general: "#5d5c5f",
-  size: "#f59e0b",
-  wallpaper: "#ef4444",
-  phone: "#10b981"
+  size: "#0b69f5",
+  wallpaper: "#2147f0",
+  phone: "#32b910"
 });
