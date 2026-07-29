@@ -237,8 +237,6 @@ const closeSoundSettings = () => {
         }
     }
 
-    overflow: hidden;
-
     .container-cat {
         display: flex;
         flex-direction: column;
@@ -357,16 +355,21 @@ const closeSoundSettings = () => {
 
         .settings-detail {
             position: absolute;
-            inset: 0;
+            top: -15cqw;
+            left: -3cqh;
+            right: -3cqh;
+            bottom: 0;
             display: flex;
             flex-direction: column;
-            padding: 5cqh 3cqw 0 3cqw;
-            background: rgba(10, 10, 10, 0.98);
-            backdrop-filter: blur(10px);
+            padding: 6cqh 3cqw 3cqh 3cqw;
+            background: #F2F2F7;
+            color: rgb(28, 28, 30);
             z-index: 5;
+            border-radius: 0;
+            box-sizing: border-box;
         }
 
-        .detail-header {
+        .settings-detail .detail-header {
             display: flex;
             align-items: center;
             gap: 3cqw;
