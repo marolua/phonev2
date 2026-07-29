@@ -412,9 +412,10 @@ const closeSoundSettings = () => {
             gap: 2cqh;
             padding: 2.5cqh 1.5cqw;
             border-radius: 3.5cqw;
-            background-color: rgb(24, 24, 24);
+            background-color: white;
             width: 100%;
             flex: 1;
+            box-shadow: 0 20px 40px rgba(60, 60, 67, 0.08);
         }
 
         .detail-row {
