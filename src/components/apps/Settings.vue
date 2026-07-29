@@ -1,17 +1,63 @@
 <script setup>
-import { Search, ChevronRight, Volume2, Settings, ALargeSmall, Wallpaper, Phone } from '@lucide/vue';
-import { iconBackgroundColors } from "../../stores/phoneSettings";
+import { ref } from 'vue';
+import { ArrowLeft, Search, ChevronRight, Volume2, Settings, ALargeSmall, Wallpaper, Phone } from '@lucide/vue';
+import { iconBackgroundColors, globalVolume, callVolume } from "../../stores/phoneSettings";
+
+const showVolumeSettings = ref(false);
+
+const openVolumeSettings = () => {
+  showVolumeSettings.value = true;
+};
+
+const closeVolumeSettings = () => {
+  showVolumeSettings.value = false;
+};
 </script>
 
 <template>
     <div class="settings-app">
-        <span class="title">Réglages</span>
-        <div class="input-group">
-            <Search class="search-icon" color="rgb(255, 255, 255, 0.8)" size="2.6cqh" />
-            <input type="text" placeholder="Rechercher">
+        <div v-if="showVolumeSettings" class="volume-settings-page">
+            <div class="detail-header">
+                <button type="button" class="detail-back" aria-label="Retour" @click="closeVolumeSettings">
+                    <ArrowLeft size="2.5cqh" />
+                </button>
+                <div class="detail-header-title">
+                    <span>Son & Vibration</span>
+                    <small>Réglez le volume général et le volume d'appel</small>
+                </div>
+            </div>
+
+            <div class="volume-section">
+                <div class="slider-row">
+                    <div class="slider-title">
+                        <span>Volume général</span>
+                        <span>{{ globalVolume }}%</span>
+                    </div>
+                    <input type="range" min="0" max="100" step="1" v-model.number="globalVolume" />
+                </div>
+
+                <div class="slider-row">
+                    <div class="slider-title">
+                        <span>Volume en appel</span>
+                        <span>{{ callVolume }}%</span>
+                    </div>
+                    <input type="range" min="0" max="100" step="1" v-model.number="callVolume" />
+                </div>
+
+                <div class="slider-note">
+                    <span>Les réglages sont appliqués immédiatement à l'échelle du téléphone.</span>
+                </div>
+            </div>
         </div>
 
-        <div class="profil">
+        <template v-else>
+            <span class="title">Réglages</span>
+            <div class="input-group">
+                <Search class="search-icon" color="rgb(255, 255, 255, 0.8)" size="2.6cqh" />
+                <input type="text" placeholder="Rechercher">
+            </div>
+
+            <div class="profil">
             <div class="pic">JM</div>
             <div class="information">
                 <span class="name">John McKenzie</span>
@@ -21,6 +67,58 @@ import { iconBackgroundColors } from "../../stores/phoneSettings";
 
         <div class="container-cat">
             <div class="button">
+                <span class="icon" :style="{ backgroundColor: iconBackgroundColors.volume }">
+                    <Volume2 size="2.5cqh" />
+                </span>
+                <div class="information">
+                    <span class="name">Son & Vibration</span>
+                    <span class="description">Changer le volume du son</span>
+                </div>
+                <div class="actions">
+                    <ChevronRight size="2.5cqh" class="part-icon" />
+                </div>
+            </div>
+
+            <div class="more-button">
+                <div class="button">
+                    <span class="icon" :style="{ backgroundColor: iconBackgroundColors.general }">
+                        <Settings size="2.5cqh" />
+                    </span>
+                    <div class="information">
+                        <span class="name">Général</span>
+                        <span class="description">Parametres généraux de votre téléphone</span>
+                    </div>
+                    <div class="actions">
+                        <ChevronRight size="2.5cqh" class="part-icon" />
+                    </div>
+                </div>
+                <div class="button">
+                    <span class="icon" :style="{ backgroundColor: iconBackgroundColors.size }">
+                        <ALargeSmall size="2.5cqh" />
+                    </span>
+                    <div class="information">
+                        <span class="name">Taille & Luminosité</span>
+                        <span class="description">Ajuster la taille & luminosité</span>
+                    </div>
+                    <div class="actions">
+                        <ChevronRight size="2.5cqh" class="part-icon" />
+                    </div>
+                </div>
+                <div class="button">
+                    <span class="icon" :style="{ backgroundColor: iconBackgroundColors.wallpaper }">
+                        <Wallpaper size="2.5cqh" />
+                    </span>
+                    <div class="information">
+                        <span class="name">Fond d'écran</span>
+                        <span class="description">Changer le fond d'écran de votre téléphone</span>
+                    </div>
+                    <div class="actions">
+                        <ChevronRight size="2.5cqh" class="part-icon" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="button" @click="openVolumeSettings">
                 <span class="icon" :style="{ backgroundColor: iconBackgroundColors.volume }">
                     <Volume2 size="2.5cqh" />
                 </span>
@@ -85,7 +183,8 @@ import { iconBackgroundColors } from "../../stores/phoneSettings";
                 </div>
             </div>
         </div>
-    </div>
+    </template>
+</div>
 </template>
 
 <style lang="scss">
