@@ -9,5 +9,5 @@ export const iconBackgroundColors = ref({
   general: "#5d5c5f",
   size: "#0b69f5",
   wallpaper: "#2147f0",
-  phone: "#32b910"
+  phone: "#32b910",
 });
