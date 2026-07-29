@@ -1,5 +1,5 @@
 <script setup>
-import { Search, ChevronRight, Volume2 } from '@lucide/vue';
+import { Search, ChevronRight, Volume2, Settings } from '@lucide/vue';
 import Inconnu from "../../assets/inconnu.png"
 </script>
 
@@ -31,26 +31,26 @@ import Inconnu from "../../assets/inconnu.png"
 
             <div class="more-button">
                 <div class="button">
-                <span class="icon"><Volume2 size="2.5cqh"/></span>
+                <span class="icon"><Settings size="2.5cqh"/></span>
                 <div class="information">
-                    <span class="name">Son & Vibration</span>
-                    <span class="description">Changer le volume du son</span>
+                    <span class="name">Général</span>
+                    <span class="description">Parametres généraux de votre téléphone</span>
                 </div>
                 <ChevronRight size="2.5cqh" class="part-icon"/>
             </div>
             <div class="button">
                 <span class="icon"><Volume2 size="2.5cqh"/></span>
                 <div class="information">
-                    <span class="name">Son & Vibration</span>
-                    <span class="description">Changer le volume du son</span>
+                    <span class="name">Taille & Luminosité</span>
+                    <span class="description">Ajuster la taille & luminosité</span>
                 </div>
                 <ChevronRight size="2.5cqh" class="part-icon"/>
             </div>
             <div class="button">
                 <span class="icon"><Volume2 size="2.5cqh"/></span>
                 <div class="information">
-                    <span class="name">Son & Vibration</span>
-                    <span class="description">Changer le volume du son</span>
+                    <span class="name">Fond d'écran</span>
+                    <span class="description">Changer le fond d'écran de votre téléphone</span>
                 </div>
                 <ChevronRight size="2.5cqh" class="part-icon"/>
             </div>
