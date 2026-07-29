@@ -21,48 +21,58 @@ import Inconnu from "../../assets/inconnu.png"
 
         <div class="container-cat">
             <div class="button">
-                <span class="icon"><Volume2 size="2.5cqh"/></span>
+                <span class="icon">
+                    <Volume2 size="2.5cqh" />
+                </span>
                 <div class="information">
                     <span class="name">Son & Vibration</span>
                     <span class="description">Changer le volume du son</span>
                 </div>
-                <ChevronRight size="2.5cqh" class="part-icon"/>
+                <ChevronRight size="2.5cqh" class="part-icon" />
             </div>
 
             <div class="more-button">
                 <div class="button">
-                <span class="icon"><Settings size="2.5cqh"/></span>
-                <div class="information">
-                    <span class="name">Général</span>
-                    <span class="description">Parametres généraux de votre téléphone</span>
+                    <span class="icon">
+                        <Settings size="2.5cqh" />
+                    </span>
+                    <div class="information">
+                        <span class="name">Général</span>
+                        <span class="description">Parametres généraux de votre téléphone</span>
+                    </div>
+                    <ChevronRight size="2.5cqh" class="part-icon" />
                 </div>
-                <ChevronRight size="2.5cqh" class="part-icon"/>
-            </div>
-            <div class="button">
-                <span class="icon"><ALargeSmall size="2.5cqh"/></span>
-                <div class="information">
-                    <span class="name">Taille & Luminosité</span>
-                    <span class="description">Ajuster la taille & luminosité</span>
+                <div class="button">
+                    <span class="icon">
+                        <ALargeSmall size="2.5cqh" />
+                    </span>
+                    <div class="information">
+                        <span class="name">Taille & Luminosité</span>
+                        <span class="description">Ajuster la taille & luminosité</span>
+                    </div>
+                    <ChevronRight size="2.5cqh" class="part-icon" />
                 </div>
-                <ChevronRight size="2.5cqh" class="part-icon"/>
-            </div>
-            <div class="button">
-                <span class="icon"><Wallpaper size="2.5cqh"/></span>
-                <div class="information">
-                    <span class="name">Fond d'écran</span>
-                    <span class="description">Changer le fond d'écran de votre téléphone</span>
+                <div class="button">
+                    <span class="icon">
+                        <Wallpaper size="2.5cqh" />
+                    </span>
+                    <div class="information">
+                        <span class="name">Fond d'écran</span>
+                        <span class="description">Changer le fond d'écran de votre téléphone</span>
+                    </div>
+                    <ChevronRight size="2.5cqh" class="part-icon" />
                 </div>
-                <ChevronRight size="2.5cqh" class="part-icon"/>
-            </div>
             </div>
 
             <div class="button">
-                <span class="icon"><Phone size="2.5cqh"/></span>
+                <span class="icon">
+                    <Phone size="2.5cqh" />
+                </span>
                 <div class="information">
                     <span class="name">Téléphone</span>
                     <span class="description">Contact bloqué & numéro</span>
                 </div>
-                <ChevronRight size="2.5cqh" class="part-icon"/>
+                <ChevronRight size="2.5cqh" class="part-icon" />
             </div>
         </div>
     </div>
@@ -236,9 +246,9 @@ import Inconnu from "../../assets/inconnu.png"
                 border-bottom: 1px rgb(90, 90, 90) solid;
             }
 
-            .button:nth-child(2){
+            .button:nth-child(2) {
                 border-radius: 0;
-            } 
+            }
 
             .button:last-child {
                 border-top-left-radius: 0px;
@@ -248,5 +258,4 @@ import Inconnu from "../../assets/inconnu.png"
         }
     }
 }
-
 </style>
