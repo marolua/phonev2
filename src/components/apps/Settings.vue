@@ -1,5 +1,5 @@
 <script setup>
-import { Search, ChevronRight, Volume2, Settings, ALargeSmall, Wallpaper } from '@lucide/vue';
+import { Search, ChevronRight, Volume2, Settings, ALargeSmall, Wallpaper, Phone } from '@lucide/vue';
 import Inconnu from "../../assets/inconnu.png"
 </script>
 
@@ -54,6 +54,15 @@ import Inconnu from "../../assets/inconnu.png"
                 </div>
                 <ChevronRight size="2.5cqh" class="part-icon"/>
             </div>
+            </div>
+
+            <div class="button">
+                <span class="icon"><Phone size="2.5cqh"/></span>
+                <div class="information">
+                    <span class="name">Téléphone</span>
+                    <span class="description">Contact bloqué & numéro</span>
+                </div>
+                <ChevronRight size="2.5cqh" class="part-icon"/>
             </div>
         </div>
     </div>
