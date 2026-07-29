@@ -423,7 +423,7 @@ const closeSoundSettings = () => {
             flex-direction: column;
             gap: 1.2cqh;
             padding-bottom: 2.2cqh;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(60, 60, 67, 0.12);
         }
 
         .detail-row:last-child {
