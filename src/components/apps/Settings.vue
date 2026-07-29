@@ -1,6 +1,6 @@
 <script setup>
 import { Search, ChevronRight, Volume2, Settings, ALargeSmall, Wallpaper, Phone } from '@lucide/vue';
-import Inconnu from "../../assets/inconnu.png"
+import { iconBackgroundColors } from "../../stores/phoneSettings";
 </script>
 
 <template>
@@ -199,7 +199,39 @@ import Inconnu from "../../assets/inconnu.png"
                 width: 4.5cqh;
                 height: 4.5cqh;
                 border-radius: 3cqw;
+                color: white;
+                flex-shrink: 0;
                 background-color: blue;
+            }
+
+            .actions {
+                display: flex;
+                align-items: center;
+                gap: 1.2cqw;
+                margin-left: auto;
+                margin-right: 1.5cqh;
+            }
+
+            .color-picker {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 3.2cqh;
+                height: 3.2cqh;
+                border-radius: 50%;
+                padding: 0.25cqh;
+                background-color: rgba(255, 255, 255, 0.08);
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                overflow: hidden;
+
+                input {
+                    width: 100%;
+                    height: 100%;
+                    padding: 0;
+                    border: none;
+                    background: transparent;
+                    cursor: pointer;
+                }
             }
 
             .information {
