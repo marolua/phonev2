@@ -46,9 +46,9 @@ import { iconBackgroundColors } from "../../stores/phoneSettings";
                         <span class="description">Parametres généraux de votre téléphone</span>
                     </div>
                     <div class="actions">
-                        <label class="color-picker" @click.stop>
+                        <!-- <label class="color-picker" @click.stop>
                             <input type="color" v-model="iconBackgroundColors.general" />
-                        </label>
+                        </label> -->
                         <ChevronRight size="2.5cqh" class="part-icon" />
                     </div>
                 </div>
