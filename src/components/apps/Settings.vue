@@ -66,10 +66,7 @@ import { iconBackgroundColors } from "../../stores/phoneSettings";
                         <span class="name">Fond d'écran</span>
                         <span class="description">Changer le fond d'écran de votre téléphone</span>
                     </div>
-                    <div class="actions">
-                        <label class="color-picker" @click.stop>
-                            <input type="color" v-model="iconBackgroundColors.wallpaper" />
-                        </label>
+                    <div class="actions">>
                         <ChevronRight size="2.5cqh" class="part-icon" />
                     </div>
                 </div>
@@ -84,9 +81,6 @@ import { iconBackgroundColors } from "../../stores/phoneSettings";
                     <span class="description">Contact bloqué & numéro</span>
                 </div>
                 <div class="actions">
-                    <label class="color-picker" @click.stop>
-                        <input type="color" v-model="iconBackgroundColors.phone" />
-                    </label>
                     <ChevronRight size="2.5cqh" class="part-icon" />
                 </div>
             </div>
