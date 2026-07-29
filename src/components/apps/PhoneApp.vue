@@ -1195,7 +1195,6 @@ const addContact = () => {
         min-height: 18%;
         flex-shrink: 0;
         border-radius: 6cqh;
-        // background-color: red;
 
         .categories {
             display: flex;
