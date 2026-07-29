@@ -359,9 +359,9 @@ const closeSoundSettings = () => {
         inset: 0;
         display: flex;
         flex-direction: column;
-        padding: 6cqh 3cqw 3cqh 3cqw;
-        background: #F2F2F7;
-        color: rgb(28, 28, 30);
+        padding: 15cqw 3cqh 0cqw;
+        background: rgb(10, 10, 10);
+        color: white;
         z-index: 5;
         border-radius: 0;
         box-sizing: border-box;
@@ -410,10 +410,11 @@ const closeSoundSettings = () => {
             gap: 2cqh;
             padding: 2.5cqh 1.5cqw;
             border-radius: 3.5cqw;
-            background-color: white;
+            background-color: rgb(24, 24, 24);
             width: 100%;
             flex: 1;
-            box-shadow: 0 20px 40px rgba(60, 60, 67, 0.08);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+            box-sizing: border-box;
         }
 
         .detail-row {
@@ -421,7 +422,7 @@ const closeSoundSettings = () => {
             flex-direction: column;
             gap: 1.2cqh;
             padding-bottom: 2.2cqh;
-            border-bottom: 1px solid rgba(60, 60, 67, 0.12);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .detail-row:last-child {
