@@ -237,6 +237,8 @@ const closeSoundSettings = () => {
         }
     }
 
+    overflow: hidden;
+
     .container-cat {
         display: flex;
         flex-direction: column;
