@@ -183,15 +183,15 @@ const close = () => emit('close');
 }
 
 .ios-range::-webkit-slider-runnable-track {
-  height: 0.9cqh;
+  height: 0cqh;
   background: transparent;
   border-radius: 99px;
 }
 
 .ios-range::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 3.6cqh;
-  height: 3.6cqh;
+  width: 2.5cqh;
+  height: 2.5cqh;
   margin-top: -1.25cqh;
   background: #ffffff;
   border-radius: 50%;
