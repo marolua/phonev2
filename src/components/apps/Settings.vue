@@ -130,6 +130,32 @@ const closeCategory = () => {
         flex-shrink: 0;
     }
 
+    /* Transition for settings category: fast slide from right */
+    .settings-slide-enter-active,
+    .settings-slide-leave-active {
+        transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.12s ease;
+    }
+
+    .settings-slide-enter-from {
+        transform: translate3d(100%, 0, 0);
+        opacity: 0.01;
+    }
+
+    .settings-slide-enter-to {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+    }
+
+    .settings-slide-leave-from {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+    }
+
+    .settings-slide-leave-to {
+        transform: translate3d(100%, 0, 0);
+        opacity: 0.01;
+    }
+
     .input-group {
         position: relative;
         display: flex;
