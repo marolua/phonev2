@@ -26,26 +26,24 @@ const close = () => emit('close');
         <div class="setting-row">
           <div class="label">Volume des appels</div>
           <div class="slider-wrap">
-            <Volume2 class="speaker-icon" size="2.2cqh" />
-            <input class="ios-range" type="range" min="0" max="100" v-model="callVolume"
-              :style="{ background: `linear-gradient(90deg, #4d8dff ${callVolume}%, rgba(255,255,255,0.12) ${callVolume}%)` }" />
-            <Volume2 class="speaker-icon right" size="2.2cqh" />
-          </div>
-          <div class="value-row">
-            <div class="value">{{ callVolume }}%</div>
+            <div class="slider-pill">
+              <Volume2 class="speaker-icon" size="2cqh" />
+              <input class="ios-range" type="range" min="0" max="100" v-model="callVolume"
+                :style="{ background: `linear-gradient(90deg, #4d8dff ${callVolume}%, rgba(255,255,255,0.12) ${callVolume}%)` }" />
+              <Volume2 class="speaker-icon right" size="2cqh" />
+            </div>
           </div>
         </div>
 
         <div class="setting-row">
           <div class="label">Volume du système</div>
           <div class="slider-wrap">
-            <Volume2 class="speaker-icon" size="2.2cqh" />
-            <input class="ios-range" type="range" min="0" max="100" v-model="systemVolume"
-              :style="{ background: `linear-gradient(90deg, #4d8dff ${systemVolume}%, rgba(255,255,255,0.12) ${systemVolume}%)` }" />
-            <Volume2 class="speaker-icon right" size="2.2cqh" />
-          </div>
-          <div class="value-row">
-            <div class="value">{{ systemVolume }}%</div>
+            <div class="slider-pill">
+              <Volume2 class="speaker-icon" size="2cqh" />
+              <input class="ios-range" type="range" min="0" max="100" v-model="systemVolume"
+                :style="{ background: `linear-gradient(90deg, #4d8dff ${systemVolume}%, rgba(255,255,255,0.12) ${systemVolume}%)` }" />
+              <Volume2 class="speaker-icon right" size="2cqh" />
+            </div>
           </div>
         </div>
       </template>
