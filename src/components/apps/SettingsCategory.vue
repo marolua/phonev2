@@ -138,6 +138,11 @@ const close = () => emit('close');
   text-align: right
 }
 
+.value-row { display:flex; justify-content:flex-end; margin-top:0.9cqh }
+
+.speaker-icon { color: rgba(255,255,255,0.55); flex-shrink:0 }
+.speaker-icon.right { opacity:0.6 }
+
 .placeholder {
   color: rgba(255, 255, 255, 0.7);
 }
@@ -158,7 +163,7 @@ const close = () => emit('close');
 
 .ios-range::-webkit-slider-runnable-track {
   height: 0.9cqh;
-  background: rgba(255, 255, 255, 0.12);
+  background: transparent;
   border-radius: 99px;
 }
 
@@ -188,8 +193,5 @@ const close = () => emit('close');
   border: 0.25cqh solid rgba(0, 0, 0, 0.08);
 }
 
-/* filled track effect using background gradient bound to value via inline style not used here, fallback subtle */
-.ios-range::-webkit-slider-runnable-track {
-  background: linear-gradient(90deg, #4d8dff 0%, #4d8dff 40%, rgba(255, 255, 255, 0.12) 40%);
-}
+/* filled track will come from inline background style set on the input element */
 </style>
