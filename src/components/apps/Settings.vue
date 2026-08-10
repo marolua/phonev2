@@ -5,20 +5,22 @@ import { iconBackgroundColors } from "../../stores/phoneSettings";
 import SettingsCategory from './SettingsCategory.vue';
 
 const selectedCategory = ref(null);
-const isClosing = ref(false);
+const showCategory = ref(false);
 
 const openCategory = (id, name) => {
-    isClosing.value = false;
     selectedCategory.value = { id, name };
+    // show immediately so enter transition plays
+    showCategory.value = true;
 };
 
 const closeCategory = () => {
-    if (!selectedCategory.value || isClosing.value) return;
-    isClosing.value = true;
-    setTimeout(() => {
-        selectedCategory.value = null;
-        isClosing.value = false;
-    }, 280);
+    // hide immediately so leave transition starts — component will be removed after transition
+    showCategory.value = false;
+};
+
+const onAfterLeave = () => {
+    // clear data after leave to avoid stale object during transition
+    selectedCategory.value = null;
 };
 </script>
 
