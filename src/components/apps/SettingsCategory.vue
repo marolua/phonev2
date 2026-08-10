@@ -15,33 +15,35 @@ const close = () => emit('close');
 <template>
   <div class="settings-category-page">
     <div class="detail-header">
-        <button type="button" class="detail-back" @click="close" aria-label="Retour"><ArrowLeft size="2.5cqh" /></button>
-        <span class="detail-title">{{ category.name }}</span>
-      </div>
+      <button type="button" class="detail-back" @click="close" aria-label="Retour">
+        <ArrowLeft size="2.5cqh" />
+      </button>
+      <span class="detail-title">{{ category.name }}</span>
+    </div>
 
-      <div class="detail-content">
-        <template v-if="category.id === 'sound'">
-          <div class="setting-row">
-            <div class="label">Volume des appels</div>
-            <div class="slider-wrap">
-              <input class="ios-range" type="range" min="0" max="100" v-model="callVolume" />
-              <div class="value">{{ callVolume }}%</div>
-            </div>
+    <div class="detail-content">
+      <template v-if="category.id === 'sound'">
+        <div class="setting-row">
+          <div class="label">Volume des appels</div>
+          <div class="slider-wrap">
+            <input class="ios-range" type="range" min="0" max="100" v-model="callVolume" />
+            <div class="value">{{ callVolume }}%</div>
           </div>
+        </div>
 
-          <div class="setting-row">
-            <div class="label">Volume du système</div>
-            <div class="slider-wrap">
-              <input class="ios-range" type="range" min="0" max="100" v-model="systemVolume" />
-              <div class="value">{{ systemVolume }}%</div>
-            </div>
+        <div class="setting-row">
+          <div class="label">Volume du système</div>
+          <div class="slider-wrap">
+            <input class="ios-range" type="range" min="0" max="100" v-model="systemVolume" />
+            <div class="value">{{ systemVolume }}%</div>
           </div>
-        </template>
+        </div>
+      </template>
 
-        <template v-else>
-          <div class="placeholder">Paramètres pour {{ category.name }} — contenu à venir.</div>
-        </template>
-      </div>
+      <template v-else>
+        <div class="placeholder">Paramètres pour {{ category.name }} — contenu à venir.</div>
+      </template>
+    </div>
   </div>
 </template>
 
@@ -70,9 +72,9 @@ const close = () => emit('close');
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(55,55,58,0.95);
-  box-shadow: 0 0.6cqh 1.2cqh rgba(0,0,0,0.45);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(55, 55, 58, 0.95);
+  box-shadow: 0 0.6cqh 1.2cqh rgba(0, 0, 0, 0.45);
 }
 
 .detail-title {
@@ -94,15 +96,33 @@ const close = () => emit('close');
   flex-direction: column;
   align-items: stretch;
   padding: 1.2cqh 2cqw;
-  background: rgba(20,20,20,0.9);
+  background: rgba(20, 20, 20, 0.9);
   border-radius: 1.2cqh;
 }
 
 
-.label { color: rgba(255,255,255,0.9); font-size: 1.9cqh; margin-bottom: 1cqh; }
-.slider-wrap { display:flex; align-items:center; gap:1cqw; width:100%; }
-.slider-wrap .value { color: rgba(255,255,255,0.7); min-width:3.5cqh; text-align:right }
-.placeholder { color: rgba(255,255,255,0.7); }
+.label {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.9cqh;
+  margin-bottom: 1cqh;
+}
+
+.slider-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1cqw;
+  width: 100%;
+}
+
+.slider-wrap .value {
+  color: rgba(255, 255, 255, 0.7);
+  min-width: 3.5cqh;
+  text-align: right
+}
+
+.placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
 
 /* iOS-like range styles */
 .ios-range {
@@ -113,13 +133,17 @@ const close = () => emit('close');
   background: transparent;
   cursor: pointer;
 }
-.ios-range:focus { outline: none; }
+
+.ios-range:focus {
+  outline: none;
+}
 
 .ios-range::-webkit-slider-runnable-track {
   height: 0.9cqh;
-  background: rgba(255,255,255,0.12);
+  background: rgba(255, 255, 255, 0.12);
   border-radius: 99px;
 }
+
 .ios-range::-webkit-slider-thumb {
   -webkit-appearance: none;
   width: 3.2cqh;
@@ -127,24 +151,27 @@ const close = () => emit('close');
   margin-top: -1.15cqh;
   background: #ffffff;
   border-radius: 50%;
-  box-shadow: 0 0.4cqh 1.2cqh rgba(0,0,0,0.45);
-  border: 0.25cqh solid rgba(0,0,0,0.08);
+  box-shadow: 0 0.4cqh 1.2cqh rgba(0, 0, 0, 0.45);
+  border: 0.25cqh solid rgba(0, 0, 0, 0.08);
 }
+
 .ios-range::-moz-range-track {
   height: 0.9cqh;
-  background: rgba(255,255,255,0.12);
+  background: rgba(255, 255, 255, 0.12);
   border-radius: 99px;
 }
+
 .ios-range::-moz-range-thumb {
   width: 3.2cqh;
   height: 3.2cqh;
   background: #ffffff;
   border-radius: 50%;
-  box-shadow: 0 0.4cqh 1.2cqh rgba(0,0,0,0.45);
-  border: 0.25cqh solid rgba(0,0,0,0.08);
+  box-shadow: 0 0.4cqh 1.2cqh rgba(0, 0, 0, 0.45);
+  border: 0.25cqh solid rgba(0, 0, 0, 0.08);
 }
 
 /* filled track effect using background gradient bound to value via inline style not used here, fallback subtle */
-.ios-range::-webkit-slider-runnable-track { background: linear-gradient(90deg, #4d8dff 0%, #4d8dff 40%, rgba(255,255,255,0.12) 40%); }
-
+.ios-range::-webkit-slider-runnable-track {
+  background: linear-gradient(90deg, #4d8dff 0%, #4d8dff 40%, rgba(255, 255, 255, 0.12) 40%);
+}
 </style>
