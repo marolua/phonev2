@@ -1,6 +1,25 @@
 <script setup>
+import { ref } from 'vue';
 import { Search, ChevronRight, Volume2, Settings, ALargeSmall, Wallpaper, Phone } from '@lucide/vue';
 import { iconBackgroundColors } from "../../stores/phoneSettings";
+import SettingsCategory from './SettingsCategory.vue';
+
+const selectedCategory = ref(null);
+const isClosing = ref(false);
+
+const openCategory = (id, name) => {
+    isClosing.value = false;
+    selectedCategory.value = { id, name };
+};
+
+const closeCategory = () => {
+    if (!selectedCategory.value || isClosing.value) return;
+    isClosing.value = true;
+    setTimeout(() => {
+        selectedCategory.value = null;
+        isClosing.value = false;
+    }, 280);
+};
 </script>
 
 <template>
@@ -20,7 +39,7 @@ import { iconBackgroundColors } from "../../stores/phoneSettings";
         </div>
 
         <div class="container-cat">
-            <div class="button">
+            <div class="button" @click="openCategory('sound', 'Son & Vibration')">
                 <span class="icon" :style="{ backgroundColor: iconBackgroundColors.volume }">
                     <Volume2 size="2.5cqh" />
                 </span>
@@ -34,7 +53,7 @@ import { iconBackgroundColors } from "../../stores/phoneSettings";
             </div>
 
             <div class="more-button">
-                <div class="button">
+                <div class="button" @click="openCategory('general', 'Général')">
                     <span class="icon" :style="{ backgroundColor: iconBackgroundColors.general }">
                         <Settings size="2.5cqh" />
                     </span>
@@ -46,7 +65,7 @@ import { iconBackgroundColors } from "../../stores/phoneSettings";
                         <ChevronRight size="2.5cqh" class="part-icon" />
                     </div>
                 </div>
-                <div class="button">
+                <div class="button" @click="openCategory('display', 'Taille & Luminosité')">
                     <span class="icon" :style="{ backgroundColor: iconBackgroundColors.size }">
                         <ALargeSmall size="2.5cqh" />
                     </span>
@@ -58,7 +77,7 @@ import { iconBackgroundColors } from "../../stores/phoneSettings";
                         <ChevronRight size="2.5cqh" class="part-icon" />
                     </div>
                 </div>
-                <div class="button">
+                <div class="button" @click="openCategory('wallpaper', 'Fond d\'écran')">
                     <span class="icon" :style="{ backgroundColor: iconBackgroundColors.wallpaper }">
                         <Wallpaper size="2.5cqh" />
                     </span>
@@ -72,7 +91,7 @@ import { iconBackgroundColors } from "../../stores/phoneSettings";
                 </div>
             </div>
 
-            <div class="button">
+            <div class="button" @click="openCategory('phone', 'Téléphone')">
                 <span class="icon" :style="{ backgroundColor: iconBackgroundColors.phone }">
                     <Phone size="2.5cqh" />
                 </span>
@@ -84,6 +103,10 @@ import { iconBackgroundColors } from "../../stores/phoneSettings";
                     <ChevronRight size="2.5cqh" class="part-icon" />
                 </div>
             </div>
+
+            <transition name="settings-slide">
+                <SettingsCategory v-if="selectedCategory" :category="selectedCategory" @close="closeCategory" />
+            </transition>
         </div>
     </div>
 </template>
