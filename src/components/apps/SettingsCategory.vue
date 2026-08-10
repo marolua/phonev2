@@ -27,34 +27,26 @@ const close = () => emit('close');
           <div class="label">Volume des appels</div>
           <div class="slider-wrap">
             <Volume2 class="speaker-icon" size="2.2cqh" />
-            <input
-              class="ios-range"
-              type="range"
-              min="0"
-              max="100"
-              v-model="callVolume"
-              :style="{ background: `linear-gradient(90deg, #4d8dff ${callVolume}%, rgba(255,255,255,0.12) ${callVolume}%)` }"
-            />
+            <input class="ios-range" type="range" min="0" max="100" v-model="callVolume"
+              :style="{ background: `linear-gradient(90deg, #4d8dff ${callVolume}%, rgba(255,255,255,0.12) ${callVolume}%)` }" />
             <Volume2 class="speaker-icon right" size="2.2cqh" />
           </div>
-          <div class="value-row"><div class="value">{{ callVolume }}%</div></div>
+          <div class="value-row">
+            <div class="value">{{ callVolume }}%</div>
+          </div>
         </div>
 
         <div class="setting-row">
           <div class="label">Volume du système</div>
           <div class="slider-wrap">
             <Volume2 class="speaker-icon" size="2.2cqh" />
-            <input
-              class="ios-range"
-              type="range"
-              min="0"
-              max="100"
-              v-model="systemVolume"
-              :style="{ background: `linear-gradient(90deg, #4d8dff ${systemVolume}%, rgba(255,255,255,0.12) ${systemVolume}%)` }"
-            />
+            <input class="ios-range" type="range" min="0" max="100" v-model="systemVolume"
+              :style="{ background: `linear-gradient(90deg, #4d8dff ${systemVolume}%, rgba(255,255,255,0.12) ${systemVolume}%)` }" />
             <Volume2 class="speaker-icon right" size="2.2cqh" />
           </div>
-          <div class="value-row"><div class="value">{{ systemVolume }}%</div></div>
+          <div class="value-row">
+            <div class="value">{{ systemVolume }}%</div>
+          </div>
         </div>
       </template>
 
@@ -93,6 +85,10 @@ const close = () => emit('close');
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: rgba(55, 55, 58, 0.95);
   box-shadow: 0 0.6cqh 1.2cqh rgba(0, 0, 0, 0.45);
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .detail-title {
@@ -138,10 +134,20 @@ const close = () => emit('close');
   text-align: right
 }
 
-.value-row { display:flex; justify-content:flex-end; margin-top:0.9cqh }
+.value-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.9cqh
+}
 
-.speaker-icon { color: rgba(255,255,255,0.55); flex-shrink:0 }
-.speaker-icon.right { opacity:0.6 }
+.speaker-icon {
+  color: rgba(255, 255, 255, 0.55);
+  flex-shrink: 0
+}
+
+.speaker-icon.right {
+  opacity: 0.6
+}
 
 .placeholder {
   color: rgba(255, 255, 255, 0.7);
