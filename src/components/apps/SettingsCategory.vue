@@ -153,14 +153,21 @@ const close = () => emit('close');
   width: 100%;
   padding: 3cqw 2.5cqw;
   border-radius: 2.2cqh;
-  background: rgba(255,255,255,0.03);
+  background: rgba(255, 255, 255, 0.03);
 }
 
-.slider-pill .speaker-icon { color: rgba(255,255,255,0.65) }
+.slider-pill .speaker-icon {
+  color: rgba(255, 255, 255, 0.65)
+}
 
-.slider-pill .ios-range { margin: 0 1.2cqw; flex: 1 }
+.slider-pill .ios-range {
+  margin: 0 1.2cqw;
+  flex: 1
+}
 
-.value-row { display: none }
+.value-row {
+  display: none
+}
 
 .placeholder {
   color: rgba(255, 255, 255, 0.7);
