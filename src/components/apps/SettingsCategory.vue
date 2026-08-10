@@ -74,8 +74,8 @@ const close = () => emit('close');
 }
 
 .detail-back {
-  width: 6.4cqh;
-  height: 6.4cqh;
+  width: 5cqh;
+  height: 5cqh;
   border-radius: 50%;
   display: flex;
   align-items: center;
