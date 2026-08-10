@@ -15,7 +15,7 @@ const close = () => emit('close');
 <template>
   <div class="settings-category-page">
     <div class="detail-header">
-        <button type="button" class="detail-back" @click="close" aria-label="Retour"><ArrowLeft size="3cqh" /></button>
+        <button type="button" class="detail-back" @click="close" aria-label="Retour"><ArrowLeft size="2.5cqh" /></button>
         <span class="detail-title">{{ category.name }}</span>
       </div>
 
@@ -64,8 +64,8 @@ const close = () => emit('close');
 }
 
 .detail-back {
-  width: 6.4cqh;
-  height: 6.4cqh;
+  width: 5cqh;
+  height: 5cqh;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -76,7 +76,7 @@ const close = () => emit('close');
 }
 
 .detail-title {
-  font-size: 2.6cqh;
+  font-size: 2.5cqh;
   font-weight: 700;
   color: white;
   margin-left: 2.5cqw;
