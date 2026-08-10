@@ -15,33 +15,33 @@ const close = () => emit('close');
 <template>
   <div class="settings-category-page">
     <div class="detail-header">
-      <button type="button" class="detail-back" @click="close" aria-label="Retour"><ArrowLeft size="2.5cqh" /></button>
-      <span class="detail-title">{{ category.name }}</span>
-    </div>
+        <button type="button" class="detail-back" @click="close" aria-label="Retour"><ArrowLeft size="3cqh" /></button>
+        <span class="detail-title">{{ category.name }}</span>
+      </div>
 
-    <div class="detail-content">
-      <template v-if="category.id === 'sound'">
-        <div class="setting-row">
-          <div class="label">Volume des appels</div>
-          <div class="slider-wrap">
-            <input type="range" min="0" max="100" v-model="callVolume" />
-            <div class="value">{{ callVolume }}%</div>
+      <div class="detail-content">
+        <template v-if="category.id === 'sound'">
+          <div class="setting-row">
+            <div class="label">Volume des appels</div>
+            <div class="slider-wrap">
+              <input class="ios-range" type="range" min="0" max="100" v-model="callVolume" />
+              <div class="value">{{ callVolume }}%</div>
+            </div>
           </div>
-        </div>
 
-        <div class="setting-row">
-          <div class="label">Volume du système</div>
-          <div class="slider-wrap">
-            <input type="range" min="0" max="100" v-model="systemVolume" />
-            <div class="value">{{ systemVolume }}%</div>
+          <div class="setting-row">
+            <div class="label">Volume du système</div>
+            <div class="slider-wrap">
+              <input class="ios-range" type="range" min="0" max="100" v-model="systemVolume" />
+              <div class="value">{{ systemVolume }}%</div>
+            </div>
           </div>
-        </div>
-      </template>
+        </template>
 
-      <template v-else>
-        <div class="placeholder">Paramètres pour {{ category.name }} — contenu à venir.</div>
-      </template>
-    </div>
+        <template v-else>
+          <div class="placeholder">Paramètres pour {{ category.name }} — contenu à venir.</div>
+        </template>
+      </div>
   </div>
 </template>
 
