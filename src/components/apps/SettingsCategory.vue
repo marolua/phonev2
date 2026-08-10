@@ -109,7 +109,7 @@ const close = () => emit('close');
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  padding: 1.2cqh 2cqw;
+  padding: 1.2cqh 4cqw;
   background: rgba(20, 20, 20, 0.9);
   border-radius: 1.2cqh;
 }
@@ -118,7 +118,7 @@ const close = () => emit('close');
 .label {
   color: rgba(255, 255, 255, 0.9);
   font-size: 1.9cqh;
-  margin-bottom: 1cqh;
+  margin-bottom: 01cqh;
 }
 
 .slider-wrap {
@@ -137,7 +137,7 @@ const close = () => emit('close');
 .value-row {
   display: flex;
   justify-content: flex-end;
-  margin-top: 0.9cqh
+  margin-top: 0.9cqh;
 }
 
 .speaker-icon {
