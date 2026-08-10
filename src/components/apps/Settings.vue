@@ -106,8 +106,8 @@ const onAfterLeave = () => {
                 </div>
             </div>
 
-            <transition name="settings-slide">
-                <SettingsCategory v-if="selectedCategory" :category="selectedCategory" @close="closeCategory" />
+            <transition name="settings-slide" @after-leave="onAfterLeave">
+                <SettingsCategory v-if="showCategory" :category="selectedCategory" @close="closeCategory" />
             </transition>
         </div>
     </div>
