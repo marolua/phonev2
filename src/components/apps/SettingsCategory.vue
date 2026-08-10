@@ -61,7 +61,7 @@ const close = () => emit('close');
   inset: 0;
   z-index: 6;
   box-sizing: border-box;
-  background: #050505;
+  background: rgb(10, 10, 10);
   padding: 8cqh 5cqw 5cqh;
   display: flex;
   flex-direction: column;
@@ -100,15 +100,14 @@ const close = () => emit('close');
   margin-top: 3.5cqh;
   display: flex;
   flex-direction: column;
-  gap: 2.4cqh;
+  gap: 0cqh;
 }
 
 .setting-row {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  padding: 1.2cqh 4cqw;
-  background: rgba(20, 20, 20, 0.9);
+  padding: 1.5cqh 2cqw;
   border-radius: 1.2cqh;
 }
 
@@ -152,7 +151,7 @@ const close = () => emit('close');
   align-items: center;
   gap: 1cqw;
   width: 100%;
-  padding: 2cqw 2.5cqw;
+  padding: 3cqw 2.5cqw;
   border-radius: 2.2cqh;
   background: rgba(255,255,255,0.03);
 }
