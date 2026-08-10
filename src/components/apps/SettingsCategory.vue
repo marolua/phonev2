@@ -16,7 +16,7 @@ const close = () => emit('close');
   <div class="settings-category-page">
     <div class="detail-header">
       <button type="button" class="detail-back" @click="close" aria-label="Retour">
-        <ArrowLeft size="2.5cqh" />
+        <ArrowLeft size="3cqh" />
       </button>
       <span class="detail-title">{{ category.name }}</span>
     </div>
@@ -74,8 +74,8 @@ const close = () => emit('close');
 }
 
 .detail-back {
-  width: 5cqh;
-  height: 5cqh;
+  width: 6.4cqh;
+  height: 6.4cqh;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -116,7 +116,7 @@ const close = () => emit('close');
 .label {
   color: rgba(255, 255, 255, 0.9);
   font-size: 1.9cqh;
-  margin-bottom: 01cqh;
+  margin-bottom: 1cqh;
 }
 
 .slider-wrap {
@@ -147,6 +147,22 @@ const close = () => emit('close');
   opacity: 0.6
 }
 
+.slider-pill {
+  display: flex;
+  align-items: center;
+  gap: 1cqw;
+  width: 100%;
+  padding: 1.1cqw 1.6cqw;
+  border-radius: 2.2cqh;
+  background: rgba(255,255,255,0.03);
+}
+
+.slider-pill .speaker-icon { color: rgba(255,255,255,0.65) }
+
+.slider-pill .ios-range { margin: 0 1.2cqw; flex: 1 }
+
+.value-row { display: none }
+
 .placeholder {
   color: rgba(255, 255, 255, 0.7);
 }
@@ -156,7 +172,7 @@ const close = () => emit('close');
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
-  height: 0.9cqh;
+  height: 1.1cqh;
   background: transparent;
   cursor: pointer;
 }
@@ -173,12 +189,12 @@ const close = () => emit('close');
 
 .ios-range::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 3.2cqh;
-  height: 3.2cqh;
-  margin-top: -1.15cqh;
+  width: 3.6cqh;
+  height: 3.6cqh;
+  margin-top: -1.25cqh;
   background: #ffffff;
   border-radius: 50%;
-  box-shadow: 0 0.4cqh 1.2cqh rgba(0, 0, 0, 0.45);
+  box-shadow: 0 0.6cqh 1.6cqh rgba(0, 0, 0, 0.55);
   border: 0.25cqh solid rgba(0, 0, 0, 0.08);
 }
 
