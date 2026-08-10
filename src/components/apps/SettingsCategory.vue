@@ -128,7 +128,7 @@ const close = () => emit('close');
 
 .slider-wrap .value {
   color: rgba(255, 255, 255, 0.7);
-  min-width: 3.5cqh;
+  min-width: 3cqh;
   text-align: right
 }
 
@@ -152,7 +152,7 @@ const close = () => emit('close');
   align-items: center;
   gap: 1cqw;
   width: 100%;
-  padding: 1.1cqw 1.6cqw;
+  padding: 2cqw 2.5cqw;
   border-radius: 2.2cqh;
   background: rgba(255,255,255,0.03);
 }
@@ -175,6 +175,7 @@ const close = () => emit('close');
   height: 1.1cqh;
   background: transparent;
   cursor: pointer;
+  border-radius: 2cqh;
 }
 
 .ios-range:focus {
