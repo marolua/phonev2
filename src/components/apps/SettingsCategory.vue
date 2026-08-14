@@ -1,6 +1,7 @@
 <script setup>
 import { ArrowLeft, Volume2 } from '@lucide/vue';
 import { callVolume, systemVolume, selectedWallpaper } from '../../stores/phoneSettings';
+import { computed } from 'vue';
 const props = defineProps({
   category: {
     type: Object,
@@ -16,6 +17,8 @@ const wallpapers = Object.keys(wallpaperModules).map((k) => {
   const m = wallpaperModules[k];
   return (m && (m.default || m)) || '';
 });
+
+const currentSelected = computed(() => selectedWallpaper.value || (wallpapers.length ? wallpapers[0] : ''));
 
 const selectWallpaper = (url) => {
   if (!url) return;
