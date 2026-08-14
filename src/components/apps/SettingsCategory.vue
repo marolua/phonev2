@@ -285,9 +285,9 @@ const selectWallpaper = (url) => {
 }
 
 .wallpaper-item.selected {
-  transform: scale(1.03);
-  box-shadow: 0 1.2cqh 2.4cqh rgba(0,0,0,0.6);
-  outline: 0.5cqh solid rgba(77,141,255,0.95);
+  // transform: scale(1.01);
+  box-shadow: 0 0.4cqh 0.8cqh rgba(0,0,0,0.45);
+  outline: 0.1cqh solid rgba(77,141,255,0.85);
 }
 
 </style>
