@@ -281,4 +281,3 @@ const selectWallpaper = (url) => {
 }
 
 </style>
-</style>
