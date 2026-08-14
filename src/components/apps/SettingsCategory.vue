@@ -285,7 +285,6 @@ const selectWallpaper = (url) => {
 }
 
 .wallpaper-item.selected {
-  // transform: scale(1.01);
   outline: 1px solid rgba(77,141,255,0.85);
 }
 
