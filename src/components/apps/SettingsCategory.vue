@@ -64,11 +64,11 @@ const selectWallpaper = (url) => {
 
       <template v-else-if="category.id === 'wallpaper'">
         <div class="wallpaper-page">
-          <div class="wallpaper-preview">
-            <img :src="currentSelected" alt="Aperçu du fond d'écran" />
-          </div>
-
           <div class="wallpaper-grid">
+            <button class="add-item" type="button" @click="() => {}" aria-label="Ajouter">
+              <span class="plus">+</span>
+            </button>
+
             <button
               v-for="(img, idx) in wallpapers"
               :key="idx"
