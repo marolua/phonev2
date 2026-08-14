@@ -134,6 +134,8 @@ const selectWallpaper = (url) => {
   display: flex;
   flex-direction: column;
   gap: 0cqh;
+  flex: 1 1 auto;
+  overflow-y: auto;
 }
 
 .setting-row {
@@ -257,26 +259,31 @@ const selectWallpaper = (url) => {
 
 .wallpaper-page {
   width: 100%;
+  box-sizing: border-box;
 }
 
 .wallpaper-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1cqw;
+  gap: 1.2cqw;
+  padding: 1cqw 0 6cqh 0;
 }
 
-.wallpaper-item {
+.wallpaper-item,
+.add-item {
   border: none;
   padding: 0;
   background: transparent;
   border-radius: 1.2cqh;
   overflow: hidden;
   box-shadow: 0 0.6cqh 1.2cqh rgba(0,0,0,0.45);
+  height: 24cqh;
+  display: block;
 }
 
 .wallpaper-item img {
   width: 100%;
-  height: 10cqh;
+  height: 100%;
   object-fit: cover;
   display: block;
   transition: transform 0.12s ease, box-shadow 0.12s ease;
@@ -285,6 +292,18 @@ const selectWallpaper = (url) => {
 .wallpaper-item img.selected {
   outline: 2px solid rgba(77,141,255,0.9);
   transform: scale(1.02);
+}
+
+.add-item { 
+  background: rgba(255,255,255,0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-item .plus {
+  font-size: 6cqh;
+  color: rgba(255,255,255,0.7);
 }
 
 </style>
