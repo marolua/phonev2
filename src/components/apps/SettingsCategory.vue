@@ -261,20 +261,20 @@ const selectWallpaper = (url) => {
 .wallpaper-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.2cqw;
+  gap: 1.6cqw;
   padding: 1cqw 0 6cqh 0;
 }
 
-.wallpaper-item,
-.add-item {
+.wallpaper-item {
   border: none;
   padding: 0;
   background: transparent;
   border-radius: 1.2cqh;
   overflow: hidden;
   box-shadow: 0 0.6cqh 1.2cqh rgba(0,0,0,0.45);
-  height: 24cqh;
+  height: 28cqh;
   display: block;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 
 .wallpaper-item img {
@@ -282,24 +282,12 @@ const selectWallpaper = (url) => {
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 
-.wallpaper-item img.selected {
-  outline: 2px solid rgba(77,141,255,0.9);
-  transform: scale(1.02);
-}
-
-.add-item { 
-  background: rgba(255,255,255,0.04);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.add-item .plus {
-  font-size: 6cqh;
-  color: rgba(255,255,255,0.7);
+.wallpaper-item.selected {
+  transform: scale(1.03);
+  box-shadow: 0 1.2cqh 2.4cqh rgba(0,0,0,0.6);
+  outline: 0.5cqh solid rgba(77,141,255,0.95);
 }
 
 </style>
