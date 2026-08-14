@@ -247,4 +247,38 @@ const selectWallpaper = (url) => {
 }
 
 /* filled track will come from inline background style set on the input element */
+
+.wallpaper-page {
+  width: 100%;
+}
+
+.wallpaper-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1cqw;
+}
+
+.wallpaper-item {
+  border: none;
+  padding: 0;
+  background: transparent;
+  border-radius: 1.2cqh;
+  overflow: hidden;
+  box-shadow: 0 0.6cqh 1.2cqh rgba(0,0,0,0.45);
+}
+
+.wallpaper-item img {
+  width: 100%;
+  height: 10cqh;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.wallpaper-item img.selected {
+  outline: 2px solid rgba(77,141,255,0.9);
+  transform: scale(1.02);
+}
+
+</style>
 </style>
