@@ -1,6 +1,6 @@
 <script setup>
 import { ArrowLeft, Volume2 } from '@lucide/vue';
-import { callVolume, systemVolume } from '../../stores/phoneSettings';
+import { callVolume, systemVolume, selectedWallpaper } from '../../stores/phoneSettings';
 const props = defineProps({
   category: {
     type: Object,
@@ -10,6 +10,17 @@ const props = defineProps({
 const emit = defineEmits(['close']);
 
 const close = () => emit('close');
+// Load wallpapers from assets folder (eager so Vite includes them)
+const wallpaperModules = import.meta.glob('../../assets/wallpapers/*.{png,jpg,jpeg}', { eager: true });
+const wallpapers = Object.keys(wallpaperModules).map((k) => {
+  const m = wallpaperModules[k];
+  return (m && (m.default || m)) || '';
+});
+
+const selectWallpaper = (url) => {
+  if (!url) return;
+  selectedWallpaper.value = url;
+};
 </script>
 
 <template>
@@ -44,6 +55,21 @@ const close = () => emit('close');
                 :style="{ background: `linear-gradient(90deg, #4d8dff ${systemVolume}%, rgba(255,255,255,0.12) ${systemVolume}%)` }" />
               <Volume2 class="speaker-icon right" size="2cqh" />
             </div>
+          </div>
+        </div>
+      </template>
+
+      <template v-else-if="category.id === 'wallpaper'">
+        <div class="wallpaper-page">
+          <div class="wallpaper-grid">
+            <button
+              v-for="(img, idx) in wallpapers"
+              :key="idx"
+              class="wallpaper-item"
+              type="button"
+              @click="selectWallpaper(img)">
+              <img :src="img" :alt="`Fond d\'écran ${idx + 1}`" :class="{ selected: img === selectedWallpaper }" />
+            </button>
           </div>
         </div>
       </template>
