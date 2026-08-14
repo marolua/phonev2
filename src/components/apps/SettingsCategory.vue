@@ -64,6 +64,10 @@ const selectWallpaper = (url) => {
 
       <template v-else-if="category.id === 'wallpaper'">
         <div class="wallpaper-page">
+          <div class="wallpaper-preview">
+            <img :src="currentSelected" alt="Aperçu du fond d'écran" />
+          </div>
+
           <div class="wallpaper-grid">
             <button
               v-for="(img, idx) in wallpapers"
@@ -71,7 +75,7 @@ const selectWallpaper = (url) => {
               class="wallpaper-item"
               type="button"
               @click="selectWallpaper(img)">
-              <img :src="img" :alt="`Fond d\'écran ${idx + 1}`" :class="{ selected: img === selectedWallpaper }" />
+              <img :src="img" :alt="`Fond d\'écran ${idx + 1}`" :class="{ selected: img === currentSelected }" />
             </button>
           </div>
         </div>
