@@ -36,7 +36,7 @@ const islandExamples = [
             name: 'John McKenzie',
             preview: 'Salut, tu es disponible ce soir ?',
             initials: 'JM',
-            image: Inconnu,
+            image: null,
             color: 'linear-gradient(145deg, #52628e, #282c42)',
         },
     },
@@ -889,7 +889,7 @@ const openPhoneCall = (call) => {
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-    padding: 0 1cqw;
+    padding: 0 2.8cqw;
 
     .message-notification-avatar {
         display: flex;
@@ -916,7 +916,7 @@ const openPhoneCall = (call) => {
         justify-content: center;
         flex-direction: column;
         min-width: 0;
-        gap: 0.65cqh;
+        gap: 0.2cqh;
         text-align: left;
 
         strong,
@@ -930,11 +930,13 @@ const openPhoneCall = (call) => {
             color: white;
             font-size: 2.25cqh;
             font-weight: 600;
+            line-height: 1.05;
         }
 
         span {
             color: rgba(255, 255, 255, 0.68);
             font-size: 1.8cqh;
+            line-height: 1.05;
         }
     }
 }
