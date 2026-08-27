@@ -248,7 +248,7 @@ const sendMessage = async () => {
             </div>
         </Transition>
 
-        <div v-else class="conversation-page">
+        <div v-if="selectedConversation" class="conversation-page">
             <div class="conversation-header">
                 <button type="button" class="conversation-back" aria-label="Retour" @click="closeConversation">
                     <ArrowLeft size="2.8cqh" />
@@ -420,7 +420,8 @@ const sendMessage = async () => {
 }
 
 .conversation-row:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background: transparent;
+    transform: scale(1.015);
 }
 
 .conversation-avatar,
@@ -436,9 +437,9 @@ const sendMessage = async () => {
 }
 
 .conversation-avatar {
-    width: 6.5cqh;
-    height: 6.5cqh;
-    font-size: 2.4cqh;
+    width: 6cqh;
+    height: 6cqh;
+    font-size: 2.15cqh;
 }
 
 .conversation-main {
@@ -458,7 +459,7 @@ const sendMessage = async () => {
 .conversation-name {
     overflow: hidden;
     color: rgba(255, 255, 255, 0.94);
-    font-size: 2cqh;
+    font-size: 1.8cqh;
     font-weight: 600;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -473,7 +474,7 @@ const sendMessage = async () => {
 .conversation-preview {
     margin-top: 0.6cqh;
     color: rgba(255, 255, 255, 0.5);
-    font-size: 1.65cqh;
+    font-size: 1.5cqh;
 }
 
 .conversation-preview>span:first-child {
@@ -576,8 +577,8 @@ const sendMessage = async () => {
 }
 
 .conversation-header-actions button {
-    width: 4.5cqh;
-    height: 4.5cqh;
+    width: 5.2cqh;
+    height: 5.2cqh;
     border-radius: 50%;
     color: #4d8dff;
     background: rgba(77, 141, 255, 0.12);
@@ -686,6 +687,223 @@ const sendMessage = async () => {
     gap: 1.2cqw;
     padding-top: 1cqh;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.message-modal-backdrop {
+    position: absolute;
+    z-index: 10;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.62);
+    backdrop-filter: blur(0.7cqh);
+}
+
+.new-message-modal {
+    position: relative;
+    width: 100%;
+    height: 52%;
+    box-sizing: border-box;
+    overflow: visible;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 3cqh 3cqh 0 0;
+    color: white;
+    background: rgba(38, 38, 40, 0.98);
+    box-shadow: 0 2cqh 8cqh rgba(0, 0, 0, 0.45);
+}
+
+.new-message-grabber {
+    position: absolute;
+    top: 1cqh;
+    left: 50%;
+    width: 10cqw;
+    height: 0.5cqh;
+    border-radius: 1cqh;
+    background: rgba(255, 255, 255, 0.35);
+    transform: translateX(-50%);
+}
+
+.new-message-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 7cqh;
+    padding: 0 3cqw;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 2cqh;
+}
+
+.new-message-cancel,
+.new-message-save {
+    border: 0;
+    padding: 0;
+    color: #4d8dff;
+    font: inherit;
+    font-size: 1.65cqh;
+    cursor: pointer;
+    background: transparent;
+}
+
+.new-message-cancel {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.new-message-save:disabled {
+    color: rgba(77, 141, 255, 0.35);
+    cursor: default;
+}
+
+.new-message-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6cqh;
+    padding: 3cqh 4cqw;
+}
+
+.new-message-field {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6cqh;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 1.5cqh;
+}
+
+.new-message-field input {
+    width: 100%;
+    height: 5.6cqh;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.4cqh;
+    padding: 0 2cqw;
+    outline: none;
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    font: inherit;
+    font-size: 1.8cqh;
+}
+
+.new-message-field input:focus,
+.message-phone-input:focus-within {
+    border-color: rgba(77, 141, 255, 0.8);
+}
+
+.new-message-field input::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.message-phone-input {
+    display: flex;
+    align-items: center;
+    height: 5.6cqh;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.4cqh;
+    padding: 0 2cqw;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.message-phone-input > span {
+    flex-shrink: 0;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.8cqh;
+}
+
+.message-phone-input input {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    border: 0;
+    padding: 0 0 0 0.7cqw;
+    background: transparent;
+}
+
+.contact-suggestions {
+    position: absolute;
+    z-index: 2;
+    top: calc(100% + 0.6cqh);
+    right: 0;
+    left: 0;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.4cqh;
+    background: rgba(50, 50, 53, 0.98);
+    box-shadow: 0 1cqh 3cqh rgba(0, 0, 0, 0.35);
+}
+
+.contact-suggestions button {
+    display: flex;
+    align-items: center;
+    gap: 1.5cqw;
+    width: 100%;
+    min-height: 6cqh;
+    border: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 0 2cqw;
+    color: white;
+    text-align: left;
+    background: transparent;
+    cursor: pointer;
+}
+
+.contact-suggestions button:last-child {
+    border-bottom: 0;
+}
+
+.contact-suggestions button:hover {
+    background: rgba(77, 141, 255, 0.16);
+}
+
+.suggestion-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 3.8cqh;
+    height: 3.8cqh;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.5cqh;
+    font-weight: 600;
+    background: linear-gradient(145deg, #52628e, #282c42);
+}
+
+.suggestion-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25cqh;
+}
+
+.suggestion-info strong {
+    font-size: 1.55cqh;
+    font-weight: 500;
+}
+
+.suggestion-info small {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.3cqh;
+}
+
+.message-sheet-enter-active,
+.message-sheet-leave-active {
+    transition: opacity 0.25s ease;
+}
+
+.message-sheet-enter-active .new-message-modal,
+.message-sheet-leave-active .new-message-modal {
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.message-sheet-enter-from,
+.message-sheet-leave-to {
+    opacity: 0;
+}
+
+.message-sheet-enter-from .new-message-modal,
+.message-sheet-leave-to .new-message-modal {
+    transform: translateY(100%);
 }
 
 .composer-options {
