@@ -91,7 +91,7 @@ const selectWallpaper = (url) => {
               </div>
               <div class="general-row">
                 <span>Développé par</span>
-                <span class="row-value">FiveM Phone</span>
+                <span class="row-value">Mrl</span>
               </div>
             </div>
           </div>
