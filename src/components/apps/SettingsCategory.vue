@@ -246,6 +246,112 @@ const selectWallpaper = (url) => {
         </div>
       </template>
 
+      <template v-else-if="category.id === 'phone'">
+        <div class="phone-settings-page">
+          <div class="general-section">
+            <div class="section-title">Mon numéro</div>
+            <div class="general-group">
+              <div class="phone-number-row">
+                <span class="phone-number-value">{{ phoneNumber }}</span>
+                <button type="button" class="copy-number-button" :class="{ copied: copiedPhoneNumber }"
+                  :aria-label="copiedPhoneNumber ? 'Numéro copié' : 'Copier le numéro'" @click="copyPhoneNumber">
+                  <Check v-if="copiedPhoneNumber" size="2.1cqh" />
+                  <Copy v-else size="2.1cqh" />
+                  <span>{{ copiedPhoneNumber ? 'Copié' : 'Copier' }}</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="general-section">
+            <div class="section-title">Sécurité</div>
+            <div class="general-group">
+              <button type="button" class="general-row general-row-button" @click="showBlockedContacts = true">
+                <span class="row-leading">
+                  <PhoneOff class="general-row-icon blocked-icon" size="2.2cqh" />
+                  <span>Contacts bloqués</span>
+                </span>
+                <span class="row-trailing">
+                  <span class="row-value">{{ blockedContacts.length }}</span>
+                  <ChevronRight class="row-chevron" size="2.2cqh" />
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <Transition name="general-modal">
+          <div v-if="showBlockedContacts" class="blocked-contacts-page">
+            <div class="blocked-header">
+              <button type="button" class="detail-back" aria-label="Retour" @click="showBlockedContacts = false">
+                <ArrowLeft size="3cqh" />
+              </button>
+              <span class="detail-title">Contacts bloqués</span>
+              <button type="button" class="add-blocked-button" aria-label="Ajouter un contact bloqué"
+                @click="openBlockedEditor()">
+                <Plus size="2.6cqh" />
+              </button>
+            </div>
+
+            <div class="blocked-content">
+              <div v-if="blockedContacts.length === 0" class="blocked-empty">
+                <PhoneOff size="5cqh" />
+                <span>Aucun contact bloqué</span>
+                <small>Les contacts que tu ajoutes apparaîtront ici.</small>
+              </div>
+
+              <div v-else class="general-group blocked-list">
+                <div v-for="contact in blockedContacts" :key="contact.id" class="blocked-contact-row">
+                  <div class="blocked-avatar">{{ contact.name.charAt(0).toUpperCase() }}</div>
+                  <div class="blocked-contact-info">
+                    <span>{{ contact.name }}</span>
+                    <small>{{ contact.phone }}</small>
+                  </div>
+                  <div class="blocked-contact-actions">
+                    <button type="button" aria-label="Modifier le contact" @click="openBlockedEditor(contact)">
+                      <Pencil size="1.9cqh" />
+                    </button>
+                    <button type="button" aria-label="Débloquer le contact" @click="unblockContact(contact.id)">
+                      <Unlock size="1.9cqh" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Transition>
+
+        <Transition name="general-modal">
+          <div v-if="showBlockedEditor" class="general-modal-backdrop" @click.self="closeBlockedEditor">
+            <div class="general-modal blocked-editor-modal">
+              <div class="modal-header">
+                <div>
+                  <span class="modal-eyebrow">CONTACTS BLOQUÉS</span>
+                  <h2>{{ editingBlockedContactId === null ? 'Ajouter un contact' : 'Modifier le contact' }}</h2>
+                </div>
+                <button type="button" class="modal-close" aria-label="Fermer" @click="closeBlockedEditor">
+                  <X size="2.2cqh" />
+                </button>
+              </div>
+
+              <label class="blocked-field">
+                <span>Nom</span>
+                <input v-model="blockedContactDraft.name" type="text" placeholder="Nom du contact" />
+              </label>
+              <label class="blocked-field">
+                <span>Numéro</span>
+                <input v-model="blockedContactDraft.phone" type="tel" placeholder="Numéro de téléphone" />
+              </label>
+
+              <button type="button" class="modal-action save-blocked-action" @click="saveBlockedContact">
+                Enregistrer
+              </button>
+              <button type="button" class="modal-action cancel-action" @click="closeBlockedEditor">Annuler</button>
+            </div>
+          </div>
+        </Transition>
+      </template>
+
       <template v-else-if="category.id === 'wallpaper'">
         <div class="wallpaper-page">
           <div class="wallpaper-grid">
