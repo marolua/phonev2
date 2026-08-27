@@ -1,12 +1,17 @@
 <script setup>
 import { computed, nextTick, ref } from 'vue';
-import { ArrowLeft, Check, ImagePlus, MapPin, Phone, Plus, Search, Send } from '@lucide/vue';
+import { ArrowLeft, Check, ImagePlus, MapPin, Phone, Plus, Search, Send, X } from '@lucide/vue';
+import { contacts } from '../../stores/contacts';
+import { formatPhoneNumber, isPhoneSuffixValid, phoneDigits } from '../../utils/phoneNumber';
 
 const searchQuery = ref('');
 const selectedConversation = ref(null);
 const messageDraft = ref('');
 const messageThread = ref(null);
 const showComposerOptions = ref(false);
+const showNewConversation = ref(false);
+const showContactSuggestions = ref(false);
+const newConversation = ref({ name: '', phone: '' });
 
 const conversations = ref([
     {
@@ -59,6 +64,71 @@ const filteredConversations = computed(() => {
 
 const lastMessage = (conversation) => conversation.messages.at(-1) || { text: '', time: '' };
 
+const contactSuggestions = computed(() => {
+    if (!showContactSuggestions.value) return [];
+
+    const query = newConversation.value.name.trim().toLowerCase();
+    if (!query) return contacts.value.slice(0, 5);
+
+    return contacts.value.filter((contact) => {
+        const name = `${contact.firstName} ${contact.lastName}`;
+        return `${name} ${contact.phone}`.toLowerCase().includes(query);
+    }).slice(0, 5);
+});
+
+const contactName = (contact) => `${contact.firstName} ${contact.lastName}`.trim();
+
+const openNewConversation = () => {
+    newConversation.value = { name: '', phone: '' };
+    showContactSuggestions.value = false;
+    showNewConversation.value = true;
+};
+
+const closeNewConversation = () => {
+    showNewConversation.value = false;
+    showContactSuggestions.value = false;
+    newConversation.value = { name: '', phone: '' };
+};
+
+const selectContact = (contact) => {
+    newConversation.value = {
+        name: contactName(contact),
+        phone: phoneDigits(contact.phone),
+    };
+    showContactSuggestions.value = false;
+};
+
+const sanitizeNewConversationPhone = (event) => {
+    newConversation.value.phone = phoneDigits(event.target.value);
+};
+
+const conversationInitials = (name) => name.split(/\s+/).filter(Boolean).map((part) => part[0]).join('').slice(0, 2).toUpperCase();
+
+const createConversation = async () => {
+    const name = newConversation.value.name.trim();
+    const phone = phoneDigits(newConversation.value.phone);
+    if (!name || !isPhoneSuffixValid(phone)) return;
+
+    const normalizedPhone = formatPhoneNumber(phone);
+    let conversation = conversations.value.find((item) => item.phone === normalizedPhone);
+
+    if (!conversation) {
+        conversation = {
+            id: Date.now(),
+            name,
+            phone: normalizedPhone,
+            initials: conversationInitials(name),
+            color: 'linear-gradient(145deg, #7a6ab0, #342b5c)',
+            unread: 0,
+            messages: [],
+        };
+        conversations.value.unshift(conversation);
+    }
+
+    closeNewConversation();
+    await openConversation(conversation);
+};
+
 const openConversation = async (conversation) => {
     conversation.unread = 0;
     selectedConversation.value = conversation;
@@ -98,7 +168,7 @@ const sendMessage = async () => {
         <div v-if="!selectedConversation" class="messages-home">
             <div class="messages-title-row">
                 <span class="title">Messages</span>
-                <button type="button" class="compose-button" aria-label="Nouveau message">
+                <button type="button" class="compose-button" aria-label="Nouveau message" @click="openNewConversation">
                     <Plus size="2.8cqh" />
                 </button>
             </div>
@@ -134,6 +204,49 @@ const sendMessage = async () => {
                 </div>
             </div>
         </div>
+
+        <Transition name="message-sheet">
+            <div v-if="showNewConversation" class="message-modal-backdrop" @click.self="closeNewConversation">
+                <form class="new-message-modal" @submit.prevent="createConversation">
+                    <div class="new-message-grabber" aria-hidden="true"></div>
+                    <div class="new-message-header">
+                        <button type="button" class="new-message-cancel" @click="closeNewConversation">Annuler</button>
+                        <strong>Nouveau message</strong>
+                        <button type="submit" class="new-message-save"
+                            :disabled="!newConversation.name.trim() || !isPhoneSuffixValid(newConversation.phone)">
+                            Suivant
+                        </button>
+                    </div>
+
+                    <div class="new-message-form">
+                        <label class="new-message-field autocomplete-field">
+                            <span>Contact</span>
+                            <input v-model="newConversation.name" type="text" placeholder="Nom du contact"
+                                autocomplete="off" @focus="showContactSuggestions = true" />
+                            <div v-if="contactSuggestions.length" class="contact-suggestions">
+                                <button v-for="contact in contactSuggestions" :key="contact.id" type="button"
+                                    @click="selectContact(contact)">
+                                    <span class="suggestion-avatar">{{ contactName(contact).charAt(0).toUpperCase() }}</span>
+                                    <span class="suggestion-info">
+                                        <strong>{{ contactName(contact) }}</strong>
+                                        <small>{{ formatPhoneNumber(contact.phone) }}</small>
+                                    </span>
+                                </button>
+                            </div>
+                        </label>
+
+                        <label class="new-message-field">
+                            <span>Numéro</span>
+                            <div class="message-phone-input">
+                                <span>555-</span>
+                                <input v-model="newConversation.phone" type="tel" inputmode="numeric" maxlength="4"
+                                    placeholder="1234" @input="sanitizeNewConversationPhone" />
+                            </div>
+                        </label>
+                    </div>
+                </form>
+            </div>
+        </Transition>
 
         <div v-else class="conversation-page">
             <div class="conversation-header">
