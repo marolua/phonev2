@@ -511,13 +511,21 @@ const sendMessage = async () => {
 }
 
 .message-bubble-row-me {
-    flex-direction: row;
-    justify-content: flex-end;
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: end;
 }
 
 .message-bubble-row-me .message-meta {
-    order: -1;
+    grid-column: 1;
+    grid-row: 1;
     align-items: flex-end;
+}
+
+.message-bubble-row-me .message-bubble {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
 }
 
 .message-bubble {
