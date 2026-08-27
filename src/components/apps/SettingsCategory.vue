@@ -478,6 +478,7 @@ const selectWallpaper = (url) => {
 }
 
 .language-modal {
+  width: 88%;
   padding: 2.2cqh 2.2cqw;
 }
 
@@ -516,6 +517,8 @@ const selectWallpaper = (url) => {
 }
 
 .language-list {
+  width: 94%;
+  margin: 0 auto;
   overflow: hidden;
   border-radius: 1.4cqh;
   background: rgba(255, 255, 255, 0.06);
@@ -530,7 +533,7 @@ const selectWallpaper = (url) => {
   width: 100%;
   border: 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 0 2cqw;
+  padding: 0 3.2cqw;
   color: rgba(255, 255, 255, 0.9);
   font: inherit;
   font-size: 1.7cqh;
