@@ -1,5 +1,5 @@
 <script setup>
-import { ArrowLeft, Volume2, ALargeSmall, Sun, ChevronRight, RotateCcw, Languages, Check } from '@lucide/vue';
+import { ArrowLeft, Volume2, ALargeSmall, Sun, ChevronRight, RotateCcw, Languages, Check, X } from '@lucide/vue';
 import { brightness, callVolume, displayScale, resetPhoneSettings, selectedLanguage, selectedWallpaper, systemVolume } from '../../stores/phoneSettings';
 import { computed, ref } from 'vue';
 const props = defineProps({
@@ -74,6 +74,91 @@ const selectWallpaper = (url) => {
             </div>
           </div>
         </div>
+      </template>
+
+      <template v-else-if="category.id === 'general'">
+        <div class="general-page">
+          <div class="general-section">
+            <div class="section-title">Informations</div>
+            <div class="general-group">
+              <div class="general-row">
+                <span>Nom du téléphone</span>
+                <span class="row-value">iPhone</span>
+              </div>
+              <div class="general-row">
+                <span>Version</span>
+                <span class="row-value">1.0.0</span>
+              </div>
+              <div class="general-row">
+                <span>Développé par</span>
+                <span class="row-value">FiveM Phone</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="general-section">
+            <div class="section-title">Préférences</div>
+            <div class="general-group">
+              <button type="button" class="general-row general-row-button" @click="showLanguagePicker = true">
+                <span class="row-leading">
+                  <Languages class="general-row-icon" size="2.2cqh" />
+                  <span>Langue</span>
+                </span>
+                <span class="row-trailing">
+                  <span class="row-value">{{ selectedLanguage }}</span>
+                  <ChevronRight class="row-chevron" size="2.2cqh" />
+                </span>
+              </button>
+            </div>
+          </div>
+
+          <div class="general-section reset-section">
+            <div class="general-group">
+              <button type="button" class="reset-button" @click="showResetConfirmation = true">
+                <RotateCcw size="2.2cqh" />
+                <span>Réinitialiser le téléphone</span>
+              </button>
+            </div>
+            <p class="reset-hint">Les réglages du téléphone seront remis à leur état par défaut.</p>
+          </div>
+        </div>
+
+        <Transition name="general-modal">
+          <div v-if="showLanguagePicker" class="general-modal-backdrop" @click.self="showLanguagePicker = false">
+            <div class="general-modal language-modal">
+              <div class="modal-header">
+                <div>
+                  <span class="modal-eyebrow">RÉGLAGES</span>
+                  <h2>Choisir une langue</h2>
+                </div>
+                <button type="button" class="modal-close" aria-label="Fermer" @click="showLanguagePicker = false">
+                  <X size="2.2cqh" />
+                </button>
+              </div>
+              <div class="language-list">
+                <button v-for="language in languages" :key="language" type="button" class="language-option"
+                  :class="{ selected: selectedLanguage === language }" @click="selectLanguage(language)">
+                  <span>{{ language }}</span>
+                  <Check v-if="selectedLanguage === language" size="2.2cqh" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </Transition>
+
+        <Transition name="general-modal">
+          <div v-if="showResetConfirmation" class="general-modal-backdrop" @click.self="showResetConfirmation = false">
+            <div class="general-modal reset-modal">
+              <div class="modal-symbol danger-symbol">
+                <RotateCcw size="3cqh" />
+              </div>
+              <h2>Réinitialiser le téléphone ?</h2>
+              <p>La taille, la luminosité, le volume, la langue et le fond d’écran seront remis par défaut.</p>
+              <button type="button" class="modal-action danger-action" @click="resetSettings">Réinitialiser</button>
+              <button type="button" class="modal-action cancel-action" @click="showResetConfirmation = false">Annuler</button>
+            </div>
+          </div>
+        </Transition>
       </template>
 
       <template v-else-if="category.id === 'display'">
