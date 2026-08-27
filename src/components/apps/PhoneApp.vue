@@ -337,7 +337,8 @@ const addContact = () => {
                     <div v-else class="phone-input">
                         <span>555-</span>
                         <input v-model="editableContact.phone" type="tel" inputmode="numeric" maxlength="4"
-                            placeholder="1234" autocomplete="tel" @input="sanitizePhoneInput($event, editableContact)" />
+                            placeholder="1234" autocomplete="tel"
+                            @input="sanitizePhoneInput($event, editableContact)" />
                     </div>
                 </div>
                 <button v-if="!editingContact" type="button" aria-label="Appeler"
@@ -403,7 +404,7 @@ const addContact = () => {
                         </div>
                         <div class="contact-information">
                             <span>{{ contact.firstName }} {{ contact.lastName }}</span>
-                        <small>{{ formatPhoneNumber(contact.phone) }}</small>
+                            <small>{{ formatPhoneNumber(contact.phone) }}</small>
                         </div>
                     </button>
                 </div>
@@ -1464,7 +1465,7 @@ const addContact = () => {
                     border-radius: 1.4cqh;
                     background: rgba(255, 255, 255, 0.1);
 
-                    > span {
+                    >span {
                         flex-shrink: 0;
                         padding-left: 0;
                         color: rgba(255, 255, 255, 0.8);
