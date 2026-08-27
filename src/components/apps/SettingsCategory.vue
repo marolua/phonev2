@@ -791,12 +791,31 @@ const selectWallpaper = (url) => {
 }
 
 .blocked-editor-modal {
-  padding: 2.4cqh 2.4cqw 2cqh;
+  width: 100%;
+  border-right: 0;
+  border-bottom: 0;
+  border-left: 0;
+  border-radius: 2.8cqh 2.8cqh 0 0;
+  padding: 1.2cqh 4cqw 3cqh;
+  background: rgba(28, 28, 30, 0.99);
+}
+
+.blocked-editor-backdrop {
+  align-items: flex-end;
+  padding: 0;
+}
+
+.sheet-grabber {
+  width: 9cqw;
+  height: 0.55cqh;
+  margin: 0 auto 2cqh;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.28);
 }
 
 .blocked-field {
   display: block;
-  margin-top: 1.6cqh;
+  margin-top: 1.3cqh;
   color: rgba(255, 255, 255, 0.58);
   font-size: 1.45cqh;
 }
@@ -805,9 +824,9 @@ const selectWallpaper = (url) => {
   display: block;
   box-sizing: border-box;
   width: 100%;
-  height: 5.6cqh;
+  height: 5.2cqh;
   margin-top: 0.7cqh;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 1.1cqh;
   padding: 0 1.5cqw;
   outline: none;
@@ -826,9 +845,14 @@ const selectWallpaper = (url) => {
 }
 
 .save-blocked-action {
-  margin-top: 2.2cqh;
+  margin-top: 2cqh;
   color: white;
   background: #4d8dff;
+}
+
+.blocked-editor-modal .cancel-action {
+  color: #4d8dff;
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .general-modal-backdrop {
