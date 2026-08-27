@@ -35,6 +35,7 @@ const islandExamples = [
         notification: {
             name: 'John McKenzie',
             preview: 'Salut, tu es disponible ce soir ?',
+            time: 'il y a 2 minutes',
             initials: 'JM',
             image: null,
             color: 'linear-gradient(145deg, #52628e, #282c42)',
@@ -196,6 +197,7 @@ const openPhoneCall = (call) => {
                                     <strong>{{ activeIsland.notification.name }}</strong>
                                     <span>{{ activeIsland.notification.preview }}</span>
                                 </div>
+                                <span class="message-notification-time">{{ activeIsland.notification.time }}</span>
                             </section>
 
                             <section v-else-if="activeIsland.type === 'medium'" key="medium"
@@ -882,6 +884,7 @@ const openPhoneCall = (call) => {
 }
 
 .island-layout--small-message {
+    position: relative;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
@@ -901,7 +904,7 @@ const openPhoneCall = (call) => {
         overflow: hidden;
         border-radius: 50%;
         color: white;
-        font-size: 3.6cqh;
+        font-size: 3.1cqh;
         font-weight: 600;
 
         img {
@@ -928,7 +931,7 @@ const openPhoneCall = (call) => {
 
         strong {
             color: white;
-            font-size: 2.25cqh;
+            font-size: 2.05cqh;
             font-weight: 600;
             line-height: 1.05;
         }
@@ -938,6 +941,15 @@ const openPhoneCall = (call) => {
             font-size: 1.8cqh;
             line-height: 1.05;
         }
+    }
+
+    .message-notification-time {
+        position: absolute;
+        top: 1cqh;
+        right: 2.2cqw;
+        color: rgba(255, 255, 255, 0.58);
+        font-size: 1.45cqh;
+        white-space: nowrap;
     }
 }
 
