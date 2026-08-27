@@ -1,6 +1,7 @@
 <script setup>
-import { ArrowLeft, Volume2, ALargeSmall, Sun, ChevronRight, RotateCcw, Languages, Check, X } from '@lucide/vue';
-import { brightness, callVolume, displayScale, resetPhoneSettings, selectedLanguage, selectedWallpaper, systemVolume } from '../../stores/phoneSettings';
+import { ArrowLeft, Volume2, ALargeSmall, Sun, ChevronRight, RotateCcw, Languages, Check, X, Copy, Pencil, PhoneOff, Plus, Unlock } from '@lucide/vue';
+import { blockedContacts } from '../../stores/contacts';
+import { brightness, callVolume, displayScale, phoneNumber, resetPhoneSettings, selectedLanguage, selectedWallpaper, systemVolume } from '../../stores/phoneSettings';
 import { computed, ref } from 'vue';
 const props = defineProps({
   category: {
@@ -11,6 +12,11 @@ const props = defineProps({
 const emit = defineEmits(['close']);
 const showLanguagePicker = ref(false);
 const showResetConfirmation = ref(false);
+const showBlockedContacts = ref(false);
+const showBlockedEditor = ref(false);
+const copiedPhoneNumber = ref(false);
+const editingBlockedContactId = ref(null);
+const blockedContactDraft = ref({ name: '', phone: '' });
 
 const languages = ['Français', 'English', 'Español', 'Deutsch'];
 
@@ -22,6 +28,60 @@ const selectLanguage = (language) => {
 const resetSettings = () => {
   resetPhoneSettings();
   showResetConfirmation.value = false;
+};
+
+const copyPhoneNumber = async () => {
+  try {
+    await navigator.clipboard.writeText(phoneNumber.value);
+  } catch {
+    const input = document.createElement('textarea');
+    input.value = phoneNumber.value;
+    input.setAttribute('readonly', '');
+    input.style.position = 'fixed';
+    input.style.opacity = '0';
+    document.body.appendChild(input);
+    input.select();
+    document.execCommand('copy');
+    document.body.removeChild(input);
+  }
+
+  copiedPhoneNumber.value = true;
+  window.setTimeout(() => {
+    copiedPhoneNumber.value = false;
+  }, 1600);
+};
+
+const emptyBlockedContact = () => ({ name: '', phone: '' });
+
+const openBlockedEditor = (contact = null) => {
+  editingBlockedContactId.value = contact?.id ?? null;
+  blockedContactDraft.value = contact ? { name: contact.name, phone: contact.phone } : emptyBlockedContact();
+  showBlockedEditor.value = true;
+};
+
+const closeBlockedEditor = () => {
+  showBlockedEditor.value = false;
+  editingBlockedContactId.value = null;
+  blockedContactDraft.value = emptyBlockedContact();
+};
+
+const saveBlockedContact = () => {
+  const name = blockedContactDraft.value.name.trim();
+  const phone = blockedContactDraft.value.phone.trim();
+  if (!name || !phone) return;
+
+  if (editingBlockedContactId.value !== null) {
+    const contact = blockedContacts.value.find(({ id }) => id === editingBlockedContactId.value);
+    if (contact) Object.assign(contact, { name, phone });
+  } else {
+    blockedContacts.value.push({ id: Date.now(), name, phone });
+  }
+
+  closeBlockedEditor();
+};
+
+const unblockContact = (id) => {
+  blockedContacts.value = blockedContacts.value.filter((contact) => contact.id !== id);
 };
 
 const close = () => emit('close');
