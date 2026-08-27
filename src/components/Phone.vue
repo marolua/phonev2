@@ -26,6 +26,21 @@ const islandExamples = [
         height: '17cqh',
     },
     {
+        id: 'medium-message',
+        type: 'medium',
+        variant: 'message',
+        label: 'message',
+        width: '88cqw',
+        height: '17cqh',
+        notification: {
+            name: 'John McKenzie',
+            preview: 'Salut, tu es disponible ce soir ?',
+            initials: 'JM',
+            image: Inconnu,
+            color: 'linear-gradient(145deg, #52628e, #282c42)',
+        },
+    },
+    {
         id: 'small',
         type: 'small',
         width: '87cqw',
@@ -168,6 +183,21 @@ const openPhoneCall = (call) => {
                             </section>
 
                             <!-- Dynamic Island medium : fond moyen format. Ajoute tes divs dedans. -->
+                            <section v-else-if="activeIsland.type === 'medium' && activeIsland.variant === 'message'"
+                                key="medium-message"
+                                class="island-layout island-layout--medium island-layout--medium-message">
+                                <div class="message-notification-avatar"
+                                    :style="{ background: activeIsland.notification.color }">
+                                    <img v-if="activeIsland.notification.image" :src="activeIsland.notification.image"
+                                        :alt="activeIsland.notification.name" />
+                                    <span v-else>{{ activeIsland.notification.initials }}</span>
+                                </div>
+                                <div class="message-notification-text">
+                                    <strong>{{ activeIsland.notification.name }}</strong>
+                                    <span>{{ activeIsland.notification.preview }}</span>
+                                </div>
+                            </section>
+
                             <section v-else-if="activeIsland.type === 'medium'" key="medium"
                                 class="island-layout island-layout--medium">
                                 <div class="medium-top">
@@ -847,6 +877,64 @@ const openPhoneCall = (call) => {
 
         #last {
             background: linear-gradient(145deg, rgb(163, 54, 54), rgb(190, 115, 115));
+        }
+    }
+}
+
+.island-layout--medium-message {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 3cqw;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 0 1cqw;
+
+    .message-notification-avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: 12cqw;
+        height: 12cqw;
+        overflow: hidden;
+        border-radius: 50%;
+        color: white;
+        font-size: 3.6cqh;
+        font-weight: 600;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .message-notification-text {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        min-width: 0;
+        gap: 0.65cqh;
+        text-align: left;
+
+        strong,
+        span {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        strong {
+            color: white;
+            font-size: 2.25cqh;
+            font-weight: 600;
+        }
+
+        span {
+            color: rgba(255, 255, 255, 0.68);
+            font-size: 1.8cqh;
         }
     }
 }
