@@ -86,7 +86,7 @@ const selectWallpaper = (url) => {
               </div>
               <div class="general-row">
                 <span>Version</span>
-                <span class="row-value">1.0.0</span>
+                <span class="row-value">0.5.0</span>
               </div>
               <div class="general-row">
                 <span>Développé par</span>
