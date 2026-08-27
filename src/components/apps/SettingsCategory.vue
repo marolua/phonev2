@@ -2,6 +2,7 @@
 import { ArrowLeft, Volume2, ALargeSmall, Sun, ChevronRight, RotateCcw, Languages, Check, X, Copy, Pencil, PhoneOff, Plus, Unlock } from '@lucide/vue';
 import { blockedContacts } from '../../stores/contacts';
 import { brightness, callVolume, displayScale, phoneNumber, resetPhoneSettings, selectedLanguage, selectedWallpaper, systemVolume } from '../../stores/phoneSettings';
+import { formatPhoneNumber, isPhoneSuffixValid, phoneDigits } from '../../utils/phoneNumber';
 import { computed, ref } from 'vue';
 const props = defineProps({
   category: {
@@ -55,7 +56,7 @@ const emptyBlockedContact = () => ({ name: '', phone: '' });
 
 const openBlockedEditor = (contact = null) => {
   editingBlockedContactId.value = contact?.id ?? null;
-  blockedContactDraft.value = contact ? { name: contact.name, phone: contact.phone } : emptyBlockedContact();
+  blockedContactDraft.value = contact ? { name: contact.name, phone: phoneDigits(contact.phone) } : emptyBlockedContact();
   showBlockedEditor.value = true;
 };
 
@@ -67,14 +68,14 @@ const closeBlockedEditor = () => {
 
 const saveBlockedContact = () => {
   const name = blockedContactDraft.value.name.trim();
-  const phone = blockedContactDraft.value.phone.trim();
-  if (!name || !phone) return;
+  const phone = phoneDigits(blockedContactDraft.value.phone);
+  if (!name || !isPhoneSuffixValid(phone)) return;
 
   if (editingBlockedContactId.value !== null) {
     const contact = blockedContacts.value.find(({ id }) => id === editingBlockedContactId.value);
-    if (contact) Object.assign(contact, { name, phone });
+    if (contact) Object.assign(contact, { name, phone: formatPhoneNumber(phone) });
   } else {
-    blockedContacts.value.push({ id: Date.now(), name, phone });
+    blockedContacts.value.push({ id: Date.now(), name, phone: formatPhoneNumber(phone) });
   }
 
   closeBlockedEditor();
@@ -341,7 +342,11 @@ const selectWallpaper = (url) => {
               </label>
               <label class="blocked-field">
                 <span>Numéro</span>
-                <input v-model="blockedContactDraft.phone" type="tel" placeholder="Numéro de téléphone" />
+                <div class="blocked-phone-entry">
+                  <span class="blocked-phone-prefix">555-</span>
+                  <input v-model="blockedContactDraft.phone" type="tel" inputmode="numeric" maxlength="4"
+                    placeholder="1234" />
+                </div>
               </label>
 
               <button type="button" class="modal-action save-blocked-action" @click="saveBlockedContact">

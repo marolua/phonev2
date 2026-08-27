@@ -850,14 +850,14 @@ const closeApplication = () => {
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 6cqh;
-            height: 6cqh;
+            width: 5.25cqh;
+            height: 5.25cqh;
             border-radius: 50%;
             background: linear-gradient(120deg, rgb(5, 215, 5), rgb(2, 106, 21));
 
             img {
                 width: auto;
-                height: 3.25cqh;
+                height: 2.75cqh;
             }
         }
 
