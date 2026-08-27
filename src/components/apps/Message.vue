@@ -360,7 +360,6 @@ const sendMessage = async () => {
     box-sizing: border-box;
     user-select: none;
     padding: 15cqw 3cqh 0;
-    font-family: "SF Pro Display", sans-serif;
     color: white;
     background-color: rgb(10, 10, 10);
 }
@@ -503,7 +502,7 @@ const sendMessage = async () => {
 .conversation-name {
     overflow: hidden;
     color: rgba(255, 255, 255, 0.94);
-    font-size: 2cqh;
+    font-size: 1.8cqh;
     font-weight: 600;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -512,13 +511,13 @@ const sendMessage = async () => {
 .conversation-time {
     flex-shrink: 0;
     color: rgba(255, 255, 255, 0.45);
-    font-size: 1.5cqh;
+    font-size: 1.45cqh;
 }
 
 .conversation-preview {
     margin-top: 0.6cqh;
     color: rgba(255, 255, 255, 0.5);
-    font-size: 1.65cqh;
+    font-size: 1.5cqh;
 }
 
 .conversation-preview>span:first-child {
@@ -626,113 +625,6 @@ const sendMessage = async () => {
     border-radius: 50%;
     color: #4d8dff;
     background: rgba(77, 141, 255, 0.12);
-}
-
-.message-call-screen {
-    position: absolute;
-    z-index: 20;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: column;
-    box-sizing: border-box;
-    padding: 14cqh 5cqw 9cqh;
-    color: white;
-    background:
-        radial-gradient(circle at 82% 57%, rgba(70, 35, 31, 0.34), transparent 36%),
-        linear-gradient(160deg, #050505 0%, #0b0809 52%, #160d0d 100%);
-}
-
-.message-call-screen::before {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    content: '';
-    background: linear-gradient(120deg, rgba(255, 255, 255, 0.025), transparent 30%, transparent 70%, rgba(255, 90, 90, 0.045));
-}
-
-.message-call-header,
-.message-call-avatar,
-.message-call-actions {
-    position: relative;
-}
-
-.message-call-header {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 0.6cqh;
-    color: rgba(255, 255, 255, 0.65);
-    font-size: 1.65cqh;
-}
-
-.message-call-header strong {
-    color: white;
-    font-size: 2.65cqh;
-    font-weight: 600;
-}
-
-.message-call-header small {
-    color: rgba(255, 255, 255, 0.52);
-    font-size: 1.55cqh;
-}
-
-.message-call-avatar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 16cqh;
-    height: 16cqh;
-    border-radius: 50%;
-    font-size: 5cqh;
-    font-weight: 600;
-}
-
-.message-call-actions {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2.2cqh 1cqw;
-    width: 100%;
-}
-
-.message-call-actions button {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 0.9cqh;
-    border: 0;
-    padding: 0;
-    color: rgba(255, 255, 255, 0.85);
-    font: inherit;
-    font-size: 1.5cqh;
-    background: transparent;
-    cursor: pointer;
-}
-
-.message-call-actions button > span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 7.2cqh;
-    height: 7.2cqh;
-    border-radius: 50%;
-    color: white;
-    background: rgba(255, 255, 255, 0.14);
-}
-
-.message-call-actions button.active > span {
-    color: #0b0b0d;
-    background: #f4f7ff;
-}
-
-.message-call-actions button.end-call {
-    color: #ffb5ae;
-}
-
-.message-call-actions button.end-call > span {
-    background: linear-gradient(145deg, #ff6257, #db2e3b);
-    box-shadow: 0 0.8cqh 2.5cqh rgba(255, 59, 48, 0.28);
 }
 
 .message-thread {
