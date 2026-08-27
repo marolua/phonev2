@@ -2,6 +2,7 @@
 import { computed, nextTick, ref } from 'vue';
 import { ArrowLeft, Check, ImagePlus, MapPin, Phone, Plus, Search, Send } from '@lucide/vue';
 import { contacts } from '../../stores/contacts';
+import { unreadMessageCount } from '../../stores/messages';
 import { formatPhoneNumber, isPhoneSuffixValid, phoneDigits } from '../../utils/phoneNumber';
 
 const searchQuery = ref('');
@@ -131,6 +132,7 @@ const createConversation = async () => {
 };
 
 const openConversation = async (conversation) => {
+    unreadMessageCount.value = Math.max(0, unreadMessageCount.value - conversation.unread);
     conversation.unread = 0;
     selectedConversation.value = conversation;
     await nextTick();

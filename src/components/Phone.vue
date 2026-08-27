@@ -10,6 +10,7 @@ import Prompt from '../utils/Prompt.vue';
 import { applications } from '../config/applications';
 import { X, Volume2, Video, Mic, Clock3, AudioLines, Signal } from '@lucide/vue';
 import { brightness, displayScale, selectedWallpaper } from '../stores/phoneSettings';
+import { unreadMessageCount } from '../stores/messages';
 
 const islandExamples = [
     {
@@ -268,6 +269,10 @@ const openPhoneCall = (call) => {
                             <WeatherWidget v-if="application.id === 'weather'" :application="application" />
 
                             <template v-else>
+                                <span v-if="application.id === 'messages' && unreadMessageCount > 0"
+                                    class="application-notification-badge">
+                                    {{ unreadMessageCount > 99 ? '99+' : unreadMessageCount }}
+                                </span>
                                 <img :src="application.icon" :alt="application.name" />
                                 <span>{{ application.name }}</span>
                             </template>
@@ -493,6 +498,28 @@ const openPhoneCall = (call) => {
                         height: 15.5cqw;
                         border-radius: 3.4cqw;
                         object-fit: contain;
+                    }
+
+                    .application-notification-badge {
+                        position: absolute;
+                        z-index: 1;
+                        top: -0.5cqh;
+                        right: 0.8cqw;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        min-width: 3.5cqh;
+                        height: 3.5cqh;
+                        box-sizing: border-box;
+                        padding: 0 0.7cqw;
+                        border: 0.25cqh solid rgba(255, 255, 255, 0.9);
+                        border-radius: 999px;
+                        color: white;
+                        font-size: 1.45cqh;
+                        font-weight: 600;
+                        line-height: 1;
+                        background: #ff3b30;
+                        box-shadow: 0 0.3cqh 0.8cqh rgba(0, 0, 0, 0.35);
                     }
 
                     >span {
