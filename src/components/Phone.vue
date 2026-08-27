@@ -323,7 +323,7 @@ const closeApplication = () => {
     top: 50%;
     left: 60%;
     transform: translate(-50%, -50%) scale(var(--phone-scale, 1));
-    transform-origin: top left;
+    transform-origin: bottom right;
     width: 16.11vw;
     aspect-ratio: 9 / 18.15;
     border-radius: 2.7vw;
