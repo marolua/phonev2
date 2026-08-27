@@ -2,7 +2,8 @@
 import { computed, ref } from 'vue';
 import { ArrowLeft, Camera, ClockFading, Delete, Grid3X3, ImagePlus, Keyboard, Mail, MessageCircle, MicOff, MoreHorizontal, Phone, PhoneOff, Search, User, UserPlus, Video, Volume2, X } from '@lucide/vue';
 import Prompt from '../../utils/Prompt.vue';
-import { contacts } from '../../stores/contacts';
+import { blockedContacts, contacts } from '../../stores/contacts';
+import { formatPhoneNumber, isPhoneSuffixValid, phoneDigits } from '../../utils/phoneNumber';
 
 const props = defineProps({
     contactsOnly: {
@@ -37,6 +38,10 @@ const isMuted = ref(false);
 const contactAnimationDuration = 450;
 
 const getInitial = (contact) => contact?.firstName?.trim()?.charAt(0).toUpperCase() || '?';
+
+const sanitizePhoneInput = (event, target) => {
+    target.phone = phoneDigits(event.target.value);
+};
 
 const handlePhotoChange = (event, target) => {
     const file = event.target.files?.[0];
@@ -99,7 +104,7 @@ const closeContact = () => {
 const startEditingContact = () => {
     if (!selectedContact.value) return;
 
-    editableContact.value = { ...selectedContact.value };
+    editableContact.value = { ...selectedContact.value, phone: phoneDigits(selectedContact.value.phone) };
     editingContact.value = true;
 };
 
@@ -122,14 +127,15 @@ const confirmDeletePhoto = () => {
 };
 
 const saveContact = () => {
-    if (!selectedContact.value || !editableContact.value.firstName.trim() || !editableContact.value.phone.trim()) {
+    const phone = phoneDigits(editableContact.value.phone);
+    if (!selectedContact.value || !editableContact.value.firstName.trim() || !isPhoneSuffixValid(phone)) {
         return;
     }
 
     Object.assign(selectedContact.value, {
         firstName: editableContact.value.firstName.trim(),
         lastName: editableContact.value.lastName.trim(),
-        phone: editableContact.value.phone.trim(),
+        phone: formatPhoneNumber(phone),
         photo: editableContact.value.photo,
     });
     editingContact.value = false;
@@ -165,19 +171,43 @@ const endCall = () => {
     isMuted.value = false;
 };
 
+const isContactBlocked = (contact) => {
+    if (!contact) return false;
+    return blockedContacts.value.some(({ phone }) => phone === formatPhoneNumber(contact.phone));
+};
+
+const toggleBlockedContact = () => {
+    if (!selectedContact.value) return;
+
+    const normalizedPhone = formatPhoneNumber(selectedContact.value.phone);
+    const existingIndex = blockedContacts.value.findIndex(({ phone }) => phone === normalizedPhone);
+
+    if (existingIndex >= 0) {
+        blockedContacts.value.splice(existingIndex, 1);
+        return;
+    }
+
+    blockedContacts.value.push({
+        id: Date.now(),
+        name: `${selectedContact.value.firstName} ${selectedContact.value.lastName}`.trim(),
+        phone: normalizedPhone,
+    });
+};
+
 const closeCreateContact = () => {
     showCreateContact.value = false;
     newContact.value = emptyContact();
 };
 
 const addContact = () => {
-    if (!newContact.value.firstName.trim() || !newContact.value.phone.trim()) return;
+    const phone = phoneDigits(newContact.value.phone);
+    if (!newContact.value.firstName.trim() || !isPhoneSuffixValid(phone)) return;
 
     contacts.value.push({
         id: Date.now(),
         firstName: newContact.value.firstName.trim(),
         lastName: newContact.value.lastName.trim(),
-        phone: newContact.value.phone.trim(),
+        phone: formatPhoneNumber(phone),
         photo: newContact.value.photo,
     });
     closeCreateContact();
