@@ -215,7 +215,8 @@ const selectWallpaper = (url) => {
               <h2>Réinitialiser le téléphone ?</h2>
               <p>La taille, la luminosité, le volume, la langue et le fond d’écran seront remis par défaut.</p>
               <button type="button" class="modal-action danger-action" @click="resetSettings">Réinitialiser</button>
-              <button type="button" class="modal-action cancel-action" @click="showResetConfirmation = false">Annuler</button>
+              <button type="button" class="modal-action cancel-action"
+                @click="showResetConfirmation = false">Annuler</button>
             </div>
           </div>
         </Transition>
@@ -323,7 +324,8 @@ const selectWallpaper = (url) => {
         </Transition>
 
         <Transition name="general-modal">
-          <div v-if="showBlockedEditor" class="general-modal-backdrop blocked-editor-backdrop" @click.self="closeBlockedEditor">
+          <div v-if="showBlockedEditor" class="general-modal-backdrop blocked-editor-backdrop"
+            @click.self="closeBlockedEditor">
             <div class="general-modal blocked-editor-modal">
               <div class="sheet-grabber" aria-hidden="true"></div>
               <div class="modal-header">
@@ -544,7 +546,7 @@ const selectWallpaper = (url) => {
   text-align: left;
 }
 
-.general-row + .general-row {
+.general-row+.general-row {
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -738,7 +740,7 @@ const selectWallpaper = (url) => {
   padding: 0 2cqw;
 }
 
-.blocked-contact-row + .blocked-contact-row {
+.blocked-contact-row+.blocked-contact-row {
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
