@@ -475,7 +475,7 @@ const sendMessage = async () => {
     flex: 1;
     flex-direction: column;
     min-height: 0;
-    gap: 1.2cqh;
+    gap: 2.1cqh;
     overflow-y: auto;
     padding: 2cqh 0;
 }
@@ -531,6 +531,7 @@ const sendMessage = async () => {
 
 .message-bubble-me {
     border-radius: 2cqh 2cqh 0.6cqh 2cqh;
+    text-align: right;
     background: #1677ff;
 }
 
