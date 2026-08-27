@@ -241,7 +241,8 @@ const sendMessage = async () => {
                             <div v-if="contactSuggestions.length" class="contact-suggestions">
                                 <button v-for="contact in contactSuggestions" :key="contact.id" type="button"
                                     @click="selectContact(contact)">
-                                    <span class="suggestion-avatar">{{ contactName(contact).charAt(0).toUpperCase() }}</span>
+                                    <span class="suggestion-avatar">{{ contactName(contact).charAt(0).toUpperCase()
+                                        }}</span>
                                     <span class="suggestion-info">
                                         <strong>{{ contactName(contact) }}</strong>
                                         <small>{{ formatPhoneNumber(contact.phone) }}</small>
@@ -818,7 +819,7 @@ const sendMessage = async () => {
     background: rgba(255, 255, 255, 0.1);
 }
 
-.message-phone-input > span {
+.message-phone-input>span {
     flex-shrink: 0;
     color: rgba(255, 255, 255, 0.8);
     font-size: 1.8cqh;
@@ -956,7 +957,7 @@ const sendMessage = async () => {
     background: rgba(77, 141, 255, 0.2);
 }
 
-.composer-options button + button {
+.composer-options button+button {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
