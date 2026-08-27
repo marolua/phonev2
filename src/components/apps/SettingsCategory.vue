@@ -845,6 +845,30 @@ const selectWallpaper = (url) => {
   border-color: rgba(77, 141, 255, 0.8);
 }
 
+.blocked-phone-entry {
+  display: flex;
+  align-items: center;
+  height: 5.2cqh;
+  margin-top: 0.7cqh;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.1cqh;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.blocked-phone-prefix {
+  flex-shrink: 0;
+  padding-left: 1.5cqw;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.65cqh;
+}
+
+.blocked-phone-entry input {
+  height: 100%;
+  margin-top: 0;
+  border: 0;
+  background: transparent;
+}
+
 .blocked-field input::placeholder {
   color: rgba(255, 255, 255, 0.32);
 }
