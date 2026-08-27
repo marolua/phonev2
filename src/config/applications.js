@@ -3,6 +3,13 @@ import PhoneIcon from "../assets/appicons/call.svg";
 import SettingsIcon from "../assets/appicons/settings.svg";
 import BankIcon from "../assets/appicons/bank.svg";
 import ContactIcon from "../assets/appicons/contact.svg";
+import PhotoIcon from "../assets/appicons/camera.svg";
+import GalleryIcon from "../assets/appicons/gallery.svg";
+import NotesIcon from "../assets/appicons/notes.svg";
+import CalculatorIcon from "../assets/appicons/calculator.svg";
+import NewsIcon from "../assets/appicons/news.svg";
+import ServicesIcon from "../assets/appicons/Services.jpg";
+import TwitterIcon from "../assets/appicons/twitter.png";
 import PhoneApp from "../components/apps/PhoneApp.vue";
 import MessageApp from "../components/apps/Message.vue";
 import ContactApp from "../components/apps/Contact.vue";
@@ -47,27 +54,51 @@ export const applications = [
     page: "contact",
   },
   {
-    id: "bank-2",
+    id: "camera",
+    name: "Caméra",
+    icon: PhotoIcon,
+    page: "camera",
+  },
+  {
+    id: "photos",
+    name: "Photos",
+    icon: GalleryIcon,
+    page: "photos",
+  },
+  {
+    id: "notes",
+    name: "Notes",
+    icon: NotesIcon,
+    page: "notes",
+  },
+  {
+    id: "calculator",
+    name: "Calculatrice",
+    icon: CalculatorIcon,
+    page: "calculator",
+  },
+  {
+    id: "bank",
     name: "Banque",
     icon: BankIcon,
     page: "bank",
   },
   {
-    id: "bank-3",
-    name: "Banque",
-    icon: BankIcon,
-    page: "bank",
+    id: "news",
+    name: "News",
+    icon: NewsIcon,
+    page: "news",
   },
   {
-    id: "bank-4",
-    name: "Banque",
-    icon: BankIcon,
-    page: "bank",
+    id: "services",
+    name: "Services",
+    icon: ServicesIcon,
+    page: "services",
   },
   {
-    id: "bank-5",
-    name: "Banque",
-    icon: BankIcon,
-    page: "bank",
+    id: "twitter",
+    name: "Kwiker",
+    icon: TwitterIcon,
+    page: "twitter",
   },
 ];
