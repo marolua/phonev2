@@ -154,14 +154,6 @@ const sendMessage = async () => {
             </div>
 
             <div ref="messageThread" class="message-thread">
-                <div class="contact-profile">
-                    <div class="large-avatar" :style="{ background: selectedConversation.color }">
-                        {{ selectedConversation.initials }}
-                    </div>
-                    <strong>{{ selectedConversation.name }}</strong>
-                    <span>{{ selectedConversation.phone }}</span>
-                </div>
-
                 <div v-for="message in selectedConversation.messages" :key="message.id"
                     :class="['message-bubble-row', message.author === 'me' ? 'message-bubble-row-me' : '']">
                     <div :class="['message-bubble', message.author === 'me' ? 'message-bubble-me' : '']">
@@ -518,7 +510,7 @@ const sendMessage = async () => {
 
 .message-bubble-row-me {
     flex-direction: row-reverse;
-    justify-content: flex-end;
+    justify-content: flex-start;
 }
 
 .message-bubble {
@@ -578,23 +570,23 @@ const sendMessage = async () => {
     left: 3cqh;
     display: flex;
     flex-direction: column;
-    gap: 0.5cqh;
-    min-width: 48cqw;
-    padding: 0.8cqh;
+    gap: 0;
+    width: 62cqw;
+    overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 1.8cqh;
-    background: rgba(42, 42, 45, 0.98);
-    box-shadow: 0 1cqh 3cqh rgba(0, 0, 0, 0.45);
+    border-radius: 2.2cqh;
+    background: rgba(48, 48, 51, 0.97);
+    backdrop-filter: blur(1.5cqw);
+    box-shadow: 0 1.2cqh 3.5cqh rgba(0, 0, 0, 0.5);
 }
 
 .composer-options button {
     display: flex;
     align-items: center;
     gap: 1.5cqw;
-    min-height: 5cqh;
+    min-height: 6.2cqh;
     border: 0;
-    border-radius: 1cqh;
-    padding: 0 1.5cqw;
+    padding: 0 2cqw;
     color: rgba(255, 255, 255, 0.9);
     font: inherit;
     font-size: 1.55cqh;
@@ -608,8 +600,18 @@ const sendMessage = async () => {
     background: rgba(77, 141, 255, 0.2);
 }
 
+.composer-options button + button {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 .composer-options svg {
+    flex-shrink: 0;
+    width: 3.6cqh;
+    height: 3.6cqh;
+    padding: 0.65cqh;
+    border-radius: 50%;
     color: #4d8dff;
+    background: rgba(77, 141, 255, 0.14);
 }
 
 .composer-add,
