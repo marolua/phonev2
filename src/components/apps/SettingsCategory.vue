@@ -1,6 +1,6 @@
 <script setup>
-import { ArrowLeft, Volume2 } from '@lucide/vue';
-import { callVolume, systemVolume, selectedWallpaper } from '../../stores/phoneSettings';
+import { ArrowLeft, Volume2, ALargeSmall, Sun } from '@lucide/vue';
+import { brightness, callVolume, displayScale, selectedWallpaper, systemVolume } from '../../stores/phoneSettings';
 import { computed } from 'vue';
 const props = defineProps({
   category: {
@@ -57,6 +57,32 @@ const selectWallpaper = (url) => {
               <input class="ios-range" type="range" min="0" max="100" v-model="systemVolume"
                 :style="{ background: `linear-gradient(90deg, #4d8dff ${systemVolume}%, rgba(255,255,255,0.12) ${systemVolume}%)` }" />
               <Volume2 class="speaker-icon right" size="2cqh" />
+            </div>
+          </div>
+        </div>
+      </template>
+
+      <template v-else-if="category.id === 'display'">
+        <div class="setting-row">
+          <div class="label">Taille du téléphone</div>
+          <div class="slider-wrap">
+            <div class="slider-pill">
+              <ALargeSmall class="display-icon" size="2cqh" />
+              <input class="ios-range" type="range" min="75" max="125" v-model.number="displayScale"
+                :style="{ background: `linear-gradient(90deg, #4d8dff ${displayScale - 75}%, rgba(255,255,255,0.12) ${displayScale - 75}%)` }" />
+              <ALargeSmall class="display-icon right" size="2.8cqh" />
+            </div>
+          </div>
+        </div>
+
+        <div class="setting-row">
+          <div class="label">Luminosité</div>
+          <div class="slider-wrap">
+            <div class="slider-pill">
+              <Sun class="display-icon" size="2cqh" />
+              <input class="ios-range" type="range" min="0" max="100" v-model.number="brightness"
+                :style="{ background: `linear-gradient(90deg, #4d8dff ${brightness}%, rgba(255,255,255,0.12) ${brightness}%)` }" />
+              <Sun class="display-icon right" size="2.8cqh" />
             </div>
           </div>
         </div>
@@ -175,6 +201,15 @@ const selectWallpaper = (url) => {
 
 .speaker-icon.right {
   opacity: 0.6
+}
+
+.display-icon {
+  color: rgba(255, 255, 255, 0.55);
+  flex-shrink: 0;
+}
+
+.display-icon.right {
+  opacity: 0.6;
 }
 
 .slider-pill {
