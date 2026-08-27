@@ -4,6 +4,7 @@ import defaultWallpaper from "../assets/wallpapers/background42.png";
 export const selectedWallpaper = ref(defaultWallpaper);
 export const brightness = ref(100);
 export const displayScale = ref(100);
+export const phoneNumber = ref("521756");
 export const selectedLanguage = ref("Français");
 export const iconBackgroundColors = ref({
   volume: "#e55646",
