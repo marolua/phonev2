@@ -615,6 +615,15 @@ const addContact = () => {
                     box-shadow: 0 0.8cqh 2.5cqh rgba(255, 59, 48, 0.28);
                 }
             }
+
+            .detail-action-blocked {
+                color: #ff453a;
+
+                &::before {
+                    border-color: rgba(255, 69, 58, 0.35);
+                    background: rgba(255, 69, 58, 0.14);
+                }
+            }
         }
     }
 
@@ -915,14 +924,6 @@ const addContact = () => {
                 cursor: pointer;
             }
 
-            .detail-action-blocked {
-                color: #ff453a;
-
-                &::before {
-                    border-color: rgba(255, 69, 58, 0.35);
-                    background: rgba(255, 69, 58, 0.14);
-                }
-            }
         }
 
         .delete-contact {
