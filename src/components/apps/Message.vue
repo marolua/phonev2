@@ -259,11 +259,16 @@ const sendMessage = async () => {
     display: flex;
     align-items: center;
     margin-top: 1cqh;
+    width: 100%;
+    flex-shrink: 0;
 }
 
 .message-search .search-icon {
     position: absolute;
     left: 2cqw;
+    top: 1.18cqh;
+    width: 2.6cqh;
+    height: 2.6cqh;
     color: rgba(255, 255, 255, 0.55);
     pointer-events: none;
 }
@@ -274,7 +279,7 @@ const sendMessage = async () => {
     box-sizing: border-box;
     border: 0;
     border-radius: 2.5cqh;
-    padding: 0 2cqw 0 8cqw;
+    padding: 0 2cqw 0 10cqw;
     outline: none;
     color: white;
     background: rgba(50, 50, 50, 0.5);
@@ -418,7 +423,7 @@ const sendMessage = async () => {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    padding: 8cqh 3cqh 4cqh;
+    padding: 8cqh 3cqh 6cqh;
     background: rgb(10, 10, 10);
 }
 
@@ -446,15 +451,16 @@ const sendMessage = async () => {
 }
 
 .small-avatar {
-    width: 3.8cqh;
-    height: 3.8cqh;
-    font-size: 1.35cqh;
+    width: 5cqh;
+    height: 5cqh;
+    font-size: 1.7cqh;
 }
 
 .conversation-contact-title strong {
     max-width: 32cqw;
     overflow: hidden;
-    font-size: 1.45cqh;
+    font-size: 1.75cqh;
+    font-weight: 600;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
@@ -505,10 +511,13 @@ const sendMessage = async () => {
 
 .message-bubble-row {
     display: flex;
+    align-items: flex-end;
+    gap: 0.8cqw;
     justify-content: flex-start;
 }
 
 .message-bubble-row-me {
+    flex-direction: row-reverse;
     justify-content: flex-end;
 }
 
@@ -530,14 +539,27 @@ const sendMessage = async () => {
     line-height: 1.35;
 }
 
-.message-bubble small {
+.message-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-shrink: 0;
+    gap: 0.25cqh;
+    margin-bottom: 0.35cqh;
+    color: rgba(255, 255, 255, 0.48);
+    font-size: 1.2cqh;
+}
+
+.message-bubble-row-me .message-meta {
+    align-items: flex-end;
+}
+
+.message-seen {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    gap: 0.4cqw;
-    margin-top: 0.45cqh;
-    color: rgba(255, 255, 255, 0.55);
-    font-size: 1.2cqh;
+    gap: 0.25cqw;
+    color: rgba(77, 141, 255, 0.9);
+    white-space: nowrap;
 }
 
 .message-composer {
@@ -547,6 +569,47 @@ const sendMessage = async () => {
     gap: 1.2cqw;
     padding-top: 1cqh;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.composer-options {
+    position: absolute;
+    z-index: 2;
+    bottom: 12cqh;
+    left: 3cqh;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5cqh;
+    min-width: 48cqw;
+    padding: 0.8cqh;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.8cqh;
+    background: rgba(42, 42, 45, 0.98);
+    box-shadow: 0 1cqh 3cqh rgba(0, 0, 0, 0.45);
+}
+
+.composer-options button {
+    display: flex;
+    align-items: center;
+    gap: 1.5cqw;
+    min-height: 5cqh;
+    border: 0;
+    border-radius: 1cqh;
+    padding: 0 1.5cqw;
+    color: rgba(255, 255, 255, 0.9);
+    font: inherit;
+    font-size: 1.55cqh;
+    text-align: left;
+    background: transparent;
+    cursor: pointer;
+}
+
+.composer-options button:hover {
+    color: white;
+    background: rgba(77, 141, 255, 0.2);
+}
+
+.composer-options svg {
+    color: #4d8dff;
 }
 
 .composer-add,
