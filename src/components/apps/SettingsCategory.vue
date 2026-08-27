@@ -347,7 +347,7 @@ const selectWallpaper = (url) => {
 .section-title {
   margin: 0 0 1cqh 2cqw;
   color: rgba(255, 255, 255, 0.52);
-  font-size: 1.45cqh;
+  font-size: 1.7cqh;
   font-weight: 600;
   letter-spacing: 0.08cqh;
   text-transform: uppercase;
@@ -365,7 +365,7 @@ const selectWallpaper = (url) => {
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
-  min-height: 6.6cqh;
+  min-height: 5.9cqh;
   width: 100%;
   padding: 0 2cqw;
   color: rgba(255, 255, 255, 0.92);
@@ -431,13 +431,13 @@ const selectWallpaper = (url) => {
   justify-content: center;
   gap: 1.5cqw;
   box-sizing: border-box;
-  min-height: 6.6cqh;
+  min-height: 5.4cqh;
   width: 100%;
   border: 0;
   padding: 1.5cqh 2cqw;
   color: #ff453a;
   font: inherit;
-  font-size: 1.75cqh;
+  font-size: 1.6cqh;
   cursor: pointer;
   background: transparent;
   transition: background-color 0.15s ease;
@@ -448,7 +448,7 @@ const selectWallpaper = (url) => {
 }
 
 .reset-hint {
-  margin: 1cqh 2cqw 0;
+  margin: 0.8cqh 2cqw 0;
   color: rgba(255, 255, 255, 0.42);
   font-size: 1.35cqh;
   line-height: 1.35;
