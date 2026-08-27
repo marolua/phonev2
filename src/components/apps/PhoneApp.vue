@@ -234,7 +234,6 @@ const addContact = () => {
             <div class="call-screen-header">
                 <span>Appel en cours...</span>
                 <strong>{{ activeCall.contact ? getContactName(activeCall.contact) : activeCall.number }}</strong>
-                <small v-if="activeCall.contact">{{ activeCall.number }}</small>
             </div>
 
             <div class="call-actions">
