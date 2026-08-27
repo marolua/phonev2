@@ -25,7 +25,6 @@ const resetSettings = () => {
 };
 
 const close = () => emit('close');
-// Load wallpapers from assets folder (eager so Vite includes them)
 const wallpaperModules = import.meta.glob('../../assets/wallpapers/*.{png,jpg,jpeg}', { eager: true });
 const wallpapers = Object.keys(wallpaperModules).map((k) => {
   const m = wallpaperModules[k];
