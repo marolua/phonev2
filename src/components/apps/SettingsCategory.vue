@@ -322,8 +322,9 @@ const selectWallpaper = (url) => {
         </Transition>
 
         <Transition name="general-modal">
-          <div v-if="showBlockedEditor" class="general-modal-backdrop" @click.self="closeBlockedEditor">
+          <div v-if="showBlockedEditor" class="general-modal-backdrop blocked-editor-backdrop" @click.self="closeBlockedEditor">
             <div class="general-modal blocked-editor-modal">
+              <div class="sheet-grabber" aria-hidden="true"></div>
               <div class="modal-header">
                 <div>
                   <span class="modal-eyebrow">CONTACTS BLOQUÉS</span>
