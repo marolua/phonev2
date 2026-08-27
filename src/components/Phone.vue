@@ -26,12 +26,12 @@ const islandExamples = [
         height: '17cqh',
     },
     {
-        id: 'medium-message',
-        type: 'medium',
+        id: 'small-message',
+        type: 'small',
         variant: 'message',
         label: 'message',
-        width: '88cqw',
-        height: '17cqh',
+        width: '87cqw',
+        height: '8.5cqh',
         notification: {
             name: 'John McKenzie',
             preview: 'Salut, tu es disponible ce soir ?',
@@ -183,9 +183,9 @@ const openPhoneCall = (call) => {
                             </section>
 
                             <!-- Dynamic Island medium : fond moyen format. Ajoute tes divs dedans. -->
-                            <section v-else-if="activeIsland.type === 'medium' && activeIsland.variant === 'message'"
-                                key="medium-message"
-                                class="island-layout island-layout--medium island-layout--medium-message">
+                            <section v-else-if="activeIsland.type === 'small' && activeIsland.variant === 'message'"
+                                key="small-message"
+                                class="island-layout island-layout--small island-layout--small-message">
                                 <div class="message-notification-avatar"
                                     :style="{ background: activeIsland.notification.color }">
                                     <img v-if="activeIsland.notification.image" :src="activeIsland.notification.image"
@@ -881,7 +881,7 @@ const openPhoneCall = (call) => {
     }
 }
 
-.island-layout--medium-message {
+.island-layout--small-message {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
