@@ -270,7 +270,7 @@ const sendMessage = async () => {
     height: 5cqh;
     box-sizing: border-box;
     border: 0;
-    border-radius: 2.5cqh;
+    border-radius: 2.5cqw;
     padding: 0 2cqw 0 10cqw;
     outline: none;
     color: white;
@@ -505,12 +505,19 @@ const sendMessage = async () => {
     display: flex;
     align-items: flex-end;
     gap: 0.8cqw;
+    width: 100%;
+    box-sizing: border-box;
     justify-content: flex-start;
 }
 
 .message-bubble-row-me {
-    flex-direction: row-reverse;
-    justify-content: flex-start;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.message-bubble-row-me .message-meta {
+    order: -1;
+    align-items: flex-end;
 }
 
 .message-bubble {
@@ -540,10 +547,6 @@ const sendMessage = async () => {
     margin-bottom: 0.35cqh;
     color: rgba(255, 255, 255, 0.48);
     font-size: 1.2cqh;
-}
-
-.message-bubble-row-me .message-meta {
-    align-items: flex-end;
 }
 
 .message-seen {
