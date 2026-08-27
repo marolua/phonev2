@@ -512,7 +512,6 @@ const openPhoneCall = (call) => {
                         height: 3.5cqh;
                         box-sizing: border-box;
                         padding: 0 0.7cqw;
-                        border: 0.25cqh solid rgba(255, 255, 255, 0.9);
                         border-radius: 999px;
                         color: white;
                         font-size: 1.45cqh;
@@ -532,6 +531,21 @@ const openPhoneCall = (call) => {
                         letter-spacing: 0.1cqw;
                         color: #fff;
                         text-shadow: 0 0 .3125rem #00000059;
+                    }
+
+                    >span.application-notification-badge {
+                        position: absolute;
+                        top: -0.5cqh;
+                        right: 0.8cqw;
+                        display: flex;
+                        width: 3.5cqh;
+                        min-width: 3.5cqh;
+                        max-width: 3.5cqh;
+                        height: 3.5cqh;
+                        padding: 0;
+                        border-radius: 50%;
+                        font-size: 1.45cqh;
+                        line-height: 1;
                     }
                 }
             }
