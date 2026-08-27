@@ -1,11 +1,12 @@
 <script setup>
 import { computed, nextTick, ref } from 'vue';
-import { ArrowLeft, Check, MoreHorizontal, Phone, Plus, Search, Send } from '@lucide/vue';
+import { ArrowLeft, Check, ImagePlus, MapPin, Phone, Plus, Search, Send } from '@lucide/vue';
 
 const searchQuery = ref('');
 const selectedConversation = ref(null);
 const messageDraft = ref('');
 const messageThread = ref(null);
+const showComposerOptions = ref(false);
 
 const conversations = ref([
     {
@@ -68,6 +69,7 @@ const openConversation = async (conversation) => {
 const closeConversation = () => {
     selectedConversation.value = null;
     messageDraft.value = '';
+    showComposerOptions.value = false;
 };
 
 const scrollToLatestMessage = () => {
@@ -146,10 +148,7 @@ const sendMessage = async () => {
                 </div>
                 <div class="conversation-header-actions">
                     <button type="button" aria-label="Appeler">
-                        <Phone size="2.2cqh" />
-                    </button>
-                    <button type="button" aria-label="Options">
-                        <MoreHorizontal size="2.4cqh" />
+                        <Phone size="2.4cqh" />
                     </button>
                 </div>
             </div>
@@ -167,15 +166,30 @@ const sendMessage = async () => {
                     :class="['message-bubble-row', message.author === 'me' ? 'message-bubble-row-me' : '']">
                     <div :class="['message-bubble', message.author === 'me' ? 'message-bubble-me' : '']">
                         <span>{{ message.text }}</span>
-                        <small>{{ message.time }}
-                            <Check v-if="message.author === 'me'" size="1.4cqh" />
-                        </small>
+                    </div>
+                    <div class="message-meta">
+                        <span>{{ message.time }}</span>
+                        <span v-if="message.author === 'me'" class="message-seen">
+                            <Check size="1.35cqh" /> Vu
+                        </span>
                     </div>
                 </div>
             </div>
 
+            <div v-if="showComposerOptions" class="composer-options">
+                <button type="button" @click="showComposerOptions = false">
+                    <ImagePlus size="2.2cqh" />
+                    <span>Envoyer une photo</span>
+                </button>
+                <button type="button" @click="showComposerOptions = false">
+                    <MapPin size="2.2cqh" />
+                    <span>Partager ma position GPS</span>
+                </button>
+            </div>
+
             <form class="message-composer" @submit.prevent="sendMessage">
-                <button type="button" class="composer-add" aria-label="Ajouter une pièce jointe">
+                <button type="button" class="composer-add" aria-label="Ajouter une pièce jointe"
+                    @click="showComposerOptions = !showComposerOptions">
                     <Plus size="2.4cqh" />
                 </button>
                 <input v-model="messageDraft" type="text" placeholder="Message" aria-label="Message" />
