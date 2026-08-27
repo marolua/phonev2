@@ -1007,7 +1007,7 @@ const addContact = () => {
                 color: white;
                 border-radius: 2.5cqw;
                 font-size: 1.8cqh;
-                font-family: "SF Pro";
+                font-family: "SF Pro Display";
                 background-color: rgba(50, 50, 50, 0.5);
                 outline: none;
 
@@ -1294,7 +1294,7 @@ const addContact = () => {
                 width: 30%;
                 height: 90%;
                 border-radius: 5.7cqh;
-                font-family: "SF Pro";
+                font-family: "SF Pro Display";
                 transition: all ease-in-out 0.2s;
                 font-size: 1.6cqh;
                 font-weight: 500;

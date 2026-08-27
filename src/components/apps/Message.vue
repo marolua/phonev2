@@ -472,7 +472,7 @@ const sendMessage = async () => {
 .conversation-name {
     overflow: hidden;
     color: rgba(255, 255, 255, 0.94);
-    font-size: 1.8cqh;
+    font-size: 2.05cqh;
     font-weight: 600;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -481,13 +481,13 @@ const sendMessage = async () => {
 .conversation-time {
     flex-shrink: 0;
     color: rgba(255, 255, 255, 0.45);
-    font-size: 1.45cqh;
+    font-size: 1.55cqh;
 }
 
 .conversation-preview {
     margin-top: 0.6cqh;
     color: rgba(255, 255, 255, 0.5);
-    font-size: 1.5cqh;
+    font-size: 1.7cqh;
 }
 
 .conversation-preview>span:first-child {

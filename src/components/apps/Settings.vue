@@ -173,7 +173,7 @@ const onAfterLeave = () => {
             color: white;
             border-radius: 2.5cqw;
             font-size: 1.8cqh;
-            font-family: "SF Pro";
+            font-family: "SF Pro Display";
             background-color: rgba(50, 50, 50, 0.5);
             outline: none;
 

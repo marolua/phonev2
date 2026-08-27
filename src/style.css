@@ -33,3 +33,16 @@
 
   color-scheme: dark;
 }
+
+html,
+body,
+#app {
+  font-family: "SF Pro Display", Roboto, sans-serif;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
