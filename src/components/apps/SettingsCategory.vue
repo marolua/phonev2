@@ -1,7 +1,7 @@
 <script setup>
-import { ArrowLeft, Volume2, ALargeSmall, Sun } from '@lucide/vue';
-import { brightness, callVolume, displayScale, selectedWallpaper, systemVolume } from '../../stores/phoneSettings';
-import { computed } from 'vue';
+import { ArrowLeft, Volume2, ALargeSmall, Sun, ChevronRight, RotateCcw, Languages, Check } from '@lucide/vue';
+import { brightness, callVolume, displayScale, resetPhoneSettings, selectedLanguage, selectedWallpaper, systemVolume } from '../../stores/phoneSettings';
+import { computed, ref } from 'vue';
 const props = defineProps({
   category: {
     type: Object,
@@ -9,6 +9,20 @@ const props = defineProps({
   },
 });
 const emit = defineEmits(['close']);
+const showLanguagePicker = ref(false);
+const showResetConfirmation = ref(false);
+
+const languages = ['Français', 'English', 'Español', 'Deutsch'];
+
+const selectLanguage = (language) => {
+  selectedLanguage.value = language;
+  showLanguagePicker.value = false;
+};
+
+const resetSettings = () => {
+  resetPhoneSettings();
+  showResetConfirmation.value = false;
+};
 
 const close = () => emit('close');
 // Load wallpapers from assets folder (eager so Vite includes them)
