@@ -472,8 +472,12 @@ const addContact = () => {
                             </label>
                             <label>
                                 <span>Téléphone</span>
-                                <input v-model="newContact.phone" type="tel" placeholder="Numéro de téléphone"
-                                    autocomplete="tel" />
+                                <div class="phone-input">
+                                    <span>555-</span>
+                                    <input v-model="newContact.phone" type="tel" inputmode="numeric" maxlength="4"
+                                        placeholder="1234" autocomplete="tel"
+                                        @input="sanitizePhoneInput($event, newContact)" />
+                                </div>
                             </label>
                         </div>
 
