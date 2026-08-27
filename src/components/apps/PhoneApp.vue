@@ -275,7 +275,7 @@ const addContact = () => {
                 <span v-if="editingContact" class="detail-edit-title">Modifier</span>
                 <div class="detail-edit-actions">
                     <button type="button" class="detail-edit"
-                        :disabled="editingContact && (!editableContact.firstName.trim() || !editableContact.phone.trim())"
+                        :disabled="editingContact && (!editableContact.firstName.trim() || !isPhoneSuffixValid(editableContact.phone))"
                         @click="editingContact ? saveContact() : startEditingContact()">
                         {{ editingContact ? 'OK' : 'Modifier' }}
                     </button>
@@ -317,14 +317,22 @@ const addContact = () => {
                 <button type="button">
                     <Mail class="detail-action-icon" size="3cqh" /><span>Mail</span>
                 </button>
+                <button type="button" :class="{ 'detail-action-blocked': isContactBlocked(selectedContact) }"
+                    @click="toggleBlockedContact">
+                    <PhoneOff class="detail-action-icon" size="3cqh" />
+                    <span>{{ isContactBlocked(selectedContact) ? 'Débloquer' : 'Bloquer' }}</span>
+                </button>
             </div>
 
             <div class="detail-number-card" :class="{ 'detail-number-card-editing': editingContact }">
                 <div>
                     <small>mobile</small>
                     <strong v-if="!editingContact">{{ selectedContact.phone }}</strong>
-                    <input v-else v-model="editableContact.phone" type="tel" placeholder="Numéro de téléphone"
-                        autocomplete="tel" />
+                    <div v-else class="phone-input">
+                        <span>555-</span>
+                        <input v-model="editableContact.phone" type="tel" inputmode="numeric" maxlength="4"
+                            placeholder="1234" autocomplete="tel" @input="sanitizePhoneInput($event, editableContact)" />
+                    </div>
                 </div>
                 <button v-if="!editingContact" type="button" aria-label="Appeler"
                     @click="startCall(selectedContact.phone, selectedContact)">
