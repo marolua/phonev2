@@ -171,27 +171,23 @@ const endCall = () => {
     isMuted.value = false;
 };
 
-const isContactBlocked = (contact) => {
-    if (!contact) return false;
-    return blockedContacts.value.some(({ phone }) => phone === formatPhoneNumber(contact.phone));
-};
-
-const toggleBlockedContact = () => {
+const blockContact = () => {
     if (!selectedContact.value) return;
 
     const normalizedPhone = formatPhoneNumber(selectedContact.value.phone);
     const existingIndex = blockedContacts.value.findIndex(({ phone }) => phone === normalizedPhone);
 
-    if (existingIndex >= 0) {
-        blockedContacts.value.splice(existingIndex, 1);
-        return;
+    if (existingIndex < 0) {
+        blockedContacts.value.push({
+            id: Date.now(),
+            name: `${selectedContact.value.firstName} ${selectedContact.value.lastName}`.trim(),
+            phone: normalizedPhone,
+        });
     }
 
-    blockedContacts.value.push({
-        id: Date.now(),
-        name: `${selectedContact.value.firstName} ${selectedContact.value.lastName}`.trim(),
-        phone: normalizedPhone,
-    });
+    const contactId = selectedContact.value.id;
+    contacts.value = contacts.value.filter((contact) => contact.id !== contactId);
+    closeContact();
 };
 
 const closeCreateContact = () => {
@@ -317,10 +313,9 @@ const addContact = () => {
                 <button type="button">
                     <Mail class="detail-action-icon" size="3cqh" /><span>Mail</span>
                 </button>
-                <button type="button" :class="{ 'detail-action-blocked': isContactBlocked(selectedContact) }"
-                    @click="toggleBlockedContact">
+                <button type="button" class="detail-action-block-button" @click="blockContact">
                     <PhoneOff class="detail-action-icon" size="3cqh" />
-                    <span>{{ isContactBlocked(selectedContact) ? 'Débloquer' : 'Bloquer' }}</span>
+                    <span>Bloquer</span>
                 </button>
             </div>
 
@@ -616,7 +611,7 @@ const addContact = () => {
                 }
             }
 
-            .detail-action-blocked {
+            .detail-action-block-button {
                 color: #ff453a;
 
                 &::before {
