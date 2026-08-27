@@ -145,8 +145,12 @@ const sendMessage = async () => {
                     <strong>{{ selectedConversation.name }}</strong>
                 </div>
                 <div class="conversation-header-actions">
-                    <button type="button" aria-label="Appeler"><Phone size="2.2cqh" /></button>
-                    <button type="button" aria-label="Options"><MoreHorizontal size="2.4cqh" /></button>
+                    <button type="button" aria-label="Appeler">
+                        <Phone size="2.2cqh" />
+                    </button>
+                    <button type="button" aria-label="Options">
+                        <MoreHorizontal size="2.4cqh" />
+                    </button>
                 </div>
             </div>
 
@@ -163,7 +167,9 @@ const sendMessage = async () => {
                     :class="['message-bubble-row', message.author === 'me' ? 'message-bubble-row-me' : '']">
                     <div :class="['message-bubble', message.author === 'me' ? 'message-bubble-me' : '']">
                         <span>{{ message.text }}</span>
-                        <small>{{ message.time }} <Check v-if="message.author === 'me'" size="1.4cqh" /></small>
+                        <small>{{ message.time }}
+                            <Check v-if="message.author === 'me'" size="1.4cqh" />
+                        </small>
                     </div>
                 </div>
             </div>
@@ -346,7 +352,7 @@ const sendMessage = async () => {
     font-size: 1.65cqh;
 }
 
-.conversation-preview > span:first-child {
+.conversation-preview>span:first-child {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
