@@ -5,7 +5,7 @@ import AirDrop from '../assets/airdrop.svg';
 import PhoneGreen from '../assets/phone-green.png';
 import PhoneWhite from '../assets/phone-white.png';
 import Inconnu from '../assets/inconnu.png';
-import WeatherWidget from './widgets/WeatherWidget.vue'
+import WeatherWidget from './widgets/WeatherWidget.vue';
 import Prompt from '../utils/Prompt.vue';
 import { applications } from '../config/applications';
 import { X, Volume2, Video, Mic, Clock3, AudioLines, Signal } from '@lucide/vue';
