@@ -582,6 +582,10 @@ const selectWallpaper = (url) => {
   color: #4d8dff;
 }
 
+.blocked-icon {
+  color: #ff453a;
+}
+
 .row-chevron {
   color: rgba(255, 255, 255, 0.38);
 }
@@ -618,6 +622,212 @@ const selectWallpaper = (url) => {
   font-size: 1.35cqh;
   line-height: 1.35;
   text-align: center;
+}
+
+.phone-number-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  min-height: 6.2cqh;
+  padding: 0 2cqw;
+}
+
+.phone-number-value {
+  color: white;
+  font-size: 2.1cqh;
+  font-weight: 600;
+  letter-spacing: 0.08cqw;
+}
+
+.copy-number-button,
+.add-blocked-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  color: #4d8dff;
+  background: transparent;
+  cursor: pointer;
+}
+
+.copy-number-button {
+  gap: 1cqw;
+  padding: 1cqh 1cqw;
+  border-radius: 1cqh;
+  font: inherit;
+  font-size: 1.55cqh;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.copy-number-button:hover {
+  background: rgba(77, 141, 255, 0.12);
+}
+
+.copy-number-button.copied {
+  color: #30d158;
+}
+
+.blocked-contacts-page {
+  position: absolute;
+  z-index: 8;
+  inset: 0;
+  box-sizing: border-box;
+  padding: 8cqh 5cqw 5cqh;
+  background: rgb(10, 10, 10);
+}
+
+.blocked-header {
+  display: flex;
+  align-items: center;
+}
+
+.add-blocked-button {
+  width: 4.5cqh;
+  height: 4.5cqh;
+  margin-left: auto;
+  border-radius: 50%;
+  background: rgba(77, 141, 255, 0.14);
+}
+
+.add-blocked-button:hover {
+  background: rgba(77, 141, 255, 0.25);
+}
+
+.blocked-content {
+  margin-top: 3.5cqh;
+  overflow-y: auto;
+  max-height: calc(100% - 8cqh);
+}
+
+.blocked-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1cqh;
+  padding: 12cqh 4cqw;
+  color: rgba(255, 255, 255, 0.35);
+  text-align: center;
+}
+
+.blocked-empty span {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1.9cqh;
+}
+
+.blocked-empty small {
+  max-width: 75%;
+  font-size: 1.45cqh;
+  line-height: 1.35;
+}
+
+.blocked-list {
+  width: 100%;
+}
+
+.blocked-contact-row {
+  display: flex;
+  align-items: center;
+  min-height: 7.2cqh;
+  padding: 0 2cqw;
+}
+
+.blocked-contact-row + .blocked-contact-row {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.blocked-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 4.3cqh;
+  height: 4.3cqh;
+  border-radius: 50%;
+  color: white;
+  font-size: 1.8cqh;
+  font-weight: 600;
+  background: linear-gradient(145deg, rgb(90, 90, 90), rgb(50, 50, 50));
+}
+
+.blocked-contact-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  margin-left: 2cqw;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.7cqh;
+}
+
+.blocked-contact-info small {
+  margin-top: 0.35cqh;
+  color: rgba(255, 255, 255, 0.48);
+  font-size: 1.4cqh;
+}
+
+.blocked-contact-actions {
+  display: flex;
+  gap: 0.7cqw;
+  margin-left: auto;
+}
+
+.blocked-contact-actions button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.8cqh;
+  height: 3.8cqh;
+  border: 0;
+  border-radius: 50%;
+  color: rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+}
+
+.blocked-contact-actions button:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.blocked-editor-modal {
+  padding: 2.4cqh 2.4cqw 2cqh;
+}
+
+.blocked-field {
+  display: block;
+  margin-top: 1.6cqh;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 1.45cqh;
+}
+
+.blocked-field input {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  height: 5.6cqh;
+  margin-top: 0.7cqh;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.1cqh;
+  padding: 0 1.5cqw;
+  outline: none;
+  color: white;
+  font: inherit;
+  font-size: 1.65cqh;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.blocked-field input:focus {
+  border-color: rgba(77, 141, 255, 0.8);
+}
+
+.blocked-field input::placeholder {
+  color: rgba(255, 255, 255, 0.32);
+}
+
+.save-blocked-action {
+  margin-top: 2.2cqh;
+  color: white;
+  background: #4d8dff;
 }
 
 .general-modal-backdrop {
