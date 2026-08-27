@@ -14,7 +14,6 @@ export const iconBackgroundColors = ref({
   phone: "#32b910",
 });
 
-// Volume settings (0-100)
 export const callVolume = ref(70);
 export const systemVolume = ref(60);
 
