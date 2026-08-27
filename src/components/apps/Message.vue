@@ -429,12 +429,12 @@ const sendMessage = async () => {
     text-align: left;
     background: transparent;
     cursor: pointer;
-    transition: transform 0.18s ease;
+    transition: transform 0.2s ease;
 }
 
 .conversation-row:hover {
     background: transparent;
-    transform: scale(1.015);
+    transform: scale(1.01);
 }
 
 .conversation-avatar,
