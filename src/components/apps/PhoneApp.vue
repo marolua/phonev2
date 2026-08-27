@@ -446,7 +446,7 @@ const addContact = () => {
                                 @click="closeCreateContact">Annuler</button>
                             <span>Nouveau contact</span>
                             <button type="submit" class="modal-action save-action"
-                                :disabled="!newContact.firstName.trim() || !newContact.phone.trim()">
+                                :disabled="!newContact.firstName.trim() || !isPhoneSuffixValid(newContact.phone)">
                                 Ajouter
                             </button>
                         </div>
