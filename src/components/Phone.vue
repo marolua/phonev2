@@ -904,7 +904,7 @@ const openPhoneCall = (call) => {
         overflow: hidden;
         border-radius: 50%;
         color: white;
-        font-size: 2.8cqh;
+        font-size: 2.5cqh;
         font-weight: 600;
 
         img {
@@ -919,7 +919,7 @@ const openPhoneCall = (call) => {
         justify-content: center;
         flex-direction: column;
         min-width: 0;
-        gap: 0.2cqh;
+        gap: 0.4cqh;
         text-align: left;
 
         strong,
@@ -945,8 +945,8 @@ const openPhoneCall = (call) => {
 
     .message-notification-time {
         position: absolute;
-        top: 1cqh;
-        right: 4.2cqw;
+        top: 1.6cqh;
+        right: 5.2cqw;
         color: rgba(255, 255, 255, 0.58);
         font-size: 1.45cqh;
         white-space: nowrap;
