@@ -311,7 +311,7 @@ const addContact = () => {
                 <button type="button">
                     <MessageCircle class="detail-action-icon" size="3cqh" /><span>Message</span>
                 </button>
-                <button type="button" @click="startCall(selectedContact.phone, selectedContact)">
+                <button type="button" @click="startCall(formatPhoneNumber(selectedContact.phone), selectedContact)">
                     <Phone class="detail-action-icon" size="3cqh" /><span>Appeler</span>
                 </button>
                 <button type="button">
@@ -327,7 +327,7 @@ const addContact = () => {
             <div class="detail-number-card" :class="{ 'detail-number-card-editing': editingContact }">
                 <div>
                     <small>mobile</small>
-                    <strong v-if="!editingContact">{{ selectedContact.phone }}</strong>
+                    <strong v-if="!editingContact">{{ formatPhoneNumber(selectedContact.phone) }}</strong>
                     <div v-else class="phone-input">
                         <span>555-</span>
                         <input v-model="editableContact.phone" type="tel" inputmode="numeric" maxlength="4"
@@ -335,7 +335,7 @@ const addContact = () => {
                     </div>
                 </div>
                 <button v-if="!editingContact" type="button" aria-label="Appeler"
-                    @click="startCall(selectedContact.phone, selectedContact)">
+                    @click="startCall(formatPhoneNumber(selectedContact.phone), selectedContact)">
                     <Phone size="2.2cqh" />
                 </button>
             </div>
@@ -397,7 +397,7 @@ const addContact = () => {
                         </div>
                         <div class="contact-information">
                             <span>{{ contact.firstName }} {{ contact.lastName }}</span>
-                            <small>{{ contact.phone }}</small>
+                        <small>{{ formatPhoneNumber(contact.phone) }}</small>
                         </div>
                     </button>
                 </div>

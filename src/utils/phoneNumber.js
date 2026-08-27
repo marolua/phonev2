@@ -1,8 +1,10 @@
 export const PHONE_PREFIX = '555-';
 
 export const phoneDigits = (value = '') => {
-  const digits = String(value).replace(/\D/g, '');
-  return (digits.startsWith('555') ? digits.slice(3) : digits).slice(0, 4);
+  const rawValue = String(value);
+  const digits = rawValue.replace(/\D/g, '');
+  const hasPrefix = digits.startsWith('555') && (rawValue.includes('-') || digits.length > 4);
+  return (hasPrefix ? digits.slice(3) : digits).slice(0, 4);
 };
 
 export const formatPhoneNumber = (value = '') => `${PHONE_PREFIX}${phoneDigits(value)}`;
