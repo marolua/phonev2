@@ -56,6 +56,7 @@ const isIslandExpanded = ref(false)
 const activeIsland = computed(() => islandExamples[activeIslandIndex.value])
 const isPillActive = computed(() => isIslandExpanded.value && activeIsland.value.type === 'pill')
 const activeApplication = ref(null)
+const pendingPhoneCall = ref(null)
 const screenElement = ref(null)
 const applicationTransitionOrigin = ref({ x: 50, y: 50 })
 
@@ -103,6 +104,15 @@ const openApplication = (application, event) => {
 
 const closeApplication = () => {
     activeApplication.value = null
+    pendingPhoneCall.value = null
+}
+
+const openPhoneCall = (call) => {
+    const phoneApplication = applications.find((application) => application.id === 'phone')
+    if (!phoneApplication?.component) return
+
+    pendingPhoneCall.value = call
+    activeApplication.value = phoneApplication
 }
 
 </script>
@@ -268,7 +278,8 @@ const closeApplication = () => {
 
             <Transition name="application-open">
                 <div v-if="activeApplication" class="application-overlay" :style="applicationTransitionStyle">
-                    <component :is="activeApplication.component" :application="activeApplication" />
+                    <component :is="activeApplication.component" :application="activeApplication"
+                        :initial-call="pendingPhoneCall" @call-contact="openPhoneCall" />
                 </div>
             </Transition>
 

@@ -1,6 +1,6 @@
 <script setup>
 import { computed, nextTick, ref } from 'vue';
-import { ArrowLeft, Check, ImagePlus, MapPin, MicOff, Phone, PhoneOff, Plus, Search, Send, Video, Volume2, X } from '@lucide/vue';
+import { ArrowLeft, Check, ImagePlus, MapPin, Phone, Plus, Search, Send } from '@lucide/vue';
 import { contacts } from '../../stores/contacts';
 import { formatPhoneNumber, isPhoneSuffixValid, phoneDigits } from '../../utils/phoneNumber';
 
@@ -12,9 +12,7 @@ const showComposerOptions = ref(false);
 const showNewConversation = ref(false);
 const showContactSuggestions = ref(false);
 const newConversation = ref({ name: '', phone: '' });
-const activeCall = ref(null);
-const isCallSpeakerOn = ref(false);
-const isCallMuted = ref(false);
+const emit = defineEmits(['call-contact']);
 
 const conversations = ref([
     {
@@ -147,15 +145,14 @@ const closeConversation = () => {
 
 const callSelectedContact = () => {
     if (!selectedConversation.value) return;
-    isCallSpeakerOn.value = false;
-    isCallMuted.value = false;
-    activeCall.value = selectedConversation.value;
-};
-
-const endCall = () => {
-    activeCall.value = null;
-    isCallSpeakerOn.value = false;
-    isCallMuted.value = false;
+    emit('call-contact', {
+        number: formatPhoneNumber(selectedConversation.value.phone),
+        contact: {
+            firstName: selectedConversation.value.name,
+            lastName: '',
+            phone: selectedConversation.value.phone,
+        },
+    });
 };
 
 const scrollToLatestMessage = () => {
@@ -181,33 +178,6 @@ const sendMessage = async () => {
 
 <template>
     <div class="message-app">
-        <div v-if="activeCall" class="message-call-screen">
-            <div class="message-call-header">
-                <span>Appel en cours...</span>
-                <strong>{{ activeCall.name }}</strong>
-                <small>{{ activeCall.phone }}</small>
-            </div>
-
-            <div class="message-call-avatar" :style="{ background: activeCall.color }">
-                {{ activeCall.initials }}
-            </div>
-
-            <div class="message-call-actions">
-                <button type="button" :class="{ active: isCallSpeakerOn }" @click="isCallSpeakerOn = !isCallSpeakerOn">
-                    <span><Volume2 size="2.7cqh" /></span>
-                    <small>Haut-parleur</small>
-                </button>
-                <button type="button" :class="{ active: isCallMuted }" @click="isCallMuted = !isCallMuted">
-                    <span><MicOff size="2.7cqh" /></span>
-                    <small>Muet</small>
-                </button>
-                <button type="button" class="end-call" aria-label="Raccrocher" @click="endCall">
-                    <span><PhoneOff size="2.7cqh" /></span>
-                    <small>Raccrocher</small>
-                </button>
-            </div>
-        </div>
-
         <div v-if="!selectedConversation" class="messages-home">
             <div class="messages-title-row">
                 <span class="title">Messages</span>

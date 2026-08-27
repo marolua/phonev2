@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { ArrowLeft, Camera, ClockFading, Delete, Grid3X3, ImagePlus, Keyboard, Mail, MessageCircle, MicOff, MoreHorizontal, Phone, PhoneOff, Search, User, UserPlus, Video, Volume2, X } from '@lucide/vue';
 import Prompt from '../../utils/Prompt.vue';
 import { blockedContacts, contacts } from '../../stores/contacts';
@@ -9,6 +9,10 @@ const props = defineProps({
     contactsOnly: {
         type: Boolean,
         default: false,
+    },
+    initialCall: {
+        type: Object,
+        default: null,
     },
 });
 
@@ -165,6 +169,13 @@ const startCall = (number, contact = null) => {
     activeCall.value = { number: number.trim(), contact };
 };
 
+const getContactName = (contact) => `${contact?.firstName || ''} ${contact?.lastName || ''}`.trim();
+
+watch(() => props.initialCall, (call) => {
+    if (!call) return;
+    startCall(call.number, call.contact);
+}, { immediate: true });
+
 const endCall = () => {
     activeCall.value = null;
     isSpeakerOn.value = false;
@@ -222,7 +233,8 @@ const addContact = () => {
         <div v-if="activeCall" class="call-screen">
             <div class="call-screen-header">
                 <span>Appel en cours...</span>
-                <strong>{{ activeCall.number }}</strong>
+                <strong>{{ activeCall.contact ? getContactName(activeCall.contact) : activeCall.number }}</strong>
+                <small v-if="activeCall.contact">{{ activeCall.number }}</small>
             </div>
 
             <div class="call-actions">
