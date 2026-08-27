@@ -882,6 +882,24 @@ const addContact = () => {
                         border: 0;
                     }
                 }
+
+                .phone-input {
+                    display: flex;
+                    align-items: center;
+                    flex-direction: row;
+                    gap: 0.5cqw;
+                    width: 100%;
+
+                    span {
+                        flex-shrink: 0;
+                        color: rgba(255, 255, 255, 0.8);
+                        font-size: 2cqh;
+                    }
+
+                    input {
+                        min-width: 0;
+                    }
+                }
             }
 
             button {
@@ -895,6 +913,15 @@ const addContact = () => {
                 color: #1686ff;
                 background: rgba(45, 45, 45, 0.9);
                 cursor: pointer;
+            }
+
+            .detail-action-blocked {
+                color: #ff453a;
+
+                &::before {
+                    border-color: rgba(255, 69, 58, 0.35);
+                    background: rgba(255, 69, 58, 0.14);
+                }
             }
         }
 

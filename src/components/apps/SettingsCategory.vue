@@ -345,7 +345,7 @@ const selectWallpaper = (url) => {
                 <div class="blocked-phone-entry">
                   <span class="blocked-phone-prefix">555-</span>
                   <input v-model="blockedContactDraft.phone" type="tel" inputmode="numeric" maxlength="4"
-                    placeholder="1234" />
+                    placeholder="1234" @input="blockedContactDraft.phone = phoneDigits($event.target.value)" />
                 </div>
               </label>
 
