@@ -643,7 +643,7 @@ const sendMessage = async () => {
 .message-bubble {
     max-width: 72%;
     padding: 1.2cqh 2cqw 0.9cqh;
-    border-radius: 3cqh 3cqh 0.7cqh 0.7cqh;
+    border-radius: 3cqh 3cqh 3cqh 0.5cqh;
     color: rgba(255, 255, 255, 0.94);
     text-align: left;
     font-size: 1.7cqh;
@@ -651,6 +651,7 @@ const sendMessage = async () => {
 }
 
 .message-bubble-me {
+    border-radius: 2.5cqh 2.5cqh 0.5cqh 2.5cqh;
     background: #1677ff;
 }
 
