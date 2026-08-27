@@ -762,13 +762,13 @@ const selectWallpaper = (url) => {
   min-width: 0;
   margin-left: 2cqw;
   color: rgba(255, 255, 255, 0.9);
-  font-size: 1.7cqh;
+  font-size: 1.9cqh;
 }
 
 .blocked-contact-info small {
   margin-top: 0.35cqh;
   color: rgba(255, 255, 255, 0.48);
-  font-size: 1.4cqh;
+  font-size: 1.6cqh;
 }
 
 .blocked-contact-actions {
