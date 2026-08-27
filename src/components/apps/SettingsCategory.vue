@@ -69,7 +69,7 @@ const selectWallpaper = (url) => {
             <div class="slider-pill">
               <ALargeSmall class="display-icon" size="2cqh" />
               <input class="ios-range" type="range" min="75" max="125" v-model.number="displayScale"
-                :style="{ background: `linear-gradient(90deg, #4d8dff ${displayScale - 75}%, rgba(255,255,255,0.12) ${displayScale - 75}%)` }" />
+                :style="{ background: `linear-gradient(90deg, #4d8dff ${((displayScale - 75) / 50) * 100}%, rgba(255,255,255,0.12) ${((displayScale - 75) / 50) * 100}%)` }" />
               <ALargeSmall class="display-icon right" size="2.8cqh" />
             </div>
           </div>
