@@ -1445,6 +1445,34 @@ const addContact = () => {
                         color: rgba(255, 255, 255, 0.35);
                     }
                 }
+
+                .phone-input {
+                    display: flex;
+                    align-items: center;
+                    flex-direction: row;
+                    gap: 0.5cqw;
+                    width: 100%;
+                    box-sizing: border-box;
+                    padding: 0 2cqw;
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    border-radius: 1.4cqh;
+                    background: rgba(255, 255, 255, 0.1);
+
+                    > span {
+                        flex-shrink: 0;
+                        padding-left: 0;
+                        color: rgba(255, 255, 255, 0.8);
+                        font-size: 1.8cqh;
+                    }
+
+                    input {
+                        flex: 1;
+                        min-width: 0;
+                        padding: 1.5cqh 0;
+                        border: 0;
+                        background: transparent;
+                    }
+                }
             }
         }
 
