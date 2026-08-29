@@ -21,9 +21,9 @@ const touchStartX = ref(null);
 
 const filters = ['Toutes', 'Vidéos'];
 const categories = [
-    { id: 'library', label: 'Photothèque', icon: Image },
+    { id: 'library', label: 'Galerie', icon: Image },
     { id: 'albums', label: 'Albums', icon: Heart },
-    { id: 'search', label: 'Rechercher', icon: Search },
+    { id: 'search', label: 'Etudier', icon: Search },
 ];
 
 const visiblePhotos = computed(() => {
