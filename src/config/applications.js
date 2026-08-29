@@ -14,6 +14,7 @@ import PhoneApp from "../components/apps/PhoneApp.vue";
 import MessageApp from "../components/apps/Message.vue";
 import ContactApp from "../components/apps/Contact.vue";
 import SettingsApp from "../components/apps/Settings.vue";
+import CameraApp from "../components/apps/Camera.vue";
 
 export const applications = [
   {
@@ -57,7 +58,7 @@ export const applications = [
     id: "camera",
     name: "Caméra",
     icon: PhotoIcon,
-    component: SettingsApp,
+    component: CameraApp,
     page: "camera",
   },
   {
