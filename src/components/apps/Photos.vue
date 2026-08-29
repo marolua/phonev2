@@ -14,11 +14,17 @@ import {
 import { photos, removePhoto } from '../../stores/photos';
 
 const activeFilter = ref('Toutes');
+const activeCategory = ref('library');
 const selectedPhoto = ref(null);
 const selectedIndex = ref(0);
 const touchStartX = ref(null);
 
 const filters = ['Toutes', 'Vidéos'];
+const categories = [
+    { id: 'library', label: 'Photothèque', icon: Image },
+    { id: 'albums', label: 'Albums', icon: Heart },
+    { id: 'search', label: 'Rechercher', icon: Search },
+];
 
 const visiblePhotos = computed(() => {
     if (activeFilter.value === 'Vidéos') return photos.value.filter(({ type }) => type === 'video');
@@ -83,10 +89,7 @@ const onTouchEnd = (event) => {
 <template>
     <div class="photos-app">
         <header class="photos-header">
-            <div>
-                <span class="photos-header__eyebrow">Photothèque</span>
-                <h1>Photos</h1>
-            </div>
+            <span class="title">Photos</span>
             <button class="photos-more" type="button" aria-label="Plus d’options">
                 <MoreHorizontal :size="22" :stroke-width="2.1" />
             </button>
@@ -136,20 +139,22 @@ const onTouchEnd = (event) => {
             </div>
         </main>
 
-        <nav class="photos-bottom-nav" aria-label="Navigation Photos">
-            <button class="photos-bottom-nav__item photos-bottom-nav__item--active" type="button">
-                <Image :size="19" :stroke-width="2" />
-                <span>Photothèque</span>
-            </button>
-            <button class="photos-bottom-nav__item" type="button">
-                <Heart :size="19" :stroke-width="2" />
-                <span>Pour vous</span>
-            </button>
-            <button class="photos-bottom-nav__item" type="button">
-                <Search :size="19" :stroke-width="2" />
-                <span>Rechercher</span>
-            </button>
-        </nav>
+        <div class="bottom-app-photos">
+            <div class="categories" aria-label="Navigation Photos">
+                <button
+                    v-for="category in categories"
+                    :key="category.id"
+                    class="categorie"
+                    :class="{ 'categorie-selected': activeCategory === category.id }"
+                    type="button"
+                    :aria-label="category.label"
+                    @click="activeCategory = category.id"
+                >
+                    <component :is="category.icon" size="3cqh" />
+                    <span>{{ category.label }}</span>
+                </button>
+            </div>
+        </div>
 
         <Transition name="photo-viewer">
             <div
