@@ -334,6 +334,88 @@ const onTouchEnd = (event) => {
     }
 }
 
+.photos-search {
+    display: flex;
+    align-items: center;
+    gap: 2cqw;
+    box-sizing: border-box;
+    width: 100%;
+    height: 5.5cqh;
+    padding: 0 2.5cqw;
+    border-radius: 1.4cqh;
+    color: rgba(255, 255, 255, 0.55);
+    background: rgba(50, 50, 50, 0.6);
+
+    input {
+        min-width: 0;
+        flex: 1;
+        border: 0;
+        outline: 0;
+        color: #fff;
+        font: 400 1.7cqh "SF Pro Display", sans-serif;
+        background: transparent;
+
+        &::placeholder {
+            color: rgba(255, 255, 255, 0.48);
+        }
+    }
+}
+
+.albums-heading {
+    padding-top: 0.8cqh;
+}
+
+.albums-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2.2cqw 2cqw;
+}
+
+.album-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+    border: 0;
+    color: #fff;
+    text-align: left;
+    background: transparent;
+    cursor: pointer;
+
+    &:active .album-card__cover {
+        transform: scale(0.96);
+    }
+}
+
+.album-card__cover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    aspect-ratio: 1.25;
+    border-radius: 1.5cqw;
+    color: rgba(255, 255, 255, 0.78);
+    background: rgba(60, 60, 60, 0.65);
+    box-shadow: 0 0.8cqh 1.6cqh rgba(0, 0, 0, 0.22);
+    transition: transform 0.18s ease;
+}
+
+.album-card__title {
+    max-width: 100%;
+    margin-top: 1cqh;
+    overflow: hidden;
+    font-size: 1.7cqh;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.album-card__count {
+    margin-top: 0.35cqh;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.35cqh;
+}
+
 .photos-section-heading {
     display: flex;
     align-items: baseline;
