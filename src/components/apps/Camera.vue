@@ -148,6 +148,24 @@ const capture = () => {
     isolation: isolate;
 }
 
+.camera-viewfinder--grid::before,
+.camera-viewfinder--grid::after {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    content: "";
+    pointer-events: none;
+}
+
+.camera-viewfinder--grid::before {
+    background: linear-gradient(90deg, transparent 32.9%, rgba(255, 255, 255, 0.24) 33%, transparent 33.1%, transparent 66.2%, rgba(255, 255, 255, 0.24) 66.3%, transparent 66.4%),
+        linear-gradient(0deg, transparent 32.9%, rgba(255, 255, 255, 0.24) 33%, transparent 33.1%, transparent 66.2%, rgba(255, 255, 255, 0.24) 66.3%, transparent 66.4%);
+}
+
+.camera-viewfinder--grid::after {
+    background: rgba(255, 255, 255, 0.03);
+}
+
 .viewfinder-scene,
 .viewfinder-vignette,
 .capture-flash {
