@@ -96,16 +96,9 @@ const onTouchEnd = (event) => {
         </header>
 
         <div class="photos-filter" role="tablist" aria-label="Filtrer la photothèque">
-            <button
-                v-for="filter in filters"
-                :key="filter"
-                class="photos-filter__button"
-                :class="{ 'photos-filter__button--active': activeFilter === filter }"
-                type="button"
-                role="tab"
-                :aria-selected="activeFilter === filter"
-                @click="activeFilter = filter"
-            >
+            <button v-for="filter in filters" :key="filter" class="photos-filter__button"
+                :class="{ 'photos-filter__button--active': activeFilter === filter }" type="button" role="tab"
+                :aria-selected="activeFilter === filter" @click="activeFilter = filter">
                 {{ filter }}
             </button>
         </div>
@@ -117,14 +110,9 @@ const onTouchEnd = (event) => {
             </div>
 
             <div v-if="visiblePhotos.length" class="photos-grid">
-                <button
-                    v-for="photo in visiblePhotos"
-                    :key="photo.id"
-                    class="photo-card"
-                    type="button"
+                <button v-for="photo in visiblePhotos" :key="photo.id" class="photo-card" type="button"
                     :aria-label="`${photo.type === 'video' ? 'Vidéo' : 'Photo'} du ${formatPhotoDate(photo)}`"
-                    @click="openPhoto(photo)"
-                >
+                    @click="openPhoto(photo)">
                     <span class="photo-card__image" :style="photoStyle(photo)"></span>
                     <span v-if="photo.type === 'video'" class="photo-card__video-badge">
                         <Play :size="10" :stroke-width="3" fill="currentColor" />
@@ -133,7 +121,9 @@ const onTouchEnd = (event) => {
             </div>
 
             <div v-else class="photos-empty">
-                <div class="photos-empty__icon"><Image :size="28" :stroke-width="1.6" /></div>
+                <div class="photos-empty__icon">
+                    <Image :size="28" :stroke-width="1.6" />
+                </div>
                 <strong>Aucune photo</strong>
                 <span>Les photos et vidéos prises avec la caméra apparaîtront ici.</span>
             </div>
@@ -141,15 +131,9 @@ const onTouchEnd = (event) => {
 
         <div class="bottom-app-photos">
             <div class="categories" aria-label="Navigation Photos">
-                <button
-                    v-for="category in categories"
-                    :key="category.id"
-                    class="categorie"
-                    :class="{ 'categorie-selected': activeCategory === category.id }"
-                    type="button"
-                    :aria-label="category.label"
-                    @click="activeCategory = category.id"
-                >
+                <button v-for="category in categories" :key="category.id" class="categorie"
+                    :class="{ 'categorie-selected': activeCategory === category.id }" type="button"
+                    :aria-label="category.label" @click="activeCategory = category.id">
                     <component :is="category.icon" size="3cqh" />
                     <span>{{ category.label }}</span>
                 </button>
@@ -157,13 +141,8 @@ const onTouchEnd = (event) => {
         </div>
 
         <Transition name="photo-viewer">
-            <div
-                v-if="selectedPhoto"
-                class="photo-viewer"
-                @click.self="closePhoto"
-                @touchstart="onTouchStart"
-                @touchend="onTouchEnd"
-            >
+            <div v-if="selectedPhoto" class="photo-viewer" @click.self="closePhoto" @touchstart="onTouchStart"
+                @touchend="onTouchEnd">
                 <div class="photo-viewer__topbar">
                     <button class="photo-viewer__button" type="button" aria-label="Fermer" @click="closePhoto">
                         <X :size="21" :stroke-width="2.2" />
@@ -175,7 +154,8 @@ const onTouchEnd = (event) => {
                 </div>
 
                 <div class="photo-viewer__stage">
-                    <button class="photo-viewer__arrow photo-viewer__arrow--left" type="button" aria-label="Photo précédente" @click.stop="navigatePhoto(-1)">
+                    <button class="photo-viewer__arrow photo-viewer__arrow--left" type="button"
+                        aria-label="Photo précédente" @click.stop="navigatePhoto(-1)">
                         <ChevronLeft :size="24" :stroke-width="2.1" />
                     </button>
                     <div class="photo-viewer__photo" :style="photoStyle(selectedPhoto)">
@@ -183,7 +163,8 @@ const onTouchEnd = (event) => {
                             <Play :size="13" :stroke-width="2.5" fill="currentColor" /> Vidéo
                         </span>
                     </div>
-                    <button class="photo-viewer__arrow photo-viewer__arrow--right" type="button" aria-label="Photo suivante" @click.stop="navigatePhoto(1)">
+                    <button class="photo-viewer__arrow photo-viewer__arrow--right" type="button"
+                        aria-label="Photo suivante" @click.stop="navigatePhoto(1)">
                         <ChevronRight :size="24" :stroke-width="2.1" />
                     </button>
                 </div>
@@ -268,7 +249,9 @@ const onTouchEnd = (event) => {
     padding: 0 0 1.8cqh;
     overflow-x: auto;
 
-    &::-webkit-scrollbar { display: none; }
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 .photos-filter__button {
@@ -292,7 +275,9 @@ const onTouchEnd = (event) => {
     padding: 0 0 1.5cqh;
     overflow-y: auto;
 
-    &::-webkit-scrollbar { width: 0; }
+    &::-webkit-scrollbar {
+        width: 0;
+    }
 }
 
 .photos-section-heading {
@@ -404,6 +389,7 @@ const onTouchEnd = (event) => {
         height: 68%;
         border-radius: 6cqh;
         background-color: rgba(51, 51, 51, 0.3);
+
         box-shadow:
             0 10px 26px rgba(0, 0, 0, 0.2),
             inset 0 1px 0 rgba(255, 255, 255, 0.85),
@@ -524,16 +510,27 @@ const onTouchEnd = (event) => {
     background: rgba(255, 255, 255, 0.13);
 }
 
-.photo-viewer__arrow--left { left: 3cqw; }
-.photo-viewer__arrow--right { right: 3cqw; }
+.photo-viewer__arrow--left {
+    left: 3cqw;
+}
+
+.photo-viewer__arrow--right {
+    right: 3cqw;
+}
 
 .photo-viewer__details {
     display: flex;
     flex-direction: column;
     gap: 0.6cqh;
 
-    strong { font-size: 2cqh; }
-    span { color: rgba(255, 255, 255, 0.62); font-size: 1.45cqh; }
+    strong {
+        font-size: 2cqh;
+    }
+
+    span {
+        color: rgba(255, 255, 255, 0.62);
+        font-size: 1.45cqh;
+    }
 }
 
 .photo-viewer__delete {
