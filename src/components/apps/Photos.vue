@@ -9,16 +9,18 @@ import {
     Play,
     Search,
     Trash2,
+    Video,
 } from '@lucide/vue';
 import { photos, removePhoto } from '../../stores/photos';
 
 const activeFilter = ref('Toutes');
 const activeCategory = ref('library');
+const searchQuery = ref('');
 const selectedPhoto = ref(null);
 const selectedIndex = ref(0);
 const touchStartX = ref(null);
 
-const filters = ['Toutes', 'Vidéos'];
+const filters = ['Toutes', 'Photos', 'Vidéos'];
 const categories = [
     { id: 'library', label: 'Galerie', icon: Image },
     { id: 'albums', label: 'Albums', icon: Heart },
@@ -26,9 +28,48 @@ const categories = [
 ];
 
 const visiblePhotos = computed(() => {
-    if (activeFilter.value === 'Vidéos') return photos.value.filter(({ type }) => type === 'video');
-    return photos.value;
+    let result = photos.value;
+
+    if (activeCategory.value === 'search' && searchQuery.value.trim()) {
+        const query = searchQuery.value.trim().toLowerCase();
+        result = result.filter((photo) => {
+            const type = photo.type === 'video' ? 'vidéo' : 'photo';
+            const date = formatPhotoDate(photo).toLowerCase();
+            return `${type} ${date}`.includes(query);
+        });
+    }
+
+    if (activeCategory.value === 'library') {
+        if (activeFilter.value === 'Photos') result = result.filter(({ type }) => type === 'photo');
+        if (activeFilter.value === 'Vidéos') result = result.filter(({ type }) => type === 'video');
+    }
+
+    return result;
 });
+
+const albumDefinitions = computed(() => [
+    {
+        id: 'all',
+        title: 'Toutes les photos',
+        count: photos.value.length,
+        gradient: photos.value[0]?.gradient,
+        icon: Image,
+    },
+    {
+        id: 'photos',
+        title: 'Photos',
+        count: photos.value.filter(({ type }) => type === 'photo').length,
+        gradient: photos.value.find(({ type }) => type === 'photo')?.gradient,
+        icon: Image,
+    },
+    {
+        id: 'videos',
+        title: 'Vidéos',
+        count: photos.value.filter(({ type }) => type === 'video').length,
+        gradient: photos.value.find(({ type }) => type === 'video')?.gradient,
+        icon: Video,
+    },
+]);
 
 const photoStyle = (photo) => ({ background: photo.gradient });
 
@@ -41,6 +82,16 @@ const formatPhotoDate = (photo) => new Intl.DateTimeFormat('fr-FR', {
 const openPhoto = (photo) => {
     selectedIndex.value = visiblePhotos.value.findIndex(({ id }) => id === photo.id);
     selectedPhoto.value = photo;
+};
+
+const selectCategory = (categoryId) => {
+    activeCategory.value = categoryId;
+    if (categoryId === 'library') activeFilter.value = 'Toutes';
+};
+
+const openAlbum = (album) => {
+    activeCategory.value = 'library';
+    activeFilter.value = album.id === 'videos' ? 'Vidéos' : album.id === 'photos' ? 'Photos' : 'Toutes';
 };
 
 const closePhoto = () => {
