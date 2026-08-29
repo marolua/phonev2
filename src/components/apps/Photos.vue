@@ -1,6 +1,7 @@
 <script setup>
 import { computed, ref } from 'vue';
 import {
+    ArrowLeft,
     ChevronLeft,
     ChevronRight,
     Heart,
@@ -9,7 +10,6 @@ import {
     Play,
     Search,
     Trash2,
-    X,
 } from '@lucide/vue';
 import { photos, removePhoto } from '../../stores/photos';
 
@@ -144,8 +144,8 @@ const onTouchEnd = (event) => {
             <div v-if="selectedPhoto" class="photo-viewer" @click.self="closePhoto" @touchstart="onTouchStart"
                 @touchend="onTouchEnd">
                 <div class="photo-viewer__topbar">
-                    <button class="photo-viewer__button" type="button" aria-label="Fermer" @click="closePhoto">
-                        <X :size="21" :stroke-width="2.2" />
+                    <button class="photo-viewer__button photo-viewer__button--back" type="button" aria-label="Retour" @click="closePhoto">
+                        <ArrowLeft :size="18" :stroke-width="2.2" />
                     </button>
                     <div class="photo-viewer__counter">{{ selectedIndex + 1 }} / {{ visiblePhotos.length }}</div>
                     <button class="photo-viewer__button" type="button" aria-label="Plus d’options">
@@ -403,6 +403,7 @@ const onTouchEnd = (event) => {
             width: 30%;
             height: 90%;
             border-radius: 5.7cqh;
+            border: 0;
             color: rgba(255, 255, 255, 0.8);
             font-family: "SF Pro Display";
             font-size: 1.6cqh;
@@ -455,6 +456,14 @@ const onTouchEnd = (event) => {
     border-radius: 50%;
     color: #fff;
     background: rgba(255, 255, 255, 0.13);
+}
+
+.photo-viewer__button--back {
+    width: 5cqh;
+    height: 5cqh;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(55, 55, 58, 0.95);
+    box-shadow: 0 0.6cqh 1.2cqh rgba(0, 0, 0, 0.45);
 }
 
 .photo-viewer__counter {
