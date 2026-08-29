@@ -122,7 +122,7 @@ onBeforeUnmount(stopRecording);
             </div>
 
             <div class="zoom-controls" aria-label="Zoom">
-                <button v-for="value in [0.5, 1, 1.5, 2, 3]" :key="value" class="zoom-button"
+                <button v-for="value in [0.5, 1, 2]" :key="value" class="zoom-button"
                     :class="{ 'zoom-button--selected': zoom === value }" type="button" @click="zoom = value">
                     {{ value === 0.5 ? '.5' : value === 1 ? '1x' : `${value}x` }}
                 </button>
@@ -473,7 +473,7 @@ onBeforeUnmount(stopRecording);
 .zoom-controls {
     position: absolute;
     z-index: 2;
-    bottom: 34.5cqh;
+    bottom: 29cqh;
     left: 50%;
     display: flex;
     align-items: center;
