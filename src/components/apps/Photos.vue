@@ -436,14 +436,6 @@ const onTouchEnd = (event) => {
     }
 }
 
-.photos-bottom-nav {
-    display: none;
-}
-
-.photos-bottom-nav__item {
-    display: none;
-}
-
 .photo-viewer {
     position: absolute;
     z-index: 10;
@@ -453,22 +445,6 @@ const onTouchEnd = (event) => {
     color: #fff;
     background: #09090b;
 }
-
-/* The viewer covers the app content, including its dark category bar. */
-.photo-viewer {
-    right: -3cqh;
-    bottom: 0;
-    left: -3cqh;
-    padding: 0 3cqh;
-}
-
-/* Keep the same spacing as the phone app when the viewer is closed. */
-.photos-app > .photo-viewer {
-    top: -15cqw;
-}
-
-/* Viewer styles */
-.photo-viewer {
 
 .photo-viewer__topbar,
 .photo-viewer__bottombar {
