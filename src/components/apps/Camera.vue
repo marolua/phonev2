@@ -129,13 +129,11 @@ onBeforeUnmount(() => stopRecording({ save: false }));
                         <Image v-else :size="21" :stroke-width="1.8" />
                     </button>
 
-                    <button class="shutter-button"
-                        :class="{
-                            'shutter-button--video': isVideoMode,
-                            'shutter-button--recording': isRecording,
-                            'shutter-button--pressed': isCapturing
-                        }"
-                        type="button" :aria-label="shutterLabel" @click="capture">
+                    <button class="shutter-button" :class="{
+                        'shutter-button--video': isVideoMode,
+                        'shutter-button--recording': isRecording,
+                        'shutter-button--pressed': isCapturing
+                    }" type="button" :aria-label="shutterLabel" @click="capture">
                         <span class="shutter-button__inner">
                             <Video v-if="isVideoMode && !isRecording" :size="22" :stroke-width="2.3" />
                             <span v-else-if="isRecording" class="recording-square"></span>
@@ -574,6 +572,7 @@ onBeforeUnmount(() => stopRecording({ save: false }));
 }
 
 @keyframes recording-dot-pulse {
+
     0%,
     100% {
         opacity: 1;
