@@ -144,7 +144,8 @@ const onTouchEnd = (event) => {
             <div v-if="selectedPhoto" class="photo-viewer" @click.self="closePhoto" @touchstart="onTouchStart"
                 @touchend="onTouchEnd">
                 <div class="photo-viewer__topbar">
-                    <button class="photo-viewer__button photo-viewer__button--back" type="button" aria-label="Retour" @click="closePhoto">
+                    <button class="photo-viewer__button photo-viewer__button--back" type="button" aria-label="Retour"
+                        @click="closePhoto">
                         <ArrowLeft :size="18" :stroke-width="2.2" />
                     </button>
                     <div class="photo-viewer__counter">{{ selectedIndex + 1 }} / {{ visiblePhotos.length }}</div>
