@@ -7,7 +7,6 @@ import {
     Image,
     RotateCcw,
     Settings2,
-    SunMedium,
     Video,
     Zap,
     ZapOff,
@@ -101,15 +100,6 @@ onBeforeUnmount(stopRecording);
                 <button class="camera-control" type="button" aria-label="Afficher les réglages">
                     <Settings2 :size="18" :stroke-width="2.1" />
                 </button>
-            </div>
-
-            <div class="focus-reticle" aria-hidden="true">
-                <span></span>
-            </div>
-
-            <div class="exposure-control" aria-label="Exposition">
-                <SunMedium :size="16" :stroke-width="2" />
-                <div class="exposure-control__line"><span></span></div>
             </div>
 
             <div class="zoom-controls" aria-label="Zoom">
@@ -334,90 +324,6 @@ onBeforeUnmount(stopRecording);
     &--active {
         color: #ffd60a;
         background: rgba(255, 214, 10, 0.2);
-    }
-}
-
-.focus-reticle {
-    position: absolute;
-    z-index: 1;
-    top: 42%;
-    left: 50%;
-    width: 11cqw;
-    height: 11cqw;
-    border: 0.28cqw solid rgba(255, 214, 10, 0.8);
-    transform: translate(-50%, -50%);
-    opacity: 0.78;
-    pointer-events: none;
-
-    &::before,
-    &::after,
-    span::before,
-    span::after {
-        position: absolute;
-        display: block;
-        content: "";
-        background: rgba(255, 214, 10, 0.95);
-    }
-
-    &::before,
-    &::after {
-        top: -0.28cqw;
-        width: 2cqw;
-        height: 0.28cqw;
-    }
-
-    &::before {
-        left: -0.28cqw;
-    }
-
-    &::after {
-        right: -0.28cqw;
-    }
-
-    span::before,
-    span::after {
-        bottom: -0.28cqw;
-        width: 2cqw;
-        height: 0.28cqw;
-    }
-
-    span::before {
-        left: -0.28cqw;
-    }
-
-    span::after {
-        right: -0.28cqw;
-    }
-}
-
-.exposure-control {
-    position: absolute;
-    z-index: 2;
-    top: 42%;
-    left: 50%;
-    display: flex;
-    align-items: center;
-    gap: 1.2cqw;
-    color: rgba(255, 214, 10, 0.95);
-    transform: translate(7cqw, -50%);
-    opacity: 0.9;
-
-    &__line {
-        position: relative;
-        width: 9cqw;
-        height: 0.35cqw;
-        background: rgba(255, 255, 255, 0.45);
-
-        span {
-            position: absolute;
-            top: 50%;
-            left: 45%;
-            width: 1.6cqw;
-            height: 1.6cqw;
-            border-radius: 50%;
-            background: #ffd60a;
-            transform: translate(-50%, -50%);
-        }
     }
 }
 
