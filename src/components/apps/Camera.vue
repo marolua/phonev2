@@ -48,24 +48,16 @@ const capture = () => {
             <div v-if="isCapturing" class="capture-flash" aria-hidden="true"></div>
 
             <div class="camera-top-controls">
-                <button
-                    class="camera-control"
-                    type="button"
-                    :class="{ 'camera-control--active': flashEnabled }"
+                <button class="camera-control" type="button" :class="{ 'camera-control--active': flashEnabled }"
                     :aria-label="flashEnabled ? 'Désactiver le flash' : 'Activer le flash'"
-                    @click="flashEnabled = !flashEnabled"
-                >
+                    @click="flashEnabled = !flashEnabled">
                     <Zap v-if="!flashEnabled" :size="18" :stroke-width="2.2" />
                     <ZapOff v-else :size="18" :stroke-width="2.2" />
                 </button>
 
-                <button
-                    class="live-photo-button"
-                    type="button"
+                <button class="live-photo-button" type="button"
                     :class="{ 'live-photo-button--active': livePhotoEnabled }"
-                    aria-label="Activer ou désactiver Live Photo"
-                    @click="livePhotoEnabled = !livePhotoEnabled"
-                >
+                    aria-label="Activer ou désactiver Live Photo" @click="livePhotoEnabled = !livePhotoEnabled">
                     <span class="live-photo-button__ring live-photo-button__ring--outer"></span>
                     <span class="live-photo-button__ring live-photo-button__ring--inner"></span>
                     <span class="live-photo-button__dot"></span>
@@ -86,30 +78,17 @@ const capture = () => {
             </div>
 
             <div class="zoom-controls" aria-label="Zoom">
-                <button
-                    v-for="value in [0.5, 1, 1.5, 2, 3]"
-                    :key="value"
-                    class="zoom-button"
-                    :class="{ 'zoom-button--selected': zoom === value }"
-                    type="button"
-                    @click="zoom = value"
-                >
+                <button v-for="value in [0.5, 1, 1.5, 2, 3]" :key="value" class="zoom-button"
+                    :class="{ 'zoom-button--selected': zoom === value }" type="button" @click="zoom = value">
                     {{ value === 0.5 ? '.5' : value === 1 ? '1x' : `${value}x` }}
                 </button>
             </div>
 
             <div class="camera-bottom-panel">
                 <div class="camera-modes" role="tablist" aria-label="Modes de prise de vue">
-                    <button
-                        v-for="mode in modes"
-                        :key="mode"
-                        class="camera-mode"
-                        :class="{ 'camera-mode--selected': activeMode === mode }"
-                        type="button"
-                        role="tab"
-                        :aria-selected="activeMode === mode"
-                        @click="selectMode(mode)"
-                    >
+                    <button v-for="mode in modes" :key="mode" class="camera-mode"
+                        :class="{ 'camera-mode--selected': activeMode === mode }" type="button" role="tab"
+                        :aria-selected="activeMode === mode" @click="selectMode(mode)">
                         {{ mode }}
                     </button>
                 </div>
@@ -120,25 +99,17 @@ const capture = () => {
                         <Image v-else :size="21" :stroke-width="1.8" />
                     </button>
 
-                    <button
-                        class="shutter-button"
+                    <button class="shutter-button"
                         :class="{ 'shutter-button--video': isVideoMode, 'shutter-button--pressed': isCapturing }"
-                        type="button"
-                        :aria-label="shutterLabel"
-                        @click="capture"
-                    >
+                        type="button" :aria-label="shutterLabel" @click="capture">
                         <span class="shutter-button__inner">
                             <Video v-if="isVideoMode" :size="25" :stroke-width="2.3" />
                             <Circle v-else :size="27" :stroke-width="1.8" />
                         </span>
                     </button>
 
-                    <button
-                        class="camera-flip"
-                        type="button"
-                        aria-label="Changer de caméra"
-                        @click="isFrontCamera = !isFrontCamera"
-                    >
+                    <button class="camera-flip" type="button" aria-label="Changer de caméra"
+                        @click="isFrontCamera = !isFrontCamera">
                         <RotateCcw :size="23" :stroke-width="1.9" :class="{ 'camera-flip--turned': isFrontCamera }" />
                     </button>
                 </div>
@@ -350,8 +321,13 @@ const capture = () => {
         height: 0.28cqw;
     }
 
-    &::before { left: -0.28cqw; }
-    &::after { right: -0.28cqw; }
+    &::before {
+        left: -0.28cqw;
+    }
+
+    &::after {
+        right: -0.28cqw;
+    }
 
     span::before,
     span::after {
@@ -360,8 +336,13 @@ const capture = () => {
         height: 0.28cqw;
     }
 
-    span::before { left: -0.28cqw; }
-    span::after { right: -0.28cqw; }
+    span::before {
+        left: -0.28cqw;
+    }
+
+    span::after {
+        right: -0.28cqw;
+    }
 }
 
 .exposure-control {
@@ -612,7 +593,12 @@ const capture = () => {
 }
 
 @keyframes camera-capture-flash {
-    from { opacity: 0.88; }
-    to { opacity: 0; }
+    from {
+        opacity: 0.88;
+    }
+
+    to {
+        opacity: 0;
+    }
 }
 </style>
