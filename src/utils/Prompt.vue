@@ -83,7 +83,7 @@ function cancel() {
                     </div>
                     <div class="bottom-prompt-with">
                         <span class="action-prompt" role="button" tabindex="0" @click="confirm">{{ confirmLabel
-                            }}</span>
+                        }}</span>
                     </div>
                 </div>
             </div>
@@ -98,10 +98,10 @@ function cancel() {
                     </div>
                     <div class="bottom-prompt-with-choice">
                         <span class="button-prompt" role="button" tabindex="0" @click="cancel">{{ props.cancelText
-                            }}</span>
+                        }}</span>
                         <span class="bar"></span>
                         <span class="button-prompt" role="button" tabindex="0" @click="confirm">{{ confirmLabel
-                            }}</span>
+                        }}</span>
                     </div>
                 </div>
             </div>
@@ -114,10 +114,10 @@ function cancel() {
                     </div>
                     <div class="bottom-prompt-without">
                         <span class="button-prompt" role="button" tabindex="0" @click="cancel">{{ props.cancelText
-                            }}</span>
+                        }}</span>
                         <span class="bar"></span>
                         <span class="button-prompt" role="button" tabindex="0" @click="confirm">{{ confirmLabel
-                            }}</span>
+                        }}</span>
                     </div>
                 </div>
             </div>
