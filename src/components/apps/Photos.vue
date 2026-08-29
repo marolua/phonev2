@@ -142,7 +142,7 @@ const onTouchEnd = (event) => {
             <span class="title">Photos</span>
         </header>
 
-        <div class="photos-filter" role="tablist" aria-label="Filtrer la photothèque">
+        <div v-if="activeCategory === 'library'" class="photos-filter" role="tablist" aria-label="Filtrer la photothèque">
             <button v-for="filter in filters" :key="filter" class="photos-filter__button"
                 :class="{ 'photos-filter__button--active': activeFilter === filter }" type="button" role="tab"
                 :aria-selected="activeFilter === filter" @click="activeFilter = filter">
@@ -151,36 +151,61 @@ const onTouchEnd = (event) => {
         </div>
 
         <main class="photos-scroll">
-            <div class="photos-section-heading">
-                <h2>{{ activeFilter === 'Vidéos' ? 'Vidéos' : 'Récents' }}</h2>
-                <span>{{ visiblePhotos.length }} élément{{ visiblePhotos.length > 1 ? 's' : '' }}</span>
-            </div>
-
-            <div v-if="visiblePhotos.length" class="photos-grid">
-                <button v-for="photo in visiblePhotos" :key="photo.id" class="photo-card" type="button"
-                    :aria-label="`${photo.type === 'video' ? 'Vidéo' : 'Photo'} du ${formatPhotoDate(photo)}`"
-                    @click="openPhoto(photo)">
-                    <span class="photo-card__image" :style="photoStyle(photo)"></span>
-                    <span v-if="photo.type === 'video'" class="photo-card__video-badge">
-                        <Play :size="10" :stroke-width="3" fill="currentColor" />
-                    </span>
-                </button>
-            </div>
-
-            <div v-else class="photos-empty">
-                <div class="photos-empty__icon">
-                    <Image :size="28" :stroke-width="1.6" />
+            <template v-if="activeCategory === 'albums'">
+                <div class="photos-section-heading albums-heading">
+                    <h2>Albums</h2>
+                    <span>{{ albumDefinitions.length }} albums</span>
                 </div>
-                <strong>Aucune photo</strong>
-                <span>Les photos et vidéos prises avec la caméra apparaîtront ici.</span>
-            </div>
+
+                <div class="albums-grid">
+                    <button v-for="album in albumDefinitions" :key="album.id" class="album-card" type="button"
+                        @click="openAlbum(album)">
+                        <span class="album-card__cover" :style="album.gradient ? { background: album.gradient } : {}">
+                            <component :is="album.icon" size="5cqw" :stroke-width="1.6" />
+                        </span>
+                        <span class="album-card__title">{{ album.title }}</span>
+                        <span class="album-card__count">{{ album.count }} élément{{ album.count > 1 ? 's' : '' }}</span>
+                    </button>
+                </div>
+            </template>
+
+            <template v-else>
+                <div v-if="activeCategory === 'search'" class="photos-search">
+                    <Search :size="18" :stroke-width="2" />
+                    <input v-model="searchQuery" type="search" placeholder="Rechercher dans Photos" />
+                </div>
+
+                <div class="photos-section-heading">
+                    <h2>{{ activeCategory === 'search' ? 'Résultats' : activeFilter === 'Vidéos' ? 'Vidéos' : activeFilter === 'Photos' ? 'Photos' : 'Récents' }}</h2>
+                    <span>{{ visiblePhotos.length }} élément{{ visiblePhotos.length > 1 ? 's' : '' }}</span>
+                </div>
+
+                <div v-if="visiblePhotos.length" class="photos-grid">
+                    <button v-for="photo in visiblePhotos" :key="photo.id" class="photo-card" type="button"
+                        :aria-label="`${photo.type === 'video' ? 'Vidéo' : 'Photo'} du ${formatPhotoDate(photo)}`"
+                        @click="openPhoto(photo)">
+                        <span class="photo-card__image" :style="photoStyle(photo)"></span>
+                        <span v-if="photo.type === 'video'" class="photo-card__video-badge">
+                            <Play :size="10" :stroke-width="3" fill="currentColor" />
+                        </span>
+                    </button>
+                </div>
+
+                <div v-else class="photos-empty">
+                    <div class="photos-empty__icon">
+                        <Image :size="28" :stroke-width="1.6" />
+                    </div>
+                    <strong>{{ activeCategory === 'search' && searchQuery ? 'Aucun résultat' : 'Aucune photo' }}</strong>
+                    <span>Les photos et vidéos prises avec la caméra apparaîtront ici.</span>
+                </div>
+            </template>
         </main>
 
         <div class="bottom-app-photos">
             <div class="categories" aria-label="Navigation Photos">
                 <button v-for="category in categories" :key="category.id" class="categorie"
                     :class="{ 'categorie-selected': activeCategory === category.id }" type="button"
-                    :aria-label="category.label" @click="activeCategory = category.id">
+                    :aria-label="category.label" @click="selectCategory(category.id)">
                     <component :is="category.icon" size="3cqh" />
                     <span>{{ category.label }}</span>
                 </button>
