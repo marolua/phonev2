@@ -1,5 +1,5 @@
 <script setup>
- import Phone from './components/Phone.vue'
+import Phone from './components/Phone.vue'
 </script>
 
 <template>
