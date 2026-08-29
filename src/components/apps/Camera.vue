@@ -151,7 +151,8 @@ onBeforeUnmount(stopRecording);
                         }"
                         type="button" :aria-label="shutterLabel" @click="capture">
                         <span class="shutter-button__inner">
-                            <Video v-if="isVideoMode" :size="25" :stroke-width="2.3" />
+                            <Video v-if="isVideoMode && !isRecording" :size="22" :stroke-width="2.3" />
+                            <span v-else-if="isRecording" class="recording-square"></span>
                             <Circle v-else :size="27" :stroke-width="1.8" />
                         </span>
                     </button>
