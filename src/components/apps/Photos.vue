@@ -6,7 +6,6 @@ import {
     ChevronRight,
     Heart,
     Image,
-    MoreHorizontal,
     Play,
     Search,
     Trash2,
@@ -90,9 +89,6 @@ const onTouchEnd = (event) => {
     <div class="photos-app">
         <header class="photos-header">
             <span class="title">Photos</span>
-            <button class="photos-more" type="button" aria-label="Plus d’options">
-                <MoreHorizontal :size="22" :stroke-width="2.1" />
-            </button>
         </header>
 
         <div class="photos-filter" role="tablist" aria-label="Filtrer la photothèque">
@@ -149,9 +145,6 @@ const onTouchEnd = (event) => {
                         <ArrowLeft :size="18" :stroke-width="2.2" />
                     </button>
                     <div class="photo-viewer__counter">{{ selectedIndex + 1 }} / {{ visiblePhotos.length }}</div>
-                    <button class="photo-viewer__button" type="button" aria-label="Plus d’options">
-                        <MoreHorizontal :size="21" :stroke-width="2.2" />
-                    </button>
                 </div>
 
                 <div class="photo-viewer__stage">
