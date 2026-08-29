@@ -11,6 +11,7 @@ import {
     Zap,
     ZapOff,
 } from '@lucide/vue';
+import { addPhoto } from '../../stores/photos';
 
 const modes = ['VIDÉO', 'PHOTO'];
 const activeMode = ref('PHOTO');
@@ -35,7 +36,8 @@ const recordingTime = computed(() => {
     return `${minutes}:${seconds}`;
 });
 
-const stopRecording = () => {
+const stopRecording = ({ save = true } = {}) => {
+    const wasRecording = isRecording.value;
     isRecording.value = false;
     recordingSeconds.value = 0;
 
@@ -43,6 +45,8 @@ const stopRecording = () => {
         window.clearInterval(recordingInterval);
         recordingInterval = null;
     }
+
+    if (wasRecording && save) addPhoto({ type: 'video' });
 };
 
 const selectMode = (mode) => {
@@ -67,13 +71,14 @@ const capture = () => {
 
     isCapturing.value = true;
     lastCapture.value = Date.now();
+    addPhoto();
 
     window.setTimeout(() => {
         isCapturing.value = false;
     }, 180);
 };
 
-onBeforeUnmount(stopRecording);
+onBeforeUnmount(() => stopRecording({ save: false }));
 </script>
 
 <template>
