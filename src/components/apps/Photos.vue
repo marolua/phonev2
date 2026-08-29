@@ -389,7 +389,6 @@ const onTouchEnd = (event) => {
         height: 68%;
         border-radius: 6cqh;
         background-color: rgba(51, 51, 51, 0.3);
-
         box-shadow:
             0 10px 26px rgba(0, 0, 0, 0.2),
             inset 0 1px 0 rgba(255, 255, 255, 0.85),
