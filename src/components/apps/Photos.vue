@@ -211,38 +211,34 @@ const onTouchEnd = (event) => {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    color: #111113;
-    background: #f2f2f7;
+    box-sizing: border-box;
+    padding: 15cqw 3cqh 0;
+    color: #fff;
+    background: rgb(10, 10, 10);
     font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
     user-select: none;
 }
 
 .photos-header {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-between;
-    box-sizing: border-box;
-    padding: 11cqh 5cqw 1.6cqh;
+    width: 100%;
+    flex-shrink: 0;
+    padding-bottom: 1.5cqh;
 
-    &__eyebrow {
-        color: #8e8e93;
-        font-size: 1.45cqh;
-        font-weight: 600;
-        letter-spacing: 0.03em;
-        text-transform: uppercase;
+    .title {
+        font-size: 8cqw;
+        font-weight: 700;
     }
 
-    h1 {
-        margin: 0.2cqh 0 0;
-        font-size: 5.8cqh;
-        font-weight: 700;
-        letter-spacing: -0.04em;
+    .photos-more {
+        margin-top: 0.4cqh;
     }
 }
 
 .photos-more,
 .photos-filter__button,
-.photos-bottom-nav__item,
 .photo-card,
 .photo-viewer__button,
 .photo-viewer__arrow,
@@ -261,15 +257,15 @@ const onTouchEnd = (event) => {
     height: 9cqw;
     margin-bottom: 0.6cqh;
     border-radius: 50%;
-    color: #3478f6;
-    background: rgba(52, 120, 246, 0.1);
+    color: rgba(255, 255, 255, 0.82);
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .photos-filter {
     display: flex;
     gap: 1cqw;
     box-sizing: border-box;
-    padding: 0 5cqw 1.8cqh;
+    padding: 0 0 1.8cqh;
     overflow-x: auto;
 
     &::-webkit-scrollbar { display: none; }
@@ -279,21 +275,21 @@ const onTouchEnd = (event) => {
     flex: 0 0 auto;
     padding: 0.85cqh 3.5cqw;
     border-radius: 999px;
-    color: #606066;
+    color: rgba(255, 255, 255, 0.62);
     font-size: 1.6cqh;
     font-weight: 600;
-    background: #e5e5ea;
+    background: rgba(60, 60, 60, 0.68);
 
     &--active {
         color: #fff;
-        background: #3478f6;
+        background: #4d8dff;
     }
 }
 
 .photos-scroll {
     flex: 1;
     min-height: 0;
-    padding: 0 3.5cqw 15cqh;
+    padding: 0 0 1.5cqh;
     overflow-y: auto;
 
     &::-webkit-scrollbar { width: 0; }
@@ -303,7 +299,7 @@ const onTouchEnd = (event) => {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    padding: 1.5cqh 1.5cqw 1.1cqh;
+    padding: 1.5cqh 0 1.1cqh;
 
     h2 {
         margin: 0;
@@ -313,7 +309,7 @@ const onTouchEnd = (event) => {
     }
 
     span {
-        color: #8e8e93;
+        color: rgba(255, 255, 255, 0.5);
         font-size: 1.35cqh;
     }
 }
