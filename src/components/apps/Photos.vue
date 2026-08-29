@@ -325,7 +325,7 @@ const onTouchEnd = (event) => {
     aspect-ratio: 1;
     overflow: hidden;
     border-radius: 1cqw;
-    background: #d1d1d6;
+    background: rgba(60, 60, 60, 0.6);
 
     &:active .photo-card__image {
         transform: scale(0.96);
@@ -361,7 +361,7 @@ const onTouchEnd = (event) => {
     box-sizing: border-box;
     min-height: 42cqh;
     padding: 5cqw;
-    color: #8e8e93;
+    color: rgba(255, 255, 255, 0.5);
     text-align: center;
 
     &__icon {
@@ -372,11 +372,11 @@ const onTouchEnd = (event) => {
         height: 15cqw;
         margin-bottom: 2cqh;
         border-radius: 50%;
-        background: #e5e5ea;
+        background: rgba(60, 60, 60, 0.68);
     }
 
     strong {
-        color: #3a3a3c;
+        color: rgba(255, 255, 255, 0.86);
         font-size: 2.2cqh;
     }
 
@@ -388,31 +388,60 @@ const onTouchEnd = (event) => {
     }
 }
 
-.photos-bottom-nav {
-    position: absolute;
-    z-index: 4;
-    right: 0;
-    bottom: 2.8cqh;
-    left: 0;
+.bottom-app-photos {
     display: flex;
-    justify-content: space-around;
-    padding: 1.2cqh 7cqw 0;
-    border-top: 1px solid rgba(60, 60, 67, 0.14);
-    background: rgba(242, 242, 247, 0.88);
-    backdrop-filter: blur(1.2cqw);
+    justify-content: center;
+    width: 100%;
+    min-height: 18%;
+    flex-shrink: 0;
+    border-radius: 6cqh;
+
+    .categories {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        height: 68%;
+        border-radius: 6cqh;
+        background-color: rgba(51, 51, 51, 0.3);
+        box-shadow:
+            0 10px 26px rgba(0, 0, 0, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.85),
+            inset 0 -6px 10px -6px rgba(0, 0, 0, 0.15);
+
+        .categorie {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 0.75cqh;
+            width: 30%;
+            height: 90%;
+            border-radius: 5.7cqh;
+            color: rgba(255, 255, 255, 0.8);
+            font-family: "SF Pro Display";
+            font-size: 1.6cqh;
+            font-weight: 500;
+            background: transparent;
+            transition: all ease-in-out 0.2s;
+
+            &.categorie-selected {
+                color: #4d8dff;
+            }
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.photos-bottom-nav {
+    display: none;
 }
 
 .photos-bottom-nav__item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.6cqh;
-    min-width: 20cqw;
-    color: #8e8e93;
-    font-size: 1.25cqh;
-    background: transparent;
-
-    &--active { color: #3478f6; }
+    display: none;
 }
 
 .photo-viewer {
@@ -424,6 +453,22 @@ const onTouchEnd = (event) => {
     color: #fff;
     background: #09090b;
 }
+
+/* The viewer covers the app content, including its dark category bar. */
+.photo-viewer {
+    right: -3cqh;
+    bottom: 0;
+    left: -3cqh;
+    padding: 0 3cqh;
+}
+
+/* Keep the same spacing as the phone app when the viewer is closed. */
+.photos-app > .photo-viewer {
+    top: -15cqw;
+}
+
+/* Viewer styles */
+.photo-viewer {
 
 .photo-viewer__topbar,
 .photo-viewer__bottombar {
