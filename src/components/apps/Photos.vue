@@ -18,7 +18,7 @@ const selectedPhoto = ref(null);
 const selectedIndex = ref(0);
 const touchStartX = ref(null);
 
-const filters = ['Toutes', 'Vidéos', 'Favoris'];
+const filters = ['Toutes', 'Vidéos'];
 
 const visiblePhotos = computed(() => {
     if (activeFilter.value === 'Vidéos') return photos.value.filter(({ type }) => type === 'video');
