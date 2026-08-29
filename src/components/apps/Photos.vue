@@ -207,12 +207,8 @@ const onTouchEnd = (event) => {
         font-weight: 700;
     }
 
-    .photos-more {
-        margin-top: 0.4cqh;
-    }
 }
 
-.photos-more,
 .photos-filter__button,
 .photo-card,
 .photo-viewer__button,
@@ -222,18 +218,6 @@ const onTouchEnd = (event) => {
     border: 0;
     font-family: inherit;
     cursor: pointer;
-}
-
-.photos-more {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 9cqw;
-    height: 9cqw;
-    margin-bottom: 0.6cqh;
-    border-radius: 50%;
-    color: rgba(255, 255, 255, 0.82);
-    background: rgba(255, 255, 255, 0.1);
 }
 
 .photos-filter {
@@ -436,6 +420,10 @@ const onTouchEnd = (event) => {
     padding: 9cqh 5cqw 1.5cqh;
 }
 
+.photo-viewer__topbar {
+    position: relative;
+}
+
 .photo-viewer__bottombar {
     align-items: flex-end;
     padding: 1.8cqh 5cqw 8cqh;
@@ -461,9 +449,12 @@ const onTouchEnd = (event) => {
 }
 
 .photo-viewer__counter {
+    position: absolute;
+    left: 50%;
     color: rgba(255, 255, 255, 0.7);
     font-size: 1.45cqh;
     font-weight: 500;
+    transform: translateX(-50%);
 }
 
 .photo-viewer__stage {
