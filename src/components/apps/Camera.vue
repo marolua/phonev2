@@ -17,7 +17,6 @@ const modes = ['VIDÉO', 'PHOTO'];
 const activeMode = ref('PHOTO');
 const zoom = ref(1);
 const flashEnabled = ref(false);
-const livePhotoEnabled = ref(true);
 const showGrid = ref(false);
 const isFrontCamera = ref(false);
 const isCapturing = ref(false);
@@ -97,14 +96,6 @@ onBeforeUnmount(stopRecording);
                     @click="flashEnabled = !flashEnabled">
                     <Zap v-if="!flashEnabled" :size="18" :stroke-width="2.2" />
                     <ZapOff v-else :size="18" :stroke-width="2.2" />
-                </button>
-
-                <button class="live-photo-button" type="button"
-                    :class="{ 'live-photo-button--active': livePhotoEnabled }"
-                    aria-label="Activer ou désactiver Live Photo" @click="livePhotoEnabled = !livePhotoEnabled">
-                    <span class="live-photo-button__ring live-photo-button__ring--outer"></span>
-                    <span class="live-photo-button__ring live-photo-button__ring--inner"></span>
-                    <span class="live-photo-button__dot"></span>
                 </button>
 
                 <button class="camera-control" type="button" aria-label="Afficher les réglages">
