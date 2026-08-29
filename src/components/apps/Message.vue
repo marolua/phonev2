@@ -662,7 +662,7 @@ const sendMessage = async () => {
     border-radius: 3cqh 3cqh 3cqh 0.5cqh;
     color: rgba(255, 255, 255, 0.94);
     text-align: left;
-    font-size: 1.7cqh;
+    font-size: 1.8cqh;
     background: rgba(55, 55, 58, 0.95);
 }
 
