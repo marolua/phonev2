@@ -306,7 +306,6 @@ onBeforeUnmount(stopRecording);
 }
 
 .camera-control,
-.live-photo-button,
 .camera-gallery,
 .camera-flip,
 .camera-chevron {
@@ -336,45 +335,6 @@ onBeforeUnmount(stopRecording);
         color: #ffd60a;
         background: rgba(255, 214, 10, 0.2);
     }
-}
-
-.live-photo-button {
-    position: relative;
-    width: 8cqw;
-    height: 8cqw;
-    border-radius: 50%;
-    opacity: 0.5;
-    transition: opacity 0.2s ease, transform 0.18s ease;
-
-    &--active {
-        opacity: 1;
-    }
-
-    &:active {
-        transform: scale(0.88);
-    }
-}
-
-.live-photo-button__ring,
-.live-photo-button__dot {
-    position: absolute;
-    display: block;
-    border-radius: 50%;
-}
-
-.live-photo-button__ring--outer {
-    inset: 0;
-    border: 1.1cqw solid currentColor;
-}
-
-.live-photo-button__ring--inner {
-    inset: 1.9cqw;
-    border: 0.7cqw solid currentColor;
-}
-
-.live-photo-button__dot {
-    inset: 3.25cqw;
-    background: currentColor;
 }
 
 .focus-reticle {
