@@ -142,7 +142,8 @@ const onTouchEnd = (event) => {
             <span class="title">Photos</span>
         </header>
 
-        <div v-if="activeCategory === 'library'" class="photos-filter" role="tablist" aria-label="Filtrer la photothèque">
+        <div v-if="activeCategory === 'library'" class="photos-filter" role="tablist"
+            aria-label="Filtrer la photothèque">
             <button v-for="filter in filters" :key="filter" class="photos-filter__button"
                 :class="{ 'photos-filter__button--active': activeFilter === filter }" type="button" role="tab"
                 :aria-selected="activeFilter === filter" @click="activeFilter = filter">
@@ -176,7 +177,8 @@ const onTouchEnd = (event) => {
                 </div>
 
                 <div class="photos-section-heading">
-                    <h2>{{ activeCategory === 'search' ? 'Résultats' : activeFilter === 'Vidéos' ? 'Vidéos' : activeFilter === 'Photos' ? 'Photos' : 'Récents' }}</h2>
+                    <h2>{{ activeCategory === 'search' ? 'Résultats' : activeFilter === 'Vidéos' ? 'Vidéos' :
+                        activeFilter === 'Photos' ? 'Photos' : 'Récents' }}</h2>
                     <span>{{ visiblePhotos.length }} élément{{ visiblePhotos.length > 1 ? 's' : '' }}</span>
                 </div>
 
@@ -195,7 +197,8 @@ const onTouchEnd = (event) => {
                     <div class="photos-empty__icon">
                         <Image :size="28" :stroke-width="1.6" />
                     </div>
-                    <strong>{{ activeCategory === 'search' && searchQuery ? 'Aucun résultat' : 'Aucune photo' }}</strong>
+                    <strong>{{ activeCategory === 'search' && searchQuery ? 'Aucun résultat' : 'Aucune photo'
+                        }}</strong>
                     <span>Les photos et vidéos prises avec la caméra apparaîtront ici.</span>
                 </div>
             </template>
