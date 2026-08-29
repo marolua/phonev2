@@ -274,6 +274,33 @@ onBeforeUnmount(stopRecording);
     pointer-events: none;
 }
 
+.recording-indicator {
+    position: absolute;
+    z-index: 3;
+    top: 17.5cqh;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    gap: 1.2cqw;
+    padding: 0.9cqh 2.4cqw;
+    border-radius: 999px;
+    color: #fff;
+    font-size: 1.45cqh;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    background: rgba(20, 20, 20, 0.58);
+    backdrop-filter: blur(0.8cqw);
+    transform: translateX(-50%);
+}
+
+.recording-indicator__dot {
+    width: 1.7cqw;
+    height: 1.7cqw;
+    border-radius: 50%;
+    background: #ff3b30;
+    animation: recording-dot-pulse 1s ease-in-out infinite;
+}
+
 .camera-top-controls {
     position: absolute;
     z-index: 2;
@@ -451,7 +478,7 @@ onBeforeUnmount(stopRecording);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1.25cqw;
+    gap: 0.8cqw;
     transform: translateX(-50%);
 }
 
@@ -459,13 +486,13 @@ onBeforeUnmount(stopRecording);
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 7.5cqw;
-    height: 7.5cqw;
+    width: 6cqw;
+    height: 6cqw;
     padding: 0;
     border: 0;
     border-radius: 50%;
     color: #ffd60a;
-    font: 500 1.65cqh "SF Pro Display", sans-serif;
+    font: 500 1.35cqh "SF Pro Display", sans-serif;
     background: rgba(30, 30, 30, 0.52);
     cursor: pointer;
     transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
@@ -473,7 +500,7 @@ onBeforeUnmount(stopRecording);
     &--selected {
         color: #1c1c1e;
         background: #ffd60a;
-        transform: scale(1.15);
+        transform: scale(1.08);
     }
 
     &:active {
@@ -588,10 +615,10 @@ onBeforeUnmount(stopRecording);
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 20cqw;
-    height: 20cqw;
-    padding: 0.85cqw;
-    border: 0.55cqw solid rgba(255, 255, 255, 0.95);
+    width: 17cqw;
+    height: 17cqw;
+    padding: 0.65cqw;
+    border: 0.45cqw solid rgba(255, 255, 255, 0.95);
     border-radius: 50%;
     background: transparent;
     cursor: pointer;
@@ -613,8 +640,16 @@ onBeforeUnmount(stopRecording);
         border-color: #fff;
 
         .shutter-button__inner {
-            color: #ff3b30;
+            color: #fff;
             background: #ff3b30;
+        }
+    }
+
+    &--recording {
+        border-color: #ff3b30;
+
+        .shutter-button__inner {
+            color: #fff;
         }
     }
 
@@ -625,6 +660,13 @@ onBeforeUnmount(stopRecording);
             transform: scale(0.84);
         }
     }
+}
+
+.recording-square {
+    width: 4.7cqw;
+    height: 4.7cqw;
+    border-radius: 0.8cqw;
+    background: currentColor;
 }
 
 .camera-hints {
@@ -666,6 +708,19 @@ onBeforeUnmount(stopRecording);
 
     to {
         opacity: 0;
+    }
+}
+
+@keyframes recording-dot-pulse {
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.35;
+        transform: scale(0.72);
     }
 }
 </style>
