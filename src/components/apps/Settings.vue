@@ -9,17 +9,14 @@ const showCategory = ref(false);
 
 const openCategory = (id, name) => {
     selectedCategory.value = { id, name };
-    // show immediately so enter transition plays
     showCategory.value = true;
 };
 
 const closeCategory = () => {
-    // hide immediately so leave transition starts — component will be removed after transition
     showCategory.value = false;
 };
 
 const onAfterLeave = () => {
-    // clear data after leave to avoid stale object during transition
     selectedCategory.value = null;
 };
 </script>
