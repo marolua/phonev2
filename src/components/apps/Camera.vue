@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, onBeforeUnmount, ref } from 'vue';
 import {
     Aperture,
     Circle,
@@ -13,7 +13,7 @@ import {
     ZapOff,
 } from '@lucide/vue';
 
-const modes = ['CINÉMATIQUE', 'VIDÉO', 'PHOTO', 'PORTRAIT', 'PANO'];
+const modes = ['VIDÉO', 'PHOTO'];
 const activeMode = ref('PHOTO');
 const zoom = ref(1);
 const flashEnabled = ref(false);
@@ -21,16 +21,52 @@ const livePhotoEnabled = ref(true);
 const showGrid = ref(false);
 const isFrontCamera = ref(false);
 const isCapturing = ref(false);
+const isRecording = ref(false);
+const recordingSeconds = ref(0);
 const lastCapture = ref(null);
+let recordingInterval = null;
 
-const isVideoMode = computed(() => activeMode.value === 'VIDÉO' || activeMode.value === 'CINÉMATIQUE');
-const shutterLabel = computed(() => isVideoMode.value ? 'Démarrer l’enregistrement' : 'Prendre une photo');
+const isVideoMode = computed(() => activeMode.value === 'VIDÉO');
+const shutterLabel = computed(() => {
+    if (!isVideoMode.value) return 'Prendre une photo';
+    return isRecording.value ? 'Arrêter l’enregistrement' : 'Démarrer l’enregistrement';
+});
+const recordingTime = computed(() => {
+    const minutes = Math.floor(recordingSeconds.value / 60).toString().padStart(2, '0');
+    const seconds = (recordingSeconds.value % 60).toString().padStart(2, '0');
+    return `${minutes}:${seconds}`;
+});
+
+const stopRecording = () => {
+    isRecording.value = false;
+    recordingSeconds.value = 0;
+
+    if (recordingInterval) {
+        window.clearInterval(recordingInterval);
+        recordingInterval = null;
+    }
+};
 
 const selectMode = (mode) => {
+    if (mode !== 'VIDÉO') stopRecording();
     activeMode.value = mode;
 };
 
 const capture = () => {
+    if (isVideoMode.value) {
+        if (isRecording.value) {
+            stopRecording();
+            return;
+        }
+
+        isRecording.value = true;
+        recordingSeconds.value = 0;
+        recordingInterval = window.setInterval(() => {
+            recordingSeconds.value += 1;
+        }, 1000);
+        return;
+    }
+
     isCapturing.value = true;
     lastCapture.value = Date.now();
 
@@ -38,14 +74,22 @@ const capture = () => {
         isCapturing.value = false;
     }, 180);
 };
+
+onBeforeUnmount(stopRecording);
 </script>
 
 <template>
-    <div class="camera-app" :class="{ 'camera-app--recording': isVideoMode && isCapturing }">
+    <div class="camera-app" :class="{ 'camera-app--recording': isRecording }">
         <div class="camera-viewfinder" :class="{ 'camera-viewfinder--grid': showGrid }">
             <div class="viewfinder-scene" :style="{ '--camera-zoom': zoom }"></div>
             <div class="viewfinder-vignette"></div>
             <div v-if="isCapturing" class="capture-flash" aria-hidden="true"></div>
+
+            <div v-if="isRecording" class="recording-indicator" aria-live="polite">
+                <span class="recording-indicator__dot"></span>
+                <span>REC</span>
+                <span>{{ recordingTime }}</span>
+            </div>
 
             <div class="camera-top-controls">
                 <button class="camera-control" type="button" :class="{ 'camera-control--active': flashEnabled }"
@@ -100,7 +144,11 @@ const capture = () => {
                     </button>
 
                     <button class="shutter-button"
-                        :class="{ 'shutter-button--video': isVideoMode, 'shutter-button--pressed': isCapturing }"
+                        :class="{
+                            'shutter-button--video': isVideoMode,
+                            'shutter-button--recording': isRecording,
+                            'shutter-button--pressed': isCapturing
+                        }"
                         type="button" :aria-label="shutterLabel" @click="capture">
                         <span class="shutter-button__inner">
                             <Video v-if="isVideoMode" :size="25" :stroke-width="2.3" />
