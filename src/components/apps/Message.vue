@@ -400,7 +400,14 @@ const sendLocationMessage = async () => {
                 <div v-for="message in selectedConversation.messages" :key="message.id"
                     :class="['message-bubble-row', message.author === 'me' ? 'message-bubble-row-me' : '']">
                     <div :class="['message-bubble', message.author === 'me' ? 'message-bubble-me' : '']">
-                        <span>{{ message.text }}</span>
+                        <div v-if="message.type === 'photo'" class="message-photo"
+                            :style="photoStyle(message.photo)" aria-label="Photo envoyée"></div>
+                        <div v-else-if="message.type === 'location'" class="message-location">
+                            <MapPin size="2.8cqh" />
+                            <strong>Position partagée</strong>
+                            <span>{{ locationLabel(message.coords) }}</span>
+                        </div>
+                        <span v-else>{{ message.text }}</span>
                     </div>
                     <div class="message-meta">
                         <span>{{ message.time }}</span>
@@ -412,15 +419,38 @@ const sendLocationMessage = async () => {
             </div>
 
             <div v-if="showComposerOptions" class="composer-options">
-                <button type="button" @click="showComposerOptions = false">
+                <button type="button" @click="openPhotoPicker">
                     <ImagePlus size="2.2cqh" />
                     <span>Envoyer une photo</span>
                 </button>
-                <button type="button" @click="showComposerOptions = false">
+                <button type="button" @click="sendLocationMessage">
                     <MapPin size="2.2cqh" />
                     <span>Partager ma position GPS</span>
                 </button>
             </div>
+
+            <Transition name="message-sheet">
+                <div v-if="showPhotoPicker" class="photo-picker-backdrop" @click.self="closePhotoPicker">
+                    <div class="photo-picker-modal">
+                        <div class="photo-picker-header">
+                            <button type="button" @click="closePhotoPicker">Annuler</button>
+                            <strong>Choisir une photo</strong>
+                            <span aria-hidden="true"></span>
+                        </div>
+                        <div v-if="photos.length" class="photo-picker-grid">
+                            <button v-for="photo in photos" :key="photo.id" type="button" class="photo-picker-item"
+                                :aria-label="photo.type === 'video' ? 'Choisir une vidéo' : 'Choisir une photo'"
+                                @click="sendPhotoMessage(photo)">
+                                <span :style="photoStyle(photo)"></span>
+                            </button>
+                        </div>
+                        <div v-else class="photo-picker-empty">
+                            <ImagePlus size="5cqh" />
+                            <span>Aucune photo dans la galerie</span>
+                        </div>
+                    </div>
+                </div>
+            </Transition>
 
             <form class="message-composer" @submit.prevent="sendMessage">
                 <button type="button" class="composer-add" aria-label="Ajouter une pièce jointe"
