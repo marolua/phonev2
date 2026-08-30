@@ -21,7 +21,7 @@ import CalculatorApp from "../components/apps/Calculator.vue";
 import BankApp from "../components/apps/Bank.vue";
 import NewsApp from "../components/apps/News.vue";
 import ServicesApp from "../components/apps/Services.vue";
-import TwitterApp from "../components/apps/Kwiker.vue";
+import KwikerApp from "../components/apps/Kwiker.vue";
 
 export const applications = [
   {
