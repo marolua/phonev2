@@ -314,9 +314,7 @@ const publish = async () => {
                         <p v-if="publishNotice || lastError" class="news-form-notice">{{ publishNotice || lastError }}
                         </p>
                         <p class="news-form-footnote">
-                            <Send :size="13" /> {{ isFiveM ? 'Publication sécurisée vers la rédaction' : 'Mode aperçu ·
-                            la
-                            publication est conservée dans l’app' }}
+                            <Send :size="13" /> {{ isFiveM ? 'Publication sécurisée vers la rédaction' : 'Mode aperçu ·lapublication est conservée dans l’app' }}
                         </p>
                     </div>
                 </form>
