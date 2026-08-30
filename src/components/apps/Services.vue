@@ -195,6 +195,59 @@ const answerIncomingCall = (call) => {
             </main>
         </template>
 
+        <template v-else-if="!selectedCompany && activeView === 'messages'">
+            <header class="services-header services-messages-header">
+                <div><span class="services-eyebrow">Communication</span><h1>Messages</h1></div>
+                <span class="services-employee-avatar"><MessageCircle :size="17" /></span>
+            </header>
+            <div class="services-message-tabs" role="tablist" aria-label="Type de messages">
+                <button type="button" role="tab" :aria-selected="messageTab === 'personal'"
+                    :class="{ 'services-message-tab--active': messageTab === 'personal' }"
+                    @click="messageTab = 'personal'">Personal</button>
+                <button type="button" role="tab" :aria-selected="messageTab === 'job'"
+                    :class="{ 'services-message-tab--active': messageTab === 'job' }"
+                    @click="messageTab = 'job'">Job<span v-if="unreadCount">{{ unreadCount }}</span></button>
+            </div>
+            <main class="services-scroll services-messages-scroll">
+                <template v-if="messageTab === 'personal'">
+                    <div v-if="personalMessages.length" class="services-message-list">
+                        <button v-for="message in personalMessages" :key="message.id" type="button"
+                            class="services-personal-message" @click="companies.find((company) => company.id === message.companyId) && openCompany(companies.find((company) => company.id === message.companyId))">
+                            <span class="services-message-avatar services-message-avatar--company">{{ message.companyName.slice(0, 1).toUpperCase() }}</span>
+                            <span class="services-personal-message__content"><strong>{{ message.companyName }}</strong><span>{{ message.text }}</span></span>
+                            <span class="services-personal-message__meta">{{ message.time }}<ChevronRight :size="15" /></span>
+                        </button>
+                    </div>
+                    <div v-else class="services-empty services-messages-empty">
+                        <MessageCircle :size="31" /><strong>Aucun message envoyé</strong><span>Les messages envoyés aux entreprises apparaîtront ici.</span>
+                    </div>
+                </template>
+                <template v-else>
+                    <div v-if="!isEmployee" class="services-empty services-messages-empty">
+                        <BriefcaseBusiness :size="31" /><strong>Espace entreprise</strong><span>Cette boîte est réservée aux employés d’une entreprise.</span>
+                    </div>
+                    <div v-else-if="employeeMessages.length" class="services-message-list">
+                        <article v-for="message in employeeMessages" :key="message.id" class="services-message-card"
+                            :class="{ 'services-message-card--unread': message.unread }">
+                            <div class="services-message-top"><span class="services-message-avatar">{{ message.senderName.slice(0, 1).toUpperCase() }}</span><span><strong>{{ message.senderName }}</strong><small>{{ message.time }}</small></span><span v-if="message.unread" class="services-unread-dot"></span></div>
+                            <p>{{ message.text }}</p>
+                            <div class="services-message-actions"><span v-if="message.senderPhone"><Phone :size="14" /> {{ formatPhone(message.senderPhone) }}</span><button type="button" @click="openMessageComposer(employeeCompany, message)"><Reply :size="14" /> Répondre</button></div>
+                        </article>
+                    </div>
+                    <div v-else class="services-empty services-messages-empty">
+                        <Inbox :size="31" /><strong>Aucun message reçu</strong><span>Les messages envoyés à ton entreprise apparaîtront ici.</span>
+                    </div>
+                </template>
+            </main>
+        </template>
+
+        <template v-else-if="!selectedCompany && (activeView === 'actions' || activeView === 'jobs')">
+            <header class="services-header"><div><span class="services-eyebrow">Los Santos</span><h1>{{ activeView === 'actions' ? 'Actions' : 'Jobs' }}</h1></div></header>
+            <main class="services-scroll">
+                <div class="services-empty services-messages-empty"><ShieldCheck :size="31" /><strong>{{ activeView === 'actions' ? 'Actions rapides' : 'Mes entreprises' }}</strong><span>{{ activeView === 'actions' ? 'Les actions liées aux entreprises seront disponibles ici.' : 'Les entreprises liées à ton personnage apparaîtront ici.' }}</span></div>
+            </main>
+        </template>
+
         <template v-else-if="!selectedCompany && activeView === 'inbox'">
             <header class="services-header services-inbox-header">
                 <button type="button" class="services-back-button" aria-label="Annuaire"
