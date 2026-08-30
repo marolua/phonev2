@@ -18,6 +18,11 @@ const {
 
 const activeView = ref('directory');
 const messageTab = ref('personal');
+const conversationCompany = ref(null);
+const conversationOrigin = ref('directory');
+const conversationDraft = ref('');
+const conversationNotice = ref('');
+const isConversationSending = ref(false);
 const activeCategory = ref('Tous');
 const searchQuery = ref('');
 const selectedCompany = ref(null);
@@ -40,6 +45,28 @@ const employeeMessages = computed(() => inbox.value
     .filter((message) => !employeeCompanyId.value || message.companyId === employeeCompanyId.value)
     .sort((a, b) => b.createdAt - a.createdAt));
 const personalMessages = computed(() => [...sentMessages.value].sort((a, b) => b.createdAt - a.createdAt));
+const conversationMessages = computed(() => {
+    if (!conversationCompany.value) return [];
+
+    const companyId = conversationCompany.value.id;
+    const sentIds = new Set(sentMessages.value.map(({ id }) => id));
+    const messages = [
+        ...inbox.value
+            .filter((message) => message.companyId === companyId)
+            .map((message) => ({ ...message, outgoing: sentIds.has(message.id) })),
+        ...sentMessages.value
+            .filter((message) => message.companyId === companyId)
+            .map((message) => ({ ...message, outgoing: true })),
+    ];
+
+    return [...new Map(messages.map((message) => [message.id, message])).values()]
+        .sort((a, b) => a.createdAt - b.createdAt);
+});
+
+const serviceCategories = [
+    { id: 'directory', label: 'Companies', icon: Building2 },
+    { id: 'messages', label: 'Messages', icon: MessageCircle },
+];
 
 const visibleCompanies = computed(() => {
     const query = searchQuery.value.trim().toLowerCase();
@@ -72,6 +99,28 @@ const openCompany = (company) => {
     openMessageComposer(company);
 };
 const closeCompany = () => { selectedCompany.value = null; };
+
+const companyForMessage = (message) => companies.value.find((company) => company.id === message.companyId);
+
+const openConversation = (company, origin = activeView.value === 'messages' ? 'messages' : 'directory') => {
+    if (!company) return;
+
+    conversationCompany.value = company;
+    conversationOrigin.value = origin;
+    conversationDraft.value = '';
+    conversationNotice.value = '';
+    activeView.value = 'conversation';
+    inbox.value
+        .filter((message) => message.companyId === company.id)
+        .forEach((message) => { message.unread = false; });
+};
+
+const closeConversation = () => {
+    conversationCompany.value = null;
+    conversationDraft.value = '';
+    conversationNotice.value = '';
+    activeView.value = conversationOrigin.value;
+};
 
 const openMessageComposer = (company, message = null) => {
     const targetCompany = company || employeeCompany.value;
@@ -112,6 +161,29 @@ const submitMessage = async () => {
         isComposerVisible.value = false;
         messageNotice.value = '';
     }, 550);
+};
+
+const sendConversationMessage = async () => {
+    const text = conversationDraft.value.trim();
+    if (!text || !conversationCompany.value || isConversationSending.value) return;
+
+    isConversationSending.value = true;
+    conversationNotice.value = '';
+    const sent = await sendServiceMessage({
+        companyId: conversationCompany.value.id,
+        company: conversationCompany.value,
+        text,
+        senderName: currentEmployee.value?.name || 'Habitant',
+        senderPhone: currentEmployee.value?.phone || '',
+    });
+    isConversationSending.value = false;
+
+    if (!sent) {
+        conversationNotice.value = lastError.value || 'Le message n’a pas pu être envoyé.';
+        return;
+    }
+
+    conversationDraft.value = '';
 };
 
 const callCompany = async (company) => {
@@ -166,7 +238,7 @@ const answerIncomingCall = (call) => {
                 <div v-if="isLoading" class="services-empty"><span>Chargement de l’annuaire…</span></div>
                 <template v-else>
                     <div v-for="company in visibleCompanies" :key="company.id" class="service-company-row">
-                        <button type="button" class="service-company-main" @click="openMessageComposer(company)">
+                        <button type="button" class="service-company-main" @click="openConversation(company)">
                             <span class="service-company-icon" :style="{ background: company.color }">
                                 <component :is="companyIcon(company.category)" :size="21" />
                             </span>
@@ -194,6 +266,43 @@ const answerIncomingCall = (call) => {
             </main>
         </template>
 
+        <template v-else-if="!selectedCompany && activeView === 'conversation'">
+            <header class="services-conversation-header">
+                <button type="button" aria-label="Retour aux messages" @click="closeConversation">
+                    <ArrowLeft :size="20" />
+                </button>
+                <div>
+                    <strong>{{ conversationCompany?.name }}</strong>
+                    <small>{{ formatPhone(conversationCompany?.phone) }}</small>
+                </div>
+                <button type="button" aria-label="Appeler l’entreprise" @click="callCompany(conversationCompany)">
+                    <Phone :size="18" />
+                </button>
+            </header>
+            <main class="services-conversation-scroll">
+                <div v-if="conversationMessages.length" class="services-conversation-list">
+                    <div v-for="message in conversationMessages" :key="message.id"
+                        class="services-conversation-row" :class="{ 'services-conversation-row--outgoing': message.outgoing }">
+                        <span class="services-conversation-sender">{{ message.outgoing ? 'Moi' : message.senderName }}</span>
+                        <p>{{ message.text }}</p>
+                        <small>{{ message.time }}</small>
+                    </div>
+                </div>
+                <div v-else class="services-empty services-messages-empty">
+                    <MessageCircle :size="31" /><strong>Aucun message</strong>
+                    <span>Commence la discussion avec {{ conversationCompany?.name }}.</span>
+                </div>
+            </main>
+            <form class="services-conversation-composer" @submit.prevent="sendConversationMessage">
+                <input v-model="conversationDraft" type="text" maxlength="500"
+                    :placeholder="'Écrire à ' + (conversationCompany?.name || 'l’entreprise')" />
+                <button type="submit" :disabled="isConversationSending || !conversationDraft.trim()" aria-label="Envoyer">
+                    <Send :size="18" />
+                </button>
+                <small v-if="conversationNotice">{{ conversationNotice }}</small>
+            </form>
+        </template>
+
         <template v-else-if="!selectedCompany && activeView === 'messages'">
             <header class="services-header services-messages-header">
                 <div><span class="services-eyebrow">Communication</span>
@@ -216,7 +325,7 @@ const answerIncomingCall = (call) => {
                     <div v-if="personalMessages.length" class="services-message-list">
                         <button v-for="message in personalMessages" :key="message.id" type="button"
                             class="services-personal-message"
-                            @click="companies.find((company) => company.id === message.companyId) && openMessageComposer(companies.find((company) => company.id === message.companyId))">
+                            @click="openConversation(companyForMessage(message), 'messages')">
                             <span class="services-message-avatar services-message-avatar--company">{{
                                 message.companyName.slice(0, 1).toUpperCase() }}</span>
                             <span class="services-personal-message__content"><strong>{{ message.companyName
@@ -246,7 +355,7 @@ const answerIncomingCall = (call) => {
                             <p>{{ message.text }}</p>
                             <div class="services-message-actions"><span v-if="message.senderPhone">
                                     <Phone :size="14" /> {{ formatPhone(message.senderPhone) }}
-                                </span><button type="button" @click="openMessageComposer(employeeCompany, message)">
+                                </span><button type="button" @click="openConversation(employeeCompany, 'messages')">
                                     <Reply :size="14" /> Répondre
                                 </button></div>
                         </article>
@@ -356,15 +465,16 @@ const answerIncomingCall = (call) => {
             </section>
         </Transition>
 
-        <div v-if="!selectedCompany" class="services-bottom-nav">
-            <button type="button" :class="{ 'services-nav--active': activeView === 'directory' }"
-                @click="activeView = 'directory'">
-                <Building2 :size="17" /><span>Companies</span>
-            </button>
-            <button type="button" :class="{ 'services-nav--active': activeView === 'messages' }"
-                @click="activeView = 'messages'">
-                <MessageCircle :size="17" /><span>Messages</span><b v-if="unreadCount">{{ unreadCount }}</b>
-            </button>
+        <div v-if="!selectedCompany && activeView !== 'conversation'" class="bottom-app-services">
+            <div class="categories" aria-label="Navigation Services">
+                <button v-for="category in serviceCategories" :key="category.id" type="button" class="categorie"
+                    :class="{ 'categorie-selected': activeView === category.id }" :aria-label="category.label"
+                    @click="activeView = category.id">
+                    <component :is="category.icon" size="3cqh" />
+                    <span>{{ category.label }}</span>
+                    <b v-if="category.id === 'messages' && unreadCount">{{ unreadCount }}</b>
+                </button>
+            </div>
         </div>
 
         <Transition name="services-sheet">
@@ -547,7 +657,7 @@ const answerIncomingCall = (call) => {
     min-height: 0;
     flex: 1;
     overflow-y: auto;
-    padding-bottom: 13cqh;
+    padding-bottom: 1cqh;
     scrollbar-width: none;
 }
 
@@ -970,6 +1080,164 @@ const answerIncomingCall = (call) => {
     min-height: 34cqh;
 }
 
+.services-conversation-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5cqw;
+    min-height: 7cqh;
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+
+.services-conversation-header button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 4.8cqh;
+    height: 4.8cqh;
+    border: 0;
+    border-radius: 50%;
+    color: white;
+    background: rgba(255, 255, 255, .08);
+    cursor: pointer;
+}
+
+.services-conversation-header>div {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: .35cqh;
+    min-width: 0;
+}
+
+.services-conversation-header strong {
+    overflow: hidden;
+    font-size: 1.8cqh;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.services-conversation-header small {
+    color: rgba(255, 255, 255, .42);
+    font-size: 1.25cqh;
+}
+
+.services-conversation-scroll {
+    min-height: 0;
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.6cqh 0;
+    scrollbar-width: none;
+}
+
+.services-conversation-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.services-conversation-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4cqh;
+}
+
+.services-conversation-row {
+    align-self: flex-start;
+    max-width: 78%;
+    border-radius: 1.8cqh 1.8cqh 1.8cqh .5cqh;
+    padding: 1.1cqh 1.4cqw;
+    color: white;
+    background: rgba(42, 42, 45, .98);
+}
+
+.services-conversation-row--outgoing {
+    align-self: flex-end;
+    border-radius: 1.8cqh 1.8cqh .5cqh 1.8cqh;
+    background: var(--services-accent);
+}
+
+.services-conversation-sender {
+    display: block;
+    margin-bottom: .45cqh;
+    color: rgba(255, 255, 255, .52);
+    font-size: 1.15cqh;
+    font-weight: 600;
+}
+
+.services-conversation-row--outgoing .services-conversation-sender {
+    color: rgba(255, 255, 255, .72);
+}
+
+.services-conversation-row p {
+    margin: 0;
+    font-size: 1.55cqh;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+}
+
+.services-conversation-row small {
+    display: block;
+    margin-top: .55cqh;
+    color: rgba(255, 255, 255, .42);
+    font-size: 1.05cqh;
+    text-align: right;
+}
+
+.services-conversation-composer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 1.2cqw;
+    flex-wrap: wrap;
+    min-height: 6.3cqh;
+    padding-top: 1cqh;
+    border-top: 1px solid rgba(255, 255, 255, .08);
+}
+
+.services-conversation-composer input {
+    min-width: 0;
+    flex: 1;
+    height: 5.2cqh;
+    box-sizing: border-box;
+    border: 0;
+    border-radius: 2.8cqh;
+    outline: 0;
+    padding: 0 1.8cqw;
+    color: white;
+    background: rgba(118, 118, 128, .2);
+    font: inherit;
+    font-size: 1.45cqh;
+}
+
+.services-conversation-composer input::placeholder {
+    color: rgba(255, 255, 255, .42);
+}
+
+.services-conversation-composer>button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 5.2cqh;
+    height: 5.2cqh;
+    border: 0;
+    border-radius: 50%;
+    color: white;
+    background: var(--services-accent);
+    cursor: pointer;
+}
+
+.services-conversation-composer>button:disabled {
+    opacity: .35;
+    cursor: default;
+}
+
+.services-conversation-composer small {
+    flex-basis: 100%;
+    margin-top: -.4cqh;
+    color: #ff6b7a;
+    font-size: 1.15cqh;
+}
+
 .services-message-actions {
     justify-content: space-between;
     color: rgba(255, 255, 255, .4);
@@ -1229,6 +1497,71 @@ const answerIncomingCall = (call) => {
     width: 2.1cqh;
     height: 2.1cqh;
     border-radius: 50%;
+    color: white;
+    background: #ff453a;
+    font-size: 1cqh;
+}
+
+.bottom-app-services {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    min-height: 18%;
+    flex-shrink: 0;
+    border-radius: 6cqh;
+}
+
+.bottom-app-services .categories {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 68%;
+    border-radius: 6cqh;
+    background-color: rgba(51, 51, 51, .3);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, .2), inset 0 1px 0 rgba(255, 255, 255, .85),
+        inset 0 -6px 10px -6px rgba(0, 0, 0, .15);
+}
+
+.bottom-app-services .categorie {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: .75cqh;
+    width: 42%;
+    height: 90%;
+    border: 0;
+    border-radius: 5.7cqh;
+    color: rgba(255, 255, 255, .8);
+    background: transparent;
+    font-family: "SF Pro Display";
+    font-size: 1.6cqh;
+    font-weight: 500;
+    transition: color .2s ease-in-out;
+    cursor: pointer;
+}
+
+.bottom-app-services .categorie-selected {
+    color: #4d8dff;
+}
+
+.bottom-app-services .categorie {
+    position: relative;
+}
+
+.bottom-app-services .categorie b {
+    position: absolute;
+    top: .8cqh;
+    right: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2cqh;
+    height: 2cqh;
+    padding: 0 .3cqw;
+    box-sizing: border-box;
+    border-radius: 999px;
     color: white;
     background: #ff453a;
     font-size: 1cqh;
