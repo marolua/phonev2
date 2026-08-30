@@ -169,7 +169,7 @@ const selectWallpaper = (url) => {
           <div class="general-section">
             <div class="section-title">Préférences</div>
             <div class="general-group">
-              <button type="button" class="general-row general-row-button" @click="showLanguagePicker = true">
+              <button type="button" class="general-row general-row-button" @click="openLanguagePicker">
                 <span class="row-leading">
                   <Languages class="general-row-icon" size="2.2cqh" />
                   <span>Langue</span>
