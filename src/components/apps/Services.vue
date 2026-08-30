@@ -23,7 +23,6 @@ const conversationOrigin = ref('directory');
 const conversationDraft = ref('');
 const conversationNotice = ref('');
 const isConversationSending = ref(false);
-const activeCategory = ref('Tous');
 const searchQuery = ref('');
 const selectedCompany = ref(null);
 const isComposerVisible = ref(false);
@@ -38,7 +37,6 @@ const isEmployee = computed(() => Boolean(currentEmployee.value?.isEmployee
 const employeeCompanyId = computed(() => currentEmployee.value?.companyId || currentEmployee.value?.businessId || '');
 const employeeCompany = computed(() => companies.value.find((company) => company.id === employeeCompanyId.value)
     || currentEmployee.value?.company || null);
-const categories = computed(() => ['Tous', ...new Set(companies.value.map(({ category }) => category))]);
 const unreadCount = computed(() => inbox.value.filter((message) => message.unread !== false
     && (!employeeCompanyId.value || message.companyId === employeeCompanyId.value)).length);
 const employeeMessages = computed(() => inbox.value
@@ -77,9 +75,8 @@ const serviceCategories = [
 const visibleCompanies = computed(() => {
     const query = searchQuery.value.trim().toLowerCase();
     return companies.value.filter((company) => {
-        const categoryMatch = activeCategory.value === 'Tous' || company.category === activeCategory.value;
         const searchable = company.name + ' ' + company.category + ' ' + company.phone + ' ' + company.address;
-        return categoryMatch && (!query || searchable.toLowerCase().includes(query));
+        return !query || searchable.toLowerCase().includes(query);
     });
 });
 
