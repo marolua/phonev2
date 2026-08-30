@@ -193,26 +193,26 @@ const selectWallpaper = (url) => {
           </div>
         </div>
 
-        <Transition name="general-modal">
-          <div v-if="showLanguagePicker" class="general-modal-backdrop" @click.self="showLanguagePicker = false">
-            <div class="general-modal language-modal">
-              <div class="modal-header">
-                <div>
-                  <span class="modal-eyebrow">RÉGLAGES</span>
-                  <h2>Choisir une langue</h2>
+        <Transition name="settings-sheet">
+          <div v-if="showLanguagePicker" class="settings-sheet-backdrop" @click.self="showLanguagePicker = false">
+            <form class="settings-sheet language-sheet" @submit.prevent="confirmLanguage">
+              <div class="settings-sheet-header">
+                <button type="button" class="settings-sheet-action settings-sheet-cancel"
+                  @click="showLanguagePicker = false">Annuler</button>
+                <strong>Choisir une langue</strong>
+                <button type="submit" class="settings-sheet-action">Terminé</button>
+              </div>
+              <div class="language-form">
+                <span class="language-form-label">Langue du téléphone</span>
+                <div class="language-list">
+                  <button v-for="language in languages" :key="language" type="button" class="language-option"
+                    :class="{ selected: languageDraft === language }" @click="selectLanguage(language)">
+                    <span>{{ language }}</span>
+                    <Check v-if="languageDraft === language" size="2.2cqh" />
+                  </button>
                 </div>
-                <button type="button" class="modal-close" aria-label="Fermer" @click="showLanguagePicker = false">
-                  <X size="2.2cqh" />
-                </button>
               </div>
-              <div class="language-list">
-                <button v-for="language in languages" :key="language" type="button" class="language-option"
-                  :class="{ selected: selectedLanguage === language }" @click="selectLanguage(language)">
-                  <span>{{ language }}</span>
-                  <Check v-if="selectedLanguage === language" size="2.2cqh" />
-                </button>
-              </div>
-            </div>
+            </form>
           </div>
         </Transition>
 
@@ -333,39 +333,34 @@ const selectWallpaper = (url) => {
           </div>
         </Transition>
 
-        <Transition name="general-modal">
-          <div v-if="showBlockedEditor" class="general-modal-backdrop blocked-editor-backdrop"
-            @click.self="closeBlockedEditor">
-            <div class="general-modal blocked-editor-modal">
-              <div class="sheet-grabber" aria-hidden="true"></div>
-              <div class="modal-header">
-                <div>
-                  <span class="modal-eyebrow">CONTACTS BLOQUÉS</span>
-                  <h2>{{ editingBlockedContactId === null ? 'Ajouter un contact' : 'Modifier le contact' }}</h2>
-                </div>
-                <button type="button" class="modal-close" aria-label="Fermer" @click="closeBlockedEditor">
-                  <X size="2.2cqh" />
+        <Transition name="settings-sheet">
+          <div v-if="showBlockedEditor" class="settings-sheet-backdrop" @click.self="closeBlockedEditor">
+            <form class="settings-sheet blocked-editor-sheet" @submit.prevent="saveBlockedContact">
+              <div class="settings-sheet-header">
+                <button type="button" class="settings-sheet-action settings-sheet-cancel"
+                  @click="closeBlockedEditor">Annuler</button>
+                <strong>{{ editingBlockedContactId === null ? 'Nouveau contact' : 'Modifier le contact' }}</strong>
+                <button type="submit" class="settings-sheet-action"
+                  :disabled="!blockedContactDraft.name.trim() || !isPhoneSuffixValid(blockedContactDraft.phone)">
+                  Enregistrer
                 </button>
               </div>
 
-              <label class="blocked-field">
-                <span>Nom</span>
-                <input v-model="blockedContactDraft.name" type="text" placeholder="Nom du contact" />
-              </label>
-              <label class="blocked-field">
-                <span>Numéro</span>
-                <div class="blocked-phone-entry">
-                  <span class="blocked-phone-prefix">555-</span>
-                  <input v-model="blockedContactDraft.phone" type="tel" inputmode="numeric" maxlength="4"
-                    placeholder="1234" @input="blockedContactDraft.phone = phoneDigits($event.target.value)" />
-                </div>
-              </label>
-
-              <button type="button" class="modal-action save-blocked-action" @click="saveBlockedContact">
-                Enregistrer
-              </button>
-              <button type="button" class="modal-action cancel-action" @click="closeBlockedEditor">Annuler</button>
-            </div>
+              <div class="settings-sheet-form blocked-form">
+                <label class="settings-sheet-field">
+                  <span>Nom</span>
+                  <input v-model="blockedContactDraft.name" type="text" placeholder="Nom du contact" />
+                </label>
+                <label class="settings-sheet-field">
+                  <span>Téléphone</span>
+                  <div class="settings-phone-input">
+                    <span>555-</span>
+                    <input v-model="blockedContactDraft.phone" type="tel" inputmode="numeric" maxlength="4"
+                      placeholder="1234" @input="blockedContactDraft.phone = phoneDigits($event.target.value)" />
+                  </div>
+                </label>
+              </div>
+            </form>
           </div>
         </Transition>
       </template>
