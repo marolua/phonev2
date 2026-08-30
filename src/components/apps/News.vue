@@ -21,7 +21,14 @@ const props = defineProps({
     playerContext: { type: Object, default: null },
 });
 
-const { articles, isLoading, lastError, isFiveM, publishArticle } = useNewsFeed(props.initialNews);
+const {
+    articles,
+    isLoading,
+    lastError,
+    isFiveM,
+    playerContext: bridgePlayerContext,
+    publishArticle,
+} = useNewsFeed(props.initialNews);
 const activeCategory = ref('Pour toi');
 const searchQuery = ref('');
 const selectedArticle = ref(null);
@@ -35,7 +42,7 @@ const draft = ref({ title: '', excerpt: '', content: '', category: 'Actualités'
 const categories = ['Pour toi', 'Actualités', 'Vie locale', 'Sécurité', 'Sport'];
 const draftCategories = categories.slice(1);
 
-const currentPlayer = computed(() => props.playerContext || (isFiveM.value ? {} : {
+const currentPlayer = computed(() => props.playerContext || bridgePlayerContext.value || (isFiveM.value ? {} : {
     job: 'journalist',
     name: 'Maya Brooks',
 }));

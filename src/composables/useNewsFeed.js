@@ -90,6 +90,7 @@ export const useNewsFeed = (initialArticles = []) => {
   );
   const isLoading = ref(false);
   const lastError = ref("");
+  const playerContext = ref(null);
 
   const loadArticles = async () => {
     if (!isFiveM.value) return articles.value;
@@ -134,6 +135,17 @@ export const useNewsFeed = (initialArticles = []) => {
     return normalized;
   };
 
+  const loadPlayerContext = async () => {
+    if (!isFiveM.value) {
+      playerContext.value = { job: "journalist", name: "Maya Brooks" };
+      return playerContext.value;
+    }
+
+    const response = await invoke("getNewsPlayerContext");
+    playerContext.value = response?.player || response || {};
+    return playerContext.value;
+  };
+
   const onNewsUpdate = (event) => {
     const payload = event.detail || event.data;
     const remoteArticles = Array.isArray(payload) ? payload : payload?.articles;
@@ -143,6 +155,7 @@ export const useNewsFeed = (initialArticles = []) => {
 
   onMounted(() => {
     loadArticles();
+    loadPlayerContext();
     window.addEventListener("news:articles-updated", onNewsUpdate);
     window.addEventListener("message", onNewsUpdate);
   });
@@ -157,7 +170,9 @@ export const useNewsFeed = (initialArticles = []) => {
     isLoading,
     lastError,
     isFiveM,
+    playerContext,
     loadArticles,
+    loadPlayerContext,
     publishArticle,
   };
 };
