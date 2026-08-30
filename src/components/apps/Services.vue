@@ -161,7 +161,7 @@ const answerIncomingCall = (call) => {
                 <div class="services-intro"><span>
                         <Building2 :size="17" /> Entreprises disponibles
                     </span><small>{{ visibleCompanies.length }} résultat{{ visibleCompanies.length > 1 ? 's' : ''
-                        }}</small></div>
+                    }}</small></div>
                 <div v-if="isLoading" class="services-empty"><span>Chargement de l’annuaire…</span></div>
                 <template v-else>
                     <div v-for="company in visibleCompanies" :key="company.id" class="service-company-row">
@@ -170,7 +170,7 @@ const answerIncomingCall = (call) => {
                                 <component :is="companyIcon(company.category)" :size="21" />
                             </span>
                             <span class="service-company-info"><strong>{{ company.name }}</strong><small>{{
-                                    company.category }} · {{ company.address }}</small><span
+                                company.category }} · {{ company.address }}</small><span
                                     class="service-company-status"><span></span>{{ company.hours }}</span></span>
                             <ChevronRight :size="17" class="service-company-chevron" />
                         </button>
@@ -210,7 +210,7 @@ const answerIncomingCall = (call) => {
                         <PhoneCall :size="18" />
                     </span>
                     <span><strong>Appel pour l’entreprise</strong><small>{{ incomingCalls[0].callerName }} · {{
-                            incomingCalls[0].callerPhone }}</small></span>
+                        incomingCalls[0].callerPhone }}</small></span>
                     <button type="button" @click="answerIncomingCall(incomingCalls[0])">Répondre</button>
                 </div>
                 <div class="services-inbox-summary"><span>
@@ -251,8 +251,8 @@ const answerIncomingCall = (call) => {
                             <component :is="companyIcon(selectedCompany.category)" :size="34" />
                         </span></div>
                     <div class="services-company-content"><span class="services-company-category">{{
-                            selectedCompany.category
-                            }}</span>
+                        selectedCompany.category
+                    }}</span>
                         <h2>{{ selectedCompany.name }}</h2>
                         <p>{{ selectedCompany.description }}</p>
                         <div class="services-company-number"><span>
@@ -261,10 +261,10 @@ const answerIncomingCall = (call) => {
                             </span><button type="button" @click="callCompany(selectedCompany)">Appeler</button></div>
                         <div class="services-company-details"><span>
                                 <MapPin :size="16" /><span><small>Adresse</small><strong>{{ selectedCompany.address
-                                        }}</strong></span>
+                                }}</strong></span>
                             </span><span>
                                 <Clock3 :size="16" /><span><small>Horaires</small><strong>{{ selectedCompany.hours
-                                        }}</strong></span>
+                                }}</strong></span>
                             </span></div>
                         <button type="button" class="services-message-button"
                             @click="openMessageComposer(selectedCompany)">
@@ -292,22 +292,22 @@ const answerIncomingCall = (call) => {
                     <div class="services-sheet-grabber"></div>
                     <header class="services-composer-header"><button type="button"
                             @click="closeMessageComposer">Annuler</button><strong>{{ composeTarget?.replyTo ? 'Répondre'
-                            :
-                            'Message' }}</strong><button type="submit" :disabled="isSending || !messageDraft.trim()">{{
-                            isSending ? '…' : 'Envoyer' }}</button></header>
+                                :
+                                'Message' }}</strong><button type="submit" :disabled="isSending || !messageDraft.trim()">{{
+                                isSending ? '…' : 'Envoyer' }}</button></header>
                     <div class="services-composer-content">
                         <div class="services-recipient"><span class="service-company-icon"
                                 :style="{ background: composeTarget?.company?.color }">
                                 <Building2 :size="18" />
                             </span><span><small>{{ composeTarget?.replyTo ? 'Réponse à' : 'Destinataire'
-                                    }}</small><strong>{{
-                                    composeTarget?.company?.name }}</strong></span>
+                            }}</small><strong>{{
+                                        composeTarget?.company?.name }}</strong></span>
                             <Check :size="17" />
                         </div>
                         <textarea v-model="messageDraft" rows="5" maxlength="500" autofocus
                             :placeholder="composeTarget?.replyTo ? 'Écris ta réponse…' : 'Écris ton message à l’entreprise…'"></textarea>
                         <p v-if="messageNotice || lastError" class="services-form-notice">{{ messageNotice || lastError
-                            }}</p>
+                        }}</p>
                         <p class="services-form-footnote">
                             <ShieldCheck :size="14" /> Message transmis à la réception de l’entreprise
                         </p>
