@@ -366,7 +366,7 @@ const sendLocationMessage = async () => {
                                 <button v-for="contact in contactSuggestions" :key="contact.id" type="button"
                                     @click="selectContact(contact)">
                                     <span class="suggestion-avatar">{{ contactName(contact).charAt(0).toUpperCase()
-                                        }}</span>
+                                    }}</span>
                                     <span class="suggestion-info">
                                         <strong>{{ contactName(contact) }}</strong>
                                         <small>{{ formatPhoneNumber(contact.phone) }}</small>
@@ -979,7 +979,7 @@ const sendLocationMessage = async () => {
     cursor: pointer;
 }
 
-.photo-picker-header > span {
+.photo-picker-header>span {
     width: 12cqw;
 }
 
