@@ -916,6 +916,69 @@ const answerIncomingCall = (call) => {
     line-height: 1.35;
 }
 
+.services-personal-message {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 8.8cqh;
+    gap: 1.4cqw;
+    border: 0;
+    border-radius: 1.8cqh;
+    padding: 1.3cqh 1.5cqw;
+    box-sizing: border-box;
+    color: white;
+    text-align: left;
+    background: rgba(30, 30, 32, .96);
+    font: inherit;
+    cursor: pointer;
+}
+
+.services-personal-message:hover {
+    background: rgba(48, 48, 51, .96);
+}
+
+.services-message-avatar--company {
+    color: white;
+    background: linear-gradient(145deg, #ff6f93, #a92c5b);
+}
+
+.services-personal-message__content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: .45cqh;
+    min-width: 0;
+}
+
+.services-personal-message__content strong {
+    overflow: hidden;
+    font-size: 1.55cqh;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.services-personal-message__content>span {
+    overflow: hidden;
+    color: rgba(255, 255, 255, .54);
+    font-size: 1.35cqh;
+    line-height: 1.25;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.services-personal-message__meta {
+    display: flex;
+    align-items: center;
+    gap: .5cqw;
+    flex-shrink: 0;
+    color: rgba(255, 255, 255, .4);
+    font-size: 1.2cqh;
+}
+
+.services-messages-empty {
+    min-height: 34cqh;
+}
+
 .services-message-actions {
     justify-content: space-between;
     color: rgba(255, 255, 255, .4);
