@@ -216,7 +216,7 @@ const answerIncomingCall = (call) => {
                     <div v-if="personalMessages.length" class="services-message-list">
                         <button v-for="message in personalMessages" :key="message.id" type="button"
                             class="services-personal-message"
-                            @click="companies.find((company) => company.id === message.companyId) && openCompany(companies.find((company) => company.id === message.companyId))">
+                            @click="companies.find((company) => company.id === message.companyId) && openMessageComposer(companies.find((company) => company.id === message.companyId))">
                             <span class="services-message-avatar services-message-avatar--company">{{
                                 message.companyName.slice(0, 1).toUpperCase() }}</span>
                             <span class="services-personal-message__content"><strong>{{ message.companyName
