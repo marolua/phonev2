@@ -131,7 +131,7 @@ const answerIncomingCall = (call) => {
     <div class="services-app">
         <template v-if="!selectedCompany && activeView === 'directory'">
             <header class="services-header">
-                <div><span class="services-eyebrow">Los Santos</span>
+                <div>
                     <h1>Services</h1>
                 </div>
                 <button v-if="isEmployee" type="button" class="services-inbox-button" aria-label="Boîte entreprise"
