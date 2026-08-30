@@ -1,6 +1,6 @@
 <script setup>
 import { computed, nextTick, ref } from 'vue';
-import { ArrowLeft, Check, ImagePlus, MapPin, Phone, Plus, Search, Send } from '@lucide/vue';
+import { ArrowLeft, Check, ImagePlus, MapPin, Phone, Plus, Search, Send, X } from '@lucide/vue';
 import { contacts } from '../../stores/contacts';
 import { markMessagesAsRead } from '../../stores/messages';
 import { photos } from '../../stores/photos';
@@ -12,6 +12,7 @@ const messageDraft = ref('');
 const messageThread = ref(null);
 const showComposerOptions = ref(false);
 const showPhotoPicker = ref(false);
+const selectedMessagePhoto = ref(null);
 const showNewConversation = ref(false);
 const showContactSuggestions = ref(false);
 const newConversation = ref({ name: '', phone: '' });
@@ -215,6 +216,7 @@ const closeConversation = () => {
     messageDraft.value = '';
     showComposerOptions.value = false;
     showPhotoPicker.value = false;
+    selectedMessagePhoto.value = null;
 };
 
 const callSelectedContact = () => {
@@ -256,6 +258,14 @@ const openPhotoPicker = () => {
 
 const closePhotoPicker = () => {
     showPhotoPicker.value = false;
+};
+
+const openPhotoMessage = (photo) => {
+    if (photo) selectedMessagePhoto.value = photo;
+};
+
+const closePhotoMessage = () => {
+    selectedMessagePhoto.value = null;
 };
 
 const sendPhotoMessage = async (photo) => {
@@ -400,8 +410,9 @@ const sendLocationMessage = async () => {
                 <div v-for="message in selectedConversation.messages" :key="message.id"
                     :class="['message-bubble-row', message.author === 'me' ? 'message-bubble-row-me' : '']">
                     <div :class="['message-bubble', message.author === 'me' ? 'message-bubble-me' : '']">
-                        <div v-if="message.type === 'photo'" class="message-photo"
-                            :style="photoStyle(message.photo)" aria-label="Photo envoyée"></div>
+                        <button v-if="message.type === 'photo'" type="button" class="message-photo"
+                            :style="photoStyle(message.photo)" aria-label="Afficher la photo en grand"
+                            @click="openPhotoMessage(message.photo)"></button>
                         <div v-else-if="message.type === 'location'" class="message-location">
                             <MapPin size="2.8cqh" />
                             <strong>Position partagée</strong>
@@ -448,6 +459,18 @@ const sendLocationMessage = async () => {
                             <ImagePlus size="5cqh" />
                             <span>Aucune photo dans la galerie</span>
                         </div>
+                    </div>
+                </div>
+            </Transition>
+
+            <Transition name="message-photo-viewer">
+                <div v-if="selectedMessagePhoto" class="message-photo-viewer" @click.self="closePhotoMessage">
+                    <button type="button" class="message-photo-viewer__close" aria-label="Fermer la photo"
+                        @click="closePhotoMessage">
+                        <X size="2.8cqh" />
+                    </button>
+                    <div class="message-photo-viewer__stage">
+                        <div class="message-photo-viewer__image" :style="photoStyle(selectedMessagePhoto)"></div>
                     </div>
                 </div>
             </Transition>
