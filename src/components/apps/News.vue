@@ -158,7 +158,6 @@ const publish = async () => {
                         <Newspaper :size="16" />
                     </span>
                     <div>
-                        <span class="news-eyebrow">Los Santos</span>
                         <h1>News</h1>
                     </div>
                 </div>
