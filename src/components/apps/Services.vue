@@ -556,13 +556,65 @@ const answerIncomingCall = (call) => {
     min-height: 0;
     flex: 1;
     overflow-y: auto;
-    padding-bottom: 10cqh;
+    padding-bottom: 13cqh;
     scrollbar-width: none;
 }
 
 .services-scroll::-webkit-scrollbar,
 .services-company-scroll::-webkit-scrollbar {
     display: none;
+}
+
+.services-message-tabs {
+    display: flex;
+    align-self: center;
+    width: 48cqw;
+    height: 4.5cqh;
+    margin: 2cqh auto 2.2cqh;
+    padding: .45cqh;
+    box-sizing: border-box;
+    border-radius: 1.2cqh;
+    background: rgba(118, 118, 128, .24);
+}
+
+.services-message-tabs button {
+    position: relative;
+    flex: 1;
+    border: 0;
+    border-radius: .9cqh;
+    color: rgba(255, 255, 255, .58);
+    background: transparent;
+    font: inherit;
+    font-size: 1.35cqh;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.services-message-tabs button.services-message-tab--active {
+    color: white;
+    background: #090909;
+    box-shadow: 0 .3cqh .9cqh rgba(0, 0, 0, .3);
+}
+
+.services-message-tabs button span {
+    position: absolute;
+    top: -.35cqh;
+    right: 1.2cqw;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.8cqh;
+    height: 1.8cqh;
+    padding: 0 .35cqw;
+    box-sizing: border-box;
+    border-radius: 999px;
+    color: white;
+    background: #ff453a;
+    font-size: 1cqh;
+}
+
+.services-messages-scroll {
+    padding-top: 0;
 }
 
 .services-intro,
