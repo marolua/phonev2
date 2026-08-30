@@ -41,6 +41,33 @@ const isSpeakerOn = ref(false);
 const isMuted = ref(false);
 const contactAnimationDuration = 450;
 
+const recentCalls = [
+    {
+        id: 1,
+        name: 'Jane Doe',
+        phone: '555-7314',
+        type: 'Mobile',
+        time: 'Il y a 3 min',
+        contact: { firstName: 'Jane', lastName: 'Doe', phone: '555-7314' },
+    },
+    {
+        id: 2,
+        name: 'John McKenzie',
+        phone: '555-2048',
+        type: 'Mobile',
+        time: 'Hier',
+        contact: { firstName: 'John', lastName: 'McKenzie', phone: '555-2048' },
+    },
+    {
+        id: 3,
+        name: 'Numéro inconnu',
+        phone: '555-4821',
+        type: 'Appel entrant',
+        time: 'Lun.',
+        contact: null,
+    },
+];
+
 const getInitial = (contact) => contact?.firstName?.trim()?.charAt(0).toUpperCase() || '?';
 
 const sanitizePhoneInput = (event, target) => {
@@ -76,6 +103,12 @@ const filteredContacts = computed(() => {
         const searchableText = `${contact.firstName} ${contact.lastName} ${contact.phone}`.toLowerCase();
         return searchableText.includes(search);
     });
+});
+
+const displayedPhoneNumber = computed(() => {
+    if (phoneNumber.value.length < 3) return phoneNumber.value;
+
+    return `${phoneNumber.value.slice(0, 3)}-${phoneNumber.value.slice(3)}`;
 });
 
 const appendKey = (key) => {
@@ -363,15 +396,16 @@ const addContact = () => {
                 </div>
 
                 <div class="container-recent-call">
-                    <div class="recent-call" v-for="i in 20">
+                    <button v-for="call in recentCalls" :key="call.id" type="button" class="recent-call"
+                        @click="startCall(call.phone, call.contact)">
                         <div class="information">
-                            <span class="name">Jane Doe</span>
-                            <span>Mobile</span>
+                            <span class="name">{{ call.name }}</span>
+                            <span>{{ call.type }}</span>
                         </div>
                         <div class="time">
-                            <span>3 minute ago</span>
+                            <span>{{ call.time }}</span>
                         </div>
-                    </div>
+                    </button>
                 </div>
             </div>
 
@@ -417,7 +451,7 @@ const addContact = () => {
             </div>
 
             <div v-else-if="!props.contactsOnly" class="container keyboard-container">
-                <div class="phone-number">{{ phoneNumber || ' ' }}</div>
+                <div class="phone-number">{{ displayedPhoneNumber || ' ' }}</div>
                 <div class="keypad">
                     <button v-for="key in keypad" :key="key" type="button" class="keypad-key" @click="appendKey(key)">
                         {{ key }}
@@ -425,7 +459,7 @@ const addContact = () => {
                 </div>
                 <div class="keyboard-actions">
                     <button class="call-button" type="button" aria-label="Appeler" :disabled="!phoneNumber"
-                        @click="startCall(phoneNumber)">
+                        @click="startCall(displayedPhoneNumber)">
                         <Phone size="2.8cqh" />
                     </button>
                     <button class="delete-button" type="button" aria-label="Effacer" @click="removeLastDigit">
@@ -1043,6 +1077,12 @@ const addContact = () => {
                 justify-content: space-between;
                 align-items: center;
                 width: 100%;
+                border: 0;
+                padding: 0;
+                color: inherit;
+                text-align: left;
+                background: transparent;
+                font: inherit;
                 user-select: none;
                 transition: all ease-in-out 0.2s;
                 height: 8cqh;
