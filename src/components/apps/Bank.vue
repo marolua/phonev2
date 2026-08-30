@@ -332,8 +332,8 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
 
                         <template v-else-if="detailSheet === 'cardLimits'">
                             <p class="bank-detail-intro">Modifie les montants maximums autorisés.</p>
-                            <label class="bank-slider-row"><span><strong>Plafond quotidien</strong><b>{{ formatMoney(dailyLimit) }}</b></span><input v-model.number="dailyLimit" type="range" min="100" max="5000" step="50" /></label>
-                            <label class="bank-slider-row"><span><strong>Paiements en ligne</strong><b>{{ formatMoney(onlineLimit) }}</b></span><input v-model.number="onlineLimit" type="range" min="100" max="2500" step="50" /></label>
+                            <label class="bank-slider-row"><span><strong>Plafond quotidien</strong><b>{{ formatMoney(dailyLimit) }}</b></span><input v-model.number="dailyLimit" type="range" min="100" max="5000" step="50" :style="{ '--slider-progress': `${(dailyLimit / 5000) * 100}%` }" /></label>
+                            <label class="bank-slider-row"><span><strong>Paiements en ligne</strong><b>{{ formatMoney(onlineLimit) }}</b></span><input v-model.number="onlineLimit" type="range" min="100" max="2500" step="50" :style="{ '--slider-progress': `${(onlineLimit / 2500) * 100}%` }" /></label>
                         </template>
 
                         <template v-else-if="detailSheet === 'account'">
