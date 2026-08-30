@@ -973,7 +973,7 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
     border-radius: 1cqh;
     outline: none;
     accent-color: #6f9cff;
-    background: linear-gradient(90deg, #6f9cff, #6f9cff 45%, rgba(255, 255, 255, 0.18) 45%, rgba(255, 255, 255, 0.18));
+    background: linear-gradient(90deg, #6f9cff var(--slider-progress, 20%), rgba(255, 255, 255, 0.18) var(--slider-progress, 20%));
 }
 
 .bank-slider-row input::-webkit-slider-thumb {
