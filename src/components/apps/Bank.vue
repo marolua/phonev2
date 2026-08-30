@@ -331,7 +331,7 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
                         </template>
 
                         <template v-else-if="detailSheet === 'cardLimits'">
-                            <p class="bank-detail-intro">Modifie les montants maximums autorisés.</p>
+                            <p class="bank-detail-intro">Voici les montants maximums autorisés.</p>
                             <div class="bank-settings-list bank-detail-list">
                               <div class="bank-detail-row"><span>Plafond quotidien</span><strong>{{ formatMoney(dailyLimit) }}</strong></div>
                               <div class="bank-detail-row"><span>Paiements en ligne</span><strong>{{ formatMoney(onlineLimit) }}</strong></div>
