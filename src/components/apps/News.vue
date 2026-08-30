@@ -719,16 +719,30 @@ const publish = async () => {
 .news-journalist-bar button {
     display: flex;
     align-items: center;
+    justify-content: center;
+    width: 4.8cqh;
+    height: 4.8cqh;
+    border: 0;
+    border-radius: 50%;
+    padding: 0;
+    color: white;
+    background: var(--news-accent);
+    font: inherit;
+    cursor: pointer;
+}
+
+.news-journalist-bar button:hover {
+    filter: brightness(1.12);
+}
+
+.news-journalist-bar>span {
+    display: flex;
+    align-items: center;
     gap: .8cqw;
 }
 
 .news-journalist-bar button {
-    border: 0;
-    color: #ff9bb3;
-    background: transparent;
-    font: inherit;
-    font-weight: 600;
-    cursor: pointer;
+    flex-shrink: 0;
 }
 
 .news-article-page {
