@@ -977,7 +977,7 @@ const publish = async () => {
     color: white;
     background: rgba(118, 118, 128, .18);
     font: inherit;
-    font-size: 1.55cqh;
+    font-size: 1.75cqh;
     resize: vertical;
 }
 
