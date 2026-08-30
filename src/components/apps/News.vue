@@ -588,7 +588,7 @@ const publish = async () => {
     align-items: center;
     gap: 2cqw;
     width: 100%;
-    min-height: 12cqh;
+    min-height: 14cqh;
     box-sizing: border-box;
     border: 0;
     border-bottom: 1px solid rgba(255, 255, 255, .08);
@@ -602,8 +602,8 @@ const publish = async () => {
 
 .news-article-image {
     flex-shrink: 0;
-    width: 18cqw;
-    height: 11cqh;
+    width: 20cqw;
+    height: 12.5cqh;
     border-radius: 1.5cqh;
     background-position: center;
     background-size: cover;
@@ -882,7 +882,7 @@ const publish = async () => {
     color: var(--news-accent);
     background: transparent;
     font: inherit;
-    font-size: 1.4cqh;
+    font-size: 1.55cqh;
     cursor: pointer;
 }
 
@@ -892,7 +892,7 @@ const publish = async () => {
 }
 
 .news-composer-header strong {
-    font-size: 1.8cqh;
+    font-size: 2cqh;
 }
 
 .news-composer-scroll {
@@ -934,13 +934,13 @@ const publish = async () => {
 }
 
 .news-cover-picker span {
-    font-size: 1.55cqh;
+    font-size: 1.7cqh;
     font-weight: 600;
 }
 
 .news-cover-picker small {
     color: rgba(255, 255, 255, .48);
-    font-size: 1.15cqh;
+    font-size: 1.3cqh;
 }
 
 .news-cover-picker__change {
@@ -962,7 +962,7 @@ const publish = async () => {
     gap: .8cqh;
     margin-top: 2cqh;
     color: rgba(255, 255, 255, .52);
-    font-size: 1.25cqh;
+    font-size: 1.4cqh;
 }
 
 .news-field input,
@@ -989,17 +989,23 @@ const publish = async () => {
     line-height: 1.35;
 }
 
+.news-field input:focus,
+.news-field textarea:focus,
+.news-field select:focus {
+    box-shadow: 0 0 0 .2cqh rgba(255, 59, 107, .3);
+}
+
 .news-form-notice {
     margin: 1.5cqh 0 0;
     color: #ff8b83;
-    font-size: 1.3cqh;
+    font-size: 1.45cqh;
 }
 
 .news-form-footnote {
     gap: .8cqw;
     margin: 2cqh 0 0;
     color: rgba(255, 255, 255, .38);
-    font-size: 1.15cqh;
+    font-size: 1.3cqh;
 }
 
 .news-page-enter-active,
