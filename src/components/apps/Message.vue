@@ -936,8 +936,11 @@ const sendLocationMessage = async () => {
 
 .photo-picker-modal {
     position: relative;
+    display: flex;
+    flex-direction: column;
     width: 100%;
     height: 70%;
+    min-height: 0;
     box-sizing: border-box;
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.14);
@@ -963,6 +966,7 @@ const sendLocationMessage = async () => {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex: 0 0 7cqh;
     min-height: 7cqh;
     padding: 0 3cqw;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -986,11 +990,28 @@ const sendLocationMessage = async () => {
 .photo-picker-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    align-content: start;
+    flex: 1 1 auto;
     gap: 1cqw;
-    height: calc(100% - 7cqh);
+    height: auto;
+    min-height: 0;
     box-sizing: border-box;
     overflow-y: auto;
-    padding: 2cqh 3cqw 4cqh;
+    padding: 2cqh 3cqw calc(8cqh + env(safe-area-inset-bottom));
+    overscroll-behavior-y: contain;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.36) transparent;
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+}
+
+.photo-picker-grid::-webkit-scrollbar {
+    width: 0.7cqw;
+}
+
+.photo-picker-grid::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.36);
 }
 
 .photo-picker-item {
@@ -1021,8 +1042,9 @@ const sendLocationMessage = async () => {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    flex: 1;
+    min-height: 0;
     gap: 1cqh;
-    height: calc(100% - 7cqh);
     color: rgba(255, 255, 255, 0.55);
     font-size: 1.7cqh;
 }
