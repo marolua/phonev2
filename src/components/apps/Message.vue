@@ -930,6 +930,7 @@ const sendLocationMessage = async () => {
     align-items: flex-end;
     justify-content: center;
     box-sizing: border-box;
+    padding-bottom: 5cqh;
     background: rgba(0, 0, 0, 0.62);
     backdrop-filter: blur(0.7cqh);
 }
@@ -940,6 +941,7 @@ const sendLocationMessage = async () => {
     flex-direction: column;
     width: 100%;
     height: 70%;
+    max-height: calc(100% - 5cqh);
     min-height: 0;
     box-sizing: border-box;
     overflow: hidden;
@@ -990,13 +992,14 @@ const sendLocationMessage = async () => {
 .photo-picker-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 28cqw;
     align-content: start;
     flex: 1 1 auto;
     gap: 1cqw;
     height: auto;
     min-height: 0;
     box-sizing: border-box;
-    overflow-y: auto;
+    overflow-y: scroll;
     padding: 2cqh 3cqw calc(8cqh + env(safe-area-inset-bottom));
     overscroll-behavior-y: contain;
     scrollbar-width: thin;
@@ -1015,7 +1018,8 @@ const sendLocationMessage = async () => {
 }
 
 .photo-picker-item {
-    aspect-ratio: 1;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
     border: 0;
     border-radius: 1.2cqh;
