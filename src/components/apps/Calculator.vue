@@ -190,6 +190,8 @@ const pressKey = (key) => {
     height: 100%;
     box-sizing: border-box;
     padding: 15cqw 3cqh 8cqh;
+    border-radius: 2.5vh;
+    user-select: none;
     color: white;
     background: #000;
 }
