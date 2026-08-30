@@ -843,11 +843,21 @@ const sendLocationMessage = async () => {
 }
 
 .message-photo {
+    display: block;
     width: 38cqw;
     height: 27cqh;
+    border: 0;
     border-radius: 1.6cqh;
+    padding: 0;
     background-position: center;
     background-size: cover;
+    cursor: pointer;
+    transition: filter 0.15s ease, transform 0.15s ease;
+}
+
+.message-photo:hover {
+    filter: brightness(1.08);
+    transform: scale(1.015);
 }
 
 .message-location {
@@ -1015,6 +1025,74 @@ const sendLocationMessage = async () => {
     height: calc(100% - 7cqh);
     color: rgba(255, 255, 255, 0.55);
     font-size: 1.7cqh;
+}
+
+.message-photo-viewer {
+    position: absolute;
+    z-index: 20;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 8cqh 3cqw;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(1cqh);
+}
+
+.message-photo-viewer__close {
+    position: absolute;
+    top: 8cqh;
+    right: 3cqw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5cqh;
+    height: 5cqh;
+    border: 0;
+    border-radius: 50%;
+    color: white;
+    background: rgba(255, 255, 255, 0.14);
+    cursor: pointer;
+}
+
+.message-photo-viewer__stage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 78%;
+}
+
+.message-photo-viewer__image {
+    width: 100%;
+    height: 100%;
+    border-radius: 1.8cqh;
+    background-color: rgba(255, 255, 255, 0.06);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    box-shadow: 0 2cqh 7cqh rgba(0, 0, 0, 0.55);
+}
+
+.message-photo-viewer-enter-active,
+.message-photo-viewer-leave-active {
+    transition: opacity 0.2s ease;
+}
+
+.message-photo-viewer-enter-active .message-photo-viewer__stage,
+.message-photo-viewer-leave-active .message-photo-viewer__stage {
+    transition: transform 0.2s ease;
+}
+
+.message-photo-viewer-enter-from,
+.message-photo-viewer-leave-to {
+    opacity: 0;
+}
+
+.message-photo-viewer-enter-from .message-photo-viewer__stage,
+.message-photo-viewer-leave-to .message-photo-viewer__stage {
+    transform: scale(0.94);
 }
 
 .new-message-modal {
