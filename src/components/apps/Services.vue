@@ -337,8 +337,8 @@ const answerIncomingCall = (call) => {
                 @click="activeView = 'directory'">
                 <Building2 :size="17" /><span>Annuaire</span>
             </button>
-            <button type="button" :class="{ 'services-nav--active': activeView === 'inbox' }"
-                @click="activeView = 'inbox'">
+            <button type="button" :class="{ 'services-nav--active': activeView === 'messages' }"
+                @click="activeView = 'messages'">
                 <Inbox :size="17" /><span>Réception</span><b v-if="unreadCount">{{ unreadCount }}</b>
             </button>
         </div>
