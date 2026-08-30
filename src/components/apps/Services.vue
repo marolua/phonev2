@@ -360,11 +360,11 @@ const answerIncomingCall = (call) => {
         <div v-if="!selectedCompany" class="services-bottom-nav">
             <button type="button" :class="{ 'services-nav--active': activeView === 'directory' }"
                 @click="activeView = 'directory'">
-                <Building2 :size="17" /><span>Annuaire</span>
+                <Building2 :size="17" /><span>Companies</span>
             </button>
             <button type="button" :class="{ 'services-nav--active': activeView === 'messages' }"
                 @click="activeView = 'messages'">
-                <Inbox :size="17" /><span>Réception</span><b v-if="unreadCount">{{ unreadCount }}</b>
+                <MessageCircle :size="17" /><span>Messages</span><b v-if="unreadCount">{{ unreadCount }}</b>
             </button>
             <button type="button" :class="{ 'services-nav--active': activeView === 'actions' }"
                 @click="activeView = 'actions'">
