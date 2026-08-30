@@ -104,7 +104,7 @@ const deleteSelectedNote = () => {
         <template v-if="!isEditorVisible">
             <header class="notes-header">
                 <div>
-                    <span class="notes-eyebrow">iCloud</span>
+                    <!-- <span class="notes-eyebrow">iCloud</span> -->
                     <h1>Notes</h1>
                 </div>
                 <button type="button" class="notes-folder-button" aria-label="Dossiers">
