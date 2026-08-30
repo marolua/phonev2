@@ -57,10 +57,11 @@ const featuredArticle = computed(() => articles.value.find(({ featured }) => fea
 
 const visibleArticles = computed(() => {
     const query = searchQuery.value.trim().toLowerCase();
+    const hideFeatured = activeCategory.value === 'Pour toi' && !query;
     return articles.value.filter((article) => {
         const categoryMatches = activeCategory.value === 'Pour toi' || article.category === activeCategory.value;
         const searchMatches = !query || (article.title + ' ' + article.excerpt + ' ' + article.author).toLowerCase().includes(query);
-        return categoryMatches && searchMatches && article.id !== featuredArticle.value?.id;
+        return categoryMatches && searchMatches && (!hideFeatured || article.id !== featuredArticle.value?.id);
     });
 });
 
