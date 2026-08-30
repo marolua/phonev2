@@ -980,11 +980,6 @@ const selectWallpaper = (url) => {
   box-shadow: 0 1.5cqh 4cqh rgba(0, 0, 0, 0.5);
 }
 
-.language-modal {
-  width: 88%;
-  padding: 2.2cqh 2.2cqw;
-}
-
 .modal-header {
   display: flex;
   align-items: flex-start;
@@ -1020,8 +1015,7 @@ const selectWallpaper = (url) => {
 }
 
 .language-list {
-  width: 94%;
-  margin: 0 auto;
+  width: 100%;
   overflow: hidden;
   border-radius: 1.4cqh;
   background: rgba(255, 255, 255, 0.06);
@@ -1053,6 +1047,26 @@ const selectWallpaper = (url) => {
 .language-option.selected {
   color: #4d8dff;
   background: rgba(77, 141, 255, 0.1);
+}
+
+.settings-sheet-enter-active,
+.settings-sheet-leave-active {
+  transition: opacity 0.25s ease;
+}
+
+.settings-sheet-enter-active .settings-sheet,
+.settings-sheet-leave-active .settings-sheet {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.settings-sheet-enter-from,
+.settings-sheet-leave-to {
+  opacity: 0;
+}
+
+.settings-sheet-enter-from .settings-sheet,
+.settings-sheet-leave-to .settings-sheet {
+  transform: translateY(100%);
 }
 
 .reset-modal {
