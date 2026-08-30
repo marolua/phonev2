@@ -812,6 +812,100 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
     font-weight: 600;
 }
 
+.bank-detail-header .bank-detail-cancel {
+    justify-content: flex-start;
+    width: 11cqw;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 1.55cqh;
+}
+
+.bank-account-sheet {
+    height: 100%;
+    min-height: 100%;
+    border-radius: 0;
+    padding: 15cqw 3cqh 5cqh;
+    background: #0a0a0a;
+}
+
+.bank-account-sheet .bank-detail-header {
+    flex-shrink: 0;
+    padding: 0;
+    border-bottom: 0;
+}
+
+.bank-account-content {
+    gap: 2cqh;
+    padding: 4cqh 0 0;
+}
+
+.bank-account-summary {
+    display: flex;
+    align-items: center;
+    gap: 2cqw;
+    min-height: 11cqh;
+    box-sizing: border-box;
+    border: 1px solid rgba(111, 156, 255, 0.3);
+    border-radius: 2.3cqh;
+    padding: 1.7cqh 2cqw;
+    background: linear-gradient(135deg, rgba(68, 104, 201, 0.95), rgba(38, 61, 134, 0.96));
+    box-shadow: 0 1.2cqh 2.5cqh rgba(36, 73, 176, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.bank-account-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5.5cqh;
+    height: 5.5cqh;
+    flex-shrink: 0;
+    border-radius: 1.6cqh;
+    color: white;
+    background: rgba(255, 255, 255, 0.16);
+}
+
+.bank-account-summary div {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 0.4cqh;
+}
+
+.bank-account-summary small {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.3cqh;
+}
+
+.bank-account-summary strong {
+    color: white;
+    font-size: 2.05cqh;
+    font-weight: 600;
+    letter-spacing: 0.08cqw;
+}
+
+.bank-account-status {
+    border-radius: 1.4cqh;
+    padding: 0.7cqh 1.3cqw;
+    color: #b9ffd1;
+    background: rgba(48, 209, 88, 0.18);
+    font-size: 1.2cqh;
+    font-weight: 600;
+}
+
+.bank-detail-section-title {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.46);
+    font-size: 1.35cqh;
+    font-weight: 600;
+    letter-spacing: 0.04cqw;
+    text-transform: uppercase;
+}
+
+.bank-account-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1cqh;
+}
+
 .bank-detail-content {
     display: flex;
     flex-direction: column;
