@@ -293,13 +293,16 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
 
         <div class="bottom-app-bank">
             <nav class="categories" aria-label="Navigation Banque">
-                <button type="button" class="categorie" :class="{ 'categorie-selected': activeTab === 'home' }" @click="activeTab = 'home'">
+                <button type="button" class="categorie" :class="{ 'categorie-selected': activeTab === 'home' }"
+                    @click="activeTab = 'home'">
                     <House size="2.3cqh" /><span>Accueil</span>
                 </button>
-                <button type="button" class="categorie" :class="{ 'categorie-selected': activeTab === 'cards' }" @click="activeTab = 'cards'">
+                <button type="button" class="categorie" :class="{ 'categorie-selected': activeTab === 'cards' }"
+                    @click="activeTab = 'cards'">
                     <WalletCards size="2.3cqh" /><span>Cartes</span>
                 </button>
-                <button type="button" class="categorie" :class="{ 'categorie-selected': activeTab === 'profile' }" @click="activeTab = 'profile'">
+                <button type="button" class="categorie" :class="{ 'categorie-selected': activeTab === 'profile' }"
+                    @click="activeTab = 'profile'">
                     <UserRound size="2.3cqh" /><span>Profil</span>
                 </button>
             </nav>
@@ -319,29 +322,46 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
                         <template v-if="detailSheet === 'cardSecurity'">
                             <p class="bank-detail-intro">Gère les protections de ta carte.</p>
                             <div class="bank-settings-list bank-detail-list">
-                              <button type="button" class="bank-toggle-row" @click="cardLocked = !cardLocked">
-                                <span><ShieldCheck size="2.2cqh" /><span><strong>Verrouiller la carte</strong><small>{{ cardLocked ? 'Les paiements sont bloqués' : 'Carte active' }}</small></span></span>
-                                <b class="bank-setting-state" :class="{ enabled: cardLocked, locked: cardLocked }">{{ cardLocked ? 'Bloquée' : 'Active' }}</b>
-                              </button>
-                              <button type="button" class="bank-toggle-row" @click="contactlessEnabled = !contactlessEnabled">
-                                <span><CreditCard size="2.2cqh" /><span><strong>Paiement sans contact</strong><small>{{ contactlessEnabled ? 'Activé' : 'Désactivé' }}</small></span></span>
-                                <b class="bank-setting-state" :class="{ enabled: contactlessEnabled }">{{ contactlessEnabled ? 'Activé' : 'Désactivé' }}</b>
-                              </button>
+                                <button type="button" class="bank-toggle-row" @click="cardLocked = !cardLocked">
+                                    <span>
+                                        <ShieldCheck size="2.2cqh" /><span><strong>Verrouiller la
+                                                carte</strong><small>{{ cardLocked ? 'Les paiements sont bloqués' :
+                                                'Carte active' }}</small></span>
+                                    </span>
+                                    <b class="bank-setting-state"
+                                        :class="{ enabled: cardLocked, locked: cardLocked }">{{ cardLocked ? 'Bloquée' :
+                                        'Active' }}</b>
+                                </button>
+                                <button type="button" class="bank-toggle-row"
+                                    @click="contactlessEnabled = !contactlessEnabled">
+                                    <span>
+                                        <CreditCard size="2.2cqh" /><span><strong>Paiement sans
+                                                contact</strong><small>{{ contactlessEnabled ? 'Activé' : 'Désactivé'
+                                                }}</small></span>
+                                    </span>
+                                    <b class="bank-setting-state" :class="{ enabled: contactlessEnabled }">{{
+                                        contactlessEnabled ? 'Activé' : 'Désactivé' }}</b>
+                                </button>
                             </div>
                         </template>
 
                         <template v-else-if="detailSheet === 'cardLimits'">
                             <p class="bank-detail-intro">Voici les montants maximums autorisés.</p>
                             <div class="bank-settings-list bank-detail-list">
-                              <div class="bank-detail-row"><span>Plafond quotidien</span><strong>{{ formatMoney(dailyLimit) }}</strong></div>
-                              <div class="bank-detail-row"><span>Paiements en ligne</span><strong>{{ formatMoney(onlineLimit) }}</strong></div>
-                              <div class="bank-detail-row"><span>Retraits au distributeur</span><strong>{{ formatMoney(500) }}</strong></div>
+                                <div class="bank-detail-row"><span>Plafond quotidien</span><strong>{{
+                                        formatMoney(dailyLimit) }}</strong></div>
+                                <div class="bank-detail-row"><span>Paiements en ligne</span><strong>{{
+                                        formatMoney(onlineLimit) }}</strong></div>
+                                <div class="bank-detail-row"><span>Retraits au distributeur</span><strong>{{
+                                        formatMoney(500) }}</strong></div>
                             </div>
                         </template>
 
                         <template v-else-if="detailSheet === 'account'">
                             <div class="bank-account-summary">
-                                <span class="bank-account-icon"><Landmark size="3cqh" /></span>
+                                <span class="bank-account-icon">
+                                    <Landmark size="3cqh" />
+                                </span>
                                 <div><small>Compte courant</small><strong>**** 7314</strong></div>
                                 <span class="bank-account-status">Actif</span>
                             </div>
@@ -349,26 +369,42 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
                             <div class="bank-settings-list bank-account-list">
                                 <div class="bank-detail-row"><span>Titulaire</span><strong>John McKenzie</strong></div>
                                 <div class="bank-detail-row"><span>IBAN</span><strong>FR76 **** **** 7314</strong></div>
-                                <div class="bank-detail-row"><span>Type de compte</span><strong>Compte personnel</strong></div>
+                                <div class="bank-detail-row"><span>Type de compte</span><strong>Compte
+                                        personnel</strong></div>
                             </div>
                         </template>
 
                         <template v-else-if="detailSheet === 'privacy'">
                             <p class="bank-detail-intro">Protège l’accès à ton application Banque.</p>
                             <div class="bank-settings-list bank-detail-list">
-                              <button type="button" class="bank-toggle-row" @click="biometricEnabled = !biometricEnabled">
-                                <span><ShieldCheck size="2.2cqh" /><span><strong>Déverrouillage biométrique</strong><small>{{ biometricEnabled ? 'Activé' : 'Désactivé' }}</small></span></span>
-                                <b class="bank-setting-state" :class="{ enabled: biometricEnabled }">{{ biometricEnabled ? 'Activé' : 'Désactivé' }}</b>
-                              </button>
-                              <div class="bank-detail-row"><span>Notifications sensibles</span><strong>Masquées</strong></div>
+                                <button type="button" class="bank-toggle-row"
+                                    @click="biometricEnabled = !biometricEnabled">
+                                    <span>
+                                        <ShieldCheck size="2.2cqh" /><span><strong>Déverrouillage
+                                                biométrique</strong><small>{{ biometricEnabled ? 'Activé' : 'Désactivé'
+                                                }}</small></span>
+                                    </span>
+                                    <b class="bank-setting-state" :class="{ enabled: biometricEnabled }">{{
+                                        biometricEnabled ? 'Activé' : 'Désactivé' }}</b>
+                                </button>
+                                <div class="bank-detail-row"><span>Notifications
+                                        sensibles</span><strong>Masquées</strong></div>
                             </div>
                         </template>
 
                         <template v-else-if="detailSheet === 'documents'">
                             <p class="bank-detail-intro">Retrouve tes documents bancaires récents.</p>
                             <div class="bank-settings-list bank-detail-list">
-                              <button type="button" class="bank-document-row" @click="openDocument('Relevé du mois')"><ReceiptText size="2.2cqh" /><span><strong>Relevé du mois</strong><small>PDF · août 2026</small></span><ChevronRight size="2cqh" /></button>
-                              <button type="button" class="bank-document-row" @click="openDocument('RIB')"><Landmark size="2.2cqh" /><span><strong>RIB</strong><small>Coordonnées du compte</small></span><ChevronRight size="2cqh" /></button>
+                                <button type="button" class="bank-document-row" @click="openDocument('Relevé du mois')">
+                                    <ReceiptText size="2.2cqh" /><span><strong>Relevé du mois</strong><small>PDF · août
+                                            2026</small></span>
+                                    <ChevronRight size="2cqh" />
+                                </button>
+                                <button type="button" class="bank-document-row" @click="openDocument('RIB')">
+                                    <Landmark size="2.2cqh" /><span><strong>RIB</strong><small>Coordonnées du
+                                            compte</small></span>
+                                    <ChevronRight size="2cqh" />
+                                </button>
                             </div>
                             <p v-if="lastDocumentAction" class="bank-document-notice">{{ lastDocumentAction }}</p>
                         </template>
