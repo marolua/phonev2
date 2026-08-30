@@ -198,7 +198,7 @@ const onTouchEnd = (event) => {
                         <Image :size="28" :stroke-width="1.6" />
                     </div>
                     <strong>{{ activeCategory === 'search' && searchQuery ? 'Aucun résultat' : 'Aucune photo'
-                    }}</strong>
+                        }}</strong>
                     <span>Les photos et vidéos prises avec la caméra apparaîtront ici.</span>
                 </div>
             </template>
