@@ -193,10 +193,6 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
             </template>
 
             <template v-else>
-                <section class="bank-page-title">
-                    <span>Votre espace personnel</span>
-                    <h2>Profil</h2>
-                </section>
                 <div class="bank-profile-card">
                     <span class="bank-profile-large">JM</span>
                     <div><strong>John McKenzie</strong><small>Client depuis août 2026</small></div>
