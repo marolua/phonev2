@@ -332,7 +332,7 @@ const answerIncomingCall = (call) => {
             </section>
         </Transition>
 
-        <div v-if="!selectedCompany && isEmployee" class="services-bottom-nav">
+        <div v-if="!selectedCompany" class="services-bottom-nav">
             <button type="button" :class="{ 'services-nav--active': activeView === 'directory' }"
                 @click="activeView = 'directory'">
                 <Building2 :size="17" /><span>Annuaire</span>
