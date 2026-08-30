@@ -715,11 +715,17 @@ const publish = async () => {
     font-size: 1.4cqh;
 }
 
-.news-journalist-bar>span,
+.news-journalist-bar>span {
+    display: flex;
+    align-items: center;
+    gap: .8cqw;
+}
+
 .news-journalist-bar button {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
     width: 4.8cqh;
     height: 4.8cqh;
     border: 0;
@@ -733,16 +739,6 @@ const publish = async () => {
 
 .news-journalist-bar button:hover {
     filter: brightness(1.12);
-}
-
-.news-journalist-bar>span {
-    display: flex;
-    align-items: center;
-    gap: .8cqw;
-}
-
-.news-journalist-bar button {
-    flex-shrink: 0;
 }
 
 .news-article-page {
