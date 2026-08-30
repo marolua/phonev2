@@ -320,7 +320,29 @@ const publish = async () => {
                                 <option v-for="category in draftCategories" :key="category" :value="category">{{
                                     category }}
                                 </option>
-                            </select></label>
+                            </select>
+                            <div class="news-category-picker">
+                                <button type="button" class="news-category-trigger"
+                                    :aria-expanded="isCategoryMenuOpen" aria-haspopup="listbox"
+                                    @click="isCategoryMenuOpen = !isCategoryMenuOpen">
+                                    <span>{{ draft.category }}</span>
+                                    <ChevronDown :size="17"
+                                        :class="{ 'news-category-trigger__icon--open': isCategoryMenuOpen }" />
+                                </button>
+                                <Transition name="news-category-menu">
+                                    <div v-if="isCategoryMenuOpen" class="news-category-menu" role="listbox">
+                                        <button v-for="category in draftCategories" :key="category" type="button"
+                                            role="option" :aria-selected="draft.category === category"
+                                            :class="{ 'news-category-option--active': draft.category === category }"
+                                            @click="draft.category = category; isCategoryMenuOpen = false">
+                                            <span class="news-category-option__dot"></span>
+                                            <span>{{ category }}</span>
+                                            <Check v-if="draft.category === category" :size="16" />
+                                        </button>
+                                    </div>
+                                </Transition>
+                            </div>
+                            </label>
                         <label class="news-field"><span>Résumé</span><textarea v-model="draft.excerpt" maxlength="180"
                                 rows="2" placeholder="Une phrase pour donner envie de lire"></textarea></label>
                         <label class="news-field"><span>Article</span><textarea v-model="draft.content" rows="7"
