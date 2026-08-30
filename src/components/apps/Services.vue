@@ -253,7 +253,7 @@ const answerIncomingCall = (call) => {
                             <span>Appeler</span>
                         </button>
                         <button type="button" class="service-company-message" aria-label="Envoyer un message"
-                            @click="openMessageComposer(company)">
+                            @click="openConversation(company)">
                             <MessageCircle :size="17" />
                             <span>Message</span>
                         </button>
