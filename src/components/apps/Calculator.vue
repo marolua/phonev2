@@ -46,6 +46,17 @@ const resetCalculator = () => {
     justEvaluated.value = false;
 };
 
+const clearCurrentValue = () => {
+    if (clearLabel.value === 'AC' || display.value === 'Erreur') {
+        resetCalculator();
+        return;
+    }
+
+    display.value = '0';
+    waitingForOperand.value = false;
+    justEvaluated.value = false;
+};
+
 const inputDigit = (digit) => {
     if (display.value === 'Erreur' || waitingForOperand.value || justEvaluated.value) {
         display.value = digit;
@@ -122,7 +133,7 @@ const evaluate = () => {
 const pressKey = (key) => {
     if (/^\d$/.test(key)) return inputDigit(key);
     if (key === '.') return inputDecimal();
-    if (key === 'AC' || key === 'C') return resetCalculator();
+    if (key === 'AC' || key === 'C') return clearCurrentValue();
     if (key === '±') return toggleSign();
     if (key === '%') return calculatePercent();
     if (key === '=') return evaluate();
