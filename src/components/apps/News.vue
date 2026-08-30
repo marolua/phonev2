@@ -5,7 +5,9 @@ import {
     Bell,
     Bookmark,
     Camera,
+    Check,
     ChevronRight,
+    ChevronDown,
     ImagePlus,
     Newspaper,
     Plus,
@@ -35,6 +37,7 @@ const selectedArticle = ref(null);
 const savedArticles = ref([]);
 const isComposerVisible = ref(false);
 const isPublishing = ref(false);
+const isCategoryMenuOpen = ref(false);
 const publishNotice = ref('');
 const imageInput = ref(null);
 const draft = ref({ title: '', excerpt: '', content: '', category: 'Actualités', image: '' });
