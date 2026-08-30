@@ -126,15 +126,21 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
                     </div>
                     <div class="bank-quick-actions">
                         <button type="button" @click="openAction('transfer')">
-                            <span class="bank-action-icon blue"><Send size="2.4cqh" /></span>
+                            <span class="bank-action-icon blue">
+                                <Send size="2.4cqh" />
+                            </span>
                             <span>Virement</span>
                         </button>
                         <button type="button" @click="openAction('payment')">
-                            <span class="bank-action-icon purple"><ReceiptText size="2.4cqh" /></span>
+                            <span class="bank-action-icon purple">
+                                <ReceiptText size="2.4cqh" />
+                            </span>
                             <span>Payer</span>
                         </button>
                         <button type="button" @click="openAction('deposit')">
-                            <span class="bank-action-icon green"><Plus size="2.6cqh" /></span>
+                            <span class="bank-action-icon green">
+                                <Plus size="2.6cqh" />
+                            </span>
                             <span>Ajouter</span>
                         </button>
                     </div>
@@ -143,12 +149,16 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
                 <section class="bank-section bank-card-section">
                     <div class="bank-section-heading">
                         <h2>Ma carte</h2>
-                        <button type="button" @click="activeTab = 'cards'">Voir tout <ChevronRight size="1.8cqh" /></button>
+                        <button type="button" @click="activeTab = 'cards'">Voir tout
+                            <ChevronRight size="1.8cqh" />
+                        </button>
                     </div>
                     <button type="button" class="bank-card-preview" @click="activeTab = 'cards'">
-                        <div class="bank-card-brand"><Landmark size="2.6cqh" /> BANK</div>
+                        <div class="bank-card-brand">
+                            <Landmark size="2.6cqh" /> BANK
+                        </div>
                         <span class="bank-card-chip"></span>
-                        <strong>••••  ••••  ••••  7314</strong>
+                        <strong>•••• •••• •••• 7314</strong>
                         <div class="bank-card-bottom"><span>JOHN MCKENZIE</span><span>VISA</span></div>
                     </button>
                 </section>
@@ -156,10 +166,13 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
                 <section class="bank-section bank-transactions-section">
                     <div class="bank-section-heading">
                         <h2>Dernières opérations</h2>
-                        <button type="button">Tout voir <ChevronRight size="1.8cqh" /></button>
+                        <button type="button">Tout voir
+                            <ChevronRight size="1.8cqh" />
+                        </button>
                     </div>
                     <div class="bank-transactions">
-                        <div v-for="transaction in transactions.slice(0, 4)" :key="transaction.id" class="bank-transaction">
+                        <div v-for="transaction in transactions.slice(0, 4)" :key="transaction.id"
+                            class="bank-transaction">
                             <span class="transaction-icon" :class="transaction.positive ? 'income' : 'expense'">
                                 <component :is="transaction.icon" size="2.1cqh" />
                             </span>
@@ -177,14 +190,22 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
 
             <template v-else-if="activeTab === 'cards'">
                 <button type="button" class="bank-large-card" @click="showCardNumber = !showCardNumber">
-                    <div class="bank-card-brand"><Landmark size="2.8cqh" /> BANK</div>
+                    <div class="bank-card-brand">
+                        <Landmark size="2.8cqh" /> BANK
+                    </div>
                     <span class="bank-card-chip"></span>
                     <strong>{{ maskCardNumber }}</strong>
                     <div class="bank-card-bottom"><span>JOHN MCKENZIE</span><span>VISA</span></div>
                 </button>
                 <div class="bank-settings-list">
-                    <button type="button"><ShieldCheck size="2.2cqh" /><span>Sécurité de la carte</span><ChevronRight size="2cqh" /></button>
-                    <button type="button"><WalletCards size="2.2cqh" /><span>Plafonds et paiements</span><ChevronRight size="2cqh" /></button>
+                    <button type="button">
+                        <ShieldCheck size="2.2cqh" /><span>Sécurité de la carte</span>
+                        <ChevronRight size="2cqh" />
+                    </button>
+                    <button type="button">
+                        <WalletCards size="2.2cqh" /><span>Plafonds et paiements</span>
+                        <ChevronRight size="2cqh" />
+                    </button>
                 </div>
             </template>
 
@@ -195,9 +216,18 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
                     <ChevronRight size="2.2cqh" />
                 </div>
                 <div class="bank-settings-list">
-                    <button type="button"><Landmark size="2.2cqh" /><span>Informations du compte</span><ChevronRight size="2cqh" /></button>
-                    <button type="button"><ShieldCheck size="2.2cqh" /><span>Confidentialité et sécurité</span><ChevronRight size="2cqh" /></button>
-                    <button type="button"><ReceiptText size="2.2cqh" /><span>Documents bancaires</span><ChevronRight size="2cqh" /></button>
+                    <button type="button">
+                        <Landmark size="2.2cqh" /><span>Informations du compte</span>
+                        <ChevronRight size="2cqh" />
+                    </button>
+                    <button type="button">
+                        <ShieldCheck size="2.2cqh" /><span>Confidentialité et sécurité</span>
+                        <ChevronRight size="2cqh" />
+                    </button>
+                    <button type="button">
+                        <ReceiptText size="2.2cqh" /><span>Documents bancaires</span>
+                        <ChevronRight size="2cqh" />
+                    </button>
                 </div>
             </template>
         </main>
@@ -225,12 +255,15 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
                     </header>
                     <div class="bank-form">
                         <label>
-                            <span>{{ actionType === 'deposit' ? 'Source' : actionType === 'payment' ? 'Destinataire' : 'Bénéficiaire' }}</span>
-                            <input v-model="actionForm.name" type="text" :placeholder="actionType === 'deposit' ? 'Ex. Espèces' : 'Nom ou référence'" />
+                            <span>{{ actionType === 'deposit' ? 'Source' : actionType === 'payment' ? 'Destinataire' :
+                                'Bénéficiaire' }}</span>
+                            <input v-model="actionForm.name" type="text"
+                                :placeholder="actionType === 'deposit' ? 'Ex. Espèces' : 'Nom ou référence'" />
                         </label>
                         <label>
                             <span>Montant</span>
-                            <div class="bank-amount-input"><input v-model="actionForm.amount" type="number" min="0.01" step="0.01" placeholder="0,00" /><b>€</b></div>
+                            <div class="bank-amount-input"><input v-model="actionForm.amount" type="number" min="0.01"
+                                    step="0.01" placeholder="0,00" /><b>€</b></div>
                         </label>
                         <p v-if="formError" class="bank-form-error">{{ formError }}</p>
                     </div>
@@ -412,9 +445,20 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
     border-radius: 1.7cqh;
 }
 
-.bank-action-icon.blue { color: #79a4ff; background: rgba(77, 141, 255, 0.16); }
-.bank-action-icon.purple { color: #c09cff; background: rgba(155, 89, 255, 0.16); }
-.bank-action-icon.green { color: #65d69a; background: rgba(48, 209, 88, 0.14); }
+.bank-action-icon.blue {
+    color: #79a4ff;
+    background: rgba(77, 141, 255, 0.16);
+}
+
+.bank-action-icon.purple {
+    color: #c09cff;
+    background: rgba(155, 89, 255, 0.16);
+}
+
+.bank-action-icon.green {
+    color: #65d69a;
+    background: rgba(48, 209, 88, 0.14);
+}
 
 .bank-card-preview,
 .bank-large-card {
@@ -477,17 +521,21 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
     background: linear-gradient(135deg, #c7a766, #f4d79a 48%, #a98242);
 }
 
-.bank-large-card .bank-card-chip { left: 4cqw; }
+.bank-large-card .bank-card-chip {
+    left: 4cqw;
+}
 
-.bank-card-preview > strong,
-.bank-large-card > strong {
+.bank-card-preview>strong,
+.bank-large-card>strong {
     margin-top: auto;
     font-size: 2cqh;
     font-weight: 500;
     letter-spacing: 0.15cqw;
 }
 
-.bank-large-card > strong { font-size: 2.4cqh; }
+.bank-large-card>strong {
+    font-size: 2.4cqh;
+}
 
 .bank-card-bottom {
     color: rgba(255, 255, 255, 0.62);
@@ -507,7 +555,7 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
     padding: 0 2cqw;
 }
 
-.bank-transaction + .bank-transaction {
+.bank-transaction+.bank-transaction {
     border-top: 1px solid rgba(255, 255, 255, 0.07);
 }
 
@@ -521,8 +569,15 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
     border-radius: 50%;
 }
 
-.transaction-icon.income { color: #54d487; background: rgba(48, 209, 88, 0.14); }
-.transaction-icon.expense { color: #ff8179; background: rgba(255, 69, 58, 0.13); }
+.transaction-icon.income {
+    color: #54d487;
+    background: rgba(48, 209, 88, 0.14);
+}
+
+.transaction-icon.expense {
+    color: #ff8179;
+    background: rgba(255, 69, 58, 0.13);
+}
 
 .transaction-details {
     display: flex;
@@ -551,7 +606,9 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
     font-weight: 600;
 }
 
-.transaction-amount.income { color: #5cda90; }
+.transaction-amount.income {
+    color: #5cda90;
+}
 
 .bank-tabbar {
     position: absolute;
@@ -582,7 +639,9 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
     cursor: pointer;
 }
 
-.bank-tabbar button.active { color: #6f9cff; }
+.bank-tabbar button.active {
+    color: #6f9cff;
+}
 
 .bank-page-title {
     margin: 1cqh 0 3cqh;
@@ -620,9 +679,18 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
     cursor: pointer;
 }
 
-.bank-settings-list button:last-child { border-bottom: 0; }
-.bank-settings-list button svg:last-child { margin-left: auto; color: rgba(255, 255, 255, 0.3); }
-.bank-settings-list button svg:first-child { color: #6f9cff; }
+.bank-settings-list button:last-child {
+    border-bottom: 0;
+}
+
+.bank-settings-list button svg:last-child {
+    margin-left: auto;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.bank-settings-list button svg:first-child {
+    color: #6f9cff;
+}
 
 .bank-profile-card {
     gap: 2cqw;
@@ -638,10 +706,25 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
     font-size: 1.8cqh;
 }
 
-.bank-profile-card div { display: flex; flex: 1; flex-direction: column; gap: 0.4cqh; }
-.bank-profile-card strong { font-size: 1.8cqh; }
-.bank-profile-card small { color: rgba(255, 255, 255, 0.45); font-size: 1.3cqh; }
-.bank-profile-card > svg { color: rgba(255, 255, 255, 0.3); }
+.bank-profile-card div {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 0.4cqh;
+}
+
+.bank-profile-card strong {
+    font-size: 1.8cqh;
+}
+
+.bank-profile-card small {
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 1.3cqh;
+}
+
+.bank-profile-card>svg {
+    color: rgba(255, 255, 255, 0.3);
+}
 
 .bank-sheet-backdrop {
     position: absolute;
@@ -692,8 +775,14 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
     cursor: pointer;
 }
 
-.bank-action-sheet header button:first-child { color: rgba(255, 255, 255, 0.7); }
-.bank-action-sheet header button:disabled { color: rgba(111, 156, 255, 0.35); cursor: default; }
+.bank-action-sheet header button:first-child {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.bank-action-sheet header button:disabled {
+    color: rgba(111, 156, 255, 0.35);
+    cursor: default;
+}
 
 .bank-form {
     display: flex;
@@ -724,8 +813,13 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
     font-size: 1.8cqh;
 }
 
-.bank-form input:focus { border-color: rgba(111, 156, 255, 0.85); }
-.bank-form input::placeholder { color: rgba(255, 255, 255, 0.35); }
+.bank-form input:focus {
+    border-color: rgba(111, 156, 255, 0.85);
+}
+
+.bank-form input::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+}
 
 .bank-amount-input {
     display: flex;
@@ -738,16 +832,40 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
     background: rgba(255, 255, 255, 0.1);
 }
 
-.bank-amount-input input { flex: 1; border: 0; background: transparent; }
-.bank-amount-input b { color: rgba(255, 255, 255, 0.7); font-size: 1.8cqh; }
-.bank-form-error { margin: 0; color: #ff8179; font-size: 1.45cqh; }
+.bank-amount-input input {
+    flex: 1;
+    border: 0;
+    background: transparent;
+}
+
+.bank-amount-input b {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.8cqh;
+}
+
+.bank-form-error {
+    margin: 0;
+    color: #ff8179;
+    font-size: 1.45cqh;
+}
 
 .bank-sheet-enter-active,
-.bank-sheet-leave-active { transition: opacity 0.25s ease; }
+.bank-sheet-leave-active {
+    transition: opacity 0.25s ease;
+}
+
 .bank-sheet-enter-active .bank-action-sheet,
-.bank-sheet-leave-active .bank-action-sheet { transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
+.bank-sheet-leave-active .bank-action-sheet {
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 .bank-sheet-enter-from,
-.bank-sheet-leave-to { opacity: 0; }
+.bank-sheet-leave-to {
+    opacity: 0;
+}
+
 .bank-sheet-enter-from .bank-action-sheet,
-.bank-sheet-leave-to .bank-action-sheet { transform: translateY(100%); }
+.bank-sheet-leave-to .bank-action-sheet {
+    transform: translateY(100%);
+}
 </style>
