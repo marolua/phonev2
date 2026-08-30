@@ -177,10 +177,12 @@ const answerIncomingCall = (call) => {
                         <button type="button" class="service-company-call" aria-label="Appeler l’entreprise"
                             @click="callCompany(company)">
                             <Phone :size="17" />
+                            <span>Appeler</span>
                         </button>
                         <button type="button" class="service-company-message" aria-label="Envoyer un message"
                             @click="openMessageComposer(company)">
                             <MessageCircle :size="17" />
+                            <span>Message</span>
                         </button>
                     </div>
                     <div v-if="!visibleCompanies.length" class="services-empty">
@@ -499,19 +501,28 @@ const answerIncomingCall = (call) => {
 }
 
 .service-company-row {
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
     gap: 1cqw;
-    min-height: 11.5cqh;
-    border-bottom: 1px solid rgba(255, 255, 255, .08);
+    min-height: 0;
+    margin-bottom: 1.5cqh;
+    border: 1px solid rgba(255, 255, 255, .09);
+    border-radius: 2cqh;
+    padding: 1.5cqh 1.5cqw;
+    background: rgba(30, 30, 32, .94);
+    box-shadow: 0 .8cqh 2cqh rgba(0, 0, 0, .2);
 }
 
 .service-company-main {
-    flex: 1;
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    width: 100%;
     min-width: 0;
     gap: 1.8cqw;
     border: 0;
-    padding: 1.2cqh 0;
+    padding: .5cqh 0 1cqh;
     color: white;
     text-align: left;
     background: transparent;
@@ -578,13 +589,39 @@ const answerIncomingCall = (call) => {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 4.8cqh;
+    gap: .8cqw;
+    width: 100%;
     height: 4.8cqh;
     border: 0;
-    border-radius: 50%;
+    border-radius: 1.2cqh;
     color: var(--services-accent);
     background: rgba(77, 141, 255, .14);
+    font: inherit;
+    font-size: 1.35cqh;
+    font-weight: 600;
     cursor: pointer;
+}
+
+.service-company-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .8cqw;
+    width: 100%;
+    height: 4.8cqh;
+    border: 0;
+    border-radius: 1.2cqh;
+    color: #ff9bb3;
+    background: rgba(255, 59, 107, .13);
+    font: inherit;
+    font-size: 1.35cqh;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.service-company-call:hover,
+.service-company-message:hover {
+    filter: brightness(1.15);
 }
 
 .services-empty {
