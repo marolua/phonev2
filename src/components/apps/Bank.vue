@@ -1,6 +1,7 @@
 <script setup>
 import { computed, ref } from 'vue';
 import {
+    ArrowLeft,
     ArrowDownLeft,
     ArrowUpRight,
     ChevronRight,
@@ -23,9 +24,17 @@ const balance = ref(12450.8);
 const showBalance = ref(true);
 const showCardNumber = ref(false);
 const showActionSheet = ref(false);
+const detailSheet = ref(null);
+const showAllTransactions = ref(false);
 const actionType = ref('transfer');
 const formError = ref('');
 const actionForm = ref({ name: '', amount: '' });
+const cardLocked = ref(false);
+const contactlessEnabled = ref(true);
+const biometricEnabled = ref(true);
+const dailyLimit = ref(1000);
+const onlineLimit = ref(500);
+const lastDocumentAction = ref('');
 
 const transactions = ref([
     { id: 1, title: 'Salaire', subtitle: 'Aujourd’hui', amount: 2850, icon: ArrowDownLeft, positive: true },
@@ -49,6 +58,14 @@ const actionTitle = computed(() => ({
 
 const actionLabel = computed(() => actionType.value === 'deposit' ? 'Ajouter' : 'Confirmer');
 
+const detailTitle = computed(() => ({
+    cardSecurity: 'Sécurité de la carte',
+    cardLimits: 'Plafonds et paiements',
+    account: 'Informations du compte',
+    privacy: 'Confidentialité et sécurité',
+    documents: 'Documents bancaires',
+}[detailSheet.value] || ''));
+
 const openAction = (type) => {
     actionType.value = type;
     actionForm.value = { name: '', amount: '' };
@@ -59,6 +76,20 @@ const openAction = (type) => {
 const closeAction = () => {
     showActionSheet.value = false;
     formError.value = '';
+};
+
+const openDetail = (type) => {
+    lastDocumentAction.value = '';
+    detailSheet.value = type;
+};
+
+const closeDetail = () => {
+    detailSheet.value = null;
+    lastDocumentAction.value = '';
+};
+
+const openDocument = (name) => {
+    lastDocumentAction.value = `${name} sélectionné`;
 };
 
 const submitAction = () => {
