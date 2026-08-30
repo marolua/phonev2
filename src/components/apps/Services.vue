@@ -1,7 +1,7 @@
 <script setup>
 import { computed, ref } from 'vue';
 import {
-    ArrowLeft, Building2, Check, ChevronRight, Clock3, HeartPulse, Inbox,
+    ArrowLeft, BriefcaseBusiness, Building2, Check, ChevronRight, Clock3, HeartPulse, Inbox,
     MapPin, MessageCircle, Phone, PhoneCall, Reply, Search, Send, ShieldCheck, Users, X,
 } from '@lucide/vue';
 import { useServicesDirectory } from '../../composables/useServicesDirectory';
@@ -138,7 +138,7 @@ const answerIncomingCall = (call) => {
         <template v-if="!selectedCompany && activeView === 'directory'">
             <header class="services-header">
                 <div>
-                    <h1>Services</h1>
+                    <h1>Companies</h1>
                 </div>
                 <button v-if="isEmployee" type="button" class="services-inbox-button" aria-label="Boîte entreprise"
                     @click="activeView = 'messages'">
