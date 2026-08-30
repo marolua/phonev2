@@ -1134,6 +1134,27 @@ const addContact = () => {
                 font-size: 1.7cqh;
                 color: rgba(255, 255, 255, 0.5);
             }
+
+            .recent-empty {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                flex: 1;
+                gap: 1cqh;
+                min-height: 25cqh;
+                color: rgba(255, 255, 255, 0.35);
+                text-align: center;
+
+                span {
+                    color: rgba(255, 255, 255, 0.75);
+                    font-size: 1.9cqh;
+                }
+
+                small {
+                    font-size: 1.45cqh;
+                }
+            }
         }
 
         &.contacts-container {
@@ -1243,26 +1264,6 @@ const addContact = () => {
                 }
             }
 
-            .recent-empty {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-direction: column;
-                flex: 1;
-                gap: 1cqh;
-                min-height: 25cqh;
-                color: rgba(255, 255, 255, 0.35);
-                text-align: center;
-
-                span {
-                    color: rgba(255, 255, 255, 0.75);
-                    font-size: 1.9cqh;
-                }
-
-                small {
-                    font-size: 1.45cqh;
-                }
-            }
         }
 
         &.keyboard-container {
