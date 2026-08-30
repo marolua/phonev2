@@ -230,12 +230,6 @@ const answerIncomingCall = (call) => {
                     <X :size="15" />
                 </button>
             </div>
-            <div class="services-categories" role="tablist" aria-label="Catégories de services">
-                <button v-for="category in categories" :key="category" type="button" role="tab"
-                    :aria-selected="activeCategory === category"
-                    :class="{ 'services-category--active': activeCategory === category }"
-                    @click="activeCategory = category">{{ category }}</button>
-            </div>
             <main class="services-scroll">
                 <div class="services-intro"><span>
                         <Building2 :size="17" /> Entreprises disponibles
