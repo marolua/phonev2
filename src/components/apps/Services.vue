@@ -242,7 +242,7 @@ const answerIncomingCall = (call) => {
                             <span class="service-company-icon" :style="{ background: company.color }">
                                 <component :is="companyIcon(company.category)" :size="21" />
                             </span>
-                            <span class="service-company-info"><strong>{{ company.name }}</strong><small>{{
+                            <span class="service-company-info"><strong>{{ company.name }}</strong><small>{{ company.address }}</small></span>
                                 company.category }} · {{ company.address }}</small><span
                                     class="service-company-status"><span></span>{{ company.hours }}</span></span>
                             <ChevronRight :size="17" class="service-company-chevron" />
