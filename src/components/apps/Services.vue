@@ -12,11 +12,12 @@ const props = defineProps({
 });
 const emit = defineEmits(['call-contact']);
 const {
-    companies, employeeContext: bridgeEmployeeContext, inbox, incomingCalls,
+    companies, employeeContext: bridgeEmployeeContext, inbox, sentMessages, incomingCalls,
     isLoading, lastError, isFiveM, sendServiceMessage, callServiceCompany,
 } = useServicesDirectory(props.initialCompanies);
 
 const activeView = ref('directory');
+const messageTab = ref('personal');
 const activeCategory = ref('Tous');
 const searchQuery = ref('');
 const selectedCompany = ref(null);
@@ -38,6 +39,7 @@ const unreadCount = computed(() => inbox.value.filter((message) => message.unrea
 const employeeMessages = computed(() => inbox.value
     .filter((message) => !employeeCompanyId.value || message.companyId === employeeCompanyId.value)
     .sort((a, b) => b.createdAt - a.createdAt));
+const personalMessages = computed(() => [...sentMessages.value].sort((a, b) => b.createdAt - a.createdAt));
 
 const visibleCompanies = computed(() => {
     const query = searchQuery.value.trim().toLowerCase();
@@ -139,7 +141,7 @@ const answerIncomingCall = (call) => {
                     <h1>Services</h1>
                 </div>
                 <button v-if="isEmployee" type="button" class="services-inbox-button" aria-label="Boîte entreprise"
-                    @click="activeView = 'inbox'">
+                    @click="activeView = 'messages'">
                     <Inbox :size="19" /><span v-if="unreadCount" class="services-badge">{{ unreadCount > 9 ? '9+' :
                         unreadCount }}</span>
                 </button>
