@@ -365,14 +365,6 @@ const answerIncomingCall = (call) => {
                 @click="activeView = 'messages'">
                 <MessageCircle :size="17" /><span>Messages</span><b v-if="unreadCount">{{ unreadCount }}</b>
             </button>
-            <button type="button" :class="{ 'services-nav--active': activeView === 'actions' }"
-                @click="activeView = 'actions'">
-                <ShieldCheck :size="17" /><span>Actions</span>
-            </button>
-            <button type="button" :class="{ 'services-nav--active': activeView === 'jobs' }"
-                @click="activeView = 'jobs'">
-                <Users :size="17" /><span>Jobs</span>
-            </button>
         </div>
 
         <Transition name="services-sheet">
