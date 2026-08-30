@@ -176,10 +176,6 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
             </template>
 
             <template v-else-if="activeTab === 'cards'">
-                <section class="bank-page-title">
-                    <span>Vos moyens de paiement</span>
-                    <h2>Cartes</h2>
-                </section>
                 <button type="button" class="bank-large-card" @click="showCardNumber = !showCardNumber">
                     <div class="bank-card-brand"><Landmark size="2.8cqh" /> BANK</div>
                     <span class="bank-card-chip"></span>
