@@ -642,9 +642,9 @@ const answerIncomingCall = (call) => {
 
 .service-company-row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
-    gap: 1cqw;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    align-items: center;
+    gap: 1.2cqw;
     min-height: 0;
     margin-bottom: 1.5cqh;
     border: 1px solid rgba(255, 255, 255, .09);
@@ -655,14 +655,13 @@ const answerIncomingCall = (call) => {
 }
 
 .service-company-main {
-    grid-column: 1 / -1;
     display: flex;
     align-items: center;
     width: 100%;
     min-width: 0;
     gap: 1.8cqw;
     border: 0;
-    padding: .5cqh 0 1cqh;
+    padding: .3cqh 0;
     color: white;
     text-align: left;
     background: transparent;
@@ -729,16 +728,14 @@ const answerIncomingCall = (call) => {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: .8cqw;
-    width: 100%;
+    width: 4.8cqh;
     height: 4.8cqh;
     border: 0;
     border-radius: 1.2cqh;
     color: var(--services-accent);
     background: rgba(77, 141, 255, .14);
     font: inherit;
-    font-size: 1.35cqh;
-    font-weight: 600;
+    font-size: 0;
     cursor: pointer;
 }
 
@@ -746,22 +743,25 @@ const answerIncomingCall = (call) => {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: .8cqw;
-    width: 100%;
+    width: 4.8cqh;
     height: 4.8cqh;
     border: 0;
     border-radius: 1.2cqh;
     color: #ff9bb3;
     background: rgba(255, 59, 107, .13);
     font: inherit;
-    font-size: 1.35cqh;
-    font-weight: 600;
+    font-size: 0;
     cursor: pointer;
 }
 
 .service-company-call:hover,
 .service-company-message:hover {
     filter: brightness(1.15);
+}
+
+.service-company-call span,
+.service-company-message span {
+    display: none;
 }
 
 .services-empty {
