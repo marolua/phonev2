@@ -953,6 +953,7 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
     min-height: 18%;
     flex-shrink: 0;
     border-radius: 6cqh;
+    z-index: 2;
 
     .categories {
         display: flex;
