@@ -19,6 +19,9 @@ import PhotosApp from "../components/apps/Photos.vue";
 import NotesApp from "../components/apps/Notes.vue";
 import CalculatorApp from "../components/apps/Calculator.vue";
 import BankApp from "../components/apps/Bank.vue";
+import NewsApp from "../components/apps/News.vue";
+import ServicesApp from "../components/apps/Services.vue";
+import TwitterApp from "../components/apps/Kwiker.vue";
 
 export const applications = [
   {
@@ -97,21 +100,21 @@ export const applications = [
     id: "news",
     name: "News",
     icon: NewsIcon,
-    component: SettingsApp,
+    component: NewsApp,
     page: "news",
   },
   {
     id: "services",
     name: "Services",
     icon: ServicesIcon,
-    component: SettingsApp,
+    component: ServicesApp,
     page: "services",
   },
   {
     id: "twitter",
     name: "Kwiker",
     icon: TwitterIcon,
-    component: SettingsApp,
+    component: KwikerApp,
     page: "twitter",
   },
 ];
