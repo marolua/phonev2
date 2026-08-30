@@ -244,7 +244,6 @@ const answerIncomingCall = (call) => {
                             </span>
                             <span class="service-company-info"><strong>{{ company.name }}</strong><small>{{ company.address }}</small></span>
                                 company.category }} · {{ company.address }}</small><span
-                                    class="service-company-status"><span></span>{{ company.hours }}</span></span>
                             <ChevronRight :size="17" class="service-company-chevron" />
                         </button>
                         <button type="button" class="service-company-call" aria-label="Appeler l’entreprise"
