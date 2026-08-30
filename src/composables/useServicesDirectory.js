@@ -9,6 +9,16 @@ const demoCompanies = [
     { id: 'legal', name: 'Bureau Hayes & Cole', category: 'Services', phone: '555-5025', address: 'Alta', hours: '09:00 – 18:00', description: 'Conseil juridique et accompagnement administratif pour les habitants.', color: 'linear-gradient(145deg, #5f86ad, #273950)' },
 ];
 
+demoCompanies.splice(0, demoCompanies.length,
+    { id: 'lspd', name: 'Los Santos Police Department', category: 'Police', phone: '555-9111', address: 'Mission Row', hours: 'Urgences 24h/24', description: 'Le service de police de Los Santos. Contactez le standard pour une demande non urgente.', color: 'linear-gradient(145deg, #4b6da8, #1d2747)' },
+    { id: 'ems', name: 'Los Santos EMS', category: 'Santé', phone: '555-9112', address: 'Pillbox Hill', hours: 'Urgences 24h/24', description: 'Les secours médicaux de Los Santos pour les urgences, les soins et les demandes médicales.', color: 'linear-gradient(145deg, #db5b78, #61263f)' },
+    { id: 'bennys', name: 'Benny’s Original Motor Works', category: 'Automobile', phone: '555-2040', address: 'Strawberry', hours: '08:00 – 22:00', description: 'Réparations, dépannage et personnalisation de véhicules.', color: 'linear-gradient(145deg, #df8b55, #69313d)' },
+    { id: 'burgershot', name: 'Burger Shot', category: 'Restauration', phone: '555-2929', address: 'Vespucci Boulevard', hours: '10:00 – 02:00', description: 'Le fast-food préféré de Los Santos. Commandes, livraisons et réservations.', color: 'linear-gradient(145deg, #e45858, #7b2835)' },
+    { id: 'lscustoms', name: 'Los Santos Customs', category: 'Automobile', phone: '555-2041', address: 'Burton', hours: '09:00 – 21:00', description: 'Entretien, peinture et améliorations pour tous les véhicules.', color: 'linear-gradient(145deg, #808991, #29323c)' },
+    { id: 'taxi', name: 'Downtown Cab Co.', category: 'Transport', phone: '555-3007', address: 'Centre-ville', hours: 'Ouvert 24h/24', description: 'Un chauffeur près de vous en quelques minutes, partout à Los Santos.', color: 'linear-gradient(145deg, #e4b95c, #7a4931)' },
+    { id: 'weazel', name: 'Weazel News', category: 'Médias', phone: '555-5050', address: 'Vinewood', hours: 'Rédaction 24h/24', description: 'Les dernières informations et actualités de Los Santos.', color: 'linear-gradient(145deg, #d94d75, #582b5d)' },
+);
+
 const normalizeCompany = (company, index = 0) => ({
     id: company?.id ?? ('company-' + index),
     name: company?.name || company?.label || 'Entreprise',
