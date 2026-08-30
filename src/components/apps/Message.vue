@@ -819,6 +819,36 @@ const sendLocationMessage = async () => {
     line-height: 1.35;
 }
 
+.message-photo {
+    width: 38cqw;
+    height: 27cqh;
+    border-radius: 1.6cqh;
+    background-position: center;
+    background-size: cover;
+}
+
+.message-location {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.6cqh;
+    min-width: 30cqw;
+}
+
+.message-location svg {
+    color: #dceaff;
+}
+
+.message-location strong {
+    font-size: 1.75cqh;
+    font-weight: 600;
+}
+
+.message-location span {
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 1.35cqh;
+}
+
 .message-meta {
     display: flex;
     flex-direction: column;
@@ -857,6 +887,111 @@ const sendLocationMessage = async () => {
     box-sizing: border-box;
     background: rgba(0, 0, 0, 0.62);
     backdrop-filter: blur(0.7cqh);
+}
+
+.photo-picker-backdrop {
+    position: absolute;
+    z-index: 10;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.62);
+    backdrop-filter: blur(0.7cqh);
+}
+
+.photo-picker-modal {
+    position: relative;
+    width: 100%;
+    height: 70%;
+    box-sizing: border-box;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 3cqh 3cqh 0 0;
+    color: white;
+    background: rgba(38, 38, 40, 0.98);
+    box-shadow: 0 2cqh 8cqh rgba(0, 0, 0, 0.45);
+}
+
+.photo-picker-modal::before {
+    position: absolute;
+    top: 1cqh;
+    left: 50%;
+    width: 10cqw;
+    height: 0.5cqh;
+    border-radius: 1cqh;
+    background: rgba(255, 255, 255, 0.35);
+    content: '';
+    transform: translateX(-50%);
+}
+
+.photo-picker-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 7cqh;
+    padding: 0 3cqw;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 2cqh;
+}
+
+.photo-picker-header button {
+    border: 0;
+    padding: 0;
+    color: rgba(255, 255, 255, 0.7);
+    background: transparent;
+    font: inherit;
+    font-size: 1.65cqh;
+    cursor: pointer;
+}
+
+.photo-picker-header > span {
+    width: 12cqw;
+}
+
+.photo-picker-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1cqw;
+    height: calc(100% - 7cqh);
+    box-sizing: border-box;
+    overflow-y: auto;
+    padding: 2cqh 3cqw 4cqh;
+}
+
+.photo-picker-item {
+    aspect-ratio: 1;
+    overflow: hidden;
+    border: 0;
+    border-radius: 1.2cqh;
+    padding: 0;
+    background: rgba(255, 255, 255, 0.08);
+    cursor: pointer;
+}
+
+.photo-picker-item span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    transition: transform 0.15s ease;
+}
+
+.photo-picker-item:hover span {
+    transform: scale(1.05);
+}
+
+.photo-picker-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1cqh;
+    height: calc(100% - 7cqh);
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 1.7cqh;
 }
 
 .new-message-modal {
@@ -1050,7 +1185,9 @@ const sendLocationMessage = async () => {
 }
 
 .message-sheet-enter-active .new-message-modal,
-.message-sheet-leave-active .new-message-modal {
+.message-sheet-leave-active .new-message-modal,
+.message-sheet-enter-active .photo-picker-modal,
+.message-sheet-leave-active .photo-picker-modal {
     transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -1060,7 +1197,9 @@ const sendLocationMessage = async () => {
 }
 
 .message-sheet-enter-from .new-message-modal,
-.message-sheet-leave-to .new-message-modal {
+.message-sheet-leave-to .new-message-modal,
+.message-sheet-enter-from .photo-picker-modal,
+.message-sheet-leave-to .photo-picker-modal {
     transform: translateY(100%);
 }
 
