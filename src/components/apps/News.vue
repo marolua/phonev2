@@ -246,8 +246,8 @@ const publish = async () => {
                 <span>
                     <Camera :size="16" /><span>Espace presse</span>
                 </span>
-                <button type="button" @click="openComposer">
-                    <Plus :size="16" /> Nouvel article
+                <button type="button" aria-label="Nouvel article" @click="openComposer">
+                    <Plus :size="19" />
                 </button>
             </div>
         </template>
