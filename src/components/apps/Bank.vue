@@ -197,7 +197,7 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
                 <section class="bank-section bank-transactions-section">
                     <div class="bank-section-heading">
                         <h2>Dernières opérations</h2>
-                        <button type="button">Tout voir
+                        <button type="button" @click="showAllTransactions = true">Tout voir
                             <ChevronRight size="1.8cqh" />
                         </button>
                     </div>
@@ -229,11 +229,11 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
                     <div class="bank-card-bottom"><span>JOHN MCKENZIE</span><span>VISA</span></div>
                 </button>
                 <div class="bank-settings-list">
-                    <button type="button">
+                    <button type="button" @click="openDetail('cardSecurity')">
                         <ShieldCheck size="2.2cqh" /><span>Sécurité de la carte</span>
                         <ChevronRight size="2cqh" />
                     </button>
-                    <button type="button">
+                    <button type="button" @click="openDetail('cardLimits')">
                         <WalletCards size="2.2cqh" /><span>Plafonds et paiements</span>
                         <ChevronRight size="2cqh" />
                     </button>
@@ -247,15 +247,15 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
                     <ChevronRight size="2.2cqh" />
                 </div>
                 <div class="bank-settings-list">
-                    <button type="button">
+                    <button type="button" @click="openDetail('account')">
                         <Landmark size="2.2cqh" /><span>Informations du compte</span>
                         <ChevronRight size="2cqh" />
                     </button>
-                    <button type="button">
+                    <button type="button" @click="openDetail('privacy')">
                         <ShieldCheck size="2.2cqh" /><span>Confidentialité et sécurité</span>
                         <ChevronRight size="2cqh" />
                     </button>
-                    <button type="button">
+                    <button type="button" @click="openDetail('documents')">
                         <ReceiptText size="2.2cqh" /><span>Documents bancaires</span>
                         <ChevronRight size="2cqh" />
                     </button>
@@ -263,17 +263,103 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
             </template>
         </main>
 
+        <Transition name="bank-page">
+            <section v-if="showAllTransactions" class="bank-transactions-page">
+                <header class="bank-detail-header">
+                    <button type="button" @click="showAllTransactions = false">
+                        <ArrowLeft size="2.2cqh" />
+                        <span>Retour</span>
+                    </button>
+                    <strong>Toutes les opérations</strong>
+                    <span class="bank-header-spacer"></span>
+                </header>
+                <p class="bank-page-title">{{ transactions.length }} opérations enregistrées</p>
+                <div class="bank-transactions bank-transactions-full">
+                    <div v-for="transaction in transactions" :key="transaction.id" class="bank-transaction">
+                        <span class="transaction-icon" :class="transaction.positive ? 'income' : 'expense'">
+                            <component :is="transaction.icon" size="2.1cqh" />
+                        </span>
+                        <span class="transaction-details">
+                            <strong>{{ transaction.title }}</strong>
+                            <small>{{ transaction.subtitle }}</small>
+                        </span>
+                        <strong class="transaction-amount" :class="{ income: transaction.positive }">
+                            {{ transaction.positive ? '+' : '' }}{{ formatMoney(transaction.amount) }}
+                        </strong>
+                    </div>
+                </div>
+            </section>
+        </Transition>
+
         <nav class="bank-tabbar" aria-label="Navigation Banque">
-            <button type="button" :class="{ active: activeTab === 'home' }" @click="activeTab = 'home'">
-                <House size="2.3cqh" /><span>Accueil</span>
-            </button>
-            <button type="button" :class="{ active: activeTab === 'cards' }" @click="activeTab = 'cards'">
-                <WalletCards size="2.3cqh" /><span>Cartes</span>
-            </button>
-            <button type="button" :class="{ active: activeTab === 'profile' }" @click="activeTab = 'profile'">
-                <UserRound size="2.3cqh" /><span>Profil</span>
-            </button>
+            <div class="categories">
+                <button type="button" class="categorie" :class="{ active: activeTab === 'home' }" @click="activeTab = 'home'">
+                    <House size="2.3cqh" /><span>Accueil</span>
+                </button>
+                <button type="button" class="categorie" :class="{ active: activeTab === 'cards' }" @click="activeTab = 'cards'">
+                    <WalletCards size="2.3cqh" /><span>Cartes</span>
+                </button>
+                <button type="button" class="categorie" :class="{ active: activeTab === 'profile' }" @click="activeTab = 'profile'">
+                    <UserRound size="2.3cqh" /><span>Profil</span>
+                </button>
+            </div>
         </nav>
+
+        <Transition name="bank-sheet">
+            <div v-if="detailSheet" class="bank-sheet-backdrop" @click.self="closeDetail">
+                <section class="bank-detail-sheet">
+                    <div class="bank-sheet-grabber" aria-hidden="true"></div>
+                    <header class="bank-detail-header">
+                        <button type="button" @click="closeDetail">Annuler</button>
+                        <strong>{{ detailTitle }}</strong>
+                        <button type="button" @click="closeDetail">Terminé</button>
+                    </header>
+
+                    <div class="bank-detail-content">
+                        <template v-if="detailSheet === 'cardSecurity'">
+                            <p class="bank-detail-intro">Gère les protections de ta carte.</p>
+                            <button type="button" class="bank-toggle-row" @click="cardLocked = !cardLocked">
+                                <span><ShieldCheck size="2.2cqh" /><span><strong>Verrouiller la carte</strong><small>{{ cardLocked ? 'Les paiements sont bloqués' : 'Carte active' }}</small></span></span>
+                                <i class="bank-toggle" :class="{ enabled: cardLocked }"><b></b></i>
+                            </button>
+                            <button type="button" class="bank-toggle-row" @click="contactlessEnabled = !contactlessEnabled">
+                                <span><CreditCard size="2.2cqh" /><span><strong>Paiement sans contact</strong><small>{{ contactlessEnabled ? 'Activé' : 'Désactivé' }}</small></span></span>
+                                <i class="bank-toggle" :class="{ enabled: contactlessEnabled }"><b></b></i>
+                            </button>
+                        </template>
+
+                        <template v-else-if="detailSheet === 'cardLimits'">
+                            <p class="bank-detail-intro">Modifie les montants maximums autorisés.</p>
+                            <label class="bank-slider-row"><span><strong>Plafond quotidien</strong><b>{{ formatMoney(dailyLimit) }}</b></span><input v-model.number="dailyLimit" type="range" min="100" max="5000" step="50" /></label>
+                            <label class="bank-slider-row"><span><strong>Paiements en ligne</strong><b>{{ formatMoney(onlineLimit) }}</b></span><input v-model.number="onlineLimit" type="range" min="100" max="2500" step="50" /></label>
+                        </template>
+
+                        <template v-else-if="detailSheet === 'account'">
+                            <div class="bank-detail-row"><span>Titulaire</span><strong>John McKenzie</strong></div>
+                            <div class="bank-detail-row"><span>Compte courant</span><strong>**** 7314</strong></div>
+                            <div class="bank-detail-row"><span>IBAN</span><strong>FR76 **** **** 7314</strong></div>
+                            <div class="bank-detail-row"><span>Type de compte</span><strong>Compte personnel</strong></div>
+                        </template>
+
+                        <template v-else-if="detailSheet === 'privacy'">
+                            <p class="bank-detail-intro">Protège l’accès à ton application Banque.</p>
+                            <button type="button" class="bank-toggle-row" @click="biometricEnabled = !biometricEnabled">
+                                <span><ShieldCheck size="2.2cqh" /><span><strong>Déverrouillage biométrique</strong><small>{{ biometricEnabled ? 'Activé' : 'Désactivé' }}</small></span></span>
+                                <i class="bank-toggle" :class="{ enabled: biometricEnabled }"><b></b></i>
+                            </button>
+                            <div class="bank-detail-row"><span>Notifications sensibles</span><strong>Masquées</strong></div>
+                        </template>
+
+                        <template v-else-if="detailSheet === 'documents'">
+                            <p class="bank-detail-intro">Retrouve tes documents bancaires récents.</p>
+                            <button type="button" class="bank-document-row" @click="openDocument('Relevé du mois')"><ReceiptText size="2.2cqh" /><span><strong>Relevé du mois</strong><small>PDF · août 2026</small></span><ChevronRight size="2cqh" /></button>
+                            <button type="button" class="bank-document-row" @click="openDocument('RIB')"><Landmark size="2.2cqh" /><span><strong>RIB</strong><small>Coordonnées du compte</small></span><ChevronRight size="2cqh" /></button>
+                            <p v-if="lastDocumentAction" class="bank-document-notice">{{ lastDocumentAction }}</p>
+                        </template>
+                    </div>
+                </section>
+            </div>
+        </Transition>
 
         <Transition name="bank-sheet">
             <div v-if="showActionSheet" class="bank-sheet-backdrop" @click.self="closeAction">
