@@ -802,93 +802,160 @@ const selectWallpaper = (url) => {
   background: rgba(255, 255, 255, 0.16);
 }
 
-.blocked-editor-modal {
-  width: 100%;
-  border-right: 0;
-  border-bottom: 0;
-  border-left: 0;
-  border-radius: 2.8cqh 2.8cqh 0 0;
-  padding: 1.2cqh 4cqw 3cqh;
-  background: rgba(28, 28, 30, 0.99);
-}
-
-.blocked-editor-backdrop {
+.settings-sheet-backdrop {
+  position: absolute;
+  z-index: 10;
+  inset: 0;
+  display: flex;
   align-items: flex-end;
-  padding: 0;
-}
-
-.sheet-grabber {
-  width: 9cqw;
-  height: 0.55cqh;
-  margin: 0 auto 2cqh;
-  border-radius: 99px;
-  background: rgba(255, 255, 255, 0.28);
-}
-
-.blocked-field {
-  display: block;
-  margin-top: 1.3cqh;
-  color: rgba(255, 255, 255, 0.58);
-  font-size: 1.45cqh;
-}
-
-.blocked-field input {
-  display: block;
+  justify-content: center;
   box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.62);
+  backdrop-filter: blur(0.7cqh);
+}
+
+.settings-sheet {
+  position: relative;
   width: 100%;
-  height: 5.2cqh;
-  margin-top: 0.7cqh;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 1.1cqh;
-  padding: 0 1.5cqw;
-  outline: none;
+  height: 52%;
+  box-sizing: border-box;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 3cqh 3cqh 0 0;
   color: white;
+  background: rgba(38, 38, 40, 0.98);
+  box-shadow: 0 2cqh 8cqh rgba(0, 0, 0, 0.45);
+}
+
+.settings-sheet::before {
+  position: absolute;
+  top: 1cqh;
+  left: 50%;
+  width: 10cqw;
+  height: 0.5cqh;
+  border-radius: 1cqh;
+  background: rgba(255, 255, 255, 0.35);
+  content: '';
+  transform: translateX(-50%);
+}
+
+.settings-sheet-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 7cqh;
+  padding: 0 3cqw;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 2cqh;
+  font-weight: 600;
+}
+
+.settings-sheet-action {
+  border: 0;
+  padding: 0;
+  color: #4d8dff;
+  background: transparent;
   font: inherit;
   font-size: 1.65cqh;
-  background: rgba(255, 255, 255, 0.07);
+  cursor: pointer;
 }
 
-.blocked-field input:focus {
+.settings-sheet-action:disabled {
+  color: rgba(77, 141, 255, 0.35);
+  cursor: default;
+}
+
+.settings-sheet-cancel {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.settings-sheet-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5cqh;
+  height: calc(100% - 7cqh);
+  box-sizing: border-box;
+  overflow-y: auto;
+  padding: 3cqh 4cqw 4cqh;
+}
+
+.settings-sheet-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6cqh;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 1.5cqh;
+}
+
+.settings-sheet-field > input,
+.settings-phone-input {
+  width: 100%;
+  height: 5.6cqh;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.4cqh;
+  padding: 0 2cqw;
+  outline: none;
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+  font: inherit;
+  font-size: 1.8cqh;
+}
+
+.settings-sheet-field > input:focus,
+.settings-phone-input:focus-within {
   border-color: rgba(77, 141, 255, 0.8);
 }
 
-.blocked-phone-entry {
+.settings-sheet-field input::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.settings-phone-input {
   display: flex;
   align-items: center;
-  height: 5.2cqh;
-  margin-top: 0.7cqh;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 1.1cqh;
-  background: rgba(255, 255, 255, 0.07);
 }
 
-.blocked-phone-prefix {
+.settings-phone-input > span {
   flex-shrink: 0;
-  padding-left: 1.5cqw;
   color: rgba(255, 255, 255, 0.8);
-  font-size: 1.65cqh;
+  font-size: 1.8cqh;
 }
 
-.blocked-phone-entry input {
+.settings-phone-input input {
+  flex: 1;
+  min-width: 0;
   height: 100%;
-  margin-top: 0;
   border: 0;
-  background: transparent;
-}
-
-.blocked-field input::placeholder {
-  color: rgba(255, 255, 255, 0.32);
-}
-
-.save-blocked-action {
-  margin-top: 2cqh;
+  padding: 0 0 0 0.7cqw;
+  outline: none;
   color: white;
-  background: #4d8dff;
+  background: transparent;
+  font: inherit;
+  font-size: 1.8cqh;
 }
 
-.blocked-editor-modal .cancel-action {
-  color: #4d8dff;
-  background: rgba(255, 255, 255, 0.06);
+.blocked-editor-sheet {
+  height: 52%;
+}
+
+.language-sheet {
+  height: 62%;
+}
+
+.language-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1cqh;
+  height: calc(100% - 7cqh);
+  box-sizing: border-box;
+  overflow-y: auto;
+  padding: 3cqh 4cqw 4cqh;
+}
+
+.language-form-label {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 1.5cqh;
 }
 
 .general-modal-backdrop {
