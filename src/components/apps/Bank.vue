@@ -326,11 +326,11 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
                                     <span>
                                         <ShieldCheck size="2.2cqh" /><span><strong>Verrouiller la
                                                 carte</strong><small>{{ cardLocked ? 'Les paiements sont bloqués' :
-                                                'Carte active' }}</small></span>
+                                                    'Carte active' }}</small></span>
                                     </span>
                                     <b class="bank-setting-state"
                                         :class="{ enabled: cardLocked, locked: cardLocked }">{{ cardLocked ? 'Bloquée' :
-                                        'Active' }}</b>
+                                            'Active' }}</b>
                                 </button>
                                 <button type="button" class="bank-toggle-row"
                                     @click="contactlessEnabled = !contactlessEnabled">
@@ -349,11 +349,11 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
                             <p class="bank-detail-intro">Voici les montants maximums autorisés.</p>
                             <div class="bank-settings-list bank-detail-list">
                                 <div class="bank-detail-row"><span>Plafond quotidien</span><strong>{{
-                                        formatMoney(dailyLimit) }}</strong></div>
+                                    formatMoney(dailyLimit) }}</strong></div>
                                 <div class="bank-detail-row"><span>Paiements en ligne</span><strong>{{
-                                        formatMoney(onlineLimit) }}</strong></div>
+                                    formatMoney(onlineLimit) }}</strong></div>
                                 <div class="bank-detail-row"><span>Retraits au distributeur</span><strong>{{
-                                        formatMoney(500) }}</strong></div>
+                                    formatMoney(500) }}</strong></div>
                             </div>
                         </template>
 
