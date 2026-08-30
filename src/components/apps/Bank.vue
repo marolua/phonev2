@@ -415,6 +415,7 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
     height: 100%;
     box-sizing: border-box;
     overflow: hidden;
+    user-select: none;
     padding: 15cqw 3cqh 0;
     color: white;
     background: #0a0a0a;
