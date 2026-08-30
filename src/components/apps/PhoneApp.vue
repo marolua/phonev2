@@ -29,6 +29,7 @@ const phoneNumber = ref('');
 const showCreateContact = ref(false);
 const emptyContact = () => ({ firstName: '', lastName: '', phone: '', photo: '' });
 const newContact = ref(emptyContact());
+const recentCallSearch = ref('');
 const contactSearch = ref('');
 const selectedContact = ref(null);
 const isClosingContact = ref(false);
@@ -103,6 +104,15 @@ const filteredContacts = computed(() => {
         const searchableText = `${contact.firstName} ${contact.lastName} ${contact.phone}`.toLowerCase();
         return searchableText.includes(search);
     });
+});
+
+const filteredRecentCalls = computed(() => {
+    const search = recentCallSearch.value.trim().toLowerCase();
+    if (!search) return recentCalls;
+
+    return recentCalls.filter((call) => `${call.name} ${call.phone} ${call.type}`
+        .toLowerCase()
+        .includes(search));
 });
 
 const displayedPhoneNumber = computed(() => {
@@ -392,11 +402,11 @@ const addContact = () => {
             <div v-if="activeCategory === 'calls' && !props.contactsOnly" class="container">
                 <div class="input-group">
                     <Search class="search-icon" color="rgb(255, 255, 255, 0.8)" size="2.6cqh" />
-                    <input type="text" placeholder="Rechercher">
+                    <input v-model="recentCallSearch" type="text" placeholder="Rechercher">
                 </div>
 
                 <div class="container-recent-call">
-                    <button v-for="call in recentCalls" :key="call.id" type="button" class="recent-call"
+                    <button v-for="call in filteredRecentCalls" :key="call.id" type="button" class="recent-call"
                         @click="startCall(call.phone, call.contact)">
                         <div class="information">
                             <span class="name">{{ call.name }}</span>
@@ -406,6 +416,12 @@ const addContact = () => {
                             <span>{{ call.time }}</span>
                         </div>
                     </button>
+
+                    <div v-if="filteredRecentCalls.length === 0" class="recent-empty">
+                        <Search size="5cqh" />
+                        <span>Aucun appel trouvé</span>
+                        <small>Essaie un autre nom ou numéro.</small>
+                    </div>
                 </div>
             </div>
 
