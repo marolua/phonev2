@@ -949,6 +949,7 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
 .bottom-app-bank {
     display: flex;
     justify-content: center;
+    align-items: flex-end;
     width: 100%;
     min-height: 18%;
     flex-shrink: 0;
