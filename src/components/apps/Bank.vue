@@ -95,7 +95,6 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
     <div class="bank-app">
         <header class="bank-header">
             <div>
-                <span class="bank-greeting">Bonjour, John</span>
                 <h1>Banque</h1>
             </div>
             <button type="button" class="bank-profile-button" aria-label="Profil" @click="activeTab = 'profile'">
