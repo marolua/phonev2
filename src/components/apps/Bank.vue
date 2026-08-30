@@ -728,36 +728,49 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
 }
 
 .bank-tabbar {
-    position: absolute;
-    right: 3cqh;
-    bottom: 2cqh;
-    left: 3cqh;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    min-height: 7cqh;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 2cqh;
-    background: rgba(30, 30, 32, 0.96);
-    box-shadow: 0 1cqh 3cqh rgba(0, 0, 0, 0.35);
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    min-height: 20%;
+    flex-shrink: 0;
+    border-radius: 6cqh;
+}
+
+.bank-tabbar .categories {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 76%;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 6cqh;
+    background-color: rgba(51, 51, 51, 0.3);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 -6px 10px -6px rgba(0, 0, 0, 0.15);
     backdrop-filter: blur(1.5cqh);
 }
 
-.bank-tabbar button {
+.bank-tabbar .categorie {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 0.4cqh;
+    gap: 0.75cqh;
+    width: 30%;
+    height: 90%;
     border: 0;
+    border-radius: 5.7cqh;
     color: rgba(255, 255, 255, 0.42);
     background: transparent;
     font: inherit;
-    font-size: 1.15cqh;
+    font-size: 1.35cqh;
+    font-weight: 500;
     cursor: pointer;
+    transition: color 0.2s ease, background 0.2s ease;
 }
 
-.bank-tabbar button.active {
+.bank-tabbar .categorie.active {
     color: #6f9cff;
+    background: rgba(255, 255, 255, 0.06);
 }
 
 .bank-page-title {
