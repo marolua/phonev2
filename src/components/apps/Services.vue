@@ -163,7 +163,7 @@ const answerIncomingCall = (call) => {
                 <div class="services-intro"><span>
                         <Building2 :size="17" /> Entreprises disponibles
                     </span><small>{{ visibleCompanies.length }} résultat{{ visibleCompanies.length > 1 ? 's' : ''
-                    }}</small></div>
+                        }}</small></div>
                 <div v-if="isLoading" class="services-empty"><span>Chargement de l’annuaire…</span></div>
                 <template v-else>
                     <div v-for="company in visibleCompanies" :key="company.id" class="service-company-row">
@@ -197,8 +197,12 @@ const answerIncomingCall = (call) => {
 
         <template v-else-if="!selectedCompany && activeView === 'messages'">
             <header class="services-header services-messages-header">
-                <div><span class="services-eyebrow">Communication</span><h1>Messages</h1></div>
-                <span class="services-employee-avatar"><MessageCircle :size="17" /></span>
+                <div><span class="services-eyebrow">Communication</span>
+                    <h1>Messages</h1>
+                </div>
+                <span class="services-employee-avatar">
+                    <MessageCircle :size="17" />
+                </span>
             </header>
             <div class="services-message-tabs" role="tablist" aria-label="Type de messages">
                 <button type="button" role="tab" :aria-selected="messageTab === 'personal'"
@@ -212,39 +216,60 @@ const answerIncomingCall = (call) => {
                 <template v-if="messageTab === 'personal'">
                     <div v-if="personalMessages.length" class="services-message-list">
                         <button v-for="message in personalMessages" :key="message.id" type="button"
-                            class="services-personal-message" @click="companies.find((company) => company.id === message.companyId) && openCompany(companies.find((company) => company.id === message.companyId))">
-                            <span class="services-message-avatar services-message-avatar--company">{{ message.companyName.slice(0, 1).toUpperCase() }}</span>
-                            <span class="services-personal-message__content"><strong>{{ message.companyName }}</strong><span>{{ message.text }}</span></span>
-                            <span class="services-personal-message__meta">{{ message.time }}<ChevronRight :size="15" /></span>
+                            class="services-personal-message"
+                            @click="companies.find((company) => company.id === message.companyId) && openCompany(companies.find((company) => company.id === message.companyId))">
+                            <span class="services-message-avatar services-message-avatar--company">{{
+                                message.companyName.slice(0, 1).toUpperCase() }}</span>
+                            <span class="services-personal-message__content"><strong>{{ message.companyName
+                                    }}</strong><span>{{ message.text }}</span></span>
+                            <span class="services-personal-message__meta">{{ message.time }}
+                                <ChevronRight :size="15" />
+                            </span>
                         </button>
                     </div>
                     <div v-else class="services-empty services-messages-empty">
-                        <MessageCircle :size="31" /><strong>Aucun message envoyé</strong><span>Les messages envoyés aux entreprises apparaîtront ici.</span>
+                        <MessageCircle :size="31" /><strong>Aucun message envoyé</strong><span>Les messages envoyés aux
+                            entreprises apparaîtront ici.</span>
                     </div>
                 </template>
                 <template v-else>
                     <div v-if="!isEmployee" class="services-empty services-messages-empty">
-                        <BriefcaseBusiness :size="31" /><strong>Espace entreprise</strong><span>Cette boîte est réservée aux employés d’une entreprise.</span>
+                        <BriefcaseBusiness :size="31" /><strong>Espace entreprise</strong><span>Cette boîte est réservée
+                            aux employés d’une entreprise.</span>
                     </div>
                     <div v-else-if="employeeMessages.length" class="services-message-list">
                         <article v-for="message in employeeMessages" :key="message.id" class="services-message-card"
                             :class="{ 'services-message-card--unread': message.unread }">
-                            <div class="services-message-top"><span class="services-message-avatar">{{ message.senderName.slice(0, 1).toUpperCase() }}</span><span><strong>{{ message.senderName }}</strong><small>{{ message.time }}</small></span><span v-if="message.unread" class="services-unread-dot"></span></div>
+                            <div class="services-message-top"><span class="services-message-avatar">{{
+                                message.senderName.slice(0, 1).toUpperCase() }}</span><span><strong>{{
+                                        message.senderName }}</strong><small>{{ message.time }}</small></span><span
+                                    v-if="message.unread" class="services-unread-dot"></span></div>
                             <p>{{ message.text }}</p>
-                            <div class="services-message-actions"><span v-if="message.senderPhone"><Phone :size="14" /> {{ formatPhone(message.senderPhone) }}</span><button type="button" @click="openMessageComposer(employeeCompany, message)"><Reply :size="14" /> Répondre</button></div>
+                            <div class="services-message-actions"><span v-if="message.senderPhone">
+                                    <Phone :size="14" /> {{ formatPhone(message.senderPhone) }}
+                                </span><button type="button" @click="openMessageComposer(employeeCompany, message)">
+                                    <Reply :size="14" /> Répondre
+                                </button></div>
                         </article>
                     </div>
                     <div v-else class="services-empty services-messages-empty">
-                        <Inbox :size="31" /><strong>Aucun message reçu</strong><span>Les messages envoyés à ton entreprise apparaîtront ici.</span>
+                        <Inbox :size="31" /><strong>Aucun message reçu</strong><span>Les messages envoyés à ton
+                            entreprise apparaîtront ici.</span>
                     </div>
                 </template>
             </main>
         </template>
 
         <template v-else-if="!selectedCompany && (activeView === 'actions' || activeView === 'jobs')">
-            <header class="services-header"><div><span class="services-eyebrow">Los Santos</span><h1>{{ activeView === 'actions' ? 'Actions' : 'Jobs' }}</h1></div></header>
+            <header class="services-header">
+                <div><span class="services-eyebrow">Los Santos</span>
+                    <h1>{{ activeView === 'actions' ? 'Actions' : 'Jobs' }}</h1>
+                </div>
+            </header>
             <main class="services-scroll">
-                <div class="services-empty services-messages-empty"><ShieldCheck :size="31" /><strong>{{ activeView === 'actions' ? 'Actions rapides' : 'Mes entreprises' }}</strong><span>{{ activeView === 'actions' ? 'Les actions liées aux entreprises seront disponibles ici.' : 'Les entreprises liées à ton personnage apparaîtront ici.' }}</span></div>
+                <div class="services-empty services-messages-empty">
+                    <ShieldCheck :size="31" /><strong>{{ activeView === 'actions' ? 'Actions rapides' : 'Mesentreprises' }}</strong><span>{{ activeView === 'actions' ? 'Les actions liées aux entreprisesseront disponibles ici.' : 'Les entreprises liées à ton personnage apparaîtront ici.' }}</span>
+                </div>
             </main>
         </template>
 
@@ -318,10 +343,10 @@ const answerIncomingCall = (call) => {
                             </span><button type="button" @click="callCompany(selectedCompany)">Appeler</button></div>
                         <div class="services-company-details"><span>
                                 <MapPin :size="16" /><span><small>Adresse</small><strong>{{ selectedCompany.address
-                                }}</strong></span>
+                                        }}</strong></span>
                             </span><span>
                                 <Clock3 :size="16" /><span><small>Horaires</small><strong>{{ selectedCompany.hours
-                                }}</strong></span>
+                                        }}</strong></span>
                             </span></div>
                         <button type="button" class="services-message-button"
                             @click="openMessageComposer(selectedCompany)">
@@ -365,14 +390,14 @@ const answerIncomingCall = (call) => {
                                 :style="{ background: composeTarget?.company?.color }">
                                 <Building2 :size="18" />
                             </span><span><small>{{ composeTarget?.replyTo ? 'Réponse à' : 'Destinataire'
-                            }}</small><strong>{{
+                                    }}</small><strong>{{
                                         composeTarget?.company?.name }}</strong></span>
                             <Check :size="17" />
                         </div>
                         <textarea v-model="messageDraft" rows="5" maxlength="500" autofocus
                             :placeholder="composeTarget?.replyTo ? 'Écris ta réponse…' : 'Écris ton message à l’entreprise…'"></textarea>
                         <p v-if="messageNotice || lastError" class="services-form-notice">{{ messageNotice || lastError
-                        }}</p>
+                            }}</p>
                         <p class="services-form-footnote">
                             <ShieldCheck :size="14" /> Message transmis à la réception de l’entreprise
                         </p>
