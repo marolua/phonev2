@@ -32,8 +32,8 @@ const actionForm = ref({ name: '', amount: '' });
 const cardLocked = ref(false);
 const contactlessEnabled = ref(true);
 const biometricEnabled = ref(true);
-const dailyLimit = ref(1000);
-const onlineLimit = ref(500);
+const dailyLimit = 1000;
+const onlineLimit = 500;
 const lastDocumentAction = ref('');
 
 const transactions = ref([
@@ -332,9 +332,10 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
 
                         <template v-else-if="detailSheet === 'cardLimits'">
                             <p class="bank-detail-intro">Modifie les montants maximums autorisés.</p>
-                            <div class="bank-settings-list bank-detail-list bank-slider-list">
-                              <label class="bank-slider-row"><span><strong>Plafond quotidien</strong><b>{{ formatMoney(dailyLimit) }}</b></span><input v-model.number="dailyLimit" type="range" min="100" max="5000" step="50" :style="{ '--slider-progress': `${(dailyLimit / 5000) * 100}%` }" /></label>
-                              <label class="bank-slider-row"><span><strong>Paiements en ligne</strong><b>{{ formatMoney(onlineLimit) }}</b></span><input v-model.number="onlineLimit" type="range" min="100" max="2500" step="50" :style="{ '--slider-progress': `${(onlineLimit / 2500) * 100}%` }" /></label>
+                            <div class="bank-settings-list bank-detail-list">
+                              <div class="bank-detail-row"><span>Plafond quotidien</span><strong>{{ formatMoney(dailyLimit) }}</strong></div>
+                              <div class="bank-detail-row"><span>Paiements en ligne</span><strong>{{ formatMoney(onlineLimit) }}</strong></div>
+                              <div class="bank-detail-row"><span>Retraits au distributeur</span><strong>{{ formatMoney(500) }}</strong></div>
                             </div>
                         </template>
 
