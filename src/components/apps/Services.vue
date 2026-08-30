@@ -161,7 +161,7 @@ const answerIncomingCall = (call) => {
                 <div class="services-intro"><span>
                         <Building2 :size="17" /> Entreprises disponibles
                     </span><small>{{ visibleCompanies.length }} résultat{{ visibleCompanies.length > 1 ? 's' : ''
-                    }}</small></div>
+                        }}</small></div>
                 <div v-if="isLoading" class="services-empty"><span>Chargement de l’annuaire…</span></div>
                 <template v-else>
                     <div v-for="company in visibleCompanies" :key="company.id" class="service-company-row">
@@ -254,7 +254,7 @@ const answerIncomingCall = (call) => {
                         </span></div>
                     <div class="services-company-content"><span class="services-company-category">{{
                         selectedCompany.category
-                    }}</span>
+                            }}</span>
                         <h2>{{ selectedCompany.name }}</h2>
                         <p>{{ selectedCompany.description }}</p>
                         <div class="services-company-number"><span>
@@ -263,10 +263,10 @@ const answerIncomingCall = (call) => {
                             </span><button type="button" @click="callCompany(selectedCompany)">Appeler</button></div>
                         <div class="services-company-details"><span>
                                 <MapPin :size="16" /><span><small>Adresse</small><strong>{{ selectedCompany.address
-                                }}</strong></span>
+                                        }}</strong></span>
                             </span><span>
                                 <Clock3 :size="16" /><span><small>Horaires</small><strong>{{ selectedCompany.hours
-                                }}</strong></span>
+                                        }}</strong></span>
                             </span></div>
                         <button type="button" class="services-message-button"
                             @click="openMessageComposer(selectedCompany)">
@@ -302,14 +302,14 @@ const answerIncomingCall = (call) => {
                                 :style="{ background: composeTarget?.company?.color }">
                                 <Building2 :size="18" />
                             </span><span><small>{{ composeTarget?.replyTo ? 'Réponse à' : 'Destinataire'
-                            }}</small><strong>{{
+                                    }}</small><strong>{{
                                         composeTarget?.company?.name }}</strong></span>
                             <Check :size="17" />
                         </div>
                         <textarea v-model="messageDraft" rows="5" maxlength="500" autofocus
                             :placeholder="composeTarget?.replyTo ? 'Écris ta réponse…' : 'Écris ton message à l’entreprise…'"></textarea>
                         <p v-if="messageNotice || lastError" class="services-form-notice">{{ messageNotice || lastError
-                        }}</p>
+                            }}</p>
                         <p class="services-form-footnote">
                             <ShieldCheck :size="14" /> Message transmis à la réception de l’entreprise
                         </p>
