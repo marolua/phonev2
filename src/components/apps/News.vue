@@ -40,7 +40,8 @@ const imageInput = ref(null);
 const draft = ref({ title: '', excerpt: '', content: '', category: 'Actualités', image: '' });
 
 const categories = ['Pour toi', 'Actualités', 'Vie locale', 'Sécurité', 'Sport'];
-const draftCategories = categories.slice(1);
+categories.push('Enregistrés');
+const draftCategories = categories.slice(1, 5);
 
 const currentPlayer = computed(() => props.playerContext || bridgePlayerContext.value || (isFiveM.value ? {} : {
     job: 'journalist',
@@ -59,7 +60,10 @@ const visibleArticles = computed(() => {
     const query = searchQuery.value.trim().toLowerCase();
     const hideFeatured = activeCategory.value === 'Pour toi' && !query;
     return articles.value.filter((article) => {
-        const categoryMatches = activeCategory.value === 'Pour toi' || article.category === activeCategory.value;
+        const categoryMatches = activeCategory.value === 'Pour toi'
+            || (activeCategory.value === 'Enregistrés'
+                ? savedArticles.value.includes(article.id)
+                : article.category === activeCategory.value);
         const searchMatches = !query || (article.title + ' ' + article.excerpt + ' ' + article.author).toLowerCase().includes(query);
         return categoryMatches && searchMatches && (!hideFeatured || article.id !== featuredArticle.value?.id);
     });
