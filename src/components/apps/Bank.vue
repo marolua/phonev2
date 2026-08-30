@@ -1224,6 +1224,7 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
 
 .bank-detail-list .bank-toggle-row,
 .bank-detail-list .bank-document-row,
+.bank-detail-list .bank-detail-row,
 .bank-account-list .bank-detail-row {
     min-height: 7.2cqh;
     border: 0;
@@ -1236,6 +1237,7 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
 
 .bank-detail-list .bank-toggle-row:last-child,
 .bank-detail-list .bank-document-row:last-child,
+.bank-detail-list .bank-detail-row:last-child,
 .bank-account-list .bank-detail-row:last-child {
     border-bottom: 0;
 }
