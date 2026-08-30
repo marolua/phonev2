@@ -930,7 +930,6 @@ const sendLocationMessage = async () => {
     align-items: flex-end;
     justify-content: center;
     box-sizing: border-box;
-    padding-bottom: 5cqh;
     background: rgba(0, 0, 0, 0.62);
     backdrop-filter: blur(0.7cqh);
 }
@@ -941,7 +940,6 @@ const sendLocationMessage = async () => {
     flex-direction: column;
     width: 100%;
     height: 70%;
-    max-height: calc(100% - 5cqh);
     min-height: 0;
     box-sizing: border-box;
     overflow: hidden;
@@ -1002,19 +1000,13 @@ const sendLocationMessage = async () => {
     overflow-y: scroll;
     padding: 2cqh 3cqw calc(8cqh + env(safe-area-inset-bottom));
     overscroll-behavior-y: contain;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, 0.36) transparent;
+    scrollbar-width: none;
     touch-action: pan-y;
     -webkit-overflow-scrolling: touch;
 }
 
 .photo-picker-grid::-webkit-scrollbar {
-    width: 0.7cqw;
-}
-
-.photo-picker-grid::-webkit-scrollbar-thumb {
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.36);
+    display: none;
 }
 
 .photo-picker-item {
