@@ -1,5 +1,5 @@
 <script setup>
-import { ArrowLeft, Volume2, ALargeSmall, Sun, ChevronRight, RotateCcw, Languages, Check, X, Copy, Pencil, PhoneOff, Plus, Unlock } from '@lucide/vue';
+import { ArrowLeft, Volume2, ALargeSmall, Sun, ChevronRight, RotateCcw, Languages, Check, Copy, Pencil, PhoneOff, Plus, Unlock } from '@lucide/vue';
 import { blockedContacts } from '../../stores/contacts';
 import { brightness, callVolume, displayScale, phoneNumber, resetPhoneSettings, selectedLanguage, selectedWallpaper, systemVolume } from '../../stores/phoneSettings';
 import { formatPhoneNumber, isPhoneSuffixValid, phoneDigits } from '../../utils/phoneNumber';
@@ -18,11 +18,21 @@ const showBlockedEditor = ref(false);
 const copiedPhoneNumber = ref(false);
 const editingBlockedContactId = ref(null);
 const blockedContactDraft = ref({ name: '', phone: '' });
+const languageDraft = ref(selectedLanguage.value);
 
 const languages = ['Français', 'English', 'Español', 'Deutsch'];
 
+const openLanguagePicker = () => {
+  languageDraft.value = selectedLanguage.value;
+  showLanguagePicker.value = true;
+};
+
 const selectLanguage = (language) => {
-  selectedLanguage.value = language;
+  languageDraft.value = language;
+};
+
+const confirmLanguage = () => {
+  selectedLanguage.value = languageDraft.value;
   showLanguagePicker.value = false;
 };
 
