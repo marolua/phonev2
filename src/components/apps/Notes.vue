@@ -290,8 +290,9 @@ const deleteSelectedNote = () => {
 .notes-list {
     display: flex;
     flex-direction: column;
-    flex: 1;
+    flex: 0 1 auto;
     min-height: 0;
+    max-height: 56cqh;
     overflow-y: auto;
     border-radius: 1.5cqh;
     background: rgba(30, 30, 30, 0.92);
@@ -387,6 +388,7 @@ const deleteSelectedNote = () => {
     justify-content: center;
     flex-direction: column;
     flex: 1;
+    min-height: 18cqh;
     gap: 1cqh;
     padding: 5cqh 8cqw;
     color: rgba(255, 255, 255, 0.35);
@@ -406,7 +408,7 @@ const deleteSelectedNote = () => {
 .new-note-button {
     position: absolute;
     right: 3cqw;
-    bottom: 3cqh;
+    bottom: 6cqh;
     width: 6cqh;
     height: 6cqh;
     border-radius: 50%;
@@ -433,7 +435,7 @@ const deleteSelectedNote = () => {
     flex-shrink: 0;
     min-height: 5cqh;
     color: rgba(255, 255, 255, 0.85);
-    font-size: 1.8cqh;
+    font-size: 2.25cqh;
     font-weight: 600;
 }
 
@@ -444,11 +446,16 @@ const deleteSelectedNote = () => {
 }
 
 .note-editor-header button:first-child {
-    justify-content: flex-start;
-    width: 8cqw;
+    width: 5cqh;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: white;
+    background: rgba(55, 55, 58, 0.85);
+    box-shadow: 0 0.6cqh 1.2cqh rgba(0, 0, 0, 0.45);
 }
 
 .note-delete-button {
+    border: 1px solid rgba(255, 69, 58, 0.25) !important;
+    background: rgba(255, 69, 58, 0.12) !important;
     color: #ff453a !important;
 }
 
