@@ -16,6 +16,8 @@ import ContactApp from "../components/apps/Contact.vue";
 import SettingsApp from "../components/apps/Settings.vue";
 import CameraApp from "../components/apps/Camera.vue";
 import PhotosApp from "../components/apps/Photos.vue";
+import NotesApp from "../components/apps/Notes.vue";
+import CalculatorApp from "../components/apps/Calculator.vue";
 
 export const applications = [
   {
@@ -73,14 +75,14 @@ export const applications = [
     id: "notes",
     name: "Notes",
     icon: NotesIcon,
-    component: SettingsApp,
+    component: NotesApp,
     page: "notes",
   },
   {
     id: "calculator",
     name: "Calculatrice",
     icon: CalculatorIcon,
-    component: SettingsApp,
+    component: CalculatorApp,
     page: "calculator",
   },
   {
