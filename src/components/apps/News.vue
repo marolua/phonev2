@@ -205,7 +205,7 @@ const publish = async () => {
                                 <strong>{{ featuredArticle.title }}</strong>
                                 <span>{{ featuredArticle.excerpt }}</span>
                                 <small><span>{{ featuredArticle.author }}</span><span>·</span><span>{{
-                                        featuredArticle.readTime }} min de lecture</span></small>
+                                    featuredArticle.readTime }} min de lecture</span></small>
                             </span>
                         </button>
                     </section>
@@ -214,14 +214,14 @@ const publish = async () => {
                         <div class="news-section-heading">
                             <span>{{ activeCategory === 'Pour toi' ? 'Dernières nouvelles' : activeCategory }}</span>
                             <small>{{ visibleArticles.length }} article{{ visibleArticles.length > 1 ? 's' : ''
-                                }}</small>
+                            }}</small>
                         </div>
                         <button v-for="article in visibleArticles" :key="article.id" type="button"
                             class="news-article-row" @click="openArticle(article)">
                             <span class="news-article-image" :style="articleImageStyle(article)"></span>
                             <span class="news-article-info">
                                 <span class="news-article-meta"><span>{{ article.category
-                                        }}</span><span>·</span><span>{{ formatRelativeDate(article.publishedAt)
+                                }}</span><span>·</span><span>{{ formatRelativeDate(article.publishedAt)
                                         }}</span></span>
                                 <strong>{{ article.title }}</strong>
                                 <span class="news-article-excerpt">{{ article.excerpt }}</span>
@@ -277,7 +277,7 @@ const publish = async () => {
                         <div class="news-detail-actions">
                             <button type="button" @click="toggleSaved(selectedArticle)">
                                 <Bookmark :size="16" /> {{ savedArticles.includes(selectedArticle.id) ? 'Enregistré' :
-                                'Enregistrer' }}
+                                    'Enregistrer' }}
                             </button>
                             <button type="button">
                                 <Share2 :size="16" /> Partager
@@ -325,7 +325,7 @@ const publish = async () => {
                         <p v-if="publishNotice || lastError" class="news-form-notice">{{ publishNotice || lastError }}
                         </p>
                         <p class="news-form-footnote">
-                            <Send :size="13" /> {{ isFiveM ? 'Publication sécurisée vers la rédaction' : 'Mode aperçu ·lapublication est conservée dans l’app' }}
+                            <Send :size="13" /> {{ isFiveM ? 'Publication sécurisée vers la rédaction' : 'Mode aperçu la publication est conservée dans l’app' }}
                         </p>
                     </div>
                 </form>
