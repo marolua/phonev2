@@ -266,9 +266,9 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
         <Transition name="bank-page">
             <section v-if="showAllTransactions" class="bank-transactions-page">
                 <header class="bank-detail-header">
-                    <button type="button" @click="showAllTransactions = false">
-                        <ArrowLeft size="2.2cqh" />
-                        <span>Retour</span>
+                    <button type="button" class="bank-detail-back" aria-label="Retour"
+                        @click="showAllTransactions = false">
+                        <ArrowLeft size="2.7cqh" />
                     </button>
                     <strong>Toutes les opérations</strong>
                     <span class="bank-header-spacer"></span>
@@ -291,28 +291,30 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
             </section>
         </Transition>
 
-        <nav class="bank-tabbar" aria-label="Navigation Banque">
-            <div class="categories">
-                <button type="button" class="categorie" :class="{ active: activeTab === 'home' }" @click="activeTab = 'home'">
+        <div class="bottom-app-bank">
+            <nav class="categories" aria-label="Navigation Banque">
+                <button type="button" class="categorie" :class="{ 'categorie-selected': activeTab === 'home' }" @click="activeTab = 'home'">
                     <House size="2.3cqh" /><span>Accueil</span>
                 </button>
-                <button type="button" class="categorie" :class="{ active: activeTab === 'cards' }" @click="activeTab = 'cards'">
+                <button type="button" class="categorie" :class="{ 'categorie-selected': activeTab === 'cards' }" @click="activeTab = 'cards'">
                     <WalletCards size="2.3cqh" /><span>Cartes</span>
                 </button>
-                <button type="button" class="categorie" :class="{ active: activeTab === 'profile' }" @click="activeTab = 'profile'">
+                <button type="button" class="categorie" :class="{ 'categorie-selected': activeTab === 'profile' }" @click="activeTab = 'profile'">
                     <UserRound size="2.3cqh" /><span>Profil</span>
                 </button>
-            </div>
-        </nav>
+            </nav>
+        </div>
 
         <Transition name="bank-sheet">
             <div v-if="detailSheet" class="bank-sheet-backdrop" @click.self="closeDetail">
                 <section class="bank-detail-sheet">
                     <div class="bank-sheet-grabber" aria-hidden="true"></div>
                     <header class="bank-detail-header">
-                        <button type="button" @click="closeDetail">Annuler</button>
+                        <button type="button" class="bank-detail-back" aria-label="Retour" @click="closeDetail">
+                            <ArrowLeft size="2.7cqh" />
+                        </button>
                         <strong>{{ detailTitle }}</strong>
-                        <button type="button" @click="closeDetail">Terminé</button>
+                        <button type="button" class="bank-detail-done" @click="closeDetail">Terminé</button>
                     </header>
 
                     <div class="bank-detail-content">
