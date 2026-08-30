@@ -44,7 +44,13 @@ const unreadCount = computed(() => inbox.value.filter((message) => message.unrea
 const employeeMessages = computed(() => inbox.value
     .filter((message) => !employeeCompanyId.value || message.companyId === employeeCompanyId.value)
     .sort((a, b) => b.createdAt - a.createdAt));
-const personalMessages = computed(() => [...sentMessages.value].sort((a, b) => b.createdAt - a.createdAt));
+const personalMessages = computed(() => {
+    const messages = [...sentMessages.value];
+    if (!isEmployee.value) messages.push(...inbox.value);
+
+    return [...new Map(messages.map((message) => [message.id, message])).values()]
+        .sort((a, b) => b.createdAt - a.createdAt);
+});
 const conversationMessages = computed(() => {
     if (!conversationCompany.value) return [];
 
