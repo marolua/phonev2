@@ -49,6 +49,10 @@ const visibleCompanies = computed(() => {
 });
 
 const companyIcon = (category) => ({
+    Police: ShieldCheck,
+    'Médias': Building2,
+    Media: Building2,
+    Sante: HeartPulse,
     Santé: HeartPulse,
     Services: ShieldCheck,
     Automobile: Building2,
@@ -173,6 +177,10 @@ const answerIncomingCall = (call) => {
                         <button type="button" class="service-company-call" aria-label="Appeler l’entreprise"
                             @click="callCompany(company)">
                             <Phone :size="17" />
+                        </button>
+                        <button type="button" class="service-company-message" aria-label="Envoyer un message"
+                            @click="openMessageComposer(company)">
+                            <MessageCircle :size="17" />
                         </button>
                     </div>
                     <div v-if="!visibleCompanies.length" class="services-empty">
