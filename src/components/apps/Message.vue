@@ -3,6 +3,7 @@ import { computed, nextTick, ref } from 'vue';
 import { ArrowLeft, Check, ImagePlus, MapPin, Phone, Plus, Search, Send } from '@lucide/vue';
 import { contacts } from '../../stores/contacts';
 import { markMessagesAsRead } from '../../stores/messages';
+import { photos } from '../../stores/photos';
 import { formatPhoneNumber, isPhoneSuffixValid, phoneDigits } from '../../utils/phoneNumber';
 
 const searchQuery = ref('');
@@ -10,6 +11,7 @@ const selectedConversation = ref(null);
 const messageDraft = ref('');
 const messageThread = ref(null);
 const showComposerOptions = ref(false);
+const showPhotoPicker = ref(false);
 const showNewConversation = ref(false);
 const showContactSuggestions = ref(false);
 const newConversation = ref({ name: '', phone: '' });
@@ -80,6 +82,75 @@ const contactSuggestions = computed(() => {
 
 const contactName = (contact) => `${contact.firstName} ${contact.lastName}`.trim();
 
+const photoStyle = (photo) => photo?.src
+    ? { backgroundImage: `url(${photo.src})` }
+    : { background: photo?.gradient || 'linear-gradient(145deg, #52628e, #282c42)' };
+
+const formatCoordinate = (value) => Number(value).toFixed(2);
+
+const locationLabel = (coords) => {
+    if (!coords) return 'Coordonnées disponibles en jeu';
+    if ('x' in coords) {
+        return `X ${formatCoordinate(coords.x)} · Y ${formatCoordinate(coords.y)} · Z ${formatCoordinate(coords.z)}`;
+    }
+
+    return `${formatCoordinate(coords.latitude)}, ${formatCoordinate(coords.longitude)}`;
+};
+
+const normalizeCoordinates = (payload) => {
+    const coords = payload?.coords || payload;
+    if (!coords) return null;
+
+    if (['x', 'y', 'z'].every((key) => coords[key] !== undefined && Number.isFinite(Number(coords[key])))) {
+        return { x: Number(coords.x), y: Number(coords.y), z: Number(coords.z) };
+    }
+
+    if (Number.isFinite(Number(coords.latitude)) && Number.isFinite(Number(coords.longitude))) {
+        return {
+            latitude: Number(coords.latitude),
+            longitude: Number(coords.longitude),
+        };
+    }
+
+    return null;
+};
+
+const requestGameCoordinates = async () => {
+    const resourceName = typeof window.GetParentResourceName === 'function'
+        ? window.GetParentResourceName()
+        : null;
+
+    if (!resourceName) return null;
+
+    try {
+        const response = await fetch(`https://${resourceName}/getPlayerCoords`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({}),
+        });
+
+        if (!response.ok) return null;
+        return normalizeCoordinates(await response.json());
+    } catch {
+        return null;
+    }
+};
+
+const requestBrowserCoordinates = () => new Promise((resolve) => {
+    if (!navigator.geolocation) {
+        resolve(null);
+        return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+        ({ coords }) => resolve(normalizeCoordinates(coords)),
+        () => resolve(null),
+        { enableHighAccuracy: true, timeout: 2000 },
+    );
+});
+
+const requestCoordinates = async () => requestGameCoordinates() || requestBrowserCoordinates();
+
 const openNewConversation = () => {
     newConversation.value = { name: '', phone: '' };
     showContactSuggestions.value = false;
@@ -143,6 +214,7 @@ const closeConversation = () => {
     selectedConversation.value = null;
     messageDraft.value = '';
     showComposerOptions.value = false;
+    showPhotoPicker.value = false;
 };
 
 const callSelectedContact = () => {
@@ -173,6 +245,48 @@ const sendMessage = async () => {
         time: 'À l’instant',
     });
     messageDraft.value = '';
+    await nextTick();
+    scrollToLatestMessage();
+};
+
+const openPhotoPicker = () => {
+    showComposerOptions.value = false;
+    showPhotoPicker.value = true;
+};
+
+const closePhotoPicker = () => {
+    showPhotoPicker.value = false;
+};
+
+const sendPhotoMessage = async (photo) => {
+    if (!selectedConversation.value || !photo) return;
+
+    selectedConversation.value.messages.push({
+        id: Date.now(),
+        author: 'me',
+        type: 'photo',
+        photo,
+        text: 'Photo',
+        time: 'À l’instant',
+    });
+    closePhotoPicker();
+    await nextTick();
+    scrollToLatestMessage();
+};
+
+const sendLocationMessage = async () => {
+    if (!selectedConversation.value) return;
+
+    showComposerOptions.value = false;
+    const coords = await requestCoordinates();
+    selectedConversation.value.messages.push({
+        id: Date.now(),
+        author: 'me',
+        type: 'location',
+        coords,
+        text: 'Position partagée',
+        time: 'À l’instant',
+    });
     await nextTick();
     scrollToLatestMessage();
 };
