@@ -1,0 +1,762 @@
+<script setup>
+import { computed, ref } from 'vue';
+import {
+    ArrowDownLeft,
+    ArrowUpRight,
+    ChevronRight,
+    CreditCard,
+    Eye,
+    EyeOff,
+    House,
+    Landmark,
+    Plus,
+    ReceiptText,
+    Send,
+    ShieldCheck,
+    UserRound,
+    WalletCards,
+    X,
+} from '@lucide/vue';
+
+const activeTab = ref('home');
+const balance = ref(12450.8);
+const showBalance = ref(true);
+const showCardNumber = ref(false);
+const showActionSheet = ref(false);
+const actionType = ref('transfer');
+const formError = ref('');
+const actionForm = ref({ name: '', amount: '' });
+
+const transactions = ref([
+    { id: 1, title: 'Salaire', subtitle: 'Aujourd’hui', amount: 2850, icon: ArrowDownLeft, positive: true },
+    { id: 2, title: 'Los Santos Coffee', subtitle: 'Hier · Carte', amount: -6.5, icon: CreditCard, positive: false },
+    { id: 3, title: 'Virement à John', subtitle: '28 août · Virement', amount: -120, icon: ArrowUpRight, positive: false },
+    { id: 4, title: 'Remboursement', subtitle: '26 août', amount: 48.9, icon: ArrowDownLeft, positive: true },
+]);
+
+const formatMoney = (value) => new Intl.NumberFormat('fr-FR', {
+    style: 'currency',
+    currency: 'EUR',
+}).format(value);
+
+const formattedBalance = computed(() => showBalance.value ? formatMoney(balance.value) : '••••••');
+
+const actionTitle = computed(() => ({
+    transfer: 'Nouveau virement',
+    payment: 'Nouveau paiement',
+    deposit: 'Ajouter de l’argent',
+}[actionType.value]));
+
+const actionLabel = computed(() => actionType.value === 'deposit' ? 'Ajouter' : 'Confirmer');
+
+const openAction = (type) => {
+    actionType.value = type;
+    actionForm.value = { name: '', amount: '' };
+    formError.value = '';
+    showActionSheet.value = true;
+};
+
+const closeAction = () => {
+    showActionSheet.value = false;
+    formError.value = '';
+};
+
+const submitAction = () => {
+    const amount = Number(actionForm.value.amount);
+    const name = actionForm.value.name.trim() || (actionType.value === 'deposit' ? 'Ajout de fonds' : 'Opération');
+
+    if (!Number.isFinite(amount) || amount <= 0) {
+        formError.value = 'Indique un montant valide.';
+        return;
+    }
+
+    const isDeposit = actionType.value === 'deposit';
+    if (!isDeposit && amount > balance.value) {
+        formError.value = 'Le solde est insuffisant.';
+        return;
+    }
+
+    balance.value += isDeposit ? amount : -amount;
+    transactions.value.unshift({
+        id: Date.now(),
+        title: name,
+        subtitle: isDeposit ? 'Ajout de fonds' : actionType.value === 'transfer' ? 'Virement' : 'Paiement',
+        amount: isDeposit ? amount : -amount,
+        icon: isDeposit ? ArrowDownLeft : actionType.value === 'transfer' ? Send : ReceiptText,
+        positive: isDeposit,
+    });
+    closeAction();
+};
+
+const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 7314' : '••••  ••••  ••••  7314');
+</script>
+
+<template>
+    <div class="bank-app">
+        <header class="bank-header">
+            <div>
+                <span class="bank-greeting">Bonjour, John</span>
+                <h1>Banque</h1>
+            </div>
+            <button type="button" class="bank-profile-button" aria-label="Profil" @click="activeTab = 'profile'">
+                JM
+            </button>
+        </header>
+
+        <main class="bank-content">
+            <template v-if="activeTab === 'home'">
+                <section class="bank-balance-card">
+                    <div class="bank-balance-topline">
+                        <span>Solde disponible</span>
+                        <button type="button" aria-label="Afficher ou masquer le solde"
+                            @click="showBalance = !showBalance">
+                            <EyeOff v-if="showBalance" size="2.2cqh" />
+                            <Eye v-else size="2.2cqh" />
+                        </button>
+                    </div>
+                    <strong class="bank-balance">{{ formattedBalance }}</strong>
+                    <div class="bank-balance-footer">
+                        <span>Compte courant</span>
+                        <span>•• 7314</span>
+                    </div>
+                </section>
+
+                <section class="bank-section">
+                    <div class="bank-section-heading">
+                        <h2>Actions rapides</h2>
+                    </div>
+                    <div class="bank-quick-actions">
+                        <button type="button" @click="openAction('transfer')">
+                            <span class="bank-action-icon blue"><Send size="2.4cqh" /></span>
+                            <span>Virement</span>
+                        </button>
+                        <button type="button" @click="openAction('payment')">
+                            <span class="bank-action-icon purple"><ReceiptText size="2.4cqh" /></span>
+                            <span>Payer</span>
+                        </button>
+                        <button type="button" @click="openAction('deposit')">
+                            <span class="bank-action-icon green"><Plus size="2.6cqh" /></span>
+                            <span>Ajouter</span>
+                        </button>
+                    </div>
+                </section>
+
+                <section class="bank-section bank-card-section">
+                    <div class="bank-section-heading">
+                        <h2>Ma carte</h2>
+                        <button type="button" @click="activeTab = 'cards'">Voir tout <ChevronRight size="1.8cqh" /></button>
+                    </div>
+                    <button type="button" class="bank-card-preview" @click="activeTab = 'cards'">
+                        <div class="bank-card-brand"><Landmark size="2.6cqh" /> BANK</div>
+                        <span class="bank-card-chip"></span>
+                        <strong>••••  ••••  ••••  7314</strong>
+                        <div class="bank-card-bottom"><span>JOHN MCKENZIE</span><span>VISA</span></div>
+                    </button>
+                </section>
+
+                <section class="bank-section bank-transactions-section">
+                    <div class="bank-section-heading">
+                        <h2>Dernières opérations</h2>
+                        <button type="button">Tout voir <ChevronRight size="1.8cqh" /></button>
+                    </div>
+                    <div class="bank-transactions">
+                        <div v-for="transaction in transactions.slice(0, 4)" :key="transaction.id" class="bank-transaction">
+                            <span class="transaction-icon" :class="transaction.positive ? 'income' : 'expense'">
+                                <component :is="transaction.icon" size="2.1cqh" />
+                            </span>
+                            <span class="transaction-details">
+                                <strong>{{ transaction.title }}</strong>
+                                <small>{{ transaction.subtitle }}</small>
+                            </span>
+                            <strong class="transaction-amount" :class="{ income: transaction.positive }">
+                                {{ transaction.positive ? '+' : '' }}{{ formatMoney(transaction.amount) }}
+                            </strong>
+                        </div>
+                    </div>
+                </section>
+            </template>
+
+            <template v-else-if="activeTab === 'cards'">
+                <section class="bank-page-title">
+                    <span>Vos moyens de paiement</span>
+                    <h2>Cartes</h2>
+                </section>
+                <button type="button" class="bank-large-card" @click="showCardNumber = !showCardNumber">
+                    <div class="bank-card-brand"><Landmark size="2.8cqh" /> BANK</div>
+                    <span class="bank-card-chip"></span>
+                    <strong>{{ maskCardNumber }}</strong>
+                    <div class="bank-card-bottom"><span>JOHN MCKENZIE</span><span>VISA</span></div>
+                </button>
+                <div class="bank-settings-list">
+                    <button type="button"><ShieldCheck size="2.2cqh" /><span>Sécurité de la carte</span><ChevronRight size="2cqh" /></button>
+                    <button type="button"><WalletCards size="2.2cqh" /><span>Plafonds et paiements</span><ChevronRight size="2cqh" /></button>
+                </div>
+            </template>
+
+            <template v-else>
+                <section class="bank-page-title">
+                    <span>Votre espace personnel</span>
+                    <h2>Profil</h2>
+                </section>
+                <div class="bank-profile-card">
+                    <span class="bank-profile-large">JM</span>
+                    <div><strong>John McKenzie</strong><small>Client depuis août 2026</small></div>
+                    <ChevronRight size="2.2cqh" />
+                </div>
+                <div class="bank-settings-list">
+                    <button type="button"><Landmark size="2.2cqh" /><span>Informations du compte</span><ChevronRight size="2cqh" /></button>
+                    <button type="button"><ShieldCheck size="2.2cqh" /><span>Confidentialité et sécurité</span><ChevronRight size="2cqh" /></button>
+                    <button type="button"><ReceiptText size="2.2cqh" /><span>Documents bancaires</span><ChevronRight size="2cqh" /></button>
+                </div>
+            </template>
+        </main>
+
+        <nav class="bank-tabbar" aria-label="Navigation Banque">
+            <button type="button" :class="{ active: activeTab === 'home' }" @click="activeTab = 'home'">
+                <House size="2.3cqh" /><span>Accueil</span>
+            </button>
+            <button type="button" :class="{ active: activeTab === 'cards' }" @click="activeTab = 'cards'">
+                <WalletCards size="2.3cqh" /><span>Cartes</span>
+            </button>
+            <button type="button" :class="{ active: activeTab === 'profile' }" @click="activeTab = 'profile'">
+                <UserRound size="2.3cqh" /><span>Profil</span>
+            </button>
+        </nav>
+
+        <Transition name="bank-sheet">
+            <div v-if="showActionSheet" class="bank-sheet-backdrop" @click.self="closeAction">
+                <form class="bank-action-sheet" @submit.prevent="submitAction">
+                    <div class="bank-sheet-grabber" aria-hidden="true"></div>
+                    <header>
+                        <button type="button" @click="closeAction">Annuler</button>
+                        <strong>{{ actionTitle }}</strong>
+                        <button type="submit" :disabled="!actionForm.amount">{{ actionLabel }}</button>
+                    </header>
+                    <div class="bank-form">
+                        <label>
+                            <span>{{ actionType === 'deposit' ? 'Source' : actionType === 'payment' ? 'Destinataire' : 'Bénéficiaire' }}</span>
+                            <input v-model="actionForm.name" type="text" :placeholder="actionType === 'deposit' ? 'Ex. Espèces' : 'Nom ou référence'" />
+                        </label>
+                        <label>
+                            <span>Montant</span>
+                            <div class="bank-amount-input"><input v-model="actionForm.amount" type="number" min="0.01" step="0.01" placeholder="0,00" /><b>€</b></div>
+                        </label>
+                        <p v-if="formError" class="bank-form-error">{{ formError }}</p>
+                    </div>
+                </form>
+            </div>
+        </Transition>
+    </div>
+</template>
+
+<style scoped lang="scss">
+.bank-app {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 15cqw 3cqh 10cqh;
+    color: white;
+    background: #0a0a0a;
+}
+
+.bank-header,
+.bank-section-heading,
+.bank-balance-topline,
+.bank-balance-footer,
+.bank-card-bottom,
+.bank-transaction,
+.bank-profile-card {
+    display: flex;
+    align-items: center;
+}
+
+.bank-header,
+.bank-section-heading,
+.bank-balance-topline,
+.bank-balance-footer,
+.bank-card-bottom,
+.bank-profile-card {
+    justify-content: space-between;
+}
+
+.bank-greeting {
+    display: block;
+    margin-bottom: 0.3cqh;
+    color: rgba(255, 255, 255, 0.48);
+    font-size: 1.4cqh;
+}
+
+.bank-header h1 {
+    margin: 0;
+    font-size: 4.8cqh;
+    font-weight: 700;
+}
+
+.bank-profile-button,
+.bank-profile-large {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 50%;
+    color: white;
+    background: linear-gradient(145deg, #647bd0, #354273);
+    font-weight: 600;
+}
+
+.bank-profile-button {
+    width: 5.5cqh;
+    height: 5.5cqh;
+    font-size: 1.7cqh;
+    cursor: pointer;
+}
+
+.bank-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 2.5cqh 0 3cqh;
+}
+
+.bank-balance-card {
+    flex-shrink: 0;
+    min-height: 18cqh;
+    box-sizing: border-box;
+    border-radius: 2.4cqh;
+    padding: 2.5cqh 3cqw 2cqh;
+    background: linear-gradient(135deg, #4264c6 0%, #263d86 53%, #172654 100%);
+    box-shadow: 0 1.5cqh 3cqh rgba(36, 73, 176, 0.24);
+}
+
+.bank-balance-topline {
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 1.45cqh;
+}
+
+.bank-balance-topline button {
+    display: flex;
+    border: 0;
+    padding: 0;
+    color: white;
+    background: transparent;
+    cursor: pointer;
+}
+
+.bank-balance {
+    display: block;
+    margin: 1.5cqh 0 2cqh;
+    font-size: 4.8cqh;
+    font-weight: 600;
+    letter-spacing: 0.05cqw;
+}
+
+.bank-balance-footer {
+    padding-top: 1.4cqh;
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 1.35cqh;
+}
+
+.bank-section {
+    margin-top: 2.8cqh;
+}
+
+.bank-section-heading {
+    margin: 0 0 1.2cqh 0.5cqw;
+}
+
+.bank-section-heading h2 {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.85cqh;
+    font-weight: 600;
+}
+
+.bank-section-heading button {
+    display: flex;
+    align-items: center;
+    gap: 0.4cqw;
+    border: 0;
+    padding: 0;
+    color: #6f9cff;
+    background: transparent;
+    font: inherit;
+    font-size: 1.35cqh;
+    cursor: pointer;
+}
+
+.bank-quick-actions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5cqw;
+}
+
+.bank-quick-actions button {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.8cqh;
+    border: 0;
+    border-radius: 1.8cqh;
+    padding: 1.4cqh 0 1.2cqh;
+    color: rgba(255, 255, 255, 0.76);
+    background: rgba(30, 30, 32, 0.96);
+    font: inherit;
+    font-size: 1.35cqh;
+    cursor: pointer;
+}
+
+.bank-action-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5.4cqh;
+    height: 5.4cqh;
+    border-radius: 1.7cqh;
+}
+
+.bank-action-icon.blue { color: #79a4ff; background: rgba(77, 141, 255, 0.16); }
+.bank-action-icon.purple { color: #c09cff; background: rgba(155, 89, 255, 0.16); }
+.bank-action-icon.green { color: #65d69a; background: rgba(48, 209, 88, 0.14); }
+
+.bank-card-preview,
+.bank-large-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    overflow: hidden;
+    border: 0;
+    color: white;
+    text-align: left;
+    background: linear-gradient(130deg, #17191e, #414853 48%, #15171b);
+    box-shadow: 0 1cqh 2.5cqh rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+}
+
+.bank-card-preview::after,
+.bank-large-card::after {
+    position: absolute;
+    top: -10cqh;
+    right: -8cqw;
+    width: 28cqw;
+    height: 28cqw;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    content: '';
+}
+
+.bank-card-preview {
+    width: 100%;
+    height: 20cqh;
+    border-radius: 2.2cqh;
+    padding: 2cqh 3cqw 1.6cqh;
+}
+
+.bank-large-card {
+    width: 100%;
+    height: 25cqh;
+    border-radius: 2.6cqh;
+    padding: 2.5cqh 4cqw 2cqh;
+}
+
+.bank-card-brand {
+    display: flex;
+    align-items: center;
+    gap: 1cqw;
+    font-size: 1.55cqh;
+    font-weight: 700;
+    letter-spacing: 0.12cqw;
+}
+
+.bank-card-chip {
+    position: absolute;
+    top: 7.8cqh;
+    left: 3cqw;
+    width: 6cqw;
+    height: 3.8cqh;
+    border-radius: 0.8cqh;
+    background: linear-gradient(135deg, #c7a766, #f4d79a 48%, #a98242);
+}
+
+.bank-large-card .bank-card-chip { left: 4cqw; }
+
+.bank-card-preview > strong,
+.bank-large-card > strong {
+    margin-top: auto;
+    font-size: 2cqh;
+    font-weight: 500;
+    letter-spacing: 0.15cqw;
+}
+
+.bank-large-card > strong { font-size: 2.4cqh; }
+
+.bank-card-bottom {
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 1.1cqh;
+    letter-spacing: 0.1cqw;
+}
+
+.bank-transactions {
+    overflow: hidden;
+    border-radius: 1.7cqh;
+    background: rgba(30, 30, 30, 0.92);
+}
+
+.bank-transaction {
+    gap: 1.8cqw;
+    min-height: 7.5cqh;
+    padding: 0 2cqw;
+}
+
+.bank-transaction + .bank-transaction {
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.transaction-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 4.4cqh;
+    height: 4.4cqh;
+    border-radius: 50%;
+}
+
+.transaction-icon.income { color: #54d487; background: rgba(48, 209, 88, 0.14); }
+.transaction-icon.expense { color: #ff8179; background: rgba(255, 69, 58, 0.13); }
+
+.transaction-details {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-width: 0;
+    gap: 0.3cqh;
+}
+
+.transaction-details strong {
+    overflow: hidden;
+    font-size: 1.55cqh;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.transaction-details small {
+    color: rgba(255, 255, 255, 0.42);
+    font-size: 1.25cqh;
+}
+
+.transaction-amount {
+    color: #ff8f88;
+    font-size: 1.45cqh;
+    font-weight: 600;
+}
+
+.transaction-amount.income { color: #5cda90; }
+
+.bank-tabbar {
+    position: absolute;
+    right: 3cqh;
+    bottom: 2cqh;
+    left: 3cqh;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    min-height: 7cqh;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 2cqh;
+    background: rgba(30, 30, 32, 0.96);
+    box-shadow: 0 1cqh 3cqh rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(1.5cqh);
+}
+
+.bank-tabbar button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.4cqh;
+    border: 0;
+    color: rgba(255, 255, 255, 0.42);
+    background: transparent;
+    font: inherit;
+    font-size: 1.15cqh;
+    cursor: pointer;
+}
+
+.bank-tabbar button.active { color: #6f9cff; }
+
+.bank-page-title {
+    margin: 1cqh 0 3cqh;
+    color: rgba(255, 255, 255, 0.46);
+    font-size: 1.45cqh;
+}
+
+.bank-page-title h2 {
+    margin: 0.5cqh 0 0;
+    color: white;
+    font-size: 4cqh;
+}
+
+.bank-settings-list {
+    overflow: hidden;
+    margin-top: 3cqh;
+    border-radius: 1.7cqh;
+    background: rgba(30, 30, 30, 0.92);
+}
+
+.bank-settings-list button {
+    display: flex;
+    align-items: center;
+    gap: 1.8cqw;
+    min-height: 7cqh;
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    padding: 0 2.5cqw;
+    color: rgba(255, 255, 255, 0.82);
+    background: transparent;
+    font: inherit;
+    font-size: 1.55cqh;
+    text-align: left;
+    cursor: pointer;
+}
+
+.bank-settings-list button:last-child { border-bottom: 0; }
+.bank-settings-list button svg:last-child { margin-left: auto; color: rgba(255, 255, 255, 0.3); }
+.bank-settings-list button svg:first-child { color: #6f9cff; }
+
+.bank-profile-card {
+    gap: 2cqw;
+    min-height: 9cqh;
+    border-radius: 1.7cqh;
+    padding: 1.5cqh 2.5cqw;
+    background: rgba(30, 30, 30, 0.92);
+}
+
+.bank-profile-large {
+    width: 5.5cqh;
+    height: 5.5cqh;
+    font-size: 1.8cqh;
+}
+
+.bank-profile-card div { display: flex; flex: 1; flex-direction: column; gap: 0.4cqh; }
+.bank-profile-card strong { font-size: 1.8cqh; }
+.bank-profile-card small { color: rgba(255, 255, 255, 0.45); font-size: 1.3cqh; }
+.bank-profile-card > svg { color: rgba(255, 255, 255, 0.3); }
+
+.bank-sheet-backdrop {
+    position: absolute;
+    z-index: 10;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.62);
+    backdrop-filter: blur(0.7cqh);
+}
+
+.bank-action-sheet {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 3cqh 3cqh 0 0;
+    padding-bottom: 4cqh;
+    color: white;
+    background: rgba(38, 38, 40, 0.99);
+}
+
+.bank-sheet-grabber {
+    width: 10cqw;
+    height: 0.5cqh;
+    margin: 1cqh auto 0;
+    border-radius: 1cqh;
+    background: rgba(255, 255, 255, 0.35);
+}
+
+.bank-action-sheet header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 7cqh;
+    padding: 0 3cqw;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 1.9cqh;
+}
+
+.bank-action-sheet header button {
+    border: 0;
+    padding: 0;
+    color: #6f9cff;
+    background: transparent;
+    font: inherit;
+    font-size: 1.55cqh;
+    cursor: pointer;
+}
+
+.bank-action-sheet header button:first-child { color: rgba(255, 255, 255, 0.7); }
+.bank-action-sheet header button:disabled { color: rgba(111, 156, 255, 0.35); cursor: default; }
+
+.bank-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6cqh;
+    padding: 3cqh 4cqw 0;
+}
+
+.bank-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6cqh;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 1.45cqh;
+}
+
+.bank-form input {
+    width: 100%;
+    height: 5.6cqh;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.4cqh;
+    padding: 0 2cqw;
+    outline: none;
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    font: inherit;
+    font-size: 1.8cqh;
+}
+
+.bank-form input:focus { border-color: rgba(111, 156, 255, 0.85); }
+.bank-form input::placeholder { color: rgba(255, 255, 255, 0.35); }
+
+.bank-amount-input {
+    display: flex;
+    align-items: center;
+    height: 5.6cqh;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.4cqh;
+    padding-right: 2cqw;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.bank-amount-input input { flex: 1; border: 0; background: transparent; }
+.bank-amount-input b { color: rgba(255, 255, 255, 0.7); font-size: 1.8cqh; }
+.bank-form-error { margin: 0; color: #ff8179; font-size: 1.45cqh; }
+
+.bank-sheet-enter-active,
+.bank-sheet-leave-active { transition: opacity 0.25s ease; }
+.bank-sheet-enter-active .bank-action-sheet,
+.bank-sheet-leave-active .bank-action-sheet { transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
+.bank-sheet-enter-from,
+.bank-sheet-leave-to { opacity: 0; }
+.bank-sheet-enter-from .bank-action-sheet,
+.bank-sheet-leave-to .bank-action-sheet { transform: translateY(100%); }
+</style>

@@ -18,6 +18,7 @@ import CameraApp from "../components/apps/Camera.vue";
 import PhotosApp from "../components/apps/Photos.vue";
 import NotesApp from "../components/apps/Notes.vue";
 import CalculatorApp from "../components/apps/Calculator.vue";
+import BankApp from "../components/apps/Bank.vue";
 
 export const applications = [
   {
@@ -89,7 +90,7 @@ export const applications = [
     id: "bank",
     name: "Banque",
     icon: BankIcon,
-    component: SettingsApp,
+    component: BankApp,
     page: "bank",
   },
   {
