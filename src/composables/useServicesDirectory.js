@@ -2,56 +2,11 @@ import { onBeforeUnmount, onMounted, ref } from 'vue';
 import { useFiveMBridge } from './useFiveMBridge';
 
 const demoCompanies = [
-    {
-        id: 'medical',
-        name: 'Los Santos Medical Center',
-        category: 'Santé',
-        phone: '555-1001',
-        address: 'Pillbox Hill',
-        hours: 'Ouvert 24h/24',
-        description: 'Une équipe médicale disponible pour les urgences et les soins de la ville.',
-        color: 'linear-gradient(145deg, #d85d78, #6b2c4d)',
-    },
-    {
-        id: 'mechanic',
-        name: 'Benny’s Original Motor Works',
-        category: 'Automobile',
-        phone: '555-2040',
-        address: 'Strawberry',
-        hours: '08:00 – 22:00',
-        description: 'Réparations, dépannage et personnalisation de véhicules.',
-        color: 'linear-gradient(145deg, #df8b55, #69313d)',
-    },
-    {
-        id: 'cab',
-        name: 'Downtown Cab Co.',
-        category: 'Transport',
-        phone: '555-3007',
-        address: 'Centre-ville',
-        hours: 'Ouvert 24h/24',
-        description: 'Un chauffeur près de vous en quelques minutes, partout à Los Santos.',
-        color: 'linear-gradient(145deg, #e4b95c, #7a4931)',
-    },
-    {
-        id: 'restaurant',
-        name: 'The Daily Globe',
-        category: 'Restauration',
-        phone: '555-4012',
-        address: 'Rockford Hills',
-        hours: '11:00 – 01:00',
-        description: 'Cuisine locale, réservations et livraisons dans toute la ville.',
-        color: 'linear-gradient(145deg, #9c6bb2, #3d355e)',
-    },
-    {
-        id: 'legal',
-        name: 'Bureau Hayes & Cole',
-        category: 'Services',
-        phone: '555-5025',
-        address: 'Alta',
-        hours: '09:00 – 18:00',
-        description: 'Conseil juridique et accompagnement administratif pour les habitants.',
-        color: 'linear-gradient(145deg, #5f86ad, #273950)',
-    },
+    { id: 'medical', name: 'Los Santos Medical Center', category: 'Santé', phone: '555-1001', address: 'Pillbox Hill', hours: 'Ouvert 24h/24', description: 'Une équipe médicale disponible pour les urgences et les soins de la ville.', color: 'linear-gradient(145deg, #d85d78, #6b2c4d)' },
+    { id: 'mechanic', name: 'Benny’s Original Motor Works', category: 'Automobile', phone: '555-2040', address: 'Strawberry', hours: '08:00 – 22:00', description: 'Réparations, dépannage et personnalisation de véhicules.', color: 'linear-gradient(145deg, #df8b55, #69313d)' },
+    { id: 'cab', name: 'Downtown Cab Co.', category: 'Transport', phone: '555-3007', address: 'Centre-ville', hours: 'Ouvert 24h/24', description: 'Un chauffeur près de vous en quelques minutes, partout à Los Santos.', color: 'linear-gradient(145deg, #e4b95c, #7a4931)' },
+    { id: 'restaurant', name: 'The Daily Globe', category: 'Restauration', phone: '555-4012', address: 'Rockford Hills', hours: '11:00 – 01:00', description: 'Cuisine locale, réservations et livraisons dans toute la ville.', color: 'linear-gradient(145deg, #9c6bb2, #3d355e)' },
+    { id: 'legal', name: 'Bureau Hayes & Cole', category: 'Services', phone: '555-5025', address: 'Alta', hours: '09:00 – 18:00', description: 'Conseil juridique et accompagnement administratif pour les habitants.', color: 'linear-gradient(145deg, #5f86ad, #273950)' },
 ];
 
 const normalizeCompany = (company, index = 0) => ({
@@ -90,7 +45,6 @@ export const useServicesDirectory = (initialCompanies = []) => {
 
     const loadCompanies = async () => {
         if (!isFiveM.value) return companies.value;
-
         isLoading.value = true;
         const response = await invoke('getServiceCompanies');
         const remoteCompanies = Array.isArray(response) ? response : response?.companies;
@@ -104,7 +58,6 @@ export const useServicesDirectory = (initialCompanies = []) => {
             employeeContext.value = { isEmployee: false };
             return employeeContext.value;
         }
-
         const response = await invoke('getServiceEmployeeContext');
         employeeContext.value = response?.employee || response || {};
         return employeeContext.value;
@@ -112,7 +65,6 @@ export const useServicesDirectory = (initialCompanies = []) => {
 
     const loadInbox = async () => {
         if (!isFiveM.value) return inbox.value;
-
         const response = await invoke('getServiceInbox');
         const messages = Array.isArray(response) ? response : response?.messages;
         if (Array.isArray(messages)) inbox.value = messages.map(normalizeMessage);
@@ -122,12 +74,10 @@ export const useServicesDirectory = (initialCompanies = []) => {
     const sendServiceMessage = async (payload) => {
         lastError.value = '';
         const response = await invoke('sendServiceMessage', payload);
-
         if (isFiveM.value && (!response || response.success === false)) {
             lastError.value = response?.message || 'Le message n’a pas pu être envoyé.';
             return null;
         }
-
         const message = normalizeMessage(response?.message || {
             ...payload,
             companyName: payload.company?.name,
@@ -152,11 +102,7 @@ export const useServicesDirectory = (initialCompanies = []) => {
         const type = String(payload.type || payload.action || '').toLowerCase();
         const messagePayload = payload.message || payload.serviceMessage;
         const callPayload = payload.call || payload.serviceCall;
-
-        if (type.includes('message') && messagePayload) {
-            inbox.value.unshift(normalizeMessage(messagePayload));
-        }
-
+        if (type.includes('message') && messagePayload) inbox.value.unshift(normalizeMessage(messagePayload));
         if (type.includes('call') && callPayload) {
             incomingCalls.value.unshift({
                 id: callPayload.id || ('service-call-' + Date.now()),
@@ -182,18 +128,8 @@ export const useServicesDirectory = (initialCompanies = []) => {
     });
 
     return {
-        companies,
-        employeeContext,
-        inbox,
-        sentMessages,
-        incomingCalls,
-        isLoading,
-        lastError,
-        isFiveM,
-        loadCompanies,
-        loadEmployeeContext,
-        loadInbox,
-        sendServiceMessage,
-        callServiceCompany,
+        companies, employeeContext, inbox, sentMessages, incomingCalls,
+        isLoading, lastError, isFiveM, loadCompanies, loadEmployeeContext,
+        loadInbox, sendServiceMessage, callServiceCompany,
     };
 };
