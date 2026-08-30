@@ -390,12 +390,12 @@ const publish = async () => {
     display: block;
     margin-bottom: .1cqh;
     color: rgba(255, 255, 255, .42);
-    font-size: 1.25cqh;
+    font-size: 1.4cqh;
 }
 
 .news-header h1 {
     margin: 0;
-    font-size: 4.6cqh;
+    font-size: 5.4cqh;
     font-weight: 700;
     letter-spacing: -.08cqw;
 }
@@ -437,7 +437,7 @@ const publish = async () => {
     color: white;
     background: transparent;
     font: inherit;
-    font-size: 1.55cqh;
+    font-size: 1.75cqh;
 }
 
 .news-search button {
@@ -468,7 +468,7 @@ const publish = async () => {
     color: rgba(255, 255, 255, .45);
     background: transparent;
     font: inherit;
-    font-size: 1.45cqh;
+    font-size: 1.65cqh;
     cursor: pointer;
 }
 
@@ -495,13 +495,13 @@ const publish = async () => {
 .news-section-heading {
     margin: 1.2cqh .5cqw 1cqh;
     color: rgba(255, 255, 255, .9);
-    font-size: 1.75cqh;
+    font-size: 2.05cqh;
     font-weight: 600;
 }
 
 .news-section-heading small {
     color: rgba(255, 255, 255, .38);
-    font-size: 1.25cqh;
+    font-size: 1.4cqh;
     font-weight: 400;
 }
 
@@ -509,7 +509,7 @@ const publish = async () => {
     position: relative;
     display: block;
     width: 100%;
-    height: 29cqh;
+    height: 31cqh;
     overflow: hidden;
     border: 0;
     border-radius: 2.4cqh;
@@ -552,13 +552,13 @@ const publish = async () => {
     padding: .55cqh 1.5cqw;
     color: #ff9bb3;
     background: var(--news-accent-soft);
-    font-size: 1.2cqh;
+    font-size: 1.35cqh;
     font-weight: 600;
 }
 
 .news-featured-content strong {
     max-width: 95%;
-    font-size: 2.6cqh;
+    font-size: 3cqh;
     line-height: 1.05;
 }
 
@@ -566,7 +566,7 @@ const publish = async () => {
     max-width: 92%;
     overflow: hidden;
     color: rgba(255, 255, 255, .72);
-    font-size: 1.35cqh;
+    font-size: 1.55cqh;
     line-height: 1.25;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -576,7 +576,7 @@ const publish = async () => {
     display: flex;
     gap: 1cqw;
     color: rgba(255, 255, 255, .58);
-    font-size: 1.15cqh;
+    font-size: 1.3cqh;
 }
 
 .news-list-section {
@@ -614,18 +614,18 @@ const publish = async () => {
     flex: 1;
     flex-direction: column;
     min-width: 0;
-    gap: .45cqh;
+    gap: .6cqh;
 }
 
 .news-article-meta {
     gap: .8cqw;
     color: var(--news-accent);
-    font-size: 1.12cqh;
+    font-size: 1.3cqh;
 }
 
 .news-article-info strong {
     overflow: hidden;
-    font-size: 1.65cqh;
+    font-size: 1.9cqh;
     font-weight: 600;
     line-height: 1.13;
     text-overflow: ellipsis;
@@ -635,15 +635,15 @@ const publish = async () => {
 .news-article-excerpt {
     overflow: hidden;
     color: rgba(255, 255, 255, .48);
-    font-size: 1.3cqh;
-    line-height: 1.15;
+    font-size: 1.48cqh;
+    line-height: 1.25;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
 .news-article-info small {
     color: rgba(255, 255, 255, .35);
-    font-size: 1.1cqh;
+    font-size: 1.25cqh;
 }
 
 .news-article-chevron {
@@ -665,12 +665,12 @@ const publish = async () => {
 
 .news-empty strong {
     color: rgba(255, 255, 255, .82);
-    font-size: 1.8cqh;
+    font-size: 2.1cqh;
 }
 
 .news-empty span,
 .news-loading {
-    font-size: 1.35cqh;
+    font-size: 1.5cqh;
 }
 
 .news-journalist-bar {
@@ -687,7 +687,7 @@ const publish = async () => {
     color: rgba(255, 255, 255, .64);
     background: var(--news-accent-surface);
     backdrop-filter: blur(1cqh);
-    font-size: 1.2cqh;
+    font-size: 1.4cqh;
 }
 
 .news-journalist-bar>span,
@@ -731,7 +731,7 @@ const publish = async () => {
 
 .news-page-header span {
     color: rgba(255, 255, 255, .72);
-    font-size: 1.45cqh;
+    font-size: 1.65cqh;
     font-weight: 600;
 }
 
@@ -767,15 +767,15 @@ const publish = async () => {
 
 .news-detail-content h2 {
     margin: 1.6cqh 0;
-    font-size: 3.5cqh;
-    line-height: 1.08;
+    font-size: 4.1cqh;
+    line-height: 1.1;
 }
 
 .news-detail-excerpt {
     margin: 0 0 2.5cqh;
     color: rgba(255, 255, 255, .62);
-    font-size: 1.65cqh;
-    line-height: 1.35;
+    font-size: 1.9cqh;
+    line-height: 1.4;
 }
 
 .news-detail-byline {
@@ -805,19 +805,19 @@ const publish = async () => {
 }
 
 .news-detail-byline strong {
-    font-size: 1.5cqh;
+    font-size: 1.7cqh;
 }
 
 .news-detail-byline small {
     color: rgba(255, 255, 255, .42);
-    font-size: 1.2cqh;
+    font-size: 1.35cqh;
 }
 
 .news-detail-body {
     margin: 2.5cqh 0;
     color: rgba(255, 255, 255, .84);
-    font-size: 1.8cqh;
-    line-height: 1.5;
+    font-size: 2cqh;
+    line-height: 1.55;
     white-space: pre-line;
 }
 
@@ -837,7 +837,7 @@ const publish = async () => {
     color: rgba(255, 255, 255, .78);
     background: rgba(255, 255, 255, .06);
     font: inherit;
-    font-size: 1.3cqh;
+    font-size: 1.45cqh;
     cursor: pointer;
 }
 
