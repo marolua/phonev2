@@ -887,7 +887,7 @@ const selectWallpaper = (url) => {
   font-size: 1.5cqh;
 }
 
-.settings-sheet-field > input,
+.settings-sheet-field>input,
 .settings-phone-input {
   width: 100%;
   height: 5.6cqh;
@@ -902,7 +902,7 @@ const selectWallpaper = (url) => {
   font-size: 1.8cqh;
 }
 
-.settings-sheet-field > input:focus,
+.settings-sheet-field>input:focus,
 .settings-phone-input:focus-within {
   border-color: rgba(77, 141, 255, 0.8);
 }
@@ -916,7 +916,7 @@ const selectWallpaper = (url) => {
   align-items: center;
 }
 
-.settings-phone-input > span {
+.settings-phone-input>span {
   flex-shrink: 0;
   color: rgba(255, 255, 255, 0.8);
   font-size: 1.8cqh;
