@@ -796,17 +796,28 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
     background: rgba(38, 38, 40, 0.99);
 }
 
+.bank-detail-sheet .bank-detail-header {
+    min-height: 7cqh;
+    padding: 0 3cqw;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.bank-detail-sheet .bank-detail-header>strong {
+    font-size: 2.05cqh;
+    font-weight: 600;
+}
+
 .bank-detail-content {
     display: flex;
     flex-direction: column;
-    gap: 1.5cqh;
-    padding: 2.5cqh 4cqw 0;
+    gap: 1.2cqh;
+    padding: 2.5cqh 3cqw 0;
 }
 
 .bank-detail-intro {
-    margin: 0 0 0.5cqh;
+    margin: 0.2cqh 0 0.8cqh;
     color: rgba(255, 255, 255, 0.55);
-    font-size: 1.45cqh;
+    font-size: 1.35cqh;
 }
 
 .bank-detail-row,
@@ -814,12 +825,14 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
 .bank-document-row {
     display: flex;
     align-items: center;
-    min-height: 6.5cqh;
+    min-height: 7cqh;
     box-sizing: border-box;
-    border: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1.8cqh;
+    padding: 1cqh 1.8cqw;
     color: rgba(255, 255, 255, 0.78);
-    background: transparent;
+    background: linear-gradient(135deg, rgba(65, 65, 68, 0.7), rgba(43, 43, 45, 0.82));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 0.7cqh 1.4cqh rgba(0, 0, 0, 0.14);
     font: inherit;
     text-align: left;
 }
@@ -831,7 +844,7 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
 
 .bank-detail-row span,
 .bank-detail-row strong {
-    font-size: 1.5cqh;
+    font-size: 1.4cqh;
 }
 
 .bank-detail-row span {
@@ -849,6 +862,18 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
     width: 100%;
     gap: 1.8cqw;
     cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.bank-toggle-row:hover,
+.bank-document-row:hover {
+    border-color: rgba(111, 156, 255, 0.45);
+    background: linear-gradient(135deg, rgba(67, 79, 112, 0.82), rgba(43, 43, 45, 0.9));
+}
+
+.bank-toggle-row:active,
+.bank-document-row:active {
+    transform: scale(0.985);
 }
 
 .bank-toggle-row>span,
@@ -885,22 +910,24 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
 .bank-toggle {
     position: relative;
     display: block;
-    width: 7.5cqw;
-    height: 4cqh;
+    width: 8.5cqw;
+    height: 4.6cqh;
     flex-shrink: 0;
     border-radius: 3cqh;
     background: rgba(255, 255, 255, 0.2);
+    box-shadow: inset 0 0.3cqh 0.6cqh rgba(0, 0, 0, 0.24);
     transition: background 0.2s ease;
 }
 
 .bank-toggle b {
     position: absolute;
-    top: 0.4cqh;
-    left: 0.6cqw;
-    width: 3.2cqh;
-    height: 3.2cqh;
+    top: 0.45cqh;
+    left: 0.45cqw;
+    width: 3.7cqh;
+    height: 3.7cqh;
     border-radius: 50%;
     background: white;
+    box-shadow: 0 0.25cqh 0.6cqh rgba(0, 0, 0, 0.32);
     transition: transform 0.2s ease;
 }
 
@@ -909,15 +936,22 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
 }
 
 .bank-toggle.enabled b {
-    transform: translateX(3.1cqw);
+    transform: translateX(3.7cqw);
 }
 
 .bank-slider-row {
     display: flex;
     flex-direction: column;
-    gap: 1cqh;
+    gap: 1.3cqh;
+    min-height: 9cqh;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 1.8cqh;
+    padding: 1.5cqh 1.8cqw;
     color: rgba(255, 255, 255, 0.62);
     font-size: 1.45cqh;
+    background: linear-gradient(135deg, rgba(65, 65, 68, 0.7), rgba(43, 43, 45, 0.82));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 0.7cqh 1.4cqh rgba(0, 0, 0, 0.14);
 }
 
 .bank-slider-row span {
@@ -933,7 +967,34 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
 
 .bank-slider-row input {
     width: 100%;
+    height: 0.7cqh;
+    margin: 0.5cqh 0 0.4cqh;
+    appearance: none;
+    border-radius: 1cqh;
+    outline: none;
     accent-color: #6f9cff;
+    background: linear-gradient(90deg, #6f9cff, #6f9cff 45%, rgba(255, 255, 255, 0.18) 45%, rgba(255, 255, 255, 0.18));
+}
+
+.bank-slider-row input::-webkit-slider-thumb {
+    width: 2.8cqh;
+    height: 2.8cqh;
+    appearance: none;
+    border: 2px solid white;
+    border-radius: 50%;
+    background: #6f9cff;
+    box-shadow: 0 0.25cqh 0.7cqh rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+}
+
+.bank-slider-row input::-moz-range-thumb {
+    width: 2.8cqh;
+    height: 2.8cqh;
+    border: 2px solid white;
+    border-radius: 50%;
+    background: #6f9cff;
+    box-shadow: 0 0.25cqh 0.7cqh rgba(0, 0, 0, 0.35);
+    cursor: pointer;
 }
 
 .bank-document-row>svg:last-child {
