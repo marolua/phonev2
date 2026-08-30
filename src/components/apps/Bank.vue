@@ -1186,7 +1186,9 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
 }
 
 .bank-sheet-enter-active .bank-action-sheet,
-.bank-sheet-leave-active .bank-action-sheet {
+.bank-sheet-leave-active .bank-action-sheet,
+.bank-sheet-enter-active .bank-detail-sheet,
+.bank-sheet-leave-active .bank-detail-sheet {
     transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -1196,7 +1198,19 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
 }
 
 .bank-sheet-enter-from .bank-action-sheet,
-.bank-sheet-leave-to .bank-action-sheet {
+.bank-sheet-leave-to .bank-action-sheet,
+.bank-sheet-enter-from .bank-detail-sheet,
+.bank-sheet-leave-to .bank-detail-sheet {
     transform: translateY(100%);
+}
+
+.bank-page-enter-active,
+.bank-page-leave-active {
+    transition: opacity 0.2s ease;
+}
+
+.bank-page-enter-from,
+.bank-page-leave-to {
+    opacity: 0;
 }
 </style>
