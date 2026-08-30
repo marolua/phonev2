@@ -307,17 +307,15 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
 
         <Transition name="bank-sheet">
             <div v-if="detailSheet" class="bank-sheet-backdrop" @click.self="closeDetail">
-                <section class="bank-detail-sheet">
-                    <div class="bank-sheet-grabber" aria-hidden="true"></div>
+                <section class="bank-detail-sheet" :class="{ 'bank-account-sheet': detailSheet === 'account' }">
+                    <div v-if="detailSheet !== 'account'" class="bank-sheet-grabber" aria-hidden="true"></div>
                     <header class="bank-detail-header">
-                        <button type="button" class="bank-detail-back" aria-label="Retour" @click="closeDetail">
-                            <ArrowLeft size="2.7cqh" />
-                        </button>
+                        <button type="button" class="bank-detail-cancel" @click="closeDetail">Annuler</button>
                         <strong>{{ detailTitle }}</strong>
                         <button type="button" class="bank-detail-done" @click="closeDetail">Terminé</button>
                     </header>
 
-                    <div class="bank-detail-content">
+                    <div class="bank-detail-content" :class="{ 'bank-account-content': detailSheet === 'account' }">
                         <template v-if="detailSheet === 'cardSecurity'">
                             <p class="bank-detail-intro">Gère les protections de ta carte.</p>
                             <button type="button" class="bank-toggle-row" @click="cardLocked = !cardLocked">
@@ -337,10 +335,17 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
                         </template>
 
                         <template v-else-if="detailSheet === 'account'">
-                            <div class="bank-detail-row"><span>Titulaire</span><strong>John McKenzie</strong></div>
-                            <div class="bank-detail-row"><span>Compte courant</span><strong>**** 7314</strong></div>
-                            <div class="bank-detail-row"><span>IBAN</span><strong>FR76 **** **** 7314</strong></div>
-                            <div class="bank-detail-row"><span>Type de compte</span><strong>Compte personnel</strong></div>
+                            <div class="bank-account-summary">
+                                <span class="bank-account-icon"><Landmark size="3cqh" /></span>
+                                <div><small>Compte courant</small><strong>**** 7314</strong></div>
+                                <span class="bank-account-status">Actif</span>
+                            </div>
+                            <p class="bank-detail-section-title">Coordonnées du compte</p>
+                            <div class="bank-account-list">
+                                <div class="bank-detail-row"><span>Titulaire</span><strong>John McKenzie</strong></div>
+                                <div class="bank-detail-row"><span>IBAN</span><strong>FR76 **** **** 7314</strong></div>
+                                <div class="bank-detail-row"><span>Type de compte</span><strong>Compte personnel</strong></div>
+                            </div>
                         </template>
 
                         <template v-else-if="detailSheet === 'privacy'">
