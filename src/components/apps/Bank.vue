@@ -727,6 +727,206 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
     color: #5cda90;
 }
 
+.bank-transactions-page {
+    position: absolute;
+    z-index: 5;
+    inset: 0;
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding: 15cqw 3cqh 10cqh;
+    background: #0a0a0a;
+}
+
+.bank-detail-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 5cqh;
+    font-size: 1.9cqh;
+}
+
+.bank-detail-header button {
+    display: flex;
+    align-items: center;
+    gap: 0.7cqw;
+    border: 0;
+    padding: 0;
+    color: #6f9cff;
+    background: transparent;
+    font: inherit;
+    font-size: 1.55cqh;
+    cursor: pointer;
+}
+
+.bank-header-spacer {
+    width: 10cqw;
+}
+
+.bank-transactions-full {
+    margin-top: 2cqh;
+}
+
+.bank-detail-sheet {
+    position: relative;
+    width: 100%;
+    min-height: 48%;
+    box-sizing: border-box;
+    border-radius: 3cqh 3cqh 0 0;
+    padding-bottom: 4cqh;
+    color: white;
+    background: rgba(38, 38, 40, 0.99);
+}
+
+.bank-detail-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5cqh;
+    padding: 2.5cqh 4cqw 0;
+}
+
+.bank-detail-intro {
+    margin: 0 0 0.5cqh;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 1.45cqh;
+}
+
+.bank-detail-row,
+.bank-toggle-row,
+.bank-document-row {
+    display: flex;
+    align-items: center;
+    min-height: 6.5cqh;
+    box-sizing: border-box;
+    border: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.78);
+    background: transparent;
+    font: inherit;
+    text-align: left;
+}
+
+.bank-detail-row {
+    justify-content: space-between;
+    gap: 2cqw;
+}
+
+.bank-detail-row span,
+.bank-detail-row strong {
+    font-size: 1.5cqh;
+}
+
+.bank-detail-row span {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.bank-detail-row strong {
+    color: white;
+    font-weight: 500;
+    text-align: right;
+}
+
+.bank-toggle-row,
+.bank-document-row {
+    width: 100%;
+    gap: 1.8cqw;
+    cursor: pointer;
+}
+
+.bank-toggle-row>span,
+.bank-document-row>span {
+    display: flex;
+    align-items: center;
+    gap: 1.8cqw;
+    min-width: 0;
+    flex: 1;
+}
+
+.bank-toggle-row svg,
+.bank-document-row>svg:first-child {
+    flex-shrink: 0;
+    color: #6f9cff;
+}
+
+.bank-toggle-row strong,
+.bank-document-row strong {
+    display: block;
+    color: white;
+    font-size: 1.55cqh;
+    font-weight: 500;
+}
+
+.bank-toggle-row small,
+.bank-document-row small {
+    display: block;
+    margin-top: 0.3cqh;
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 1.25cqh;
+}
+
+.bank-toggle {
+    position: relative;
+    display: block;
+    width: 7.5cqw;
+    height: 4cqh;
+    flex-shrink: 0;
+    border-radius: 3cqh;
+    background: rgba(255, 255, 255, 0.2);
+    transition: background 0.2s ease;
+}
+
+.bank-toggle b {
+    position: absolute;
+    top: 0.4cqh;
+    left: 0.6cqw;
+    width: 3.2cqh;
+    height: 3.2cqh;
+    border-radius: 50%;
+    background: white;
+    transition: transform 0.2s ease;
+}
+
+.bank-toggle.enabled {
+    background: #4d8dff;
+}
+
+.bank-toggle.enabled b {
+    transform: translateX(3.1cqw);
+}
+
+.bank-slider-row {
+    display: flex;
+    flex-direction: column;
+    gap: 1cqh;
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 1.45cqh;
+}
+
+.bank-slider-row span {
+    display: flex;
+    justify-content: space-between;
+}
+
+.bank-slider-row strong,
+.bank-slider-row b {
+    color: white;
+    font-weight: 500;
+}
+
+.bank-slider-row input {
+    width: 100%;
+    accent-color: #6f9cff;
+}
+
+.bank-document-row>svg:last-child {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.bank-document-notice {
+    margin: 0;
+    color: #65d69a;
+    font-size: 1.35cqh;
+}
+
 .bank-tabbar {
     display: flex;
     justify-content: center;
@@ -870,6 +1070,7 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
 .bank-action-sheet {
     position: relative;
     width: 100%;
+    min-height: 45%;
     box-sizing: border-box;
     border-radius: 3cqh 3cqh 0 0;
     padding-bottom: 4cqh;
