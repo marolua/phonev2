@@ -698,17 +698,16 @@ const publish = async () => {
     position: absolute;
     right: 3cqh;
     bottom: 8cqh;
-    left: 3cqh;
-    justify-content: flex-end;
-    min-height: 5.5cqh;
+    left: auto;
+    width: 4.8cqh;
+    height: 4.8cqh;
+    min-height: 0;
     box-sizing: border-box;
-    border: 1px solid rgba(255, 59, 107, .28);
-    border-radius: 1.8cqh;
-    padding: 0 .8cqw;
-    color: rgba(255, 255, 255, .64);
-    background: var(--news-accent-surface);
-    backdrop-filter: blur(1cqh);
-    font-size: 1.4cqh;
+    border: 0;
+    border-radius: 50%;
+    padding: 0;
+    background: transparent;
+    backdrop-filter: none;
 }
 
 .news-journalist-bar>span {
