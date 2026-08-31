@@ -253,7 +253,8 @@ const answerIncomingCall = (call) => {
                     <div v-for="company in visibleCompanies" :key="company.id" class="service-company-row">
                         <button type="button" class="service-company-main" @click="openConversation(company)">
                             <span class="service-company-icon" :style="{ background: company.color }">
-                                <component :is="companyIcon(company.category)" :size="21" />
+                                <img v-if="companyImage(company)" :src="companyImage(company)" alt="" />
+                                <component v-else :is="companyIcon(company.category)" :size="21" />
                             </span>
                             <span class="service-company-info"><strong>{{ company.name }}</strong><small>{{
                                 company.address }}</small></span>
@@ -453,7 +454,8 @@ const answerIncomingCall = (call) => {
                     </button></header>
                 <div class="services-company-scroll">
                     <div class="services-company-hero" :style="{ background: selectedCompany.color }"><span>
-                            <component :is="companyIcon(selectedCompany.category)" :size="34" />
+                            <img v-if="companyImage(selectedCompany)" :src="companyImage(selectedCompany)" alt="" />
+                            <component v-else :is="companyIcon(selectedCompany.category)" :size="34" />
                         </span></div>
                     <div class="services-company-content"><span class="services-company-category">{{
                         selectedCompany.category
@@ -504,7 +506,9 @@ const answerIncomingCall = (call) => {
                     <div class="services-composer-content">
                         <div class="services-recipient"><span class="service-company-icon"
                                 :style="{ background: composeTarget?.company?.color }">
-                                <Building2 :size="18" />
+                                <img v-if="companyImage(composeTarget?.company)"
+                                    :src="companyImage(composeTarget?.company)" alt="" />
+                                <Building2 v-else :size="18" />
                             </span><span><small>{{ composeTarget?.replyTo ? 'Réponse à' : 'Destinataire'
                             }}</small><strong>{{
                                         composeTarget?.company?.name }}</strong></span>
