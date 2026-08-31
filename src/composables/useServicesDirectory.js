@@ -158,6 +158,8 @@ const normalizeMessage = (message, index = 0) => ({
   companyName: message?.companyName || message?.company?.name || "Entreprise",
   senderName: message?.senderName || message?.sender || "Habitant",
   senderPhone: message?.senderPhone || message?.phone || "",
+  type: message?.type || "text",
+  coords: message?.coords || null,
   text: message?.text || message?.message || "",
   time:
     message?.time ||
@@ -213,6 +215,43 @@ export const useServicesDirectory = (initialCompanies = []) => {
     const messages = Array.isArray(response) ? response : response?.messages;
     if (Array.isArray(messages)) inbox.value = messages.map(normalizeMessage);
     return inbox.value;
+  };
+
+  const normalizeCoordinates = (payload) => {
+    const coords = payload?.coords || payload;
+    if (!coords) return null;
+
+    if (["x", "y", "z"].every((key) => coords[key] !== undefined
+      && Number.isFinite(Number(coords[key])))) {
+      return { x: Number(coords.x), y: Number(coords.y), z: Number(coords.z) };
+    }
+
+    if (Number.isFinite(Number(coords.latitude))
+      && Number.isFinite(Number(coords.longitude))) {
+      return {
+        latitude: Number(coords.latitude),
+        longitude: Number(coords.longitude),
+      };
+    }
+
+    return null;
+  };
+
+  const getPlayerCoordinates = async () => {
+    if (!isFiveM.value) return null;
+    return normalizeCoordinates(await invoke("getPlayerCoords"));
+  };
+
+  const setServiceWaypoint = async (coords) => {
+    if (!isFiveM.value) return null;
+
+    const response = await invoke("setWaypoint", { coords });
+    if (response?.success === false) {
+      lastError.value = response.message || "La position n’a pas pu être affichée.";
+      return null;
+    }
+
+    return response || { success: true };
   };
 
   const sendServiceMessage = async (payload) => {
@@ -287,6 +326,8 @@ export const useServicesDirectory = (initialCompanies = []) => {
     loadCompanies,
     loadEmployeeContext,
     loadInbox,
+    getPlayerCoordinates,
+    setServiceWaypoint,
     sendServiceMessage,
     callServiceCompany,
   };
