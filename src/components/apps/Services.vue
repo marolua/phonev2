@@ -374,7 +374,13 @@ const answerIncomingCall = (call) => {
                         :class="{ 'services-conversation-row--outgoing': message.outgoing }">
                         <span class="services-conversation-sender">{{ message.outgoing ? 'Moi' : message.senderName
                             }}</span>
-                        <p>{{ message.text }}</p>
+                        <button v-if="message.type === 'location'" type="button" class="services-location-message"
+                            @click="setMessageWaypoint(message)">
+                            <MapPin :size="22" />
+                            <span><strong>Position partagée</strong><small>{{ locationLabel(message.coords) }}</small>
+                                <em>Appuyer pour afficher le GPS</em></span>
+                        </button>
+                        <p v-else>{{ message.text }}</p>
                         <small>{{ message.time }}</small>
                     </div>
                 </div>
@@ -386,6 +392,10 @@ const answerIncomingCall = (call) => {
             <form class="services-conversation-composer" @submit.prevent="sendConversationMessage">
                 <input v-model="conversationDraft" type="text" maxlength="500"
                     :placeholder="'Écrire à ' + (conversationCompany?.name || 'l’entreprise')" />
+                <button type="button" class="services-location-button" :disabled="isLocationSending"
+                    aria-label="Partager ma position" @click="sendLocationConversation">
+                    <MapPin :size="18" />
+                </button>
                 <button type="submit" :disabled="isConversationSending || !conversationDraft.trim()"
                     aria-label="Envoyer">
                     <Send :size="18" />
