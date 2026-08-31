@@ -1749,4 +1749,171 @@ const answerIncomingCall = (call) => {
     opacity: 0;
     transform: translateY(100%);
 }
+
+/* Improve readability across the Services screens. */
+.services-header h1 {
+    font-size: 5.6cqh;
+}
+
+.services-search input {
+    font-size: 2cqh;
+}
+
+.services-categories button {
+    font-size: 1.7cqh;
+}
+
+.services-message-tabs button {
+    font-size: 1.55cqh;
+}
+
+.services-intro,
+.services-inbox-summary {
+    font-size: 1.9cqh;
+}
+
+.services-intro small,
+.services-inbox-summary small {
+    font-size: 1.5cqh;
+}
+
+.service-company-info strong {
+    font-size: 2.05cqh;
+}
+
+.service-company-info small {
+    font-size: 1.6cqh;
+}
+
+.service-company-call,
+.service-company-message {
+    font-size: 1.55cqh;
+}
+
+.services-empty strong {
+    font-size: 2.2cqh;
+}
+
+.services-empty span {
+    font-size: 1.65cqh;
+}
+
+.services-inbox-header h1 {
+    font-size: 2.7cqh;
+}
+
+.services-incoming-call strong {
+    font-size: 1.65cqh;
+}
+
+.services-incoming-call small,
+.services-incoming-call button {
+    font-size: 1.45cqh;
+}
+
+.services-message-top strong {
+    font-size: 1.75cqh;
+}
+
+.services-message-top small,
+.services-personal-message__meta {
+    font-size: 1.35cqh;
+}
+
+.services-message-card p,
+.services-conversation-row p {
+    font-size: 1.75cqh;
+}
+
+.services-personal-message__content strong {
+    font-size: 1.75cqh;
+}
+
+.services-personal-message__content > span {
+    font-size: 1.55cqh;
+}
+
+.services-conversation-header strong {
+    font-size: 2.05cqh;
+}
+
+.services-conversation-header small,
+.services-conversation-sender,
+.services-conversation-row small {
+    font-size: 1.3cqh;
+}
+
+.services-conversation-composer input {
+    font-size: 1.65cqh;
+}
+
+.services-message-actions {
+    font-size: 1.4cqh;
+}
+
+.services-page-header span {
+    font-size: 1.7cqh;
+}
+
+.services-company-category {
+    font-size: 1.6cqh;
+}
+
+.services-company-content h2 {
+    font-size: 3.6cqh;
+}
+
+.services-company-content > p {
+    font-size: 1.85cqh;
+}
+
+.services-company-number small,
+.services-company-details small {
+    font-size: 1.3cqh;
+}
+
+.services-company-number strong {
+    font-size: 2cqh;
+}
+
+.services-company-number button,
+.services-message-button {
+    font-size: 1.55cqh;
+}
+
+.services-company-details strong {
+    font-size: 1.45cqh;
+}
+
+.bottom-app-services .categorie {
+    font-size: 1.8cqh;
+}
+
+.services-composer-header button {
+    font-size: 1.65cqh;
+}
+
+.services-composer-header strong {
+    font-size: 2cqh;
+}
+
+.services-recipient small {
+    font-size: 1.35cqh;
+}
+
+.services-recipient strong {
+    font-size: 1.7cqh;
+}
+
+.services-composer-content textarea {
+    font-size: 1.9cqh;
+}
+
+.services-form-notice {
+    font-size: 1.5cqh;
+}
+
+.services-form-footnote {
+    font-size: 1.35cqh;
+}
 </style>
