@@ -243,9 +243,6 @@ const publish = async () => {
             </main>
 
             <div v-if="isJournalist" class="news-journalist-bar">
-                <span>
-                    <Camera :size="16" /><span>Espace presse</span>
-                </span>
                 <button type="button" aria-label="Nouvel article" @click="openComposer">
                     <Plus :size="19" />
                 </button>

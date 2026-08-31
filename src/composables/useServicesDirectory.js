@@ -141,6 +141,7 @@ demoCompanies.splice(
 const normalizeCompany = (company, index = 0) => ({
   id: company?.id ?? "company-" + index,
   name: company?.name || company?.label || "Entreprise",
+  image: company?.image || company?.logo || "",
   category: company?.category || "Services",
   phone: company?.phone || "555-0000",
   address: company?.address || "Los Santos",
