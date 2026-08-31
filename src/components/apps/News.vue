@@ -4,7 +4,6 @@ import {
     ArrowLeft,
     Bell,
     Bookmark,
-    Camera,
     Check,
     ChevronRight,
     ChevronDown,
@@ -700,12 +699,12 @@ const publish = async () => {
     right: 3cqh;
     bottom: 8cqh;
     left: 3cqh;
-    justify-content: space-between;
+    justify-content: flex-end;
     min-height: 5.5cqh;
     box-sizing: border-box;
     border: 1px solid rgba(255, 59, 107, .28);
     border-radius: 1.8cqh;
-    padding: 0 1.5cqw;
+    padding: 0 .8cqw;
     color: rgba(255, 255, 255, .64);
     background: var(--news-accent-surface);
     backdrop-filter: blur(1cqh);
