@@ -221,13 +221,19 @@ export const useServicesDirectory = (initialCompanies = []) => {
     const coords = payload?.coords || payload;
     if (!coords) return null;
 
-    if (["x", "y", "z"].every((key) => coords[key] !== undefined
-      && Number.isFinite(Number(coords[key])))) {
+    if (
+      ["x", "y", "z"].every(
+        (key) =>
+          coords[key] !== undefined && Number.isFinite(Number(coords[key])),
+      )
+    ) {
       return { x: Number(coords.x), y: Number(coords.y), z: Number(coords.z) };
     }
 
-    if (Number.isFinite(Number(coords.latitude))
-      && Number.isFinite(Number(coords.longitude))) {
+    if (
+      Number.isFinite(Number(coords.latitude)) &&
+      Number.isFinite(Number(coords.longitude))
+    ) {
       return {
         latitude: Number(coords.latitude),
         longitude: Number(coords.longitude),
@@ -247,7 +253,8 @@ export const useServicesDirectory = (initialCompanies = []) => {
 
     const response = await invoke("setWaypoint", { coords });
     if (response?.success === false) {
-      lastError.value = response.message || "La position n’a pas pu être affichée.";
+      lastError.value =
+        response.message || "La position n’a pas pu être affichée.";
       return null;
     }
 
