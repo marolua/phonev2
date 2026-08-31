@@ -762,9 +762,10 @@ const answerIncomingCall = (call) => {
 
 .service-company-row {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 1.4cqh;
+    column-gap: 1.2cqw;
+    row-gap: 1.4cqh;
     min-height: 0;
     margin-bottom: 1.5cqh;
     border: 1px solid rgba(255, 255, 255, .09);
@@ -781,6 +782,7 @@ const answerIncomingCall = (call) => {
     justify-content: center;
     flex-direction: column;
     width: 100%;
+    flex: 0 0 100%;
     min-width: 0;
     gap: 1cqh;
     border: 0;
@@ -866,7 +868,7 @@ const answerIncomingCall = (call) => {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: calc(50% - .6cqw);
     height: 5cqh;
     border: 0;
     border-radius: 1.2cqh;
@@ -882,7 +884,7 @@ const answerIncomingCall = (call) => {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: calc(50% - .6cqw);
     height: 5cqh;
     border: 0;
     border-radius: 1.2cqh;
