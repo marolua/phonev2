@@ -870,6 +870,7 @@ const answerIncomingCall = (call) => {
     justify-content: center;
     width: calc(50% - .6cqw);
     height: 5cqh;
+    box-sizing: border-box;
     border: 0;
     border-radius: 1.2cqh;
     color: var(--services-accent);
@@ -886,6 +887,7 @@ const answerIncomingCall = (call) => {
     justify-content: center;
     width: calc(50% - .6cqw);
     height: 5cqh;
+    box-sizing: border-box;
     border: 0;
     border-radius: 1.2cqh;
     color: #ff9bb3;
