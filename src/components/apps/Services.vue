@@ -120,7 +120,7 @@ const formatCoordinate = (value) => Number(value).toFixed(2);
 
 const locationLabel = (coords) => {
     if (!coords) return 'Coordonnées disponibles en jeu';
-    if ('x' in coords) {
+    if (typeof coords === 'object' && 'x' in coords) {
         return `X ${formatCoordinate(coords.x)} · Y ${formatCoordinate(coords.y)} · Z ${formatCoordinate(coords.z)}`;
     }
 
@@ -212,7 +212,7 @@ const submitMessage = async () => {
 
 const sendConversationMessage = async () => {
     const text = conversationDraft.value.trim();
-    if (!text || !conversationCompany.value || isConversationSending.value) return;
+    if (!text || !conversationCompany.value || isConversationSending.value || isLocationSending.value) return;
 
     isConversationSending.value = true;
     conversationNotice.value = '';
@@ -396,7 +396,7 @@ const answerIncomingCall = (call) => {
                     aria-label="Partager ma position" @click="sendLocationConversation">
                     <MapPin :size="18" />
                 </button>
-                <button type="submit" :disabled="isConversationSending || !conversationDraft.trim()"
+                <button type="submit" :disabled="isConversationSending || isLocationSending || !conversationDraft.trim()"
                     aria-label="Envoyer">
                     <Send :size="18" />
                 </button>
