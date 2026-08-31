@@ -17,7 +17,8 @@ const props = defineProps({
 const emit = defineEmits(['call-contact']);
 const {
     companies, employeeContext: bridgeEmployeeContext, inbox, sentMessages, incomingCalls,
-    isLoading, lastError, isFiveM, sendServiceMessage, callServiceCompany,
+    isLoading, lastError, isFiveM, getPlayerCoordinates, setServiceWaypoint,
+    sendServiceMessage, callServiceCompany,
 } = useServicesDirectory(props.initialCompanies);
 
 const activeView = ref('directory');
@@ -27,6 +28,7 @@ const conversationOrigin = ref('directory');
 const conversationDraft = ref('');
 const conversationNotice = ref('');
 const isConversationSending = ref(false);
+const isLocationSending = ref(false);
 const searchQuery = ref('');
 const selectedCompany = ref(null);
 const isComposerVisible = ref(false);
@@ -113,6 +115,32 @@ const formatPhone = (phone) => {
     const digits = String(phone).replace(/\D/g, '');
     return digits.length === 7 ? '555-' + digits : String(phone);
 };
+
+const formatCoordinate = (value) => Number(value).toFixed(2);
+
+const locationLabel = (coords) => {
+    if (!coords) return 'Coordonnées disponibles en jeu';
+    if ('x' in coords) {
+        return `X ${formatCoordinate(coords.x)} · Y ${formatCoordinate(coords.y)} · Z ${formatCoordinate(coords.z)}`;
+    }
+
+    return `${formatCoordinate(coords.latitude)}, ${formatCoordinate(coords.longitude)}`;
+};
+
+const requestBrowserCoordinates = () => new Promise((resolve) => {
+    if (typeof navigator === 'undefined' || !navigator.geolocation) {
+        resolve(null);
+        return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+        ({ coords }) => resolve({ latitude: Number(coords.latitude), longitude: Number(coords.longitude) }),
+        () => resolve(null),
+        { enableHighAccuracy: true, timeout: 2000 },
+    );
+});
+
+const requestCoordinates = async () => getPlayerCoordinates() || requestBrowserCoordinates();
 
 const openCompany = (company) => {
     openMessageComposer(company);
@@ -203,6 +231,54 @@ const sendConversationMessage = async () => {
     }
 
     conversationDraft.value = '';
+};
+
+const sendLocationConversation = async () => {
+    if (!conversationCompany.value || isConversationSending.value || isLocationSending.value) return;
+
+    isLocationSending.value = true;
+    conversationNotice.value = '';
+    const coords = await requestCoordinates();
+    if (!coords) {
+        conversationNotice.value = 'Position indisponible. Réessaie en jeu.';
+        isLocationSending.value = false;
+        return;
+    }
+
+    const sent = await sendServiceMessage({
+        companyId: conversationCompany.value.id,
+        company: conversationCompany.value,
+        type: 'location',
+        coords,
+        text: 'Position partagée',
+        senderName: currentEmployee.value?.name || 'Habitant',
+        senderPhone: currentEmployee.value?.phone || '',
+    });
+    isLocationSending.value = false;
+
+    if (!sent) {
+        conversationNotice.value = lastError.value || 'La position n’a pas pu être envoyée.';
+        return;
+    }
+
+    conversationNotice.value = 'Position envoyée';
+};
+
+const setMessageWaypoint = async (message) => {
+    if (!message?.coords) {
+        conversationNotice.value = 'Cette position sera disponible en jeu.';
+        return;
+    }
+
+    if (!isFiveM.value) {
+        conversationNotice.value = 'Le GPS sera disponible en jeu.';
+        return;
+    }
+
+    const result = await setServiceWaypoint(message.coords);
+    conversationNotice.value = result
+        ? 'Position affichée sur le GPS'
+        : (lastError.value || 'La position n’a pas pu être affichée.');
 };
 
 const callCompany = async (company) => {
