@@ -2002,4 +2002,60 @@ const answerIncomingCall = (call) => {
 .services-form-footnote {
     font-size: 1.35cqh;
 }
+
+.services-conversation-composer {
+    margin-bottom: 2.5cqh;
+    padding-bottom: .8cqh;
+}
+
+.services-location-button {
+    color: #b9d3ff !important;
+    background: rgba(77, 141, 255, .2) !important;
+}
+
+.services-location-message {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.2cqw;
+    min-width: 30cqw;
+    border: 0;
+    padding: 0;
+    color: white;
+    text-align: left;
+    background: transparent;
+    font: inherit;
+    cursor: pointer;
+}
+
+.services-location-message > svg {
+    flex-shrink: 0;
+    margin-top: .15cqh;
+    color: #dceaff;
+}
+
+.services-location-message > span {
+    display: flex;
+    flex-direction: column;
+    gap: .35cqh;
+}
+
+.services-location-message strong {
+    font-size: 1.75cqh;
+    font-weight: 600;
+}
+
+.services-location-message small {
+    color: rgba(255, 255, 255, .72);
+    font-size: 1.35cqh;
+}
+
+.services-location-message em {
+    color: rgba(255, 255, 255, .52);
+    font-size: 1.15cqh;
+    font-style: normal;
+}
+
+.services-location-message:hover strong {
+    text-decoration: underline;
+}
 </style>
