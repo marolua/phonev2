@@ -538,7 +538,7 @@ const answerIncomingCall = (call) => {
     height: 100%;
     box-sizing: border-box;
     overflow: hidden;
-    padding: 9cqh 3cqh 4cqh;
+    padding: 9cqh 3cqh 0;
     color: white;
     background: #0a0a0a;
 }
@@ -761,29 +761,32 @@ const answerIncomingCall = (call) => {
 }
 
 .service-company-row {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto auto;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 1.2cqw;
+    gap: 1.4cqh;
     min-height: 0;
     margin-bottom: 1.5cqh;
     border: 1px solid rgba(255, 255, 255, .09);
     border-radius: 2cqh;
-    padding: 1.5cqh 1.5cqw;
+    padding: 2cqh 2cqw 1.7cqh;
     background: rgba(30, 30, 32, .94);
     box-shadow: 0 .8cqh 2cqh rgba(0, 0, 0, .2);
 }
 
 .service-company-main {
+    position: relative;
     display: flex;
     align-items: center;
+    justify-content: center;
+    flex-direction: column;
     width: 100%;
     min-width: 0;
-    gap: 1.8cqw;
+    gap: 1cqh;
     border: 0;
     padding: .3cqh 0;
     color: white;
-    text-align: left;
+    text-align: center;
     background: transparent;
     font: inherit;
     cursor: pointer;
@@ -794,16 +797,27 @@ const answerIncomingCall = (call) => {
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    width: 6.2cqh;
-    height: 6.2cqh;
-    border-radius: 1.8cqh;
+    width: 8cqh;
+    height: 8cqh;
+    overflow: hidden;
+    border-radius: 2.3cqh;
     background: rgba(77, 141, 255, .2);
+}
+
+.service-company-icon img,
+.services-company-hero img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .service-company-info {
     display: flex;
     flex: 1;
     flex-direction: column;
+    align-items: center;
+    width: 100%;
     min-width: 0;
     gap: .45cqh;
 }
@@ -840,22 +854,27 @@ const answerIncomingCall = (call) => {
 }
 
 .service-company-chevron {
+    position: absolute;
+    top: 50%;
+    right: 0;
     flex-shrink: 0;
     color: rgba(255, 255, 255, .3);
+    transform: translateY(-50%);
 }
 
 .service-company-call {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 4.8cqh;
-    height: 4.8cqh;
+    width: 100%;
+    height: 5cqh;
     border: 0;
     border-radius: 1.2cqh;
     color: var(--services-accent);
     background: rgba(77, 141, 255, .14);
     font: inherit;
-    font-size: 0;
+    gap: .8cqw;
+    font-size: 1.35cqh;
     cursor: pointer;
 }
 
@@ -863,14 +882,15 @@ const answerIncomingCall = (call) => {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 4.8cqh;
-    height: 4.8cqh;
+    width: 100%;
+    height: 5cqh;
     border: 0;
     border-radius: 1.2cqh;
     color: #ff9bb3;
     background: rgba(255, 59, 107, .13);
     font: inherit;
-    font-size: 0;
+    gap: .8cqw;
+    font-size: 1.35cqh;
     cursor: pointer;
 }
 
@@ -881,7 +901,7 @@ const answerIncomingCall = (call) => {
 
 .service-company-call span,
 .service-company-message span {
-    display: none;
+    display: inline;
 }
 
 .services-empty {
