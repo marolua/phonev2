@@ -5,6 +5,10 @@ import {
     MapPin, MessageCircle, Phone, PhoneCall, Reply, Search, Send, ShieldCheck, Users, X,
 } from '@lucide/vue';
 import { useServicesDirectory } from '../../composables/useServicesDirectory';
+import ambulanceImage from '../../assets/services/ambulance.png';
+import mechanicImage from '../../assets/services/mecanicien.png';
+import policeImage from '../../assets/services/police.png';
+import weazelImage from '../../assets/services/weazel.png';
 
 const props = defineProps({
     initialCompanies: { type: Array, default: () => [] },
@@ -91,6 +95,18 @@ const companyIcon = (category) => ({
     Transport: PhoneCall,
     Restauration: Building2,
 }[category] || Building2);
+
+const companyImage = (company) => {
+    if (company?.image) return company.image;
+
+    const searchable = `${company?.id || ''} ${company?.name || ''} ${company?.category || ''}`.toLowerCase();
+    if (/lspd|police/.test(searchable)) return policeImage;
+    if (/ems|ambulance|medical|sant/.test(searchable)) return ambulanceImage;
+    if (/benny|lscustoms|mechanic|mecanicien|automobile/.test(searchable)) return mechanicImage;
+    if (/weazel|media|mÃ©dia|news/.test(searchable)) return weazelImage;
+
+    return '';
+};
 
 const formatPhone = (phone) => {
     if (!phone) return 'Numéro indisponible';
