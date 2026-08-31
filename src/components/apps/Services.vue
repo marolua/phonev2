@@ -2004,7 +2004,7 @@ const answerIncomingCall = (call) => {
 }
 
 .services-conversation-composer {
-    margin-bottom: 4cqh;
+    margin-bottom: 5cqh;
     padding-bottom: .8cqh;
 }
 
