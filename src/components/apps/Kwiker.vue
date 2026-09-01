@@ -130,11 +130,6 @@ const openSearch = () => { isSearchVisible.value = !isSearchVisible.value; if (!
                     <X :size="15" />
                 </button>
             </div>
-            <nav class="kwiker-tabs" aria-label="Fil Kwiker"><button type="button"
-                    :class="{ 'kwiker-tab--active': activeTab === 'Pour toi' }" @click="activeTab = 'Pour toi'">Pour
-                    toi</button><button type="button" :class="{ 'kwiker-tab--active': activeTab === 'Abonnements' }"
-                    @click="activeTab = 'Abonnements'">Abonnements</button></nav>
-
             <main class="kwiker-feed">
                 <section class="kwiker-composer-card"><span class="kwiker-avatar"
                         :style="{ background: currentUser.color }">{{ currentUser.initials }}</span><button
