@@ -976,6 +976,83 @@ const saveAccount = () => {
     padding-top: 2cqh;
 }
 
+.kwiker-settings-page {
+    position: absolute;
+    z-index: 6;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding-top: 8cqh;
+    background: #0a0a0a;
+}
+
+.kwiker-settings-scroll {
+    min-height: 0;
+    overflow-y: auto;
+    padding: 2.5cqh 3.5cqw 8cqh;
+    scrollbar-width: none;
+}
+
+.kwiker-settings-eyebrow {
+    margin: 1.5cqh 1cqw 1cqh;
+    color: rgba(255, 255, 255, .45);
+    font-size: 1.5cqh;
+    font-weight: 600;
+}
+
+.kwiker-settings-card {
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 1.8cqh;
+    background: rgba(30, 30, 32, .94);
+}
+
+.kwiker-settings-row {
+    display: flex;
+    align-items: center;
+    gap: 2.5cqw;
+    width: 100%;
+    min-height: 8.5cqh;
+    box-sizing: border-box;
+    border: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+    padding: 1.2cqh 2.5cqw;
+    color: white;
+    background: transparent;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.kwiker-settings-row:last-child { border-bottom: 0; }
+.kwiker-settings-row > span:nth-child(2) { display: flex; flex: 1; flex-direction: column; gap: .45cqh; min-width: 0; }
+.kwiker-settings-row strong { font-size: 1.75cqh; font-weight: 600; }
+.kwiker-settings-row small { color: rgba(255, 255, 255, .48); font-size: 1.45cqh; }
+.kwiker-settings-row--static { cursor: default; }
+.kwiker-settings-icon { display: flex; align-items: center; justify-content: center; flex: 0 0 auto; width: 4.8cqh; height: 4.8cqh; border-radius: 1.3cqh; color: white; }
+.kwiker-settings-icon--blue { background: rgba(29, 155, 240, .22); color: #54b7f7; }.kwiker-settings-icon--purple { background: rgba(124, 92, 255, .22); color: #aa98ff; }.kwiker-settings-icon--orange { background: rgba(255, 157, 61, .2); color: #ffb66f; }.kwiker-settings-icon--green { background: rgba(0, 186, 124, .2); color: #4bd5a7; }
+.kwiker-settings-chevron { flex: 0 0 auto; color: rgba(255, 255, 255, .35); font-size: 3.2cqh; font-weight: 300; line-height: 1; }
+.kwiker-toggle-input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.kwiker-toggle { position: relative; flex: 0 0 auto; width: 8.2cqw; height: 4.2cqh; border-radius: 99px; background: rgba(118, 118, 128, .38); transition: background .2s ease; }
+.kwiker-toggle::after { position: absolute; top: .35cqh; left: .45cqw; width: 3.5cqh; height: 3.5cqh; border-radius: 50%; content: ''; background: white; box-shadow: 0 .2cqh .6cqh rgba(0, 0, 0, .25); transition: transform .2s ease; }
+.kwiker-toggle-input:checked + .kwiker-toggle { background: #34c759; }.kwiker-toggle-input:checked + .kwiker-toggle::after { transform: translateX(3.7cqw); }
+
+.kwiker-account-sheet {
+    width: 100%;
+    max-height: 78cqh;
+    box-sizing: border-box;
+    overflow-y: auto;
+    border-radius: 2.8cqh 2.8cqh 0 0;
+    padding: 1cqh 3.5cqw 7cqh;
+    background: #1c1c1e;
+    box-shadow: 0 -1cqh 4cqh rgba(0, 0, 0, .35);
+}
+
+.kwiker-account-fields { padding-top: 2cqh; }
+.kwiker-account-preview { display: flex; align-items: center; gap: 2.5cqw; padding: 1cqh 0 2.2cqh; }.kwiker-account-preview > span:last-child { display: flex; flex-direction: column; gap: .4cqh; }.kwiker-account-preview strong { font-size: 2cqh; }.kwiker-account-preview small { color: rgba(255, 255, 255, .46); font-size: 1.5cqh; }
+.kwiker-field { display: flex; flex-direction: column; gap: .8cqh; margin-top: 1.8cqh; color: rgba(255, 255, 255, .55); font-size: 1.45cqh; }.kwiker-field input, .kwiker-field textarea { width: 100%; box-sizing: border-box; border: 1px solid rgba(255, 255, 255, .12); border-radius: 1.3cqh; padding: 1.4cqh 1.8cqw; outline: 0; color: white; background: rgba(118, 118, 128, .16); font: inherit; font-size: 1.75cqh; }.kwiker-field input:focus, .kwiker-field textarea:focus { border-color: rgba(29, 155, 240, .8); background: rgba(29, 155, 240, .08); }.kwiker-field textarea { min-height: 9cqh; resize: vertical; line-height: 1.35; }
+
 .kwiker-sheet-backdrop {
     position: absolute;
     z-index: 10;
