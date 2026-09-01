@@ -181,7 +181,16 @@ const openSearch = () => { isSearchVisible.value = !isSearchVisible.value; if (!
                         l’onglet Pour toi.</span>
                 </div>
             </main>
-            <nav class="kwiker-bottom-nav" aria-label="Navigation Kwiker"><button type="button"
+            <nav class="kwiker-bottom-nav" aria-label="Navigation Kwiker">
+                <div class="kwiker-bottom-categories" role="tablist" aria-label="Catégories du fil">
+                    <button type="button" role="tab" :aria-selected="activeTab === 'Pour toi'"
+                        :class="{ 'kwiker-tab--active': activeTab === 'Pour toi' }"
+                        @click="activeTab = 'Pour toi'">Pour toi</button>
+                    <button type="button" role="tab" :aria-selected="activeTab === 'Abonnements'"
+                        :class="{ 'kwiker-tab--active': activeTab === 'Abonnements' }"
+                        @click="activeTab = 'Abonnements'">Abonnements</button>
+                </div>
+                <button type="button"
                     class="kwiker-nav-item kwiker-nav-item--active" aria-label="Accueil">
                     <Home :size="20" :fill="'currentColor'" />
                 </button><button type="button" class="kwiker-nav-item" aria-label="Communautés">
@@ -674,13 +683,55 @@ const openSearch = () => { isSearchVisible.value = !isSearchVisible.value; if (!
 }
 
 .kwiker-bottom-nav {
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
     justify-content: space-around;
     position: relative;
     flex-shrink: 0;
-    height: 6.8cqh;
-    padding: 1.2cqh 2cqw 0;
+    height: 12.5cqh;
+    padding: 0 2cqw 1cqh;
     border-top: 1px solid rgba(255, 255, 255, .1);
     background: rgba(10, 10, 10, .96);
+}
+
+.kwiker-bottom-categories {
+    display: flex;
+    flex: 0 0 100%;
+    height: 5.2cqh;
+    border-bottom: 1px solid rgba(255, 255, 255, .1);
+}
+
+.kwiker-bottom-categories button {
+    position: relative;
+    flex: 1;
+    border: 0;
+    color: rgba(255, 255, 255, .48);
+    background: transparent;
+    font: inherit;
+    font-size: 1.55cqh;
+    cursor: pointer;
+}
+
+.kwiker-bottom-categories button.kwiker-tab--active {
+    color: #fff;
+    font-weight: 600;
+}
+
+.kwiker-bottom-categories button.kwiker-tab--active::after {
+    position: absolute;
+    right: 25%;
+    bottom: -1px;
+    left: 25%;
+    height: .35cqh;
+    border-radius: 99px;
+    content: '';
+    background: var(--kwiker-blue);
+}
+
+.kwiker-bottom-nav > .kwiker-nav-item,
+.kwiker-bottom-nav > .kwiker-nav-post {
+    align-self: center;
 }
 
 .kwiker-nav-item {
