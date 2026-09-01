@@ -291,6 +291,55 @@ const saveAccount = () => {
             </section>
         </Transition>
 
+        <Transition name="kwiker-page">
+            <section v-if="isSettingsVisible" class="kwiker-settings-page">
+                <header class="kwiker-page-header">
+                    <button type="button" class="kwiker-back-button" aria-label="Retour" @click="closeSettings">
+                        <ArrowLeft :size="19" />
+                    </button>
+                    <strong>Paramètres</strong>
+                    <span class="kwiker-sheet-spacer"></span>
+                </header>
+                <div class="kwiker-settings-scroll">
+                    <p class="kwiker-settings-eyebrow">Ton compte Kwiker</p>
+                    <section class="kwiker-settings-card">
+                        <button type="button" class="kwiker-settings-row" @click="openAccountEditor">
+                            <span class="kwiker-settings-icon kwiker-settings-icon--blue"><UserRound :size="18" /></span>
+                            <span><strong>Modifier le profil</strong><small>Nom, pseudo et bio</small></span>
+                            <span class="kwiker-settings-chevron">›</span>
+                        </button>
+                    </section>
+
+                    <p class="kwiker-settings-eyebrow">Préférences</p>
+                    <section class="kwiker-settings-card">
+                        <label class="kwiker-settings-row"><span class="kwiker-settings-icon kwiker-settings-icon--purple"><Bell :size="18" /></span><span><strong>Notifications</strong><small>Recevoir les alertes Kwiker</small></span><input v-model="accountSettings.notifications" class="kwiker-toggle-input" type="checkbox" /><span class="kwiker-toggle" aria-hidden="true"></span></label>
+                        <label class="kwiker-settings-row"><span class="kwiker-settings-icon kwiker-settings-icon--orange"><Globe2 :size="18" /></span><span><strong>Compte privé</strong><small>Valider les nouveaux abonnés</small></span><input v-model="accountSettings.privateAccount" class="kwiker-toggle-input" type="checkbox" /><span class="kwiker-toggle" aria-hidden="true"></span></label>
+                    </section>
+
+                    <p class="kwiker-settings-eyebrow">À propos</p>
+                    <section class="kwiker-settings-card">
+                        <div class="kwiker-settings-row kwiker-settings-row--static"><span class="kwiker-settings-icon kwiker-settings-icon--green"><Check :size="18" /></span><span><strong>Kwiker</strong><small>Version 1.0 · Los Santos</small></span></div>
+                    </section>
+                </div>
+            </section>
+        </Transition>
+
+        <Transition name="kwiker-sheet">
+            <div v-if="isAccountEditorVisible" class="kwiker-sheet-backdrop" @click.self="closeAccountEditor">
+                <form class="kwiker-account-sheet" @submit.prevent="saveAccount">
+                    <div class="kwiker-sheet-grabber"></div>
+                    <header class="kwiker-sheet-header"><button type="button" class="kwiker-back-button" aria-label="Retour" @click="closeAccountEditor"><ArrowLeft :size="19" /></button><strong>Modifier le profil</strong><button type="submit" class="kwiker-publish-button">Enregistrer</button></header>
+                    <div class="kwiker-account-fields">
+                        <div class="kwiker-account-preview"><span class="kwiker-avatar kwiker-avatar--profile" :style="{ background: currentUser.color }">{{ currentUser.initials }}</span><span><strong>{{ accountDraft.name || currentUser.name }}</strong><small>{{ accountDraft.handle || currentUser.handle }}</small></span></div>
+                        <label class="kwiker-field"><span>Nom</span><input v-model="accountDraft.name" type="text" maxlength="32" autocomplete="name" placeholder="Ton nom" /></label>
+                        <label class="kwiker-field"><span>Pseudo</span><input v-model="accountDraft.handle" type="text" maxlength="20" autocomplete="username" placeholder="@tonpseudo" /></label>
+                        <label class="kwiker-field"><span>Bio</span><textarea v-model="accountDraft.bio" maxlength="120" rows="3" placeholder="Présente-toi en quelques mots"></textarea></label>
+                        <p v-if="accountNotice" class="kwiker-form-notice">{{ accountNotice }}</p>
+                    </div>
+                </form>
+            </div>
+        </Transition>
+
         <Transition name="kwiker-sheet">
             <div v-if="isComposerVisible" class="kwiker-sheet-backdrop" @click.self="closeComposer">
                 <form class="kwiker-composer-sheet" @submit.prevent="publishPost">
