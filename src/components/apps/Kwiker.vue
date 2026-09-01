@@ -256,13 +256,13 @@ const saveAccount = () => {
                         @click="isProfileVisible = false">
                         <ArrowLeft :size="19" />
                     </button><strong>Profil</strong><button type="button" aria-label="Réglages du profil">
-                        <Settings :size="18" />
+                        <Settings :size="18" @click="openSettings" />
                     </button></header>
                 <div class="kwiker-profile-scroll">
                     <div class="kwiker-profile-cover"></div>
                     <div class="kwiker-profile-intro"><span class="kwiker-avatar kwiker-avatar--profile"
                             :style="{ background: currentUser.color }">{{ currentUser.initials }}</span><button
-                            type="button" class="kwiker-edit-button">Modifier</button>
+                            type="button" class="kwiker-edit-button" @click="openAccountEditor">Modifier</button>
                         <h2>{{ currentUser.name }}</h2><span class="kwiker-profile-handle">{{ currentUser.handle
                             }}</span>
                         <p>{{ currentUser.bio }}</p>
