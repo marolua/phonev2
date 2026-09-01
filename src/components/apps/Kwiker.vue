@@ -250,8 +250,8 @@ const openSearch = () => { isSearchVisible.value = !isSearchVisible.value; if (!
             <div v-if="isComposerVisible" class="kwiker-sheet-backdrop" @click.self="closeComposer">
                 <form class="kwiker-composer-sheet" @submit.prevent="publishPost">
                     <div class="kwiker-sheet-grabber"></div>
-                    <header class="kwiker-sheet-header"><button type="button"
-                            @click="closeComposer">Annuler</button><strong>Nouveau Kwik</strong><button type="submit"
+                    <header class="kwiker-sheet-header"><button type="button" class="kwiker-back-button"
+                            aria-label="Retour" @click="closeComposer"><ArrowLeft :size="19" /></button><strong>Nouveau Kwik</strong><button type="submit"
                             class="kwiker-publish-button">Publier</button></header>
                     <div class="kwiker-sheet-content"><span class="kwiker-avatar"
                             :style="{ background: currentUser.color }">{{
