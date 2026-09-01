@@ -933,26 +933,26 @@ const saveAccount = () => {
 
 .kwiker-profile-intro h2 {
     margin: 1.2cqh 0 0;
-    font-size: 2.8cqh;
+    font-size: 3.1cqh;
 }
 
 .kwiker-profile-handle {
     display: block;
     margin-top: .4cqh;
     color: rgba(255, 255, 255, .45);
-    font-size: 1.5cqh;
+    font-size: 1.65cqh;
 }
 
 .kwiker-profile-intro p {
     margin: 1.6cqh 0;
     color: rgba(255, 255, 255, .85);
-    font-size: 1.6cqh;
+    font-size: 1.8cqh;
 }
 
 .kwiker-profile-meta {
     gap: 2.5cqw;
     color: rgba(255, 255, 255, .43);
-    font-size: 1.35cqh;
+    font-size: 1.5cqh;
 }
 
 .kwiker-profile-meta span {
@@ -965,7 +965,7 @@ const saveAccount = () => {
     gap: 3cqw;
     margin-top: 1.8cqh;
     color: rgba(255, 255, 255, .45);
-    font-size: 1.45cqh;
+    font-size: 1.6cqh;
 }
 
 .kwiker-profile-stats strong {
