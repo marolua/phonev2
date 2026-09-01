@@ -724,6 +724,8 @@ const openSearch = () => { isSearchVisible.value = !isSearchVisible.value; if (!
     inset: 0;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
+    padding-top: 8cqh;
     background: #0a0a0a;
 }
 
@@ -731,13 +733,19 @@ const openSearch = () => { isSearchVisible.value = !isSearchVisible.value; if (!
     justify-content: space-between;
     flex-shrink: 0;
     min-height: 6cqh;
-    padding: 1cqh 3.5cqw 0;
+    padding: 0 3.5cqw;
     border-bottom: 1px solid rgba(255, 255, 255, .1);
 }
 
 .kwiker-page-header button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 5cqh;
     height: 5cqh;
+    border-radius: 50%;
+    color: white;
+    background: rgba(20, 20, 20, .58);
 }
 
 .kwiker-page-header strong {
@@ -847,12 +855,15 @@ const openSearch = () => { isSearchVisible.value = !isSearchVisible.value; if (!
 
 .kwiker-composer-sheet {
     min-height: 35cqh;
-    padding: 1cqh 3.5cqw 3cqh;
+    max-height: 78cqh;
+    overflow-y: auto;
+    padding: 1cqh 3.5cqw 7cqh;
 }
 
 .kwiker-comments-sheet {
     max-height: 76cqh;
     padding-top: 1cqh;
+    padding-bottom: 4cqh;
 }
 
 .kwiker-sheet-grabber {
@@ -869,6 +880,11 @@ const openSearch = () => { isSearchVisible.value = !isSearchVisible.value; if (!
 }
 
 .kwiker-sheet-header button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 5cqh;
+    min-height: 4.8cqh;
     border: 0;
     padding: 0;
     color: rgba(255, 255, 255, .65);
@@ -876,6 +892,12 @@ const openSearch = () => { isSearchVisible.value = !isSearchVisible.value; if (!
     font: inherit;
     font-size: 1.6cqh;
     cursor: pointer;
+}
+
+.kwiker-sheet-header .kwiker-back-button {
+    border-radius: 50%;
+    color: white;
+    background: rgba(20, 20, 20, .58);
 }
 
 .kwiker-sheet-header strong {
@@ -899,10 +921,11 @@ const openSearch = () => { isSearchVisible.value = !isSearchVisible.value; if (!
 }
 
 .kwiker-draft-area textarea {
+    display: block;
     width: 100%;
     min-height: 13cqh;
     box-sizing: border-box;
-    resize: none;
+    resize: vertical;
     border: 0;
     outline: 0;
     color: white;
