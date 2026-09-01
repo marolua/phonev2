@@ -1051,7 +1051,7 @@ const saveAccount = () => {
 
 .kwiker-account-fields { padding-top: 2cqh; }
 .kwiker-account-preview { display: flex; align-items: center; gap: 2.5cqw; padding: 1cqh 0 2.2cqh; }.kwiker-account-preview > span:last-child { display: flex; flex-direction: column; gap: .4cqh; }.kwiker-account-preview strong { font-size: 2cqh; }.kwiker-account-preview small { color: rgba(255, 255, 255, .46); font-size: 1.5cqh; }
-.kwiker-field { display: flex; flex-direction: column; gap: .8cqh; margin-top: 1.8cqh; color: rgba(255, 255, 255, .55); font-size: 1.45cqh; }.kwiker-field input, .kwiker-field textarea { width: 100%; box-sizing: border-box; border: 1px solid rgba(255, 255, 255, .12); border-radius: 1.3cqh; padding: 1.4cqh 1.8cqw; outline: 0; color: white; background: rgba(118, 118, 128, .16); font: inherit; font-size: 1.75cqh; }.kwiker-field input:focus, .kwiker-field textarea:focus { border-color: rgba(29, 155, 240, .8); background: rgba(29, 155, 240, .08); }.kwiker-field textarea { min-height: 9cqh; resize: vertical; line-height: 1.35; }
+.kwiker-field { display: flex; flex-direction: column; gap: .8cqh; margin-top: 1.8cqh; color: rgba(255, 255, 255, .55); font-size: 1.6cqh; }.kwiker-field input, .kwiker-field textarea { width: 100%; box-sizing: border-box; border: 1px solid rgba(255, 255, 255, .12); border-radius: 1.3cqh; padding: 1.4cqh 1.8cqw; outline: 0; color: white; background: rgba(118, 118, 128, .16); font: inherit; font-size: 1.9cqh; }.kwiker-field input:focus, .kwiker-field textarea:focus { border-color: rgba(29, 155, 240, .8); background: rgba(29, 155, 240, .08); }.kwiker-field textarea { min-height: 9cqh; resize: vertical; line-height: 1.35; }
 
 .kwiker-sheet-backdrop {
     position: absolute;
@@ -1221,7 +1221,7 @@ const saveAccount = () => {
 .kwiker-comment p {
     margin: .7cqh 0 0;
     color: rgba(255, 255, 255, .82);
-    font-size: 1.6cqh;
+    font-size: 1.75cqh;
     line-height: 1.35;
 }
 
