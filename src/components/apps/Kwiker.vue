@@ -24,7 +24,9 @@ import {
 } from '@lucide/vue';
 
 const storageKey = 'kwiker-posts';
-const currentUser = {
+const profileStorageKey = 'kwiker-profile';
+const settingsStorageKey = 'kwiker-settings';
+const defaultProfile = {
     name: 'Maya Brooks', handle: '@mayabrooks', initials: 'MB',
     color: 'linear-gradient(145deg, #7c5cff, #c149ff)',
     bio: 'Toujours quelque part entre Los Santos et un bon café ☕', following: 184, followers: 1240,
@@ -37,22 +39,32 @@ const starterPosts = [
 ];
 
 const posts = ref([]);
+const currentUser = ref({ ...defaultProfile });
 const activeTab = ref('Pour toi');
 const searchQuery = ref('');
 const isComposerVisible = ref(false);
 const isSearchVisible = ref(false);
 const isProfileVisible = ref(false);
+const isSettingsVisible = ref(false);
+const isAccountEditorVisible = ref(false);
 const selectedPost = ref(null);
 const isCommentSheetVisible = ref(false);
 const commentDraft = ref('');
 const draft = ref({ text: '', image: '' });
 const publishNotice = ref('');
 const imageInput = ref(null);
+const accountDraft = ref({ name: '', handle: '', bio: '' });
+const accountNotice = ref('');
+const accountSettings = ref({ notifications: true, privateAccount: false });
 
 onMounted(() => {
     try {
         const savedPosts = JSON.parse(localStorage.getItem(storageKey) || 'null');
         posts.value = Array.isArray(savedPosts) && savedPosts.length ? savedPosts : starterPosts;
+        const savedProfile = JSON.parse(localStorage.getItem(profileStorageKey) || 'null');
+        if (savedProfile && typeof savedProfile === 'object') currentUser.value = { ...defaultProfile, ...savedProfile };
+        const savedSettings = JSON.parse(localStorage.getItem(settingsStorageKey) || 'null');
+        if (savedSettings && typeof savedSettings === 'object') accountSettings.value = { ...accountSettings.value, ...savedSettings };
     } catch { posts.value = starterPosts; }
 });
 
@@ -60,11 +72,19 @@ watch(posts, (value) => {
     try { localStorage.setItem(storageKey, JSON.stringify(value)); } catch { /* Session only. */ }
 }, { deep: true });
 
+watch(currentUser, (value) => {
+    try { localStorage.setItem(profileStorageKey, JSON.stringify(value)); } catch { /* Session only. */ }
+}, { deep: true });
+
+watch(accountSettings, (value) => {
+    try { localStorage.setItem(settingsStorageKey, JSON.stringify(value)); } catch { /* Session only. */ }
+}, { deep: true });
+
 const visiblePosts = computed(() => {
     const query = searchQuery.value.trim().toLowerCase();
     return posts.value.filter((post) => {
         const matchesSearch = !query || `${post.author} ${post.handle} ${post.text}`.toLowerCase().includes(query);
-        const matchesTab = activeTab.value === 'Pour toi' || post.author === currentUser.name || post.reposted;
+        const matchesTab = activeTab.value === 'Pour toi' || post.author === currentUser.value.name || post.reposted;
         return matchesSearch && matchesTab;
     });
 });
@@ -90,7 +110,7 @@ const readImage = (event) => {
 const publishPost = () => {
     const text = draft.value.text.trim();
     if (!text && !draft.value.image) { publishNotice.value = 'Écris quelque chose ou ajoute une image.'; return; }
-    posts.value.unshift({ id: Date.now(), author: currentUser.name, handle: currentUser.handle, initials: currentUser.initials, color: currentUser.color, text, image: draft.value.image, time: Date.now(), likes: 0, comments: 0, reposts: 0, liked: false, reposted: false, bookmarked: false, commentsList: [] });
+    posts.value.unshift({ id: Date.now(), author: currentUser.value.name, handle: currentUser.value.handle, initials: currentUser.value.initials, color: currentUser.value.color, text, image: draft.value.image, time: Date.now(), likes: 0, comments: 0, reposts: 0, liked: false, reposted: false, bookmarked: false, commentsList: [] });
     closeComposer();
 };
 const toggleLike = (post) => { post.liked = !post.liked; post.likes += post.liked ? 1 : -1; };
@@ -102,11 +122,36 @@ const addComment = () => {
     const text = commentDraft.value.trim();
     if (!text || !selectedPost.value) return;
     selectedPost.value.commentsList = selectedPost.value.commentsList || [];
-    selectedPost.value.commentsList.push({ id: Date.now(), author: currentUser.name, handle: currentUser.handle, initials: currentUser.initials, color: currentUser.color, text });
+    selectedPost.value.commentsList.push({ id: Date.now(), author: currentUser.value.name, handle: currentUser.value.handle, initials: currentUser.value.initials, color: currentUser.value.color, text });
     selectedPost.value.comments += 1;
     commentDraft.value = '';
 };
 const openSearch = () => { isSearchVisible.value = !isSearchVisible.value; if (!isSearchVisible.value) searchQuery.value = ''; };
+const openSettings = () => { isSettingsVisible.value = true; };
+const closeSettings = () => { isSettingsVisible.value = false; isAccountEditorVisible.value = false; };
+const openAccountEditor = () => {
+    accountDraft.value = { name: currentUser.value.name, handle: currentUser.value.handle, bio: currentUser.value.bio };
+    accountNotice.value = '';
+    isAccountEditorVisible.value = true;
+};
+const closeAccountEditor = () => { isAccountEditorVisible.value = false; accountNotice.value = ''; };
+const saveAccount = () => {
+    const name = accountDraft.value.name.trim();
+    const handle = accountDraft.value.handle.trim().replace(/\s+/g, '').replace(/^@*/, '@');
+    const bio = accountDraft.value.bio.trim();
+    if (name.length < 2 || handle.length < 2) { accountNotice.value = 'Ajoute un nom et un pseudo valides.'; return; }
+
+    const previousName = currentUser.value.name;
+    const nextProfile = { ...currentUser.value, name, handle, bio, initials: name.split(/\s+/).map((part) => part[0]).join('').slice(0, 2).toUpperCase() };
+    currentUser.value = nextProfile;
+    posts.value.forEach((post) => {
+        if (post.author === previousName) Object.assign(post, { author: name, handle, initials: nextProfile.initials, color: nextProfile.color });
+        (post.commentsList || []).forEach((comment) => {
+            if (comment.author === previousName) Object.assign(comment, { author: name, handle, initials: nextProfile.initials, color: nextProfile.color });
+        });
+    });
+    closeAccountEditor();
+};
 </script>
 
 <template>
