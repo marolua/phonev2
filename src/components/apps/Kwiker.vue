@@ -616,7 +616,7 @@ const saveAccount = () => {
     color: rgba(255, 255, 255, .43);
     background: transparent;
     font: inherit;
-    font-size: 1.75cqh;
+    font-size: 1.95cqh;
     text-align: left;
     cursor: pointer;
 }
@@ -640,7 +640,7 @@ const saveAccount = () => {
     justify-content: space-between;
     margin: 2.2cqh 3.5cqw 1cqh;
     color: rgba(255, 255, 255, .44);
-    font-size: 1.35cqh;
+    font-size: 1.5cqh;
     font-weight: 600;
     letter-spacing: .08cqw;
     text-transform: uppercase;
@@ -687,7 +687,7 @@ const saveAccount = () => {
 
 .kwiker-post-author strong {
     overflow: hidden;
-    font-size: 1.65cqh;
+    font-size: 1.85cqh;
     font-weight: 650;
     text-overflow: ellipsis;
 }
@@ -695,7 +695,7 @@ const saveAccount = () => {
 .kwiker-post-author span,
 .kwiker-post-author time {
     color: rgba(255, 255, 255, .42);
-    font-size: 1.45cqh;
+    font-size: 1.6cqh;
 }
 
 .kwiker-verified {
@@ -709,7 +709,7 @@ const saveAccount = () => {
 .kwiker-post-text {
     margin: .8cqh 0 1.6cqh;
     color: rgba(255, 255, 255, .88);
-    font-size: 1.7cqh;
+    font-size: 1.9cqh;
     line-height: 1.35;
     white-space: pre-wrap;
     overflow-wrap: anywhere;
@@ -739,7 +739,7 @@ const saveAccount = () => {
     color: inherit;
     background: transparent;
     font: inherit;
-    font-size: 1.35cqh;
+    font-size: 1.5cqh;
     cursor: pointer;
 }
 
@@ -784,6 +784,7 @@ const saveAccount = () => {
     position: relative;
     flex-shrink: 0;
     height: 12.5cqh;
+    box-sizing: border-box;
     padding: 0 2cqw 1cqh;
     border-top: 1px solid rgba(255, 255, 255, .1);
     background: rgba(10, 10, 10, .96);
@@ -803,7 +804,7 @@ const saveAccount = () => {
     color: rgba(255, 255, 255, .48);
     background: transparent;
     font: inherit;
-    font-size: 1.55cqh;
+    font-size: 1.7cqh;
     cursor: pointer;
 }
 
