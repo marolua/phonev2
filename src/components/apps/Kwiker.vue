@@ -234,7 +234,8 @@ const openSearch = () => { isSearchVisible.value = !isSearchVisible.value; if (!
                             <header class="kwiker-post-author"><strong>{{ currentUser.name }}</strong><span>{{
                                     currentUser.handle }}</span><span>·</span><time>{{ relativeTime(post.time) }}</time>
                             </header>
-                            <p class="kwiker-post-text">{{ post.text }}</p>
+                            <p v-if="post.text" class="kwiker-post-text">{{ post.text }}</p>
+                            <img v-if="post.image" class="kwiker-post-image" :src="post.image" alt="Image publiée" />
                         </div>
                     </article>
                 </div>
@@ -272,9 +273,9 @@ const openSearch = () => { isSearchVisible.value = !isSearchVisible.value; if (!
             <div v-if="isCommentSheetVisible" class="kwiker-sheet-backdrop" @click.self="closeComments">
                 <section class="kwiker-comments-sheet">
                     <div class="kwiker-sheet-grabber"></div>
-                    <header class="kwiker-sheet-header"><button type="button" aria-label="Fermer"
-                            @click="closeComments">
-                            <X :size="19" />
+                    <header class="kwiker-sheet-header"><button type="button" class="kwiker-back-button" aria-label="Retour"
+                        @click="closeComments">
+                            <ArrowLeft :size="19" />
                         </button><strong>Réponses</strong><span class="kwiker-sheet-spacer"></span></header>
                     <div v-if="selectedPost" class="kwiker-comments-scroll">
                         <article class="kwiker-post kwiker-post--original"><span class="kwiker-avatar"
