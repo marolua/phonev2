@@ -1438,4 +1438,306 @@ const saveAccount = () => {
     opacity: 0;
     transform: translateY(100%);
 }
+
+.kwiker-app button:focus-visible,
+.kwiker-app input:focus-visible,
+.kwiker-app textarea:focus-visible {
+    outline: 2px solid rgba(29, 155, 240, .9);
+    outline-offset: 2px;
+}
+
+.kwiker-post-actions button,
+.kwiker-header-actions button,
+.kwiker-nav-item,
+.kwiker-compose-mini,
+.kwiker-post-header > button,
+.kwiker-feed-heading button {
+    transition: color .16s ease, background .16s ease, transform .16s ease;
+}
+
+.kwiker-post-actions button:hover,
+.kwiker-header-actions button:hover,
+.kwiker-nav-item:hover,
+.kwiker-post-header > button:hover,
+.kwiker-feed-heading button:hover {
+    color: white;
+}
+
+.kwiker-compose-mini:hover,
+.kwiker-nav-post:hover {
+    filter: brightness(1.12);
+    transform: translateY(-1px);
+}
+
+.kwiker-poll {
+    display: flex;
+    flex-direction: column;
+    gap: .8cqh;
+    margin: 1.2cqh 0 1.5cqh;
+}
+
+.kwiker-poll-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 4.6cqh;
+    border: 1px solid rgba(29, 155, 240, .65);
+    border-radius: 1.2cqh;
+    padding: 0 2cqw;
+    color: rgba(255, 255, 255, .86);
+    background: rgba(29, 155, 240, .08);
+    font: inherit;
+    font-size: 1.55cqh;
+    text-align: left;
+    cursor: pointer;
+}
+
+.kwiker-poll-option:not(:disabled):hover,
+.kwiker-poll-option--selected {
+    color: white;
+    background: rgba(29, 155, 240, .24);
+}
+
+.kwiker-poll-option:disabled {
+    cursor: default;
+}
+
+.kwiker-poll > small {
+    color: rgba(255, 255, 255, .4);
+    font-size: 1.25cqh;
+}
+
+.kwiker-poll-editor {
+    display: flex;
+    flex-direction: column;
+    gap: 1cqh;
+    margin: 1cqh 0;
+    padding: 1.2cqh;
+    border: 1px solid rgba(29, 155, 240, .45);
+    border-radius: 1.4cqh;
+    background: rgba(29, 155, 240, .06);
+}
+
+.kwiker-poll-editor input {
+    min-height: 4.6cqh;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, .13);
+    border-radius: 1cqh;
+    padding: 0 1.4cqw;
+    outline: 0;
+    color: white;
+    background: rgba(255, 255, 255, .08);
+    font: inherit;
+    font-size: 1.55cqh;
+}
+
+.kwiker-poll-editor > button {
+    align-self: flex-start;
+    border: 0;
+    padding: .3cqh 0;
+    color: var(--kwiker-blue);
+    background: transparent;
+    font: inherit;
+    font-size: 1.45cqh;
+    cursor: pointer;
+}
+
+.kwiker-draft-footer .kwiker-draft-tool--active {
+    color: white;
+    filter: drop-shadow(0 0 .6cqh rgba(29, 155, 240, .8));
+}
+
+.kwiker-empty--profile {
+    padding-top: 7cqh;
+}
+
+.kwiker-reply-context {
+    margin: .8cqh 0 0;
+    color: rgba(255, 255, 255, .42);
+    font-size: 1.45cqh;
+}
+
+.kwiker-notification-row {
+    display: flex;
+    align-items: center;
+    gap: 2.5cqw;
+    min-height: 9.5cqh;
+    padding: 1.2cqh 2.5cqw;
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+
+.kwiker-notification-row:last-child {
+    border-bottom: 0;
+}
+
+.kwiker-notification-row > span:nth-child(2) {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: .5cqh;
+    min-width: 0;
+}
+
+.kwiker-notification-row strong {
+    font-size: 1.65cqh;
+    line-height: 1.25;
+}
+
+.kwiker-notification-row small {
+    color: rgba(255, 255, 255, .42);
+    font-size: 1.35cqh;
+}
+
+.kwiker-notification-row > svg {
+    flex: 0 0 auto;
+    color: var(--kwiker-blue);
+}
+
+.kwiker-community-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5cqh;
+}
+
+.kwiker-community-card {
+    display: flex;
+    align-items: center;
+    gap: 2.5cqw;
+    padding: 2cqh 2.5cqw;
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 1.8cqh;
+    background: rgba(30, 30, 32, .94);
+}
+
+.kwiker-community-mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: 6.5cqh;
+    height: 6.5cqh;
+    border-radius: 1.7cqh;
+    color: white;
+}
+
+.kwiker-community-card > div {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: .45cqh;
+    min-width: 0;
+}
+
+.kwiker-community-card strong {
+    font-size: 1.85cqh;
+}
+
+.kwiker-community-card p {
+    overflow: hidden;
+    margin: 0;
+    color: rgba(255, 255, 255, .55);
+    font-size: 1.4cqh;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.kwiker-community-card small {
+    color: rgba(255, 255, 255, .38);
+    font-size: 1.25cqh;
+}
+
+.kwiker-community-card > button {
+    flex: 0 0 auto;
+    min-width: 14cqw;
+    border: 1px solid rgba(29, 155, 240, .72);
+    border-radius: 999px;
+    padding: .8cqh 1.8cqw;
+    color: var(--kwiker-blue);
+    background: transparent;
+    font: inherit;
+    font-size: 1.35cqh;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.kwiker-community-card > button.kwiker-community-join--active {
+    border-color: rgba(255, 255, 255, .18);
+    color: rgba(255, 255, 255, .64);
+    background: rgba(255, 255, 255, .08);
+}
+
+.kwiker-post-menu-sheet {
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 2.8cqh 2.8cqh 0 0;
+    padding: 1cqh 3.5cqw 3cqh;
+    background: #1c1c1e;
+    box-shadow: 0 -1cqh 4cqh rgba(0, 0, 0, .35);
+}
+
+.kwiker-post-menu-sheet .kwiker-sheet-header {
+    border-bottom: 1px solid rgba(255, 255, 255, .1);
+    padding-bottom: 1cqh;
+}
+
+.kwiker-post-menu-sheet .kwiker-sheet-header > button {
+    min-width: 4.5cqh;
+    min-height: 4.5cqh;
+}
+
+.kwiker-menu-action {
+    display: flex;
+    align-items: center;
+    gap: 2.5cqw;
+    width: 100%;
+    min-height: 7cqh;
+    border: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+    color: rgba(255, 255, 255, .85);
+    background: transparent;
+    font: inherit;
+    font-size: 1.7cqh;
+    text-align: left;
+    cursor: pointer;
+}
+
+.kwiker-menu-action:last-child {
+    border-bottom: 0;
+}
+
+.kwiker-menu-action:hover {
+    color: white;
+    background: rgba(255, 255, 255, .05);
+}
+
+.kwiker-menu-action--danger {
+    color: #ff453a;
+}
+
+.kwiker-toast {
+    position: absolute;
+    z-index: 30;
+    right: 50%;
+    bottom: 15cqh;
+    max-width: 82%;
+    border-radius: 999px;
+    padding: 1.1cqh 2.5cqw;
+    color: white;
+    background: rgba(40, 40, 42, .96);
+    box-shadow: 0 .7cqh 2cqh rgba(0, 0, 0, .35);
+    font-size: 1.45cqh;
+    text-align: center;
+    transform: translateX(50%);
+}
+
+.kwiker-toast-enter-active,
+.kwiker-toast-leave-active {
+    transition: opacity .18s ease, transform .18s ease;
+}
+
+.kwiker-toast-enter-from,
+.kwiker-toast-leave-to {
+    opacity: 0;
+    transform: translate(50%, 1cqh);
+}
 </style>
