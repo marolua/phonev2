@@ -92,7 +92,7 @@ const toggleBookmark = (post) => { post.bookmarked = !post.bookmarked; };
 const votePoll = (post, optionIndex) => { if (!post.poll || post.poll.votes.includes(currentUser.value.handle)) return; post.poll.votes.push(currentUser.value.handle); post.poll.selected = optionIndex; };
 const openComments = (post) => { selectedPost.value = post; commentDraft.value = ''; isCommentSheetVisible.value = true; };
 const closeComments = () => { isCommentSheetVisible.value = false; selectedPost.value = null; };
-const addComment = () => { const text = commentDraft.value.trim(); if (!text || !selectedPost.value) return; selectedPost.value.commentsList = selectedPost.value.commentsList || []; selectedPost.value.commentsList.push({ id: Date.now(), author: currentUser.value.name, handle: currentUser.value.handle, initials: currentUser.value.initials, color: currentUser.value.color, text }); selectedPost.value.comments += 1; commentDraft.value = ''; };
+const addComment = () => { const text = commentDraft.value.trim(); if (!text || !selectedPost.value) return; selectedPost.value.commentsList = selectedPost.value.commentsList || []; selectedPost.value.commentsList.push({ id: Date.now(), author: currentUser.value.name, handle: currentUser.value.handle, initials: currentUser.value.initials, color: currentUser.value.color, text, time: Date.now() }); selectedPost.value.comments += 1; commentDraft.value = ''; };
 const openSearch = () => { isSearchVisible.value = !isSearchVisible.value; if (!isSearchVisible.value) searchQuery.value = ''; };
 const openSettings = () => { isSettingsVisible.value = true; };
 const closeSettings = () => { isSettingsVisible.value = false; isAccountEditorVisible.value = false; };
