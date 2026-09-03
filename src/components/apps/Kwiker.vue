@@ -227,7 +227,7 @@ const saveAccount = () => {
 
 <template>
     <div class="kwiker-app">
-        <template v-if="!isProfileVisible">
+        <template v-if="!isProfileVisible && !isNotificationsVisible && !isCommunitiesVisible">
             <header class="kwiker-header">
                 <button type="button" class="kwiker-profile-button" aria-label="Ouvrir mon profil"
                     @click="isProfileVisible = true"><span class="kwiker-avatar kwiker-avatar--small"
@@ -235,7 +235,7 @@ const saveAccount = () => {
                 <div class="kwiker-logo" aria-label="Kwiker"><span>k</span></div>
                 <div class="kwiker-header-actions"><button type="button" aria-label="Rechercher" @click="openSearch">
                         <Search :size="18" />
-                    </button><button type="button" aria-label="Notifications">
+                    </button><button type="button" aria-label="Notifications" @click="openNotifications">
                         <Bell :size="18" />
                     </button></div>
             </header>
@@ -254,7 +254,7 @@ const saveAccount = () => {
                         @click="openComposer">
                         <PenLine :size="17" />
                     </button></section>
-                <div class="kwiker-feed-heading"><span>{{ activeTab === 'Pour toi' ? 'Les dernières nouvelles' : 'Lescomptes que tu suis' }}</span><button type="button" aria-label="Options du fil">
+                <div class="kwiker-feed-heading"><span>{{ activeSection === 'bookmarks' ? 'Tes signets' : (activeTab === 'Pour toi' ? 'Les dernières nouvelles' : 'Les comptes que tu suis') }}</span><button type="button" aria-label="Options du fil" @click="openSettings">
                         <Settings :size="15" />
                     </button></div>
                 <section v-if="visiblePosts.length" class="kwiker-posts">
@@ -266,12 +266,20 @@ const saveAccount = () => {
                                     <Check v-if="post.author === 'LSPD Los Santos' || post.author === 'Weazel News'"
                                         class="kwiker-verified" :size="12" /><span>{{ post.handle
                                         }}</span><span>·</span><time>{{ relativeTime(post.time) }}</time>
-                                </div><button type="button" aria-label="Plus d'options">
+                                </div><button type="button" aria-label="Plus d'options" @click="openPostMenu(post)">
                                     <MoreHorizontal :size="17" />
                                 </button>
                             </header>
                             <p v-if="post.text" class="kwiker-post-text">{{ post.text }}</p><img v-if="post.image"
                                 class="kwiker-post-image" :src="post.image" alt="Image publiée" />
+                            <div v-if="post.poll" class="kwiker-poll">
+                                <button v-for="(option, optionIndex) in post.poll.options" :key="option" type="button"
+                                    class="kwiker-poll-option" :class="{ 'kwiker-poll-option--selected': post.poll.selected === optionIndex }"
+                                    :disabled="post.poll.votes.includes(currentUser.handle)" @click="votePoll(post, optionIndex)">
+                                    <span>{{ option }}</span><Check v-if="post.poll.selected === optionIndex" :size="14" />
+                                </button>
+                                <small>{{ post.poll.votes.length ? 'Vote enregistré' : 'Sondage' }}</small>
+                            </div>
                             <div class="kwiker-post-actions"><button type="button"
                                     :class="{ 'kwiker-action--commented': post.commentsList?.length }"
                                     aria-label="Commenter" @click="openComments(post)">
@@ -286,7 +294,7 @@ const saveAccount = () => {
                                 </button><button type="button" :class="{ 'kwiker-action--saved': post.bookmarked }"
                                     aria-label="Enregistrer" @click="toggleBookmark(post)">
                                     <Bookmark :size="17" :fill="post.bookmarked ? 'currentColor' : 'none'" />
-                                </button><button type="button" aria-label="Partager">
+                                </button><button type="button" aria-label="Partager" @click="sharePost(post)">
                                     <Share2 :size="16" />
                                 </button></div>
                         </div>
@@ -306,17 +314,16 @@ const saveAccount = () => {
                         :class="{ 'kwiker-tab--active': activeTab === 'Abonnements' }"
                         @click="activeTab = 'Abonnements'">Abonnements</button>
                 </div>
-                <button type="button"
-                    class="kwiker-nav-item kwiker-nav-item--active" aria-label="Accueil">
+                <button type="button" class="kwiker-nav-item" :class="{ 'kwiker-nav-item--active': activeSection === 'home' }" aria-label="Accueil" @click="setHome">
                     <Home :size="20" :fill="'currentColor'" />
-                </button><button type="button" class="kwiker-nav-item" aria-label="Communautés">
+                </button><button type="button" class="kwiker-nav-item" aria-label="Communautés" @click="openCommunities">
                     <Users :size="20" />
                 </button><button type="button" class="kwiker-nav-post" aria-label="Publier" @click="openComposer">
                     <PenLine :size="19" />
-                </button><button type="button" class="kwiker-nav-item" aria-label="Signets">
+                </button><button type="button" class="kwiker-nav-item" :class="{ 'kwiker-nav-item--active': activeSection === 'bookmarks' }" aria-label="Signets" @click="setBookmarks">
                     <Bookmark :size="20" />
                 </button><button type="button" class="kwiker-nav-item" aria-label="Profil"
-                    @click="isProfileVisible = true">
+                    @click="isProfileVisible = true; activeSection = 'home'">
                     <UserRound :size="20" />
                 </button></nav>
         </template>
