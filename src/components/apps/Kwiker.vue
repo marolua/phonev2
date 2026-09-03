@@ -29,6 +29,7 @@ import {
 const storageKey = 'kwiker-posts';
 const profileStorageKey = 'kwiker-profile';
 const settingsStorageKey = 'kwiker-settings';
+const communitiesStorageKey = 'kwiker-communities';
 const defaultProfile = {
     name: 'Maya Brooks', handle: '@mayabrooks', initials: 'MB',
     color: 'linear-gradient(145deg, #7c5cff, #c149ff)',
@@ -81,6 +82,8 @@ onMounted(() => {
         if (savedProfile && typeof savedProfile === 'object') currentUser.value = { ...defaultProfile, ...savedProfile };
         const savedSettings = JSON.parse(localStorage.getItem(settingsStorageKey) || 'null');
         if (savedSettings && typeof savedSettings === 'object') accountSettings.value = { ...accountSettings.value, ...savedSettings };
+        const savedCommunities = JSON.parse(localStorage.getItem(communitiesStorageKey) || 'null');
+        if (Array.isArray(savedCommunities)) joinedCommunities.value = savedCommunities;
     } catch { posts.value = starterPosts; }
 });
 
@@ -94,6 +97,10 @@ watch(currentUser, (value) => {
 
 watch(accountSettings, (value) => {
     try { localStorage.setItem(settingsStorageKey, JSON.stringify(value)); } catch { /* Session only. */ }
+}, { deep: true });
+
+watch(joinedCommunities, (value) => {
+    try { localStorage.setItem(communitiesStorageKey, JSON.stringify(value)); } catch { /* Session only. */ }
 }, { deep: true });
 
 const visiblePosts = computed(() => {
