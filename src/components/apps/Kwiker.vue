@@ -555,6 +555,9 @@ const saveAccount = () => {
                 </section>
             </div>
         </Transition>
+        <Transition name="kwiker-toast">
+            <div v-if="actionNotice" class="kwiker-toast" role="status">{{ actionNotice }}</div>
+        </Transition>
     </div>
 </template>
 
