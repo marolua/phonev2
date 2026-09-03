@@ -6,11 +6,12 @@ const storageKey = 'kwiker-posts';
 const profileStorageKey = 'kwiker-profile';
 const settingsStorageKey = 'kwiker-settings';
 const communitiesStorageKey = 'kwiker-communities';
-const defaultProfile = { name: 'Maya Brooks', handle: '@mayabrooks', initials: 'MB', color: 'linear-gradient(145deg, #7c5cff, #c149ff)', bio: 'Toujours quelque part entre Los Santos et un bon café ☕', following: 184, followers: 1240 };
+const followingStorageKey = 'kwiker-following';
+const defaultProfile = { name: 'Maya Brooks', handle: '@mayabrooks', initials: 'MB', color: 'linear-gradient(145deg, #7c5cff, #c149ff)', bio: 'Toujours quelque part entre Los Santos et un bon café ☕', following: 184, followers: 1240, accountType: 'Personne', verified: false };
 const starterPosts = [
-    { id: 1, author: 'LSPD Los Santos', handle: '@LSPD_LS', initials: 'LP', color: 'linear-gradient(145deg, #2c6bed, #17336e)', text: 'Les rues sont calmes ce soir. Merci à tous les habitants qui nous aident à garder Los Santos sûre. 💙', time: Date.now() - 1000 * 60 * 18, likes: 42, comments: 8, reposts: 12, liked: false, reposted: false, bookmarked: false, commentsList: [] },
-    { id: 2, author: 'Weazel News', handle: '@weazelnews', initials: 'WN', color: 'linear-gradient(145deg, #ff3b6b, #7f2046)', text: 'FLASH INFO — La circulation est perturbée sur Vespucci Boulevard. Évitez le secteur jusqu’à nouvel ordre. 📰', time: Date.now() - 1000 * 60 * 53, likes: 76, comments: 14, reposts: 31, liked: true, reposted: false, bookmarked: false, commentsList: [] },
-    { id: 3, author: 'Benny’s Original Motor Works', handle: '@bennys', initials: 'BO', color: 'linear-gradient(145deg, #ff9d3d, #8d3c1e)', text: 'Nouvelle semaine, nouveau projet. Passez à l’atelier si vous voulez donner un peu de caractère à votre caisse. 🔧', time: Date.now() - 1000 * 60 * 60 * 3, likes: 128, comments: 22, reposts: 18, liked: false, reposted: true, bookmarked: true, commentsList: [] },
+    { id: 1, author: 'LSPD Los Santos', handle: '@LSPD_LS', initials: 'LP', color: 'linear-gradient(145deg, #2c6bed, #17336e)', accountType: 'Entreprise', verified: true, bio: 'Compte officiel de la police de Los Santos.', followers: 18400, following: 32, text: 'Les rues sont calmes ce soir. Merci à tous les habitants qui nous aident à garder Los Santos sûre. 💙', time: Date.now() - 1000 * 60 * 18, likes: 42, comments: 8, reposts: 12, liked: false, reposted: false, bookmarked: false, commentsList: [] },
+    { id: 2, author: 'Weazel News', handle: '@weazelnews', initials: 'WN', color: 'linear-gradient(145deg, #ff3b6b, #7f2046)', accountType: 'Entreprise', verified: true, bio: 'Toute l’actualité de Los Santos.', followers: 26700, following: 84, text: 'FLASH INFO — La circulation est perturbée sur Vespucci Boulevard. Évitez le secteur jusqu’à nouvel ordre. 📰', time: Date.now() - 1000 * 60 * 53, likes: 76, comments: 14, reposts: 31, liked: true, reposted: false, bookmarked: false, commentsList: [] },
+    { id: 3, author: 'Benny’s Original Motor Works', handle: '@bennys', initials: 'BO', color: 'linear-gradient(145deg, #ff9d3d, #8d3c1e)', accountType: 'Entreprise', verified: false, bio: 'Atelier automobile et préparations sur mesure.', followers: 6300, following: 146, text: 'Nouvelle semaine, nouveau projet. Passez à l’atelier si vous voulez donner un peu de caractère à votre caisse. 🔧', time: Date.now() - 1000 * 60 * 60 * 3, likes: 128, comments: 22, reposts: 18, liked: false, reposted: true, bookmarked: true, commentsList: [] },
 ];
 
 const posts = ref([]);
@@ -19,8 +20,10 @@ const activeTab = ref('Pour toi');
 const activeSection = ref('home');
 const profileTab = ref('Kwiks');
 const searchQuery = ref('');
+const isComposerVisible = ref(false);
 const isSearchVisible = ref(false);
 const isProfileVisible = ref(false);
+const viewedProfile = ref(null);
 const isSettingsVisible = ref(false);
 const isNotificationsVisible = ref(false);
 const isCommunitiesVisible = ref(false);
@@ -30,10 +33,14 @@ const selectedPostMenu = ref(null);
 const isCommentSheetVisible = ref(false);
 const commentDraft = ref('');
 const actionNotice = ref('');
+const draft = ref({ text: '', image: '' });
+const publishNotice = ref('');
+const imageInput = ref(null);
 const accountDraft = ref({ name: '', handle: '', bio: '' });
 const accountNotice = ref('');
 const accountSettings = ref({ notifications: true, privateAccount: false });
 const joinedCommunities = ref(['los-santos', 'car-meets']);
+const followingHandles = ref(['@LSPD_LS']);
 const communities = [
     { id: 'los-santos', name: 'Los Santos', description: 'Les infos et discussions de la ville.', members: '12,4k', color: 'linear-gradient(145deg, #1d9bf0, #17336e)' },
     { id: 'car-meets', name: 'Car Meets', description: 'Passionnés de belles mécaniques.', members: '3,8k', color: 'linear-gradient(145deg, #ff9d3d, #8d3c1e)' },
@@ -54,19 +61,30 @@ onMounted(() => {
         if (savedSettings && typeof savedSettings === 'object') accountSettings.value = { ...accountSettings.value, ...savedSettings };
         const savedCommunities = JSON.parse(localStorage.getItem(communitiesStorageKey) || 'null');
         if (Array.isArray(savedCommunities)) joinedCommunities.value = savedCommunities;
+        const savedFollowing = JSON.parse(localStorage.getItem(followingStorageKey) || 'null');
+        if (Array.isArray(savedFollowing)) followingHandles.value = savedFollowing;
     } catch { posts.value = starterPosts; }
 });
 watch(posts, (value) => { try { localStorage.setItem(storageKey, JSON.stringify(value)); } catch { /* Session only. */ } }, { deep: true });
 watch(currentUser, (value) => { try { localStorage.setItem(profileStorageKey, JSON.stringify(value)); } catch { /* Session only. */ } }, { deep: true });
 watch(accountSettings, (value) => { try { localStorage.setItem(settingsStorageKey, JSON.stringify(value)); } catch { /* Session only. */ } }, { deep: true });
 watch(joinedCommunities, (value) => { try { localStorage.setItem(communitiesStorageKey, JSON.stringify(value)); } catch { /* Session only. */ } }, { deep: true });
+watch(followingHandles, (value) => { try { localStorage.setItem(followingStorageKey, JSON.stringify(value)); } catch { /* Session only. */ } }, { deep: true });
 
-const visiblePosts = computed(() => { const query = searchQuery.value.trim().toLowerCase(); return posts.value.filter((post) => { const matchesSearch = !query || `${post.author} ${post.handle} ${post.text}`.toLowerCase().includes(query); const matchesTab = activeTab.value === 'Pour toi' || post.author === currentUser.value.name || post.reposted; const matchesSection = activeSection.value !== 'bookmarks' || post.bookmarked; return matchesSearch && matchesTab && matchesSection; }); });
+const profileIdentity = computed(() => viewedProfile.value || currentUser.value);
+const isOwnProfile = computed(() => !viewedProfile.value || viewedProfile.value.handle === currentUser.value.handle);
+const isFollowingViewed = computed(() => Boolean(viewedProfile.value && followingHandles.value.includes(viewedProfile.value.handle)));
+const profilePosts = computed(() => posts.value.filter((post) => post.handle === profileIdentity.value.handle || post.author === profileIdentity.value.name));
+const visiblePosts = computed(() => { const query = searchQuery.value.trim().toLowerCase(); return posts.value.filter((post) => { const matchesSearch = !query || `${post.author} ${post.handle} ${post.text}`.toLowerCase().includes(query); const matchesTab = activeTab.value === 'Pour toi' || followingHandles.value.includes(post.handle) || post.author === currentUser.value.name || post.reposted; const matchesSection = activeSection.value !== 'bookmarks' || post.bookmarked; return matchesSearch && matchesTab && matchesSection; }); });
 const ownPosts = computed(() => posts.value.filter((post) => post.author === currentUser.value.name));
 const profileReplies = computed(() => posts.value.filter((post) => (post.commentsList || []).some((comment) => comment.author === currentUser.value.name)));
 const profileMedia = computed(() => ownPosts.value.filter((post) => post.image));
 const notificationItems = computed(() => posts.value.slice(0, 3).map((post, index) => ({ id: `${post.id}-${index}`, initials: post.initials, color: post.color, title: index === 0 ? `${post.author} a publié un nouveau Kwik` : `${post.author} fait parler de lui sur Kwiker`, time: relativeTime(post.time) })));
 
+const openComposer = () => { draft.value = { text: '', image: '' }; publishNotice.value = ''; isComposerVisible.value = true; };
+const closeComposer = () => { isComposerVisible.value = false; };
+const readImage = (event) => { const file = event.target.files?.[0]; if (!file) return; const reader = new FileReader(); reader.onload = () => { draft.value.image = String(reader.result || ''); }; reader.readAsDataURL(file); };
+const publishPost = () => { const text = draft.value.text.trim(); if (!text && !draft.value.image) { publishNotice.value = 'Écris quelque chose ou ajoute une image.'; return; } posts.value.unshift({ id: Date.now(), author: currentUser.value.name, handle: currentUser.value.handle, initials: currentUser.value.initials, color: currentUser.value.color, accountType: currentUser.value.accountType, verified: currentUser.value.verified, text, image: draft.value.image, time: Date.now(), likes: 0, comments: 0, reposts: 0, liked: false, reposted: false, bookmarked: false, commentsList: [] }); closeComposer(); };
 const toggleLike = (post) => { post.liked = !post.liked; post.likes += post.liked ? 1 : -1; };
 const toggleRepost = (post) => { post.reposted = !post.reposted; post.reposts += post.reposted ? 1 : -1; };
 const toggleBookmark = (post) => { post.bookmarked = !post.bookmarked; };
@@ -84,6 +102,10 @@ const closeCommunities = () => { isCommunitiesVisible.value = false; };
 const setHome = () => { activeSection.value = 'home'; isCommunitiesVisible.value = false; isProfileVisible.value = false; };
 const setBookmarks = () => { activeSection.value = 'bookmarks'; isCommunitiesVisible.value = false; isProfileVisible.value = false; };
 const toggleCommunity = (community) => { joinedCommunities.value = joinedCommunities.value.includes(community.id) ? joinedCommunities.value.filter((id) => id !== community.id) : [...joinedCommunities.value, community.id]; };
+const openPostProfile = (post) => { viewedProfile.value = { name: post.author, handle: post.handle, initials: post.initials, color: post.color, accountType: post.accountType || 'Personne', verified: Boolean(post.verified), bio: post.bio || (post.accountType === 'Entreprise' ? 'Compte professionnel sur Kwiker.' : 'Membre de la communauté de Los Santos.'), followers: post.followers || 0, following: post.following || 0 }; profileTab.value = 'Kwiks'; isProfileVisible.value = true; };
+const openOwnProfile = () => { viewedProfile.value = null; profileTab.value = 'Kwiks'; isProfileVisible.value = true; };
+const closeProfile = () => { viewedProfile.value = null; isProfileVisible.value = false; };
+const toggleFollowViewed = () => { if (!viewedProfile.value) return; followingHandles.value = isFollowingViewed.value ? followingHandles.value.filter((handle) => handle !== viewedProfile.value.handle) : [...followingHandles.value, viewedProfile.value.handle]; };
 const openPostMenu = (post) => { selectedPostMenu.value = post; };
 const closePostMenu = () => { selectedPostMenu.value = null; };
 const deletePost = () => { if (!selectedPostMenu.value || selectedPostMenu.value.author !== currentUser.value.name) return; posts.value = posts.value.filter((post) => post.id !== selectedPostMenu.value.id); closePostMenu(); actionNotice.value = 'Kwik supprimé'; window.setTimeout(() => { actionNotice.value = ''; }, 2200); };
