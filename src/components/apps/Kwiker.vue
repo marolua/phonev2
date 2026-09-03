@@ -5,6 +5,8 @@ import {
     Bell,
     Bookmark,
     Check,
+    CheckCircle2,
+    Copy,
     Globe2,
     Heart,
     Home,
@@ -18,6 +20,7 @@ import {
     Send,
     Settings,
     Share2,
+    Trash2,
     UserRound,
     Users,
     X,
@@ -46,16 +49,29 @@ const isComposerVisible = ref(false);
 const isSearchVisible = ref(false);
 const isProfileVisible = ref(false);
 const isSettingsVisible = ref(false);
+const isNotificationsVisible = ref(false);
+const isCommunitiesVisible = ref(false);
+const activeSection = ref('home');
+const profileTab = ref('Kwiks');
 const isAccountEditorVisible = ref(false);
 const selectedPost = ref(null);
+const selectedPostMenu = ref(null);
 const isCommentSheetVisible = ref(false);
 const commentDraft = ref('');
-const draft = ref({ text: '', image: '' });
+const draft = ref({ text: '', image: '', pollEnabled: false, pollOptions: ['', ''] });
 const publishNotice = ref('');
+const actionNotice = ref('');
 const imageInput = ref(null);
 const accountDraft = ref({ name: '', handle: '', bio: '' });
 const accountNotice = ref('');
 const accountSettings = ref({ notifications: true, privateAccount: false });
+const joinedCommunities = ref(['los-santos', 'car-meets']);
+
+const communities = [
+    { id: 'los-santos', name: 'Los Santos', description: 'Les infos et discussions de la ville.', members: '12,4k', color: 'linear-gradient(145deg, #1d9bf0, #17336e)' },
+    { id: 'car-meets', name: 'Car Meets', description: 'Passionnés de belles mécaniques.', members: '3,8k', color: 'linear-gradient(145deg, #ff9d3d, #8d3c1e)' },
+    { id: 'vespucci', name: 'Vespucci Beach', description: 'Le meilleur de la côte ouest.', members: '8,1k', color: 'linear-gradient(145deg, #00ba7c, #075e54)' },
+];
 
 onMounted(() => {
     try {
@@ -85,9 +101,21 @@ const visiblePosts = computed(() => {
     return posts.value.filter((post) => {
         const matchesSearch = !query || `${post.author} ${post.handle} ${post.text}`.toLowerCase().includes(query);
         const matchesTab = activeTab.value === 'Pour toi' || post.author === currentUser.value.name || post.reposted;
-        return matchesSearch && matchesTab;
+        const matchesSection = activeSection.value !== 'bookmarks' || post.bookmarked;
+        return matchesSearch && matchesTab && matchesSection;
     });
 });
+
+const ownPosts = computed(() => posts.value.filter((post) => post.author === currentUser.value.name));
+const profileReplies = computed(() => posts.value.filter((post) => (post.commentsList || []).some((comment) => comment.author === currentUser.value.name)));
+const profileMedia = computed(() => ownPosts.value.filter((post) => post.image));
+const notificationItems = computed(() => posts.value.slice(0, 3).map((post, index) => ({
+    id: `${post.id}-${index}`,
+    initials: post.initials,
+    color: post.color,
+    title: index === 0 ? `${post.author} a publié un nouveau Kwik` : `${post.author} fait parler de lui sur Kwiker`,
+    time: relativeTime(post.time),
+})));
 
 const formatCount = (count) => count > 999 ? `${(count / 1000).toFixed(1).replace('.0', '')}k` : count;
 const relativeTime = (timestamp) => {
@@ -98,7 +126,7 @@ const relativeTime = (timestamp) => {
     return `${Math.round(minutes / 1440)} j`;
 };
 
-const openComposer = () => { draft.value = { text: '', image: '' }; publishNotice.value = ''; isComposerVisible.value = true; };
+const openComposer = () => { draft.value = { text: '', image: '', pollEnabled: false, pollOptions: ['', ''] }; publishNotice.value = ''; isComposerVisible.value = true; };
 const closeComposer = () => { isComposerVisible.value = false; };
 const readImage = (event) => {
     const file = event.target.files?.[0];
@@ -109,13 +137,20 @@ const readImage = (event) => {
 };
 const publishPost = () => {
     const text = draft.value.text.trim();
-    if (!text && !draft.value.image) { publishNotice.value = 'Écris quelque chose ou ajoute une image.'; return; }
-    posts.value.unshift({ id: Date.now(), author: currentUser.value.name, handle: currentUser.value.handle, initials: currentUser.value.initials, color: currentUser.value.color, text, image: draft.value.image, time: Date.now(), likes: 0, comments: 0, reposts: 0, liked: false, reposted: false, bookmarked: false, commentsList: [] });
+    const pollOptions = draft.value.pollOptions.map((option) => option.trim()).filter(Boolean);
+    if (!text && !draft.value.image && !draft.value.pollEnabled) { publishNotice.value = 'Écris quelque chose ou ajoute une image.'; return; }
+    if (draft.value.pollEnabled && pollOptions.length < 2) { publishNotice.value = 'Ajoute au moins deux choix à ton sondage.'; return; }
+    posts.value.unshift({ id: Date.now(), author: currentUser.value.name, handle: currentUser.value.handle, initials: currentUser.value.initials, color: currentUser.value.color, text, image: draft.value.image, poll: draft.value.pollEnabled ? { options: pollOptions, votes: [] } : null, time: Date.now(), likes: 0, comments: 0, reposts: 0, liked: false, reposted: false, bookmarked: false, commentsList: [] });
     closeComposer();
 };
 const toggleLike = (post) => { post.liked = !post.liked; post.likes += post.liked ? 1 : -1; };
 const toggleRepost = (post) => { post.reposted = !post.reposted; post.reposts += post.reposted ? 1 : -1; };
 const toggleBookmark = (post) => { post.bookmarked = !post.bookmarked; };
+const votePoll = (post, optionIndex) => {
+    if (!post.poll || post.poll.votes.includes(currentUser.value.handle)) return;
+    post.poll.votes.push(currentUser.value.handle);
+    post.poll.selected = optionIndex;
+};
 const openComments = (post) => { selectedPost.value = post; commentDraft.value = ''; isCommentSheetVisible.value = true; };
 const closeComments = () => { isCommentSheetVisible.value = false; selectedPost.value = null; };
 const addComment = () => {
@@ -129,6 +164,42 @@ const addComment = () => {
 const openSearch = () => { isSearchVisible.value = !isSearchVisible.value; if (!isSearchVisible.value) searchQuery.value = ''; };
 const openSettings = () => { isSettingsVisible.value = true; };
 const closeSettings = () => { isSettingsVisible.value = false; isAccountEditorVisible.value = false; };
+const openNotifications = () => { isNotificationsVisible.value = true; };
+const closeNotifications = () => { isNotificationsVisible.value = false; };
+const openCommunities = () => { isCommunitiesVisible.value = true; };
+const closeCommunities = () => { isCommunitiesVisible.value = false; };
+const setHome = () => { activeSection.value = 'home'; isCommunitiesVisible.value = false; isProfileVisible.value = false; };
+const setBookmarks = () => { activeSection.value = 'bookmarks'; isCommunitiesVisible.value = false; isProfileVisible.value = false; };
+const toggleCommunity = (community) => {
+    joinedCommunities.value = joinedCommunities.value.includes(community.id)
+        ? joinedCommunities.value.filter((id) => id !== community.id)
+        : [...joinedCommunities.value, community.id];
+};
+const openPostMenu = (post) => { selectedPostMenu.value = post; };
+const closePostMenu = () => { selectedPostMenu.value = null; };
+const deletePost = () => {
+    if (!selectedPostMenu.value || selectedPostMenu.value.author !== currentUser.value.name) return;
+    posts.value = posts.value.filter((post) => post.id !== selectedPostMenu.value.id);
+    closePostMenu();
+    actionNotice.value = 'Kwik supprimé';
+    window.setTimeout(() => { actionNotice.value = ''; }, 2200);
+};
+const sharePost = async (post) => {
+    const shareText = `${post.author} ${post.handle}\n${post.text}`.trim();
+    try {
+        if (navigator.share) await navigator.share({ title: 'Kwiker', text: shareText });
+        else if (navigator.clipboard) await navigator.clipboard.writeText(shareText);
+        actionNotice.value = navigator.share ? 'Kwik partagé' : 'Texte copié dans le presse-papiers';
+    } catch { actionNotice.value = 'Partage annulé'; }
+    window.setTimeout(() => { actionNotice.value = ''; }, 2200);
+};
+const copyPostLink = async () => {
+    if (!selectedPostMenu.value) return;
+    try { await navigator.clipboard?.writeText(`kwiker://post/${selectedPostMenu.value.id}`); } catch { /* Clipboard unavailable in preview. */ }
+    closePostMenu();
+    actionNotice.value = 'Lien du Kwik copié';
+    window.setTimeout(() => { actionNotice.value = ''; }, 2200);
+};
 const openAccountEditor = () => {
     accountDraft.value = { name: currentUser.value.name, handle: currentUser.value.handle, bio: currentUser.value.bio };
     accountNotice.value = '';
