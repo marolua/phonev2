@@ -49,7 +49,8 @@ const communities = [
 
 const formatCount = (count = 0) => count > 999 ? `${(count / 1000).toFixed(1).replace('.0', '')}k` : count;
 const relativeTime = (timestamp) => { const minutes = Math.max(0, Math.round((Date.now() - timestamp) / 60000)); if (minutes < 1) return 'maintenant'; if (minutes < 60) return `${minutes} min`; if (minutes < 1440) return `${Math.round(minutes / 60)} h`; return `${Math.round(minutes / 1440)} j`; };
-const normalizePost = (post) => ({ ...post, commentsList: Array.isArray(post.commentsList) ? post.commentsList : [], poll: post.poll ? { ...post.poll, options: Array.isArray(post.poll.options) ? post.poll.options : [], votes: Array.isArray(post.poll.votes) ? post.poll.votes : [] } : null });
+const isOfficialHandle = (handle) => ['@LSPD_LS', '@weazelnews'].includes(handle);
+const normalizePost = (post) => ({ ...post, accountType: post.accountType || (isOfficialHandle(post.handle) ? 'Entreprise' : 'Personne'), verified: Boolean(post.verified || isOfficialHandle(post.handle)), commentsList: Array.isArray(post.commentsList) ? post.commentsList : [], poll: post.poll ? { ...post.poll, options: Array.isArray(post.poll.options) ? post.poll.options : [], votes: Array.isArray(post.poll.votes) ? post.poll.votes : [] } : null });
 
 onMounted(() => {
     try {
@@ -102,7 +103,7 @@ const closeCommunities = () => { isCommunitiesVisible.value = false; };
 const setHome = () => { activeSection.value = 'home'; isCommunitiesVisible.value = false; isProfileVisible.value = false; };
 const setBookmarks = () => { activeSection.value = 'bookmarks'; isCommunitiesVisible.value = false; isProfileVisible.value = false; };
 const toggleCommunity = (community) => { joinedCommunities.value = joinedCommunities.value.includes(community.id) ? joinedCommunities.value.filter((id) => id !== community.id) : [...joinedCommunities.value, community.id]; };
-const openPostProfile = (post) => { viewedProfile.value = { name: post.author, handle: post.handle, initials: post.initials, color: post.color, accountType: post.accountType || 'Personne', verified: Boolean(post.verified), bio: post.bio || (post.accountType === 'Entreprise' ? 'Compte professionnel sur Kwiker.' : 'Membre de la communauté de Los Santos.'), followers: post.followers || 0, following: post.following || 0 }; profileTab.value = 'Kwiks'; isProfileVisible.value = true; };
+const openPostProfile = (post) => { viewedProfile.value = { name: post.author, handle: post.handle, initials: post.initials, color: post.color, accountType: post.accountType || (isOfficialHandle(post.handle) ? 'Entreprise' : 'Personne'), verified: Boolean(post.verified || isOfficialHandle(post.handle)), bio: post.bio || (post.accountType === 'Entreprise' ? 'Compte professionnel sur Kwiker.' : 'Membre de la communauté de Los Santos.'), followers: post.followers || 0, following: post.following || 0 }; profileTab.value = 'Kwiks'; isProfileVisible.value = true; };
 const openOwnProfile = () => { viewedProfile.value = null; profileTab.value = 'Kwiks'; isProfileVisible.value = true; };
 const closeProfile = () => { viewedProfile.value = null; isProfileVisible.value = false; };
 const toggleFollowViewed = () => { if (!viewedProfile.value) return; followingHandles.value = isFollowingViewed.value ? followingHandles.value.filter((handle) => handle !== viewedProfile.value.handle) : [...followingHandles.value, viewedProfile.value.handle]; };
