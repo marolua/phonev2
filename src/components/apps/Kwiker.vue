@@ -481,10 +481,14 @@ const saveAccount = () => {
                         <div class="kwiker-draft-area"><textarea v-model="draft.text" maxlength="280" autofocus
                                 placeholder="Quoi de neuf ?"></textarea><img v-if="draft.image"
                                 class="kwiker-draft-image" :src="draft.image" alt="Aperçu" />
+                            <div v-if="draft.pollEnabled" class="kwiker-poll-editor">
+                                <input v-for="(_, optionIndex) in draft.pollOptions" :key="optionIndex" v-model="draft.pollOptions[optionIndex]" type="text" maxlength="40" :placeholder="`Choix ${optionIndex + 1}`" />
+                                <button v-if="draft.pollOptions.length < 4" type="button" @click="draft.pollOptions.push('')">+ Ajouter un choix</button>
+                            </div>
                             <div class="kwiker-draft-footer"><button type="button" aria-label="Ajouter une image"
                                     @click="imageInput?.click()">
                                     <ImagePlus :size="19" />
-                                </button><button type="button" aria-label="Ajouter un sondage">
+                                </button><button type="button" aria-label="Ajouter un sondage" :class="{ 'kwiker-draft-tool--active': draft.pollEnabled }" @click="draft.pollEnabled = !draft.pollEnabled">
                                     <ListFilter :size="18" />
                                 </button><span>{{ draft.text.length }}/280</span></div>
                         </div>
@@ -492,6 +496,18 @@ const saveAccount = () => {
                         @change="readImage" />
                     <p v-if="publishNotice" class="kwiker-form-notice">{{ publishNotice }}</p>
                 </form>
+            </div>
+        </Transition>
+
+        <Transition name="kwiker-sheet">
+            <div v-if="selectedPostMenu" class="kwiker-sheet-backdrop" @click.self="closePostMenu">
+                <section class="kwiker-post-menu-sheet">
+                    <div class="kwiker-sheet-grabber"></div>
+                    <header class="kwiker-sheet-header"><strong>Options du Kwik</strong><button type="button" aria-label="Fermer" @click="closePostMenu"><X :size="18" /></button></header>
+                    <button type="button" class="kwiker-menu-action" @click="copyPostLink"><Copy :size="18" /><span>Copier le lien</span></button>
+                    <button v-if="selectedPostMenu.author === currentUser.name" type="button" class="kwiker-menu-action kwiker-menu-action--danger" @click="deletePost"><Trash2 :size="18" /><span>Supprimer ce Kwik</span></button>
+                    <button v-else type="button" class="kwiker-menu-action" @click="closePostMenu"><CheckCircle2 :size="18" /><span>Masquer les options</span></button>
+                </section>
             </div>
         </Transition>
 
