@@ -333,8 +333,8 @@ const saveAccount = () => {
                 <header class="kwiker-page-header"><button type="button" aria-label="Retour"
                         @click="isProfileVisible = false">
                         <ArrowLeft :size="19" />
-                    </button><strong>Profil</strong><button type="button" aria-label="Réglages du profil">
-                        <Settings :size="18" @click="openSettings" />
+                    </button><strong>Profil</strong><button type="button" aria-label="Réglages du profil" @click="openSettings">
+                        <Settings :size="18" />
                     </button></header>
                 <div class="kwiker-profile-scroll">
                     <div class="kwiker-profile-cover"></div>
@@ -351,10 +351,10 @@ const saveAccount = () => {
                                 abonnements</span><span><strong>{{ currentUser.followers }}</strong> abonnés</span>
                         </div>
                     </div>
-                    <div class="kwiker-profile-tabs"><button type="button"
-                            class="kwiker-tab--active">Kwiks</button><button type="button">Réponses</button><button
-                            type="button">Médias</button></div>
-                    <article v-for="post in posts.filter((item) => item.author === currentUser.name)"
+                    <div class="kwiker-profile-tabs"><button v-for="tab in ['Kwiks', 'Réponses', 'Médias']" :key="tab" type="button"
+                            :class="{ 'kwiker-tab--active': profileTab === tab }" @click="profileTab = tab">{{ tab }}</button></div>
+                    <div v-if="profileTab === 'Kwiks'">
+                    <article v-for="post in ownPosts"
                         :key="`profile-${post.id}`" class="kwiker-post kwiker-post--profile"><span class="kwiker-avatar"
                             :style="{ background: currentUser.color }">{{ currentUser.initials }}</span>
                         <div class="kwiker-post-body">
@@ -365,6 +365,56 @@ const saveAccount = () => {
                             <img v-if="post.image" class="kwiker-post-image" :src="post.image" alt="Image publiée" />
                         </div>
                     </article>
+                    <div v-if="!ownPosts.length" class="kwiker-empty kwiker-empty--profile"><PenLine :size="23" /><strong>Pas encore de Kwik</strong><span>Publie ton premier message pour le voir ici.</span></div>
+                    </div>
+                    <div v-else-if="profileTab === 'Réponses'">
+                        <article v-for="post in profileReplies" :key="`reply-${post.id}`" class="kwiker-post kwiker-post--profile">
+                            <span class="kwiker-avatar" :style="{ background: currentUser.color }">{{ currentUser.initials }}</span>
+                            <div class="kwiker-post-body"><header class="kwiker-post-author"><strong>{{ currentUser.name }}</strong><span>{{ currentUser.handle }}</span><span>·</span><time>{{ relativeTime(post.time) }}</time></header>
+                                <p class="kwiker-reply-context">En réponse à {{ post.author }}</p><p class="kwiker-post-text">{{ post.commentsList.find((comment) => comment.author === currentUser.name)?.text }}</p>
+                            </div>
+                        </article>
+                        <div v-if="!profileReplies.length" class="kwiker-empty kwiker-empty--profile"><MessageCircle :size="23" /><strong>Aucune réponse</strong><span>Les réponses que tu écriras apparaîtront ici.</span></div>
+                    </div>
+                    <div v-else>
+                        <article v-for="post in profileMedia" :key="`media-${post.id}`" class="kwiker-post kwiker-post--profile">
+                            <span class="kwiker-avatar" :style="{ background: currentUser.color }">{{ currentUser.initials }}</span>
+                            <div class="kwiker-post-body"><header class="kwiker-post-author"><strong>{{ currentUser.name }}</strong><span>{{ currentUser.handle }}</span><span>·</span><time>{{ relativeTime(post.time) }}</time></header><p v-if="post.text" class="kwiker-post-text">{{ post.text }}</p><img class="kwiker-post-image" :src="post.image" alt="Image publiée" /></div>
+                        </article>
+                        <div v-if="!profileMedia.length" class="kwiker-empty kwiker-empty--profile"><ImagePlus :size="23" /><strong>Aucun média</strong><span>Les images de tes Kwiks apparaîtront ici.</span></div>
+                    </div>
+                </div>
+            </section>
+        </Transition>
+
+        <Transition name="kwiker-page">
+            <section v-if="isNotificationsVisible" class="kwiker-settings-page">
+                <header class="kwiker-page-header"><button type="button" aria-label="Retour" @click="closeNotifications"><ArrowLeft :size="19" /></button><strong>Notifications</strong><span class="kwiker-sheet-spacer"></span></header>
+                <div class="kwiker-settings-scroll">
+                    <p class="kwiker-settings-eyebrow">Activité récente</p>
+                    <section class="kwiker-settings-card kwiker-notification-card">
+                        <div v-for="notification in notificationItems" :key="notification.id" class="kwiker-notification-row">
+                            <span class="kwiker-avatar kwiker-avatar--small" :style="{ background: notification.color }">{{ notification.initials }}</span>
+                            <span><strong>{{ notification.title }}</strong><small>{{ notification.time }}</small></span>
+                            <Bell :size="16" />
+                        </div>
+                    </section>
+                </div>
+            </section>
+        </Transition>
+
+        <Transition name="kwiker-page">
+            <section v-if="isCommunitiesVisible" class="kwiker-settings-page kwiker-communities-page">
+                <header class="kwiker-page-header"><button type="button" aria-label="Retour" @click="closeCommunities"><ArrowLeft :size="19" /></button><strong>Communautés</strong><span class="kwiker-sheet-spacer"></span></header>
+                <div class="kwiker-settings-scroll">
+                    <p class="kwiker-settings-eyebrow">Trouve ton cercle</p>
+                    <section class="kwiker-community-list">
+                        <article v-for="community in communities" :key="community.id" class="kwiker-community-card">
+                            <span class="kwiker-community-mark" :style="{ background: community.color }"><Users :size="18" /></span>
+                            <div><strong>{{ community.name }}</strong><p>{{ community.description }}</p><small>{{ community.members }} membres</small></div>
+                            <button type="button" :class="{ 'kwiker-community-join--active': joinedCommunities.includes(community.id) }" @click="toggleCommunity(community)">{{ joinedCommunities.includes(community.id) ? 'Rejoint' : 'Rejoindre' }}</button>
+                        </article>
+                    </section>
                 </div>
             </section>
         </Transition>
