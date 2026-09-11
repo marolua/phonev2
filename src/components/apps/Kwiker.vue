@@ -2614,6 +2614,12 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
     height: 5cqh;
 }
 
+.kwiker-profile-intro .kwiker-avatar--profile {
+    position: relative;
+    z-index: 2;
+    transform: translateY(-3cqh);
+}
+
 .kwiker-page-enter-active,
 .kwiker-page-leave-active,
 .kwiker-sheet-enter-active,
