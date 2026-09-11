@@ -1753,10 +1753,6 @@ const answerIncomingCall = (call) => {
     font-size: 2cqh;
 }
 
-.services-categories button {
-    font-size: 1.7cqh;
-}
-
 .services-message-tabs button {
     font-size: 1.55cqh;
 }
