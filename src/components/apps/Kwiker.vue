@@ -2427,9 +2427,7 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
     margin: -1.2cqh 3cqw 0;
     padding: 0 2.8cqw 2.8cqh;
     border: 1px solid rgba(255, 255, 255, .08);
-    // border-radius: 2.2cqh;
-    border-bottom-left-radius: 2.2cqh;
-    border-bottom-right-radius: 2.2cqh;
+    border-radius: 2.2cqh;
     background: #1c1c1e;
     box-shadow: none;
 }
