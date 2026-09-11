@@ -1,6 +1,7 @@
 <script setup>
 import { computed, onMounted, ref, watch } from 'vue';
 import { ArrowLeft, Bell, Check, CheckCircle2, Copy, Globe2, Heart, Home, ImagePlus, MessageCircle, MoreHorizontal, PenLine, Repeat2, Search, Send, Settings, Share2, Trash2, UserRound, X } from '@lucide/vue';
+import BottomNavigation from '../BottomNavigation.vue';
 
 const storageKey = 'kwiker-posts';
 const profileStorageKey = 'kwiker-profile';
@@ -89,6 +90,16 @@ const closeNotifications = () => { isNotificationsVisible.value = false; };
 const setHome = () => { activeSection.value = 'home'; isProfileVisible.value = false; };
 const openPostProfile = (post) => { const accountType = post.accountType || (isOfficialHandle(post.handle) ? 'Entreprise' : 'Personne'); viewedProfile.value = { name: post.author, handle: post.handle, initials: post.initials, color: post.color, accountType, verified: Boolean(post.verified || isOfficialHandle(post.handle)), bio: post.bio || (accountType === 'Entreprise' ? 'Compte professionnel sur Kwiker.' : 'Membre de la communauté de Los Santos.'), followers: post.followers || 0, following: post.following || 0 }; profileTab.value = 'Kwiks'; isProfileVisible.value = true; };
 const openOwnProfile = () => { viewedProfile.value = null; profileTab.value = 'Kwiks'; isProfileVisible.value = true; };
+const kwikerNavigation = [
+    { id: 'home', label: 'Accueil', icon: Home },
+    { id: 'compose', label: 'Publier', icon: PenLine, featured: true },
+    { id: 'profile', label: 'Profil', icon: UserRound },
+];
+const selectKwikerSection = (section) => {
+    if (section === 'home') return setHome();
+    if (section === 'compose') return openComposer();
+    openOwnProfile();
+};
 const closeProfile = () => { viewedProfile.value = null; isProfileVisible.value = false; };
 const toggleFollowViewed = () => { if (!viewedProfile.value) return; followingHandles.value = isFollowingViewed.value ? followingHandles.value.filter((handle) => handle !== viewedProfile.value.handle) : [...followingHandles.value, viewedProfile.value.handle]; };
 const openPostMenu = (post) => { selectedPostMenu.value = post; };
@@ -179,23 +190,8 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
                 </div>
             </main>
             <div class="kwiker-bottom-nav">
-                <nav class="categories" aria-label="Navigation Kwiker">
-                    <button type="button" class="categorie" :class="{ 'categorie-selected': activeSection === 'home' }"
-                        aria-label="Accueil" @click="setHome">
-                        <Home size="3cqh" :fill="activeSection === 'home' ? 'currentColor' : 'none'" />
-                        <span>Accueil</span>
-                    </button>
-                    <button type="button" class="categorie categorie-compose" aria-label="Créer un Kwik"
-                        @click="openComposer">
-                        <span class="categorie-compose-icon">
-                            <PenLine size="2.7cqh" />
-                        </span>
-                        <span>Publier</span>
-                    </button>
-                    <button type="button" class="categorie" aria-label="Profil" @click="openOwnProfile">
-                        <UserRound size="3cqh" /><span>Profil</span>
-                    </button>
-                </nav>
+                <BottomNavigation :items="kwikerNavigation" :active-id="activeSection" variant="kwiker"
+                    aria-label="Navigation Kwiker" @select="selectKwikerSection" />
             </div>
         </template>
 
