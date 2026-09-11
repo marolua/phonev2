@@ -1842,7 +1842,7 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
     display: flex;
     justify-content: center;
     align-items: center;
-    flex: 1 1 20%;
+    flex: 0 1 30%;
     flex-direction: column;
     gap: .75cqh;
     width: auto;
@@ -1876,6 +1876,10 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
 
 .kwiker-bottom-nav .categorie-compose-icon {
     display: contents;
+}
+
+.kwiker-bottom-nav {
+    transform: translateY(-1.3cqh);
 }
 
 .kwiker-profile-actions {
