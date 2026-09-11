@@ -12,6 +12,7 @@ import {
     Video,
 } from '@lucide/vue';
 import { photos, removePhoto } from '../../stores/photos';
+import BottomNavigation from '../BottomNavigation.vue';
 
 const activeFilter = ref('Toutes');
 const activeCategory = ref('library');
@@ -205,14 +206,8 @@ const onTouchEnd = (event) => {
         </main>
 
         <div class="bottom-app-photos">
-            <div class="categories" aria-label="Navigation Photos">
-                <button v-for="category in categories" :key="category.id" class="categorie"
-                    :class="{ 'categorie-selected': activeCategory === category.id }" type="button"
-                    :aria-label="category.label" @click="selectCategory(category.id)">
-                    <component :is="category.icon" size="3cqh" />
-                    <span>{{ category.label }}</span>
-                </button>
-            </div>
+            <BottomNavigation :items="categories" :active-id="activeCategory" aria-label="Navigation Photos"
+                @select="selectCategory" />
         </div>
 
         <Transition name="photo-viewer">

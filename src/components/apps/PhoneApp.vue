@@ -2,6 +2,7 @@
 import { computed, ref, watch } from 'vue';
 import { ArrowLeft, Camera, ClockFading, Delete, Grid3X3, ImagePlus, Keyboard, Mail, MessageCircle, MicOff, MoreHorizontal, Phone, PhoneOff, Search, User, UserPlus, Video, Volume2, X } from '@lucide/vue';
 import Prompt from '../../utils/Prompt.vue';
+import BottomNavigation from '../BottomNavigation.vue';
 import { blockedContacts, contacts } from '../../stores/contacts';
 import { formatPhoneNumber, isPhoneSuffixValid, phoneDigits } from '../../utils/phoneNumber';
 
@@ -485,14 +486,8 @@ const addContact = () => {
             </div>
 
             <div v-if="!props.contactsOnly" class="bottom-app-phone">
-                <div class="categories">
-                    <button v-for="category in categories" :key="category.id" type="button" class="categorie"
-                        :class="{ 'categorie-selected': activeCategory === category.id }"
-                        @click="activeCategory = category.id">
-                        <component :is="category.icon" size="3cqh" />
-                        <span>{{ category.label }}</span>
-                    </button>
-                </div>
+                <BottomNavigation :items="categories" :active-id="activeCategory" aria-label="Navigation Téléphone"
+                    @select="activeCategory = $event" />
             </div>
 
             <Transition name="contact-sheet">
