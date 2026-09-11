@@ -2468,6 +2468,40 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
     box-shadow: 0 .7cqh 1.8cqh rgba(0, 0, 0, .16), inset 0 1px 0 rgba(255, 255, 255, .025);
 }
 
+.kwiker-notification-row {
+    min-height: 9.5cqh;
+    gap: 2.2cqw;
+    padding: 1.3cqh 2.4cqw;
+    border-bottom-color: rgba(255, 255, 255, .08);
+}
+
+.kwiker-notification-row .kwiker-avatar--tiny {
+    width: 5.2cqh;
+    height: 5.2cqh;
+    font-size: 1.3cqh;
+}
+
+.kwiker-notification-row strong {
+    font-size: 1.5cqh;
+    line-height: 1.25;
+}
+
+.kwiker-notification-row small {
+    margin-top: .25cqh;
+    color: rgba(255, 255, 255, .46);
+    font-size: 1.25cqh;
+}
+
+.kwiker-notification-row > svg {
+    flex: 0 0 auto;
+    width: 2.1cqh;
+    height: 2.1cqh;
+    padding: .8cqh;
+    border-radius: 50%;
+    color: #fff;
+    background: rgba(77, 141, 255, .18);
+}
+
 .kwiker-settings-row {
     min-height: 8.2cqh;
     gap: 2.2cqw;
@@ -2507,6 +2541,15 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
     border-color: rgba(255, 255, 255, .12);
     border-radius: 1.5cqh;
     background: #2c2c2e;
+}
+
+.kwiker-draft-area textarea {
+    padding: 2.2cqh 2.2cqw;
+    text-indent: 0;
+}
+
+.kwiker-draft-area textarea::placeholder {
+    transform: translateY(.15cqh);
 }
 
 .kwiker-account-preview {
