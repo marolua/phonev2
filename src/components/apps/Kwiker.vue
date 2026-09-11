@@ -2415,7 +2415,8 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
 .kwiker-profile-cover {
     margin: 0 3cqw;
     overflow: hidden;
-    border-radius: 2.2cqh;
+    border-top-left-radius: 2.2cqh;
+    border-top-right-radius: 2.2cqh;
     background: linear-gradient(135deg, #182b4b 0%, #314d86 52%, #633a78 100%);
     box-shadow: none;
 }
