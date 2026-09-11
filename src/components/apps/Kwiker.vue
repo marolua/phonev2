@@ -213,10 +213,10 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
                                 class="kwiker-follow-button" :class="{ 'is-following': isFollowingViewed }"
                                 @click="toggleFollowViewed">{{ isFollowingViewed ? 'Suivi' : 'Suivre' }}</button></div>
                         <h2>{{ profileIdentity.name }}</h2><span class="kwiker-profile-handle">{{ profileIdentity.handle
-                        }}</span>
+                            }}</span>
                         <div class="kwiker-profile-labels"><span class="kwiker-profile-type">{{
                             profileIdentity.accountType
-                        }}</span><span v-if="profileIdentity.verified" class="kwiker-profile-certified">
+                                }}</span><span v-if="profileIdentity.verified" class="kwiker-profile-certified">
                                 <CheckCircle2 :size="13" /> Certifié
                             </span></div>
                         <p>{{ profileIdentity.bio }}</p>
@@ -240,7 +240,7 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
                                     <div class="kwiker-post-author"><strong>{{ post.author }}</strong>
                                         <Check v-if="post.verified" class="kwiker-verified" :size="11" /><span>{{
                                             post.handle
-                                        }}</span><span>·</span><time>{{ relativeTime(post.time) }}</time>
+                                            }}</span><span>·</span><time>{{ relativeTime(post.time) }}</time>
                                     </div>
                                 </header>
                                 <p v-if="post.text" class="kwiker-post-text">{{ post.text }}</p><img v-if="post.image"
@@ -431,7 +431,7 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
                             <ArrowLeft :size="18" />
                         </button><strong>Réponses</strong><span class="kwiker-comments-count">{{ selectedPost?.comments
                             || 0
-                        }}</span></header>
+                            }}</span></header>
                     <div v-if="selectedPost" class="kwiker-comments-scroll">
                         <article class="kwiker-comment-original"><span
                                 class="kwiker-avatar kwiker-avatar--comment-original"
