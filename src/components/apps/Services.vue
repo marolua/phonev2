@@ -304,7 +304,7 @@ const answerIncomingCall = (call) => {
         <template v-if="!selectedCompany && activeView === 'directory'">
             <header class="services-header">
                 <div>
-                    <h1>Companies</h1>
+                    <h1 style="font-size: 8cqw;">Companies</h1>
                 </div>
                 <button v-if="isEmployee" type="button" class="services-inbox-button" aria-label="Boîte entreprise"
                     @click="activeView = 'messages'">
