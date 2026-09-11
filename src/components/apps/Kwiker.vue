@@ -1797,6 +1797,139 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
     box-shadow: 0 .7cqh 1.8cqh rgba(29, 155, 240, .45);
 }
 
+/* Version iOS simplifiée : contenu en cartes et barre identique aux apps natives. */
+.kwiker-app {
+    padding-bottom: 0;
+    background: #0a0a0a;
+}
+
+.kwiker-feed {
+    padding-bottom: 1cqh;
+}
+
+.kwiker-feed-tabs {
+    gap: 1cqw;
+    height: 7.4cqh;
+    padding: .8cqh 4cqw;
+    border-bottom-color: rgba(255, 255, 255, .08);
+    background: rgba(10, 10, 10, .94);
+}
+
+.kwiker-feed-tabs button {
+    min-width: 25cqw;
+    border-radius: 1.4cqh;
+    padding: 0 2.2cqw;
+    font-size: 1.65cqh;
+    transition: color .2s ease, background .2s ease;
+}
+
+.kwiker-feed-tabs button.is-active,
+.kwiker-feed-tabs button:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, .09);
+}
+
+.kwiker-feed-tabs button.is-active::after {
+    right: 20%;
+    bottom: .25cqh;
+    left: 20%;
+    height: .3cqh;
+}
+
+.kwiker-post {
+    margin: 1.2cqh 3cqw;
+    padding: 1.8cqh 2.8cqw;
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 1.8cqh;
+    background: #1c1c1e;
+    box-shadow: 0 .7cqh 1.8cqh rgba(0, 0, 0, .16), inset 0 1px 0 rgba(255, 255, 255, .025);
+}
+
+.kwiker-post-text {
+    color: rgba(255, 255, 255, .92);
+}
+
+.kwiker-post-actions button {
+    min-height: 3.8cqh;
+    border-radius: 1.2cqh;
+    padding: .5cqh 1cqw;
+    transition: color .2s ease, background .2s ease;
+}
+
+.kwiker-post-actions button:hover {
+    background: rgba(255, 255, 255, .08);
+}
+
+.kwiker-bottom-nav {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    min-height: 18%;
+    height: auto;
+    flex-shrink: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 6cqh;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+}
+
+.kwiker-bottom-nav .categories {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 68%;
+    border-radius: 6cqh;
+    background: rgba(51, 51, 51, .3);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, .2), inset 0 1px 0 rgba(255, 255, 255, .85), inset 0 -6px 10px -6px rgba(0, 0, 0, .15);
+}
+
+.kwiker-bottom-nav .categorie {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 20%;
+    flex-direction: column;
+    gap: .75cqh;
+    width: auto;
+    height: 90%;
+    min-width: 0;
+    border: 0;
+    border-radius: 5.7cqh;
+    color: rgba(255, 255, 255, .8);
+    background: transparent;
+    font-family: "SF Pro Display";
+    font-size: 1.6cqh;
+    font-weight: 500;
+    transition: color .2s ease, background .2s ease, transform .2s ease;
+    cursor: pointer;
+}
+
+.kwiker-bottom-nav .categorie span {
+    font-size: inherit;
+}
+
+.kwiker-bottom-nav .categorie.categorie-selected,
+.kwiker-bottom-nav .categorie.categorie-compose {
+    color: #4d8dff;
+}
+
+.kwiker-bottom-nav .categorie:hover {
+    background: rgba(77, 141, 255, .08);
+    cursor: pointer;
+    transform: translateY(-1px);
+}
+
+.kwiker-bottom-nav .categorie-compose-icon {
+    display: contents;
+}
+
 .kwiker-profile-actions {
     position: absolute;
     top: 1.6cqh;
