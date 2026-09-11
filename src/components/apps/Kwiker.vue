@@ -1,11 +1,10 @@
 <script setup>
 import { computed, onMounted, ref, watch } from 'vue';
-import { ArrowLeft, Bell, Bookmark, Check, CheckCircle2, Copy, Globe2, Heart, Home, ImagePlus, MessageCircle, MoreHorizontal, PenLine, Repeat2, Search, Send, Settings, Share2, Trash2, UserRound, Users, X } from '@lucide/vue';
+import { ArrowLeft, Bell, Check, CheckCircle2, Copy, Globe2, Heart, Home, ImagePlus, MessageCircle, MoreHorizontal, PenLine, Repeat2, Search, Send, Settings, Share2, Trash2, UserRound, X } from '@lucide/vue';
 
 const storageKey = 'kwiker-posts';
 const profileStorageKey = 'kwiker-profile';
 const settingsStorageKey = 'kwiker-settings';
-const communitiesStorageKey = 'kwiker-communities';
 const followingStorageKey = 'kwiker-following';
 const defaultProfile = { name: 'Maya Brooks', handle: '@mayabrooks', initials: 'MB', color: 'linear-gradient(145deg, #7c5cff, #c149ff)', bio: 'Toujours quelque part entre Los Santos et un bon café ☕', following: 184, followers: 1240, accountType: 'Personne', verified: false };
 const starterPosts = [
@@ -26,7 +25,6 @@ const isProfileVisible = ref(false);
 const viewedProfile = ref(null);
 const isSettingsVisible = ref(false);
 const isNotificationsVisible = ref(false);
-const isCommunitiesVisible = ref(false);
 const isAccountEditorVisible = ref(false);
 const selectedPost = ref(null);
 const selectedPostMenu = ref(null);
@@ -39,13 +37,7 @@ const imageInput = ref(null);
 const accountDraft = ref({ name: '', handle: '', bio: '' });
 const accountNotice = ref('');
 const accountSettings = ref({ notifications: true, privateAccount: false });
-const joinedCommunities = ref(['los-santos', 'car-meets']);
 const followingHandles = ref(['@LSPD_LS']);
-const communities = [
-    { id: 'los-santos', name: 'Los Santos', description: 'Les infos et discussions de la ville.', members: '12,4k', color: 'linear-gradient(145deg, #1d9bf0, #17336e)' },
-    { id: 'car-meets', name: 'Car Meets', description: 'Passionnés de belles mécaniques.', members: '3,8k', color: 'linear-gradient(145deg, #ff9d3d, #8d3c1e)' },
-    { id: 'vespucci', name: 'Vespucci Beach', description: 'Le meilleur de la côte ouest.', members: '8,1k', color: 'linear-gradient(145deg, #00ba7c, #075e54)' },
-];
 
 const formatCount = (count = 0) => count > 999 ? `${(count / 1000).toFixed(1).replace('.0', '')}k` : count;
 const relativeTime = (timestamp) => { const minutes = Math.max(0, Math.round((Date.now() - timestamp) / 60000)); if (minutes < 1) return 'maintenant'; if (minutes < 60) return `${minutes} min`; if (minutes < 1440) return `${Math.round(minutes / 60)} h`; return `${Math.round(minutes / 1440)} j`; };
@@ -60,8 +52,6 @@ onMounted(() => {
         if (savedProfile && typeof savedProfile === 'object') currentUser.value = { ...defaultProfile, ...savedProfile };
         const savedSettings = JSON.parse(localStorage.getItem(settingsStorageKey) || 'null');
         if (savedSettings && typeof savedSettings === 'object') accountSettings.value = { ...accountSettings.value, ...savedSettings };
-        const savedCommunities = JSON.parse(localStorage.getItem(communitiesStorageKey) || 'null');
-        if (Array.isArray(savedCommunities)) joinedCommunities.value = savedCommunities;
         const savedFollowing = JSON.parse(localStorage.getItem(followingStorageKey) || 'null');
         if (Array.isArray(savedFollowing)) followingHandles.value = savedFollowing;
     } catch { posts.value = starterPosts; }
@@ -69,14 +59,13 @@ onMounted(() => {
 watch(posts, (value) => { try { localStorage.setItem(storageKey, JSON.stringify(value)); } catch { /* Session only. */ } }, { deep: true });
 watch(currentUser, (value) => { try { localStorage.setItem(profileStorageKey, JSON.stringify(value)); } catch { /* Session only. */ } }, { deep: true });
 watch(accountSettings, (value) => { try { localStorage.setItem(settingsStorageKey, JSON.stringify(value)); } catch { /* Session only. */ } }, { deep: true });
-watch(joinedCommunities, (value) => { try { localStorage.setItem(communitiesStorageKey, JSON.stringify(value)); } catch { /* Session only. */ } }, { deep: true });
 watch(followingHandles, (value) => { try { localStorage.setItem(followingStorageKey, JSON.stringify(value)); } catch { /* Session only. */ } }, { deep: true });
 
 const profileIdentity = computed(() => viewedProfile.value || currentUser.value);
 const isOwnProfile = computed(() => !viewedProfile.value || viewedProfile.value.handle === currentUser.value.handle);
 const isFollowingViewed = computed(() => Boolean(viewedProfile.value && followingHandles.value.includes(viewedProfile.value.handle)));
 const profilePosts = computed(() => posts.value.filter((post) => post.handle === profileIdentity.value.handle || post.author === profileIdentity.value.name));
-const visiblePosts = computed(() => { const query = searchQuery.value.trim().toLowerCase(); return posts.value.filter((post) => { const matchesSearch = !query || `${post.author} ${post.handle} ${post.text}`.toLowerCase().includes(query); const matchesTab = activeTab.value === 'Pour toi' || followingHandles.value.includes(post.handle) || post.author === currentUser.value.name || post.reposted; const matchesSection = activeSection.value !== 'bookmarks' || post.bookmarked; return matchesSearch && matchesTab && matchesSection; }); });
+const visiblePosts = computed(() => { const query = searchQuery.value.trim().toLowerCase(); return posts.value.filter((post) => { const matchesSearch = !query || `${post.author} ${post.handle} ${post.text}`.toLowerCase().includes(query); const matchesTab = activeTab.value === 'Pour toi' || followingHandles.value.includes(post.handle) || post.author === currentUser.value.name || post.reposted; return matchesSearch && matchesTab; }); });
 const ownPosts = computed(() => posts.value.filter((post) => post.author === currentUser.value.name));
 const profileReplies = computed(() => posts.value.filter((post) => (post.commentsList || []).some((comment) => comment.author === currentUser.value.name)));
 const profileMedia = computed(() => ownPosts.value.filter((post) => post.image));
@@ -88,7 +77,6 @@ const readImage = (event) => { const file = event.target.files?.[0]; if (!file) 
 const publishPost = () => { const text = draft.value.text.trim(); if (!text && !draft.value.image) { publishNotice.value = 'Écris quelque chose ou ajoute une image.'; return; } posts.value.unshift({ id: Date.now(), author: currentUser.value.name, handle: currentUser.value.handle, initials: currentUser.value.initials, color: currentUser.value.color, accountType: currentUser.value.accountType, verified: currentUser.value.verified, text, image: draft.value.image, time: Date.now(), likes: 0, comments: 0, reposts: 0, liked: false, reposted: false, bookmarked: false, commentsList: [] }); closeComposer(); };
 const toggleLike = (post) => { post.liked = !post.liked; post.likes += post.liked ? 1 : -1; };
 const toggleRepost = (post) => { post.reposted = !post.reposted; post.reposts += post.reposted ? 1 : -1; };
-const toggleBookmark = (post) => { post.bookmarked = !post.bookmarked; };
 const votePoll = (post, optionIndex) => { if (!post.poll || post.poll.votes.includes(currentUser.value.handle)) return; post.poll.votes.push(currentUser.value.handle); post.poll.selected = optionIndex; };
 const openComments = (post) => { selectedPost.value = post; commentDraft.value = ''; isCommentSheetVisible.value = true; };
 const closeComments = () => { isCommentSheetVisible.value = false; selectedPost.value = null; };
@@ -98,11 +86,7 @@ const openSettings = () => { isSettingsVisible.value = true; };
 const closeSettings = () => { isSettingsVisible.value = false; isAccountEditorVisible.value = false; };
 const openNotifications = () => { isNotificationsVisible.value = true; };
 const closeNotifications = () => { isNotificationsVisible.value = false; };
-const openCommunities = () => { isCommunitiesVisible.value = true; };
-const closeCommunities = () => { isCommunitiesVisible.value = false; };
-const setHome = () => { activeSection.value = 'home'; isCommunitiesVisible.value = false; isProfileVisible.value = false; };
-const setBookmarks = () => { activeSection.value = 'bookmarks'; isCommunitiesVisible.value = false; isProfileVisible.value = false; };
-const toggleCommunity = (community) => { joinedCommunities.value = joinedCommunities.value.includes(community.id) ? joinedCommunities.value.filter((id) => id !== community.id) : [...joinedCommunities.value, community.id]; };
+const setHome = () => { activeSection.value = 'home'; isProfileVisible.value = false; };
 const openPostProfile = (post) => { const accountType = post.accountType || (isOfficialHandle(post.handle) ? 'Entreprise' : 'Personne'); viewedProfile.value = { name: post.author, handle: post.handle, initials: post.initials, color: post.color, accountType, verified: Boolean(post.verified || isOfficialHandle(post.handle)), bio: post.bio || (accountType === 'Entreprise' ? 'Compte professionnel sur Kwiker.' : 'Membre de la communauté de Los Santos.'), followers: post.followers || 0, following: post.following || 0 }; profileTab.value = 'Kwiks'; isProfileVisible.value = true; };
 const openOwnProfile = () => { viewedProfile.value = null; profileTab.value = 'Kwiks'; isProfileVisible.value = true; };
 const closeProfile = () => { viewedProfile.value = null; isProfileVisible.value = false; };
