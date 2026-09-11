@@ -2617,16 +2617,16 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
 .kwiker-profile-intro .kwiker-avatar--profile {
     position: relative;
     z-index: 2;
-    margin-top: -6.8cqh;
-    transform: translateY(0);
+    margin-top: 0;
+    transform: translateY(-3.8cqh);
 }
 
 .kwiker-profile-intro {
-    margin-top: 1.4cqh;
+    margin-top: 0;
 }
 
 .kwiker-profile-actions {
-    top: 2.8cqh;
+    top: 1.5cqh;
 }
 
 .kwiker-page-enter-active,
