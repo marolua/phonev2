@@ -43,11 +43,11 @@ defineProps({
             'dynamic-island--hoverable': hoverable,
         },
     ]" tabindex="0" :style="{
-            '--dynamic-island-compact-width': compactWidth,
-            '--dynamic-island-compact-height': compactHeight,
-            '--dynamic-island-expanded-width': expandedWidth,
-            '--dynamic-island-expanded-height': expandedHeight,
-        }">
+        '--dynamic-island-compact-width': compactWidth,
+        '--dynamic-island-compact-height': compactHeight,
+        '--dynamic-island-expanded-width': expandedWidth,
+        '--dynamic-island-expanded-height': expandedHeight,
+    }">
         <div class="dynamic-island__compact">
             <slot name="compact">
                 <div class="dynamic-island__camera"></div>
