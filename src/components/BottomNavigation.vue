@@ -33,7 +33,8 @@ const selectItem = (item) => emit('select', item.id, item)
         <button v-for="item in items" :key="item.id" type="button" class="bottom-navigation__item"
             :class="{ 'is-active': activeId === item.id, 'is-featured': item.featured }" :aria-label="item.label"
             @click="selectItem(item)">
-            <component :is="item.icon" :size="item.iconSize || '3cqh'" />
+            <component :is="item.icon" :size="item.iconSize || '3cqh'"
+                :fill="typeof item.fill === 'function' ? item.fill(activeId) : item.fill" />
             <span>{{ item.label }}</span>
             <b v-if="getBadge(item)" class="bottom-navigation__badge">{{ getBadge(item) }}</b>
         </button>

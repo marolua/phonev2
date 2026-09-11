@@ -91,7 +91,7 @@ const setHome = () => { activeSection.value = 'home'; isProfileVisible.value = f
 const openPostProfile = (post) => { const accountType = post.accountType || (isOfficialHandle(post.handle) ? 'Entreprise' : 'Personne'); viewedProfile.value = { name: post.author, handle: post.handle, initials: post.initials, color: post.color, accountType, verified: Boolean(post.verified || isOfficialHandle(post.handle)), bio: post.bio || (accountType === 'Entreprise' ? 'Compte professionnel sur Kwiker.' : 'Membre de la communauté de Los Santos.'), followers: post.followers || 0, following: post.following || 0 }; profileTab.value = 'Kwiks'; isProfileVisible.value = true; };
 const openOwnProfile = () => { viewedProfile.value = null; profileTab.value = 'Kwiks'; isProfileVisible.value = true; };
 const kwikerNavigation = [
-    { id: 'home', label: 'Accueil', icon: Home },
+    { id: 'home', label: 'Accueil', icon: Home, fill: (activeId) => activeId === 'home' ? 'currentColor' : 'none' },
     { id: 'compose', label: 'Publier', icon: PenLine, featured: true },
     { id: 'profile', label: 'Profil', icon: UserRound },
 ];
