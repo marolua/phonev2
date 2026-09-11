@@ -2403,6 +2403,23 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
     box-shadow: none;
 }
 
+.kwiker-field input:focus,
+.kwiker-field textarea:focus,
+.kwiker-field input:focus-visible,
+.kwiker-field textarea:focus-visible {
+    outline: 0 !important;
+    border-color: rgba(255, 255, 255, .18) !important;
+    box-shadow: none !important;
+}
+
+.kwiker-profile-cover {
+    margin: 0 3cqw;
+    overflow: hidden;
+    border-radius: 2.2cqh;
+    background: linear-gradient(135deg, #182b4b 0%, #314d86 52%, #633a78 100%);
+    box-shadow: none;
+}
+
 .kwiker-profile-intro {
     position: relative;
     z-index: 1;
