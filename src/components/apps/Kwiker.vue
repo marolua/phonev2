@@ -1827,53 +1827,6 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
 }
 
 .kwiker-bottom-nav .categories {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 90%;
-    height: 68%;
-    border-radius: 6cqh;
-    background: rgba(51, 51, 51, .3);
-    box-shadow: 0 10px 26px rgba(0, 0, 0, .2), inset 0 1px 0 rgba(255, 255, 255, .85), inset 0 -6px 10px -6px rgba(0, 0, 0, .15);
-}
-
-.kwiker-bottom-nav .categorie {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 0 1 30%;
-    flex-direction: column;
-    gap: .75cqh;
-    width: auto;
-    height: 90%;
-    min-width: 0;
-    border: 0;
-    border-radius: 5.7cqh;
-    color: rgba(255, 255, 255, .8);
-    background: transparent;
-    font-family: "SF Pro Display";
-    font-size: 1.6cqh;
-    font-weight: 500;
-    transition: color .2s ease, background .2s ease, transform .2s ease;
-    cursor: pointer;
-}
-
-.kwiker-bottom-nav .categorie span {
-    font-size: inherit;
-}
-
-.kwiker-bottom-nav .categorie.categorie-selected,
-.kwiker-bottom-nav .categorie.categorie-compose {
-    color: #4d8dff;
-}
-
-.kwiker-bottom-nav .categorie:hover {
-    background: rgba(77, 141, 255, .08);
-    cursor: pointer;
-    transform: translateY(-1px);
-}
-
-.kwiker-bottom-nav .categorie-compose-icon {
     display: contents;
 }
 

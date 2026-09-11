@@ -1345,47 +1345,6 @@ const addContact = () => {
         min-height: 18%;
         flex-shrink: 0;
         border-radius: 6cqh;
-
-        .categories {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            width: 100%;
-            height: 68%;
-            border-radius: 6cqh;
-            background-color: rgba(51, 51, 51, 0.3);
-            box-shadow:
-                0 10px 26px rgba(0, 0, 0, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.85),
-                inset 0 -6px 10px -6px rgba(0, 0, 0, 0.15);
-
-            .categorie {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-                gap: 0.75cqh;
-                width: 30%;
-                height: 90%;
-                border-radius: 5.7cqh;
-                font-family: "SF Pro Display";
-                transition: all ease-in-out 0.2s;
-                font-size: 1.6cqh;
-                font-weight: 500;
-                color: rgba(255, 255, 255, 0.8);
-                border: 0;
-                background: transparent;
-
-                &.categorie-selected {
-                    color: #4d8dff;
-                }
-
-                &:hover {
-                    cursor: pointer;
-                }
-
-            }
-        }
     }
 
     .contact-modal-backdrop {

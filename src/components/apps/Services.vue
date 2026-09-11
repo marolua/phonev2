@@ -1634,62 +1634,6 @@ const answerIncomingCall = (call) => {
     border-radius: 6cqh;
 }
 
-.bottom-app-services .categories {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    width: 100%;
-    height: 68%;
-    border-radius: 6cqh;
-    background-color: rgba(51, 51, 51, .3);
-    box-shadow: 0 10px 26px rgba(0, 0, 0, .2), inset 0 1px 0 rgba(255, 255, 255, .85),
-        inset 0 -6px 10px -6px rgba(0, 0, 0, .15);
-}
-
-.bottom-app-services .categorie {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: .75cqh;
-    width: 42%;
-    height: 90%;
-    border: 0;
-    border-radius: 5.7cqh;
-    color: rgba(255, 255, 255, .8);
-    background: transparent;
-    font-family: "SF Pro Display";
-    font-size: 1.6cqh;
-    font-weight: 500;
-    transition: color .2s ease-in-out;
-    cursor: pointer;
-}
-
-.bottom-app-services .categorie-selected {
-    color: #4d8dff;
-}
-
-.bottom-app-services .categorie {
-    position: relative;
-}
-
-.bottom-app-services .categorie b {
-    position: absolute;
-    top: .8cqh;
-    right: 25%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 2cqh;
-    height: 2cqh;
-    padding: 0 .3cqw;
-    box-sizing: border-box;
-    border-radius: 999px;
-    color: white;
-    background: #ff453a;
-    font-size: 1cqh;
-}
-
 .services-composer-backdrop {
     position: absolute;
     z-index: 6;
