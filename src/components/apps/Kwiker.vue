@@ -197,22 +197,31 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
                     <Search v-else :size="28" /><strong>{{ activeSection === 'bookmarks' ? 'Aucun signet' : 'Aucun Kwik trouvé' }}</strong><span>{{ activeSection === 'bookmarks' ? 'Enregistre un Kwik pour le retrouver ici.' : 'Essaie une autre recherche ou consulte le fil Pour toi.' }}</span>
                 </div>
             </main>
-            <nav class="kwiker-bottom-nav" aria-label="Navigation Kwiker"><button type="button" class="kwiker-nav-item"
-                    :class="{ 'is-active': activeSection === 'home' }" aria-label="Accueil" @click="setHome">
-                    <Home size="3cqh" :fill="activeSection === 'home' ? 'currentColor' : 'none'" /><span>Accueil</span>
-                </button><button type="button" class="kwiker-nav-item" aria-label="Communautés"
-                    @click="openCommunities">
-                    <Users size="3cqh" /><span>Communautés</span>
-                </button><button type="button" class="kwiker-nav-compose" aria-label="Créer un tweet"
-                    @click="openComposer">
-                    <PenLine size="2.7cqh" />
-                </button><button type="button" class="kwiker-nav-item"
-                    :class="{ 'is-active': activeSection === 'bookmarks' }" aria-label="Signets" @click="setBookmarks">
-                    <Bookmark size="3cqh" :fill="activeSection === 'bookmarks' ? 'currentColor' : 'none'" />
-                    <span>Signets</span>
-                </button><button type="button" class="kwiker-nav-item" aria-label="Profil" @click="openOwnProfile">
-                    <UserRound size="3cqh" /><span>Profil</span>
-                </button></nav>
+            <div class="kwiker-bottom-nav">
+                <nav class="categories" aria-label="Navigation Kwiker">
+                    <button type="button" class="categorie" :class="{ 'categorie-selected': activeSection === 'home' }"
+                        aria-label="Accueil" @click="setHome">
+                        <Home size="3cqh" :fill="activeSection === 'home' ? 'currentColor' : 'none'" />
+                        <span>Accueil</span>
+                    </button>
+                    <button type="button" class="categorie" aria-label="Communautés" @click="openCommunities">
+                        <Users size="3cqh" /><span>Communautés</span>
+                    </button>
+                    <button type="button" class="categorie categorie-compose" aria-label="Créer un Kwik"
+                        @click="openComposer">
+                        <span class="categorie-compose-icon"><PenLine size="2.7cqh" /></span>
+                        <span>Publier</span>
+                    </button>
+                    <button type="button" class="categorie" :class="{ 'categorie-selected': activeSection === 'bookmarks' }"
+                        aria-label="Signets" @click="setBookmarks">
+                        <Bookmark size="3cqh" :fill="activeSection === 'bookmarks' ? 'currentColor' : 'none'" />
+                        <span>Signets</span>
+                    </button>
+                    <button type="button" class="categorie" aria-label="Profil" @click="openOwnProfile">
+                        <UserRound size="3cqh" /><span>Profil</span>
+                    </button>
+                </nav>
+            </div>
         </template>
 
         <Transition name="kwiker-page">
