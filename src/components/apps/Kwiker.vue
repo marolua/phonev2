@@ -2390,6 +2390,20 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
 }
 
 /* Finitions des pages iOS et de la zone de réponse. */
+.kwiker-search input,
+.kwiker-search input:focus,
+.kwiker-search input:focus-visible {
+    outline: 0 !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+.kwiker-search:focus-within {
+    outline: 0;
+    border-color: transparent;
+    box-shadow: none;
+}
+
 .kwiker-profile-intro {
     margin: 0 3cqw;
     padding: 0 2.8cqw 2.8cqh;
