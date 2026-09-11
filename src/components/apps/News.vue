@@ -216,14 +216,14 @@ const publish = async () => {
                         <div class="news-section-heading">
                             <span>{{ activeCategory === 'Pour toi' ? 'Dernières nouvelles' : activeCategory }}</span>
                             <small>{{ visibleArticles.length }} article{{ visibleArticles.length > 1 ? 's' : ''
-                            }}</small>
+                                }}</small>
                         </div>
                         <button v-for="article in visibleArticles" :key="article.id" type="button"
                             class="news-article-row" @click="openArticle(article)">
                             <span class="news-article-image" :style="articleImageStyle(article)"></span>
                             <span class="news-article-info">
                                 <span class="news-article-meta"><span>{{ article.category
-                                }}</span><span>·</span><span>{{ formatRelativeDate(article.publishedAt)
+                                        }}</span><span>·</span><span>{{ formatRelativeDate(article.publishedAt)
                                         }}</span></span>
                                 <strong>{{ article.title }}</strong>
                                 <span class="news-article-excerpt">{{ article.excerpt }}</span>
@@ -318,9 +318,8 @@ const publish = async () => {
                                 </option>
                             </select>
                             <div class="news-category-picker">
-                                <button type="button" class="news-category-trigger"
-                                    :aria-expanded="isCategoryMenuOpen" aria-haspopup="listbox"
-                                    @click="isCategoryMenuOpen = !isCategoryMenuOpen">
+                                <button type="button" class="news-category-trigger" :aria-expanded="isCategoryMenuOpen"
+                                    aria-haspopup="listbox" @click="isCategoryMenuOpen = !isCategoryMenuOpen">
                                     <span>{{ draft.category }}</span>
                                     <ChevronDown :size="17"
                                         :class="{ 'news-category-trigger__icon--open': isCategoryMenuOpen }" />
@@ -338,7 +337,7 @@ const publish = async () => {
                                     </div>
                                 </Transition>
                             </div>
-                            </label>
+                        </label>
                         <label class="news-field"><span>Résumé</span><textarea v-model="draft.excerpt" maxlength="180"
                                 rows="2" placeholder="Une phrase pour donner envie de lire"></textarea></label>
                         <label class="news-field"><span>Article</span><textarea v-model="draft.content" rows="7"
