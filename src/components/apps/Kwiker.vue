@@ -1882,6 +1882,210 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
     transform: translateY(-1.3cqh);
 }
 
+/* Profils et réglages personnels : cartes iOS plus claires et mieux hiérarchisées. */
+.kwiker-profile-cover {
+    height: 13cqh;
+    background: linear-gradient(135deg, #182b4b 0%, #314d86 52%, #633a78 100%);
+}
+
+.kwiker-profile-intro {
+    margin: 0 3cqw;
+    padding: 0 2.8cqw 2.8cqh;
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-top: 0;
+    border-radius: 0 0 2.2cqh 2.2cqh;
+    background: #1c1c1e;
+    box-shadow: 0 .8cqh 2cqh rgba(0, 0, 0, .18);
+}
+
+.kwiker-profile-intro .kwiker-avatar--profile {
+    margin-top: -5cqh;
+    border: .7cqh solid #1c1c1e;
+    box-shadow: 0 .5cqh 1.4cqh rgba(0, 0, 0, .24), inset 0 0 0 1px rgba(255, 255, 255, .16);
+}
+
+.kwiker-profile-actions {
+    top: 1.5cqh;
+    right: 2.8cqw;
+}
+
+.kwiker-edit-button,
+.kwiker-follow-button {
+    min-height: 4.7cqh;
+    box-sizing: border-box;
+    border-radius: 1.5cqh;
+    padding: .7cqh 2.4cqw;
+    font-size: 1.45cqh;
+    transition: color .2s ease, background .2s ease, border-color .2s ease, transform .2s ease;
+}
+
+.kwiker-edit-button {
+    border-color: rgba(255, 255, 255, .2);
+    background: rgba(255, 255, 255, .08);
+}
+
+.kwiker-edit-button:hover,
+.kwiker-follow-button:hover {
+    background: rgba(255, 255, 255, .16);
+    transform: translateY(-1px);
+}
+
+.kwiker-profile-intro h2 {
+    margin-top: 1.6cqh;
+    font-size: 2.8cqh;
+}
+
+.kwiker-profile-intro p {
+    margin: 1.8cqh 0;
+    color: rgba(255, 255, 255, .78);
+}
+
+.kwiker-profile-tabs {
+    height: 6.2cqh;
+    margin: 1.5cqh 3cqw 0;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 1.6cqh;
+    background: #1c1c1e;
+}
+
+.kwiker-profile-tabs button {
+    transition: color .2s ease, background .2s ease;
+}
+
+.kwiker-profile-tabs button.is-active,
+.kwiker-profile-tabs button:hover {
+    background: rgba(77, 141, 255, .1);
+}
+
+.kwiker-simple-scroll {
+    padding-right: 3cqw;
+    padding-left: 3cqw;
+}
+
+.kwiker-eyebrow {
+    margin-right: 1cqw;
+    margin-left: 1cqw;
+    color: rgba(255, 255, 255, .52);
+    font-size: 1.3cqh;
+    letter-spacing: .06cqw;
+    text-transform: uppercase;
+}
+
+.kwiker-settings-row {
+    min-height: 8.2cqh;
+    padding: 1cqh 2.4cqw;
+}
+
+.kwiker-settings-row strong {
+    font-size: 1.65cqh;
+}
+
+.kwiker-settings-row small {
+    font-size: 1.3cqh;
+    line-height: 1.25;
+}
+
+.kwiker-settings-icon {
+    width: 4.8cqh;
+    height: 4.8cqh;
+    border-radius: 1.35cqh;
+}
+
+.kwiker-setting-state {
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 999px;
+    padding: .55cqh 1.4cqw;
+}
+
+.kwiker-sheet {
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-bottom: 0;
+    border-radius: 3cqh 3cqh 0 0;
+    padding: 1cqh 3.5cqw 3.5cqh;
+    background: #1c1c1e;
+}
+
+.kwiker-sheet-header {
+    min-height: 6.6cqh;
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+
+.kwiker-sheet-header strong {
+    font-size: 1.85cqh;
+}
+
+.kwiker-composer-content {
+    gap: 2.8cqw;
+    padding-top: 2.2cqh;
+}
+
+.kwiker-draft-area textarea {
+    min-height: 14cqh;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 1.7cqh;
+    padding: 1.5cqh 1.8cqw;
+    background: #2c2c2e;
+}
+
+.kwiker-draft-footer {
+    margin-top: 1.2cqh;
+    padding-top: 1.2cqh;
+    border-top: 1px solid rgba(255, 255, 255, .08);
+}
+
+.kwiker-draft-footer button {
+    width: 4.5cqh;
+    height: 4.5cqh;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1.3cqh;
+    background: rgba(77, 141, 255, .12);
+    transition: background .2s ease, transform .2s ease;
+}
+
+.kwiker-draft-footer button:hover {
+    background: rgba(77, 141, 255, .24);
+    transform: translateY(-1px);
+}
+
+.kwiker-account-preview {
+    margin-bottom: 1.2cqh;
+    padding: 1.4cqh 1.8cqw;
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 1.7cqh;
+    background: #2c2c2e;
+}
+
+.kwiker-field {
+    gap: .8cqh;
+    margin-top: 1.5cqh;
+    color: rgba(255, 255, 255, .62);
+    font-size: 1.35cqh;
+    font-weight: 600;
+}
+
+.kwiker-field input,
+.kwiker-field textarea {
+    min-height: 5.6cqh;
+    border-color: rgba(255, 255, 255, .1);
+    border-radius: 1.45cqh;
+    padding: 1.3cqh 1.8cqw;
+    background: #2c2c2e;
+}
+
+.kwiker-field textarea {
+    min-height: 10cqh;
+}
+
+.kwiker-form-notice {
+    margin-left: 0;
+    padding: 1cqh 1.4cqw;
+    border-radius: 1.2cqh;
+    background: rgba(255, 69, 58, .1);
+}
+
 .kwiker-profile-actions {
     position: absolute;
     top: 1.6cqh;
