@@ -1892,8 +1892,7 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
     margin: 0 3cqw;
     padding: 0 2.8cqw 2.8cqh;
     border: 1px solid rgba(255, 255, 255, .08);
-    border-top: 0;
-    border-radius: 0 0 2.2cqh 2.2cqh;
+    border-radius: 2.2cqh;
     background: #1c1c1e;
     box-shadow: 0 .8cqh 2cqh rgba(0, 0, 0, .18);
 }
@@ -2408,8 +2407,7 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
     margin: 0 3cqw;
     padding: 0 2.8cqw 2.8cqh;
     border: 1px solid rgba(255, 255, 255, .08);
-    border-top: 0;
-    border-radius: 0 0 2.2cqh 2.2cqh;
+    border-radius: 2.2cqh;
     background: #1c1c1e;
 }
 
