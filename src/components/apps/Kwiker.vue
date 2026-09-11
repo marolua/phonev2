@@ -1829,9 +1829,9 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
 
 .kwiker-bottom-nav .categories {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 90%;
     height: 68%;
     border-radius: 6cqh;
     background: rgba(51, 51, 51, .3);
