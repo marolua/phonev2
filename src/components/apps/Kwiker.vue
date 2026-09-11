@@ -103,7 +103,7 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
 
 <template>
     <div class="kwiker-app">
-        <template v-if="!isProfileVisible && !isNotificationsVisible && !isCommunitiesVisible && !isSettingsVisible">
+        <template v-if="!isProfileVisible && !isNotificationsVisible && !isSettingsVisible">
             <header class="kwiker-header"><button type="button" class="kwiker-icon-button"
                     aria-label="Ouvrir mon profil" @click="openOwnProfile"><span
                         class="kwiker-avatar kwiker-avatar--tiny" :style="{ background: currentUser.color }">{{
@@ -167,9 +167,6 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
                                     @click="toggleLike(post)">
                                     <Heart :size="17" :fill="post.liked ? 'currentColor' : 'none'" /><span>{{
                                         formatCount(post.likes) }}</span>
-                                </button><button type="button" :class="{ 'is-saved': post.bookmarked }"
-                                    aria-label="Enregistrer" @click="toggleBookmark(post)">
-                                    <Bookmark :size="17" :fill="post.bookmarked ? 'currentColor' : 'none'" />
                                 </button><button type="button" aria-label="Partager" @click="sharePost(post)">
                                     <Share2 :size="16" />
                                 </button></div>
@@ -177,8 +174,7 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
                     </article>
                 </section>
                 <div v-else class="kwiker-empty">
-                    <Bookmark v-if="activeSection === 'bookmarks'" :size="28" />
-                    <Search v-else :size="28" /><strong>{{ activeSection === 'bookmarks' ? 'Aucun signet' : 'Aucun Kwik trouvé' }}</strong><span>{{ activeSection === 'bookmarks' ? 'Enregistre un Kwik pour le retrouver ici.' : 'Essaie une autre recherche ou consulte le fil Pour toi.' }}</span>
+                    <Search :size="28" /><strong>Aucun Kwik trouvé</strong><span>Essaie une autre recherche ou consulte le fil Pour toi.</span>
                 </div>
             </main>
             <div class="kwiker-bottom-nav">
@@ -188,18 +184,10 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
                         <Home size="3cqh" :fill="activeSection === 'home' ? 'currentColor' : 'none'" />
                         <span>Accueil</span>
                     </button>
-                    <button type="button" class="categorie" aria-label="Communautés" @click="openCommunities">
-                        <Users size="3cqh" /><span>Communautés</span>
-                    </button>
                     <button type="button" class="categorie categorie-compose" aria-label="Créer un Kwik"
                         @click="openComposer">
                         <span class="categorie-compose-icon"><PenLine size="2.7cqh" /></span>
                         <span>Publier</span>
-                    </button>
-                    <button type="button" class="categorie" :class="{ 'categorie-selected': activeSection === 'bookmarks' }"
-                        aria-label="Signets" @click="setBookmarks">
-                        <Bookmark size="3cqh" :fill="activeSection === 'bookmarks' ? 'currentColor' : 'none'" />
-                        <span>Signets</span>
                     </button>
                     <button type="button" class="categorie" aria-label="Profil" @click="openOwnProfile">
                         <UserRound size="3cqh" /><span>Profil</span>
