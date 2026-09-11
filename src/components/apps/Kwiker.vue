@@ -1167,79 +1167,6 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
     color: var(--kwiker-blue);
 }
 
-.kwiker-community-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5cqh;
-}
-
-.kwiker-community-card {
-    display: flex;
-    align-items: center;
-    gap: 2.5cqw;
-    padding: 2cqh 2.5cqw;
-    border: 1px solid rgba(255, 255, 255, .08);
-    border-radius: 1.8cqh;
-    background: var(--kwiker-panel);
-}
-
-.kwiker-community-mark {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: 0 0 auto;
-    width: 6.2cqh;
-    height: 6.2cqh;
-    border-radius: 1.7cqh;
-    color: #fff;
-}
-
-.kwiker-community-card>div {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    gap: .4cqh;
-    min-width: 0;
-}
-
-.kwiker-community-card strong {
-    font-size: 1.75cqh;
-}
-
-.kwiker-community-card p {
-    overflow: hidden;
-    margin: 0;
-    color: rgba(255, 255, 255, .52);
-    font-size: 1.3cqh;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.kwiker-community-card small {
-    color: rgba(255, 255, 255, .35);
-    font-size: 1.2cqh;
-}
-
-.kwiker-community-card>button {
-    flex: 0 0 auto;
-    min-width: 14cqw;
-    border: 1px solid rgba(29, 155, 240, .75);
-    border-radius: 999px;
-    padding: .75cqh 1.6cqw;
-    color: var(--kwiker-blue);
-    background: transparent;
-    font: inherit;
-    font-size: 1.28cqh;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.kwiker-community-card>button.is-joined {
-    border-color: rgba(255, 255, 255, .18);
-    color: rgba(255, 255, 255, .6);
-    background: rgba(255, 255, 255, .08);
-}
-
 .kwiker-settings-row {
     display: flex;
     align-items: center;
@@ -1824,10 +1751,6 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
     background: transparent;
     box-shadow: none;
     backdrop-filter: none;
-}
-
-.kwiker-bottom-nav .categories {
-    display: contents;
 }
 
 .kwiker-bottom-nav {
