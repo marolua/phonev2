@@ -199,19 +199,19 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
             </main>
             <nav class="kwiker-bottom-nav" aria-label="Navigation Kwiker"><button type="button" class="kwiker-nav-item"
                     :class="{ 'is-active': activeSection === 'home' }" aria-label="Accueil" @click="setHome">
-                    <Home :size="21" :fill="activeSection === 'home' ? 'currentColor' : 'none'" /><span>Accueil</span>
+                    <Home size="3cqh" :fill="activeSection === 'home' ? 'currentColor' : 'none'" /><span>Accueil</span>
                 </button><button type="button" class="kwiker-nav-item" aria-label="Communautés"
                     @click="openCommunities">
-                    <Users :size="21" /><span>Communautés</span>
+                    <Users size="3cqh" /><span>Communautés</span>
                 </button><button type="button" class="kwiker-nav-compose" aria-label="Créer un tweet"
                     @click="openComposer">
-                    <PenLine :size="20" />
+                    <PenLine size="2.7cqh" />
                 </button><button type="button" class="kwiker-nav-item"
                     :class="{ 'is-active': activeSection === 'bookmarks' }" aria-label="Signets" @click="setBookmarks">
-                    <Bookmark :size="21" :fill="activeSection === 'bookmarks' ? 'currentColor' : 'none'" />
+                    <Bookmark size="3cqh" :fill="activeSection === 'bookmarks' ? 'currentColor' : 'none'" />
                     <span>Signets</span>
                 </button><button type="button" class="kwiker-nav-item" aria-label="Profil" @click="openOwnProfile">
-                    <UserRound :size="21" /><span>Profil</span>
+                    <UserRound size="3cqh" /><span>Profil</span>
                 </button></nav>
         </template>
 
