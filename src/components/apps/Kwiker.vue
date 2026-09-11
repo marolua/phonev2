@@ -542,6 +542,7 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
     overflow: hidden;
     box-sizing: border-box;
     padding: 8.65cqh 0 4cqh;
+    border-radius: inherit;
     color: #fff;
     background: var(--kwiker-bg);
     font-family: inherit;
@@ -926,16 +927,19 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
 .kwiker-bottom-nav {
     position: absolute;
     z-index: 3;
-    right: 0;
-    bottom: 4cqh;
-    left: 0;
+    right: 3cqw;
+    bottom: 1.5cqh;
+    left: 3cqw;
     display: flex;
     justify-content: space-around;
-    height: 9cqh;
+    align-items: center;
+    height: 11.5cqh;
     box-sizing: border-box;
-    padding: .8cqh 1cqw 1.2cqh;
-    border-top: 1px solid var(--kwiker-line);
-    background: rgba(0, 0, 0, .96);
+    padding: 1cqh 1.2cqw;
+    border: 1px solid rgba(255, 255, 255, .12);
+    border-radius: 6cqh;
+    background: rgba(51, 51, 51, .42);
+    box-shadow: 0 1cqh 2.6cqh rgba(0, 0, 0, .24), inset 0 1px 0 rgba(255, 255, 255, .16);
     backdrop-filter: blur(14px);
 }
 
@@ -944,22 +948,31 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: .45cqh;
-    width: 22cqw;
+    gap: .65cqh;
+    width: 20%;
+    height: 90%;
+    border-radius: 5.7cqh;
     border: 0;
     color: rgba(255, 255, 255, .42);
     background: transparent;
     font: inherit;
+    transition: color .2s ease, background .2s ease, transform .2s ease;
     cursor: pointer;
 }
 
 .kwiker-nav-item span {
-    font-size: 1.15cqh;
+    font-size: 1.6cqh;
+    font-weight: 500;
 }
 
 .kwiker-nav-item.is-active,
 .kwiker-nav-item:hover {
-    color: #fff;
+    color: #4d8dff;
+    background: rgba(77, 141, 255, .1);
+}
+
+.kwiker-nav-item:hover {
+    transform: translateY(-1px);
 }
 
 .kwiker-page {
@@ -969,6 +982,8 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
     display: flex;
     flex-direction: column;
     padding-top: 8cqh;
+    overflow: hidden;
+    border-radius: inherit;
     background: var(--kwiker-bg);
 }
 
@@ -1008,7 +1023,7 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
 }
 
 .kwiker-page-header strong {
-    font-size: 2cqh;
+    font-size: 2.15cqh;
 }
 
 .kwiker-header-spacer {
@@ -1022,7 +1037,7 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
 }
 
 .kwiker-simple-scroll {
-    padding: 2.5cqh 4cqw 8cqh;
+    padding: 2.5cqh 4cqw 10cqh;
 }
 
 .kwiker-eyebrow {
@@ -1156,7 +1171,8 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, .08);
     border-radius: 1.8cqh;
-    background: var(--kwiker-panel);
+    background: rgba(38, 38, 40, .96);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .035), 0 .7cqh 1.8cqh rgba(0, 0, 0, .16);
 }
 
 .kwiker-notification-row {
@@ -1282,6 +1298,7 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
     background: transparent;
     font: inherit;
     text-align: left;
+    transition: background .2s ease, color .2s ease;
     cursor: pointer;
 }
 
@@ -1290,7 +1307,11 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
 }
 
 .kwiker-settings-row:hover {
-    background: rgba(255, 255, 255, .04);
+    background: rgba(255, 255, 255, .07);
+}
+
+.kwiker-settings-row:active {
+    background: rgba(77, 141, 255, .12);
 }
 
 .kwiker-settings-row strong {
@@ -1341,6 +1362,7 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
     flex: 0 0 auto;
     min-width: 17cqw;
     border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, .1);
     padding: .65cqh 1.5cqw;
     color: rgba(255, 255, 255, .5);
     background: rgba(255, 255, 255, .08);
@@ -1397,7 +1419,9 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
     inset: 0;
     display: flex;
     align-items: flex-end;
+    border-radius: inherit;
     background: rgba(0, 0, 0, .62);
+    overflow: hidden;
 }
 
 .kwiker-sheet {
@@ -1448,11 +1472,8 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
 }
 
 .kwiker-sheet-cancel {
-    justify-content: flex-start !important;
     min-width: 16cqw !important;
-    border-radius: 0 !important;
-    color: rgba(255, 255, 255, .7) !important;
-    font-size: 1.45cqh !important;
+    color: rgba(255, 255, 255, .78) !important;
 }
 
 .kwiker-sheet-back {
@@ -1462,8 +1483,41 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
 }
 
 .kwiker-sheet-submit {
+    min-width: 16cqw !important;
     color: var(--kwiker-blue) !important;
     font-weight: 700;
+}
+
+.kwiker-sheet-cancel,
+.kwiker-sheet-submit {
+    min-height: 4.6cqh;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, .14) !important;
+    border-radius: 1.5cqh !important;
+    padding: 0 2.2cqw;
+    background: rgba(255, 255, 255, .07) !important;
+    font: inherit;
+    font-size: 1.45cqh !important;
+    transition: color .2s ease, background .2s ease, border-color .2s ease, transform .2s ease, filter .2s ease;
+}
+
+.kwiker-sheet-submit {
+    border-color: rgba(29, 155, 240, .42) !important;
+    background: rgba(29, 155, 240, .16) !important;
+}
+
+.kwiker-sheet-cancel:hover,
+.kwiker-sheet-submit:hover {
+    color: #fff !important;
+    border-color: rgba(255, 255, 255, .28) !important;
+    background: rgba(255, 255, 255, .14) !important;
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+}
+
+.kwiker-sheet-submit:hover {
+    border-color: rgba(29, 155, 240, .72) !important;
+    background: rgba(29, 155, 240, .3) !important;
 }
 
 .kwiker-sheet-content {
