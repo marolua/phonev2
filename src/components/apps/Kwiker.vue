@@ -1692,9 +1692,9 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
 }
 
 .kwiker-simple-scroll .kwiker-list-card {
-    border-color: rgba(255, 255, 255, .04);
-    border-radius: 1.4cqh;
-    background: rgba(30, 30, 30, .9);
+    border-color: rgba(255, 255, 255, .08);
+    border-radius: 1.8cqh;
+    background: rgba(38, 38, 40, .96);
 }
 
 .kwiker-settings-row {
@@ -1710,7 +1710,6 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
     width: 4.4cqh;
     height: 4.4cqh;
     border-radius: 1cqh;
-    background: transparent !important;
 }
 
 .kwiker-settings-row strong {
@@ -1723,15 +1722,15 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
 
 .kwiker-setting-state {
     min-width: auto;
-    padding: 0;
+    padding: .55cqh 1.4cqw;
     color: rgba(255, 255, 255, .5);
-    background: transparent;
+    background: rgba(255, 255, 255, .07);
     font-size: 1.45cqh;
 }
 
 .kwiker-setting-state.is-enabled {
     color: #30d158;
-    background: transparent;
+    background: rgba(48, 209, 88, .12);
 }
 
 .kwiker-comments-sheet {
@@ -1773,18 +1772,22 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
     align-self: center;
     width: 5.6cqh;
     height: 5.6cqh;
-    margin: 0 1cqw;
-    border: 4px solid #000;
+    width: 5.8cqh;
+    height: 5.8cqh;
+    margin: 0 1.2cqw;
+    border: 1px solid rgba(255, 255, 255, .2);
     border-radius: 50%;
     color: #fff;
     background: var(--kwiker-blue);
     box-shadow: 0 .5cqh 1.5cqh rgba(29, 155, 240, .35);
+    transition: filter .2s ease, transform .2s ease, box-shadow .2s ease;
     cursor: pointer;
 }
 
 .kwiker-nav-compose:hover {
     filter: brightness(1.12);
-    transform: translateY(-1px);
+    transform: translateY(-1px) scale(1.03);
+    box-shadow: 0 .7cqh 1.8cqh rgba(29, 155, 240, .45);
 }
 
 .kwiker-profile-actions {
