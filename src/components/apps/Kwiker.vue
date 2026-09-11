@@ -320,30 +320,6 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
             </section>
         </Transition>
         <Transition name="kwiker-page">
-            <section v-if="isCommunitiesVisible" class="kwiker-page">
-                <header class="kwiker-page-header"><button type="button" aria-label="Retour" @click="closeCommunities">
-                        <ArrowLeft :size="19" />
-                    </button><strong>Communautés</strong><span class="kwiker-header-spacer"></span></header>
-                <div class="kwiker-page-scroll kwiker-simple-scroll">
-                    <p class="kwiker-eyebrow">Trouve ton cercle</p>
-                    <div class="kwiker-community-list">
-                        <article v-for="community in communities" :key="community.id" class="kwiker-community-card">
-                            <span class="kwiker-community-mark" :style="{ background: community.color }">
-                                <Users :size="18" />
-                            </span>
-                            <div><strong>{{ community.name }}</strong>
-                                <p>{{ community.description }}</p><small>{{ community.members }} membres</small>
-                            </div><button type="button"
-                                :class="{ 'is-joined': joinedCommunities.includes(community.id) }"
-                                @click="toggleCommunity(community)">{{ joinedCommunities.includes(community.id) ?
-                                'Rejoint' :
-                                'Rejoindre' }}</button>
-                        </article>
-                    </div>
-                </div>
-            </section>
-        </Transition>
-        <Transition name="kwiker-page">
             <section v-if="isSettingsVisible" class="kwiker-page">
                 <header class="kwiker-page-header"><button type="button" aria-label="Retour" @click="closeSettings">
                         <ArrowLeft :size="19" />
