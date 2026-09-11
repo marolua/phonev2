@@ -722,36 +722,6 @@ const answerIncomingCall = (call) => {
     background: transparent;
 }
 
-.services-categories {
-    display: flex;
-    gap: 2.8cqw;
-    flex-shrink: 0;
-    margin: 2.5cqh 0 1.5cqh;
-    overflow-x: auto;
-    scrollbar-width: none;
-}
-
-.services-categories::-webkit-scrollbar {
-    display: none;
-}
-
-.services-categories button {
-    flex-shrink: 0;
-    border: 0;
-    padding: 0 0 .9cqh;
-    color: rgba(255, 255, 255, .45);
-    background: transparent;
-    font: inherit;
-    font-size: 1.5cqh;
-    cursor: pointer;
-}
-
-.services-categories button.services-category--active {
-    color: var(--services-accent);
-    border-bottom: .25cqh solid var(--services-accent);
-    font-weight: 600;
-}
-
 .services-scroll {
     min-height: 0;
     flex: 1;
@@ -1907,10 +1877,6 @@ const answerIncomingCall = (call) => {
 
 .services-company-details strong {
     font-size: 1.45cqh;
-}
-
-.bottom-app-services .categorie {
-    font-size: 1.8cqh;
 }
 
 .services-composer-header button {
