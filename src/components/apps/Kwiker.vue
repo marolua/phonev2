@@ -1770,8 +1770,6 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
     justify-content: center;
     flex: 0 0 auto;
     align-self: center;
-    width: 5.6cqh;
-    height: 5.6cqh;
     width: 5.8cqh;
     height: 5.8cqh;
     margin: 0 1.2cqw;
