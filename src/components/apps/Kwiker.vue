@@ -2404,11 +2404,14 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
 }
 
 .kwiker-profile-intro {
-    margin: 0 3cqw;
+    position: relative;
+    z-index: 1;
+    margin: -1.2cqh 3cqw 0;
     padding: 0 2.8cqw 2.8cqh;
     border: 1px solid rgba(255, 255, 255, .08);
     border-radius: 2.2cqh;
     background: #1c1c1e;
+    box-shadow: none;
 }
 
 .kwiker-profile-intro .kwiker-avatar--profile {
