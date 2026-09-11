@@ -18,6 +18,7 @@ import {
     WalletCards,
     X,
 } from '@lucide/vue';
+import BottomNavigation from '../BottomNavigation.vue';
 
 const activeTab = ref('home');
 const balance = ref(12450.8);
@@ -292,20 +293,11 @@ const maskCardNumber = computed(() => showCardNumber.value ? '5217 5600 2048 731
         </Transition>
 
         <div class="bottom-app-bank">
-            <nav class="categories" aria-label="Navigation Banque">
-                <button type="button" class="categorie" :class="{ 'categorie-selected': activeTab === 'home' }"
-                    @click="activeTab = 'home'">
-                    <House size="2.3cqh" /><span>Accueil</span>
-                </button>
-                <button type="button" class="categorie" :class="{ 'categorie-selected': activeTab === 'cards' }"
-                    @click="activeTab = 'cards'">
-                    <WalletCards size="2.3cqh" /><span>Cartes</span>
-                </button>
-                <button type="button" class="categorie" :class="{ 'categorie-selected': activeTab === 'profile' }"
-                    @click="activeTab = 'profile'">
-                    <UserRound size="2.3cqh" /><span>Profil</span>
-                </button>
-            </nav>
+            <BottomNavigation :items="[
+                { id: 'home', label: 'Accueil', icon: House, iconSize: '2.3cqh' },
+                { id: 'cards', label: 'Cartes', icon: WalletCards, iconSize: '2.3cqh' },
+                { id: 'profile', label: 'Profil', icon: UserRound, iconSize: '2.3cqh' },
+            ]" :active-id="activeTab" aria-label="Navigation Banque" @select="activeTab = $event" />
         </div>
 
         <Transition name="bank-sheet">

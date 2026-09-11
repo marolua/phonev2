@@ -5,6 +5,7 @@ import {
     MapPin, MessageCircle, Phone, PhoneCall, Reply, Search, Send, ShieldCheck, Users, X,
 } from '@lucide/vue';
 import { useServicesDirectory } from '../../composables/useServicesDirectory';
+import BottomNavigation from '../BottomNavigation.vue';
 import ambulanceImage from '../../assets/services/ambulance.png';
 import mechanicImage from '../../assets/services/mecanicien.png';
 import policeImage from '../../assets/services/police.png';
@@ -75,7 +76,7 @@ const conversationMessages = computed(() => {
 
 const serviceCategories = [
     { id: 'directory', label: 'Companies', icon: Building2 },
-    { id: 'messages', label: 'Messages', icon: MessageCircle },
+    { id: 'messages', label: 'Messages', icon: MessageCircle, badge: () => unreadCount.value },
 ];
 
 const visibleCompanies = computed(() => {
@@ -569,15 +570,8 @@ const answerIncomingCall = (call) => {
         </Transition>
 
         <div v-if="!selectedCompany && activeView !== 'conversation'" class="bottom-app-services">
-            <div class="categories" aria-label="Navigation Services">
-                <button v-for="category in serviceCategories" :key="category.id" type="button" class="categorie"
-                    :class="{ 'categorie-selected': activeView === category.id }" :aria-label="category.label"
-                    @click="activeView = category.id">
-                    <component :is="category.icon" size="3cqh" />
-                    <span>{{ category.label }}</span>
-                    <b v-if="category.id === 'messages' && unreadCount">{{ unreadCount }}</b>
-                </button>
-            </div>
+            <BottomNavigation :items="serviceCategories" :active-id="activeView" variant="services"
+                aria-label="Navigation Services" @select="activeView = $event" />
         </div>
 
         <Transition name="services-sheet">
