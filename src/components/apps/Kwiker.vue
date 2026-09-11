@@ -107,7 +107,7 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
             <header class="kwiker-header"><button type="button" class="kwiker-icon-button"
                     aria-label="Ouvrir mon profil" @click="openOwnProfile"><span
                         class="kwiker-avatar kwiker-avatar--tiny" :style="{ background: currentUser.color }">{{
-                        currentUser.initials }}</span></button>
+                            currentUser.initials }}</span></button>
                 <div class="kwiker-brand"><span class="kwiker-brand-mark">k</span><strong>Kwiker</strong></div>
                 <div class="kwiker-header-actions"><button type="button" class="kwiker-icon-button"
                         aria-label="Rechercher" @click="openSearch">
@@ -174,7 +174,8 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
                     </article>
                 </section>
                 <div v-else class="kwiker-empty">
-                    <Search :size="28" /><strong>Aucun Kwik trouvé</strong><span>Essaie une autre recherche ou consulte le fil Pour toi.</span>
+                    <Search :size="28" /><strong>Aucun Kwik trouvé</strong><span>Essaie une autre recherche ou consulte
+                        le fil Pour toi.</span>
                 </div>
             </main>
             <div class="kwiker-bottom-nav">
@@ -186,7 +187,9 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
                     </button>
                     <button type="button" class="categorie categorie-compose" aria-label="Créer un Kwik"
                         @click="openComposer">
-                        <span class="categorie-compose-icon"><PenLine size="2.7cqh" /></span>
+                        <span class="categorie-compose-icon">
+                            <PenLine size="2.7cqh" />
+                        </span>
                         <span>Publier</span>
                     </button>
                     <button type="button" class="categorie" aria-label="Profil" @click="openOwnProfile">
@@ -214,10 +217,10 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
                                 class="kwiker-follow-button" :class="{ 'is-following': isFollowingViewed }"
                                 @click="toggleFollowViewed">{{ isFollowingViewed ? 'Suivi' : 'Suivre' }}</button></div>
                         <h2>{{ profileIdentity.name }}</h2><span class="kwiker-profile-handle">{{ profileIdentity.handle
-                            }}</span>
+                        }}</span>
                         <div class="kwiker-profile-labels"><span class="kwiker-profile-type">{{
-                                profileIdentity.accountType
-                                }}</span><span v-if="profileIdentity.verified" class="kwiker-profile-certified">
+                            profileIdentity.accountType
+                        }}</span><span v-if="profileIdentity.verified" class="kwiker-profile-certified">
                                 <CheckCircle2 :size="13" /> Certifié
                             </span></div>
                         <p>{{ profileIdentity.bio }}</p>
@@ -231,7 +234,7 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
                     <div v-if="isOwnProfile" class="kwiker-profile-tabs"><button
                             v-for="tab in ['Kwiks', 'Réponses', 'Médias']" :key="tab" type="button"
                             :class="{ 'is-active': profileTab === tab }" @click="profileTab = tab">{{
-                            tab }}</button></div>
+                                tab }}</button></div>
                     <div v-if="!isOwnProfile || profileTab === 'Kwiks'">
                         <article v-for="post in profilePosts" :key="`profile-${post.id}`"
                             class="kwiker-post kwiker-post--profile"><span class="kwiker-avatar"
@@ -241,7 +244,7 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
                                     <div class="kwiker-post-author"><strong>{{ post.author }}</strong>
                                         <Check v-if="post.verified" class="kwiker-verified" :size="11" /><span>{{
                                             post.handle
-                                            }}</span><span>·</span><time>{{ relativeTime(post.time) }}</time>
+                                        }}</span><span>·</span><time>{{ relativeTime(post.time) }}</time>
                                     </div>
                                 </header>
                                 <p v-if="post.text" class="kwiker-post-text">{{ post.text }}</p><img v-if="post.image"
@@ -260,13 +263,13 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
                             <div class="kwiker-post-body">
                                 <header class="kwiker-post-header">
                                     <div class="kwiker-post-author"><strong>{{ currentUser.name }}</strong><span>{{
-                                            currentUser.handle }}</span><span>·</span><time>{{ relativeTime(post.time)
+                                        currentUser.handle }}</span><span>·</span><time>{{ relativeTime(post.time)
                                             }}</time>
                                     </div>
                                 </header>
                                 <p class="kwiker-reply-context">En réponse à {{ post.author }}</p>
                                 <p class="kwiker-post-text">{{post.commentsList.find((comment) => comment.author ===
-                                    currentUser.name)?.text }}</p>
+                                    currentUser.name)?.text}}</p>
                             </div>
                         </article>
                         <div v-if="!profileReplies.length" class="kwiker-empty kwiker-empty--profile">
@@ -281,7 +284,7 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
                             <div class="kwiker-post-body">
                                 <header class="kwiker-post-header">
                                     <div class="kwiker-post-author"><strong>{{ currentUser.name }}</strong><span>{{
-                                            currentUser.handle }}</span><span>·</span><time>{{ relativeTime(post.time)
+                                        currentUser.handle }}</span><span>·</span><time>{{ relativeTime(post.time)
                                             }}</time>
                                     </div>
                                 </header>
@@ -311,7 +314,7 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
                             class="kwiker-notification-row">
                             <span class="kwiker-avatar kwiker-avatar--tiny"
                                 :style="{ background: notification.color }">{{
-                                notification.initials }}</span><span><strong>{{ notification.title }}</strong><small>{{
+                                    notification.initials }}</span><span><strong>{{ notification.title }}</strong><small>{{
                                     notification.time }}</small></span>
                             <Bell :size="16" />
                         </div>
@@ -393,7 +396,7 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
                                 :style="{ background: currentUser.color }">{{ currentUser.initials
                                 }}</span><span><strong>{{
                                     accountDraft.name || currentUser.name }}</strong><small>{{ accountDraft.handle ||
-                                    currentUser.handle }}</small></span></div><label
+                                        currentUser.handle }}</small></span></div><label
                             class="kwiker-field"><span>Nom</span><input v-model="accountDraft.name" type="text"
                                 maxlength="32" placeholder="Ton nom" /></label><label
                             class="kwiker-field"><span>Pseudo</span><input v-model="accountDraft.handle" type="text"
@@ -432,7 +435,7 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
                             <ArrowLeft :size="18" />
                         </button><strong>Réponses</strong><span class="kwiker-comments-count">{{ selectedPost?.comments
                             || 0
-                            }}</span></header>
+                        }}</span></header>
                     <div v-if="selectedPost" class="kwiker-comments-scroll">
                         <article class="kwiker-comment-original"><span
                                 class="kwiker-avatar kwiker-avatar--comment-original"
@@ -449,11 +452,11 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
                             <article v-for="comment in selectedPost.commentsList" :key="comment.id"
                                 class="kwiker-comment"><span class="kwiker-avatar kwiker-avatar--tiny"
                                     :style="{ background: comment.color }">{{
-                                    comment.initials }}</span>
+                                        comment.initials }}</span>
                                 <div class="kwiker-comment-content">
                                     <div class="kwiker-comment-author"><strong>{{ comment.author }}</strong><span>{{
-                                            comment.handle }}</span><time v-if="comment.time">{{
-                                            relativeTime(comment.time)
+                                        comment.handle }}</span><time v-if="comment.time">{{
+                                                relativeTime(comment.time)
                                             }}</time></div>
                                     <p>{{ comment.text }}</p>
                                 </div>
@@ -467,11 +470,11 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
                     </div>
                     <form class="kwiker-comment-form" @submit.prevent="addComment"><span
                             class="kwiker-avatar kwiker-avatar--tiny" :style="{ background: currentUser.color }">{{
-                            currentUser.initials }}</span>
+                                currentUser.initials }}</span>
                         <div class="kwiker-comment-input-wrap"><textarea v-model="commentDraft" rows="1" maxlength="280"
                                 placeholder="Répondre à ce Kwik"
                                 @keydown.enter.exact.prevent="addComment"></textarea><span>{{
-                                commentDraft.length }}/280</span></div><button type="submit" aria-label="Envoyer"
+                                    commentDraft.length }}/280</span></div><button type="submit" aria-label="Envoyer"
                             :disabled="!commentDraft.trim()">
                             <Send :size="17" />
                         </button>
@@ -2515,7 +2518,7 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
     font-size: 1.25cqh;
 }
 
-.kwiker-notification-row > svg {
+.kwiker-notification-row>svg {
     flex: 0 0 auto;
     width: 2.1cqh;
     height: 2.1cqh;
@@ -2609,7 +2612,7 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
     background: rgba(118, 118, 128, .2);
 }
 
-.kwiker-comment-form > button {
+.kwiker-comment-form>button {
     width: 5cqh;
     height: 5cqh;
 }
