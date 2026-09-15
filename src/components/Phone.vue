@@ -1380,4 +1380,119 @@ onBeforeUnmount(() => {
         text-align: right;
     }
 }
+
+.island-layout--runtime-pill {
+    cursor: pointer;
+}
+
+.island-layout--incoming-call {
+    display: flex;
+    align-items: center;
+    gap: 2.2cqw;
+    padding: 0 2.8cqw;
+    border-radius: 6cqw;
+}
+
+.incoming-call-avatar,
+.medium-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+    color: white;
+    font-weight: 700;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .18), 0 .35cqh .8cqh rgba(0, 0, 0, .25);
+}
+
+.incoming-call-avatar {
+    width: 10cqw;
+    height: 10cqw;
+    border-radius: 50%;
+    font-size: 2.3cqh;
+}
+
+.incoming-call-avatar img,
+.medium-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.incoming-call-copy {
+    display: flex;
+    flex: 1;
+    min-width: 0;
+    flex-direction: column;
+    gap: .35cqh;
+    text-align: left;
+}
+
+.incoming-call-copy span {
+    color: rgba(255, 255, 255, .58);
+    font-size: 1.45cqh;
+}
+
+.incoming-call-copy strong {
+    overflow: hidden;
+    color: white;
+    font-size: 2cqh;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.incoming-call-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5cqw;
+}
+
+.incoming-call-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5.4cqh;
+    height: 5.4cqh;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.incoming-call-action img {
+    width: 2.65cqh;
+    height: 2.65cqh;
+}
+
+.incoming-call-action--reject {
+    background: linear-gradient(145deg, #f14f56, #a92332);
+    transform: rotate(135deg);
+}
+
+.incoming-call-action--answer {
+    background: linear-gradient(145deg, #42d879, #168846);
+}
+
+.island-layout--medium .medium-avatar {
+    width: 11.75cqw;
+    height: 11.75cqw;
+    margin-left: 1.5cqw;
+    margin-top: .25cqh;
+    border-radius: 50%;
+    font-size: 3.2cqh;
+}
+
+.island-layout--medium-call .medium-bottom {
+    gap: 7cqw;
+}
+
+.island-layout--medium-call .medium-bottom .medium-button {
+    border: 0;
+    color: white;
+    cursor: pointer;
+}
+
+.island-layout--medium-call .medium-bottom #last {
+    border: 0;
+    background: linear-gradient(145deg, #f14f56, #a92332);
+}
 </style>
