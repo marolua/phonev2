@@ -210,16 +210,18 @@ const rejectIncomingCall = () => {
 const handlePhoneEvent = (event) => {
     const payload = event?.detail || event?.data || {}
     const eventName = payload.event || payload.action || payload.type || ''
+    const normalizedEventName = String(eventName).toLowerCase()
     const messageEvents = ['phone:message', 'message:received', 'messageReceived', 'newMessage', 'new_message']
     const callEvents = ['phone:incoming-call', 'incomingCall', 'incoming_call', 'call:incoming']
-    const messagePayload = payload.message || payload.notification
+    const messagePayload = payload.message || payload.serviceMessage || payload.notification
+    const callPayload = payload.call || payload.serviceCall
     if (messageEvents.includes(eventName)
-        || (eventName === 'message' && (messagePayload || payload.text || payload.body || payload.senderName))) {
+        || (normalizedEventName.includes('message') && (messagePayload || payload.text || payload.body || payload.senderName))) {
         showRuntimeMessage(messagePayload || payload)
         return
     }
-    if (callEvents.includes(eventName) || (eventName === 'call' && payload.incoming)) {
-        showIncomingCall(payload.call || payload)
+    if (callEvents.includes(eventName) || (normalizedEventName.includes('call') && (callPayload || payload.incoming))) {
+        showIncomingCall(callPayload || payload)
     }
 }
 
