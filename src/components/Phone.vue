@@ -349,12 +349,15 @@ onBeforeUnmount(() => {
                                 <img :src="PhoneGreen" alt="Appel en cours" />
                                 <span>{{ callDuration }}</span>
                             </div>
-                            <div class="pill-right"><AudioLines size="3.5cqh" color="rgb(255, 255, 255)" /></div>
+                            <div class="pill-right">
+                                <AudioLines size="3.5cqh" color="rgb(255, 255, 255)" />
+                            </div>
                         </section>
                         <section v-else-if="runtimeMessage"
                             class="island-layout island-layout--small island-layout--small-message">
                             <div class="message-notification-avatar" :style="{ background: runtimeMessage.color }">
-                                <img v-if="runtimeMessage.image" :src="runtimeMessage.image" :alt="runtimeMessage.name" />
+                                <img v-if="runtimeMessage.image" :src="runtimeMessage.image"
+                                    :alt="runtimeMessage.name" />
                                 <span v-else>{{ runtimeMessage.initials }}</span>
                             </div>
                             <div class="message-notification-text">
@@ -362,19 +365,20 @@ onBeforeUnmount(() => {
                             </div>
                             <span class="message-notification-time">{{ runtimeMessage.time }}</span>
                         </section>
-                        <section v-else-if="incomingCall"
-                            class="island-layout island-layout--incoming-call">
+                        <section v-else-if="incomingCall" class="island-layout island-layout--incoming-call">
                             <div class="incoming-call-avatar" :style="{ background: incomingCall.contact.color }">
                                 <img v-if="incomingCall.contact.photo" :src="incomingCall.contact.photo"
                                     :alt="incomingCall.name" />
                                 <span v-else>{{ incomingCall.initials }}</span>
                             </div>
                             <div class="incoming-call-copy"><span>Appel entrant</span><strong>{{ incomingCall.name
-                                    }}</strong></div>
+                            }}</strong></div>
                             <div class="incoming-call-actions">
-                                <button type="button" aria-label="Refuser l’appel" class="incoming-call-action incoming-call-action--reject"
+                                <button type="button" aria-label="Refuser l’appel"
+                                    class="incoming-call-action incoming-call-action--reject"
                                     @click.stop="rejectIncomingCall"><img :src="PhoneWhite" alt="" /></button>
-                                <button type="button" aria-label="Répondre" class="incoming-call-action incoming-call-action--answer"
+                                <button type="button" aria-label="Répondre"
+                                    class="incoming-call-action incoming-call-action--answer"
                                     @click.stop="answerIncomingCall"><img :src="PhoneWhite" alt="" /></button>
                             </div>
                         </section>
@@ -397,16 +401,23 @@ onBeforeUnmount(() => {
                                 </div>
                                 <div class="medium-bottom">
                                     <div class="medium-button"><Video size="3cqh" color="white" /></div>
-                                    <div class="medium-button"><Mic size="3cqh" color="white" /></div>
-                                    <div class="medium-button"><Volume2 size="3cqh" color="white" /></div>
+                                    <div class="medium-button">
+                                        <Mic size="3cqh" color="white" />
+                                    </div>
+                                    <div class="medium-button">
+                                        <Volume2 size="3cqh" color="white" />
+                                    </div>
                                     <button type="button" class="medium-button" id="last" aria-label="Fermer l’appel"
-                                        @click.stop="activeCallState = null"><X size="3cqh" color="white" /></button>
+                                        @click.stop="activeCallState = null">
+                                        <X size="3cqh" color="white" />
+                                    </button>
                                 </div>
                             </section>
                             <section v-else-if="runtimeMessage" key="runtime-message"
                                 class="island-layout island-layout--small island-layout--small-message">
                                 <div class="message-notification-avatar" :style="{ background: runtimeMessage.color }">
-                                    <img v-if="runtimeMessage.image" :src="runtimeMessage.image" :alt="runtimeMessage.name" />
+                                    <img v-if="runtimeMessage.image" :src="runtimeMessage.image"
+                                        :alt="runtimeMessage.name" />
                                     <span v-else>{{ runtimeMessage.initials }}</span>
                                 </div>
                                 <div class="message-notification-text">
@@ -422,11 +433,13 @@ onBeforeUnmount(() => {
                                     <span v-else>{{ incomingCall.initials }}</span>
                                 </div>
                                 <div class="incoming-call-copy"><span>Appel entrant</span><strong>{{ incomingCall.name
-                                        }}</strong></div>
+                                }}</strong></div>
                                 <div class="incoming-call-actions">
-                                    <button type="button" aria-label="Refuser l’appel" class="incoming-call-action incoming-call-action--reject"
+                                    <button type="button" aria-label="Refuser l’appel"
+                                        class="incoming-call-action incoming-call-action--reject"
                                         @click.stop="rejectIncomingCall"><img :src="PhoneWhite" alt="" /></button>
-                                    <button type="button" aria-label="Répondre" class="incoming-call-action incoming-call-action--answer"
+                                    <button type="button" aria-label="Répondre"
+                                        class="incoming-call-action incoming-call-action--answer"
                                         @click.stop="answerIncomingCall"><img :src="PhoneWhite" alt="" /></button>
                                 </div>
                             </section>
@@ -467,7 +480,8 @@ onBeforeUnmount(() => {
                             <section v-else-if="activeIsland.type === 'medium'" key="medium"
                                 class="island-layout island-layout--medium">
                                 <div class="medium-top">
-                                    <div class="medium-avatar" style="background: linear-gradient(145deg, #52628e, #282c42)">
+                                    <div class="medium-avatar"
+                                        style="background: linear-gradient(145deg, #52628e, #282c42)">
                                         <span>JM</span>
                                     </div>
                                     <div class="medium-text">
@@ -495,7 +509,8 @@ onBeforeUnmount(() => {
                             <section v-else-if="activeIsland.type === 'small'" key="small"
                                 class="island-layout island-layout--small">
                                 <div class="left-part">
-                                    <div class="incoming-call-avatar" style="background: linear-gradient(145deg, #52628e, #282c42)">
+                                    <div class="incoming-call-avatar"
+                                        style="background: linear-gradient(145deg, #52628e, #282c42)">
                                         <span>JM</span>
                                     </div>
                                     <div class="content">
