@@ -93,12 +93,14 @@ const islandHoverable = computed(() => Boolean(activeCallState.value) || (!isRun
 const islandWidth = computed(() => {
     if (activeCallState.value) return '60cqw'
     if (incomingCall.value || runtimeMessage.value) return '87cqw'
-    return runtimeIsland.value.width
+    if (runtimeIsland.value.type === 'pill') return '60cqw'
+    return '32cqw'
 })
 const islandHeight = computed(() => {
     if (activeCallState.value) return '6cqh'
     if (incomingCall.value || runtimeMessage.value) return '8.5cqh'
-    return runtimeIsland.value.height
+    if (runtimeIsland.value.type === 'pill') return '6cqh'
+    return '4.8cqh'
 })
 const islandExpandedWidth = computed(() => activeCallState.value ? '88cqw' : runtimeIsland.value.width)
 const islandExpandedHeight = computed(() => activeCallState.value ? '17cqh' : runtimeIsland.value.height)
