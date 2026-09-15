@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import DynamicIsland from './DynamicIsland.vue';
 import AirDrop from '../assets/airdrop.svg';
 import PhoneGreen from '../assets/phone-green.png';
@@ -69,9 +69,46 @@ const islandExamples = [
 
 const activeIslandIndex = ref(0)
 const isIslandExpanded = ref(false)
+const runtimeMessage = ref(null)
+const incomingCall = ref(null)
+const activeCallState = ref(null)
+const callTicker = ref(0)
+let messageNotificationTimer = null
+let callTickerTimer = null
 
 const activeIsland = computed(() => islandExamples[activeIslandIndex.value])
-const isPillActive = computed(() => isIslandExpanded.value && activeIsland.value.type === 'pill')
+const runtimeIsland = computed(() => {
+    if (activeCallState.value) return { type: 'pill', variant: 'call' }
+    if (incomingCall.value) return { type: 'small', variant: 'call' }
+    if (runtimeMessage.value) return { type: 'small', variant: 'message' }
+    return activeIsland.value
+})
+const isRuntimeIsland = computed(() => Boolean(activeCallState.value || incomingCall.value || runtimeMessage.value))
+const isPillActive = computed(() => runtimeIsland.value.type === 'pill')
+const islandExpanded = computed(() => {
+    if (activeCallState.value) return false
+    if (incomingCall.value || runtimeMessage.value) return true
+    return isIslandExpanded.value
+})
+const islandHoverable = computed(() => Boolean(activeCallState.value) || (!isRuntimeIsland.value && runtimeIsland.value.type === 'pill'))
+const islandWidth = computed(() => {
+    if (activeCallState.value) return '60cqw'
+    if (incomingCall.value || runtimeMessage.value) return '87cqw'
+    return runtimeIsland.value.width
+})
+const islandHeight = computed(() => {
+    if (activeCallState.value) return '6cqh'
+    if (incomingCall.value || runtimeMessage.value) return '8.5cqh'
+    return runtimeIsland.value.height
+})
+const islandExpandedWidth = computed(() => activeCallState.value ? '88cqw' : runtimeIsland.value.width)
+const islandExpandedHeight = computed(() => activeCallState.value ? '17cqh' : runtimeIsland.value.height)
+const callDuration = computed(() => {
+    callTicker.value;
+    if (!activeCallState.value?.startedAt) return '0:00';
+    const seconds = Math.max(0, Math.floor((Date.now() - activeCallState.value.startedAt) / 1000));
+    return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
+})
 const activeApplication = ref(null)
 const pendingPhoneCall = ref(null)
 const screenElement = ref(null)
