@@ -369,9 +369,9 @@ onBeforeUnmount(() => {
                                     }}</strong></div>
                             <div class="incoming-call-actions">
                                 <button type="button" aria-label="Refuser l’appel" class="incoming-call-action incoming-call-action--reject"
-                                    @click.stop="rejectIncomingCall"><PhoneWhite /></button>
+                                    @click.stop="rejectIncomingCall"><img :src="PhoneWhite" alt="" /></button>
                                 <button type="button" aria-label="Répondre" class="incoming-call-action incoming-call-action--answer"
-                                    @click.stop="answerIncomingCall"><PhoneWhite /></button>
+                                    @click.stop="answerIncomingCall"><img :src="PhoneWhite" alt="" /></button>
                             </div>
                         </section>
                     </template>
@@ -420,9 +420,9 @@ onBeforeUnmount(() => {
                                         }}</strong></div>
                                 <div class="incoming-call-actions">
                                     <button type="button" aria-label="Refuser l’appel" class="incoming-call-action incoming-call-action--reject"
-                                        @click.stop="rejectIncomingCall"><PhoneWhite /></button>
+                                        @click.stop="rejectIncomingCall"><img :src="PhoneWhite" alt="" /></button>
                                     <button type="button" aria-label="Répondre" class="incoming-call-action incoming-call-action--answer"
-                                        @click.stop="answerIncomingCall"><PhoneWhite /></button>
+                                        @click.stop="answerIncomingCall"><img :src="PhoneWhite" alt="" /></button>
                                 </div>
                             </section>
                             <!-- Dynamic Island large : fond grand format. Ajoute tes divs dedans. -->
