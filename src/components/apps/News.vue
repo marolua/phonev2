@@ -161,13 +161,8 @@ const publish = async () => {
         <template v-if="!selectedArticle && !isComposerVisible">
             <header class="news-header">
                 <div class="news-brand">
-                    <span class="news-brand__mark">
-                        <Newspaper :size="16" />
-                    </span>
                     <div class="news-brand-copy">
-                        <span class="news-brand-kicker">Rédaction de Los Santos</span>
                         <h1>News</h1>
-                        <span class="news-brand-edition">L’actualité locale, en un coup d’œil</span>
                     </div>
                 </div>
                 <div class="news-header-actions">
@@ -225,14 +220,14 @@ const publish = async () => {
                         <div class="news-section-heading">
                             <span>{{ activeCategory === 'Pour toi' ? 'Dernières nouvelles' : activeCategory }}</span>
                             <small>{{ visibleArticles.length }} article{{ visibleArticles.length > 1 ? 's' : ''
-                                }}</small>
+                            }}</small>
                         </div>
                         <button v-for="article in visibleArticles" :key="article.id" type="button"
                             class="news-article-row" @click="openArticle(article)">
                             <span class="news-article-image" :style="articleImageStyle(article)"></span>
                             <span class="news-article-info">
                                 <span class="news-article-meta"><span>{{ article.category
-                                        }}</span><span>·</span><span>{{ formatRelativeDate(article.publishedAt)
+                                }}</span><span>·</span><span>{{ formatRelativeDate(article.publishedAt)
                                         }}</span></span>
                                 <strong>{{ article.title }}</strong>
                                 <span class="news-article-excerpt">{{ article.excerpt }}</span>
@@ -1422,13 +1417,13 @@ const publish = async () => {
     margin-top: 1.7cqh;
 }
 
-.news-section-heading > span:first-child {
+.news-section-heading>span:first-child {
     display: inline-flex;
     align-items: center;
     gap: 1cqw;
 }
 
-.news-section-heading > span:first-child::before {
+.news-section-heading>span:first-child::before {
     width: .45cqw;
     height: 2.1cqh;
     border-radius: 999px;
