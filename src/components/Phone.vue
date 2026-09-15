@@ -1432,10 +1432,10 @@ onBeforeUnmount(() => {
 }
 
 .incoming-call-avatar {
-    width: 10cqw;
-    height: 10cqw;
+    width: 12cqw;
+    height: 12cqw;
     border-radius: 50%;
-    font-size: 2.3cqh;
+    font-size: 2.5cqh;
 }
 
 .incoming-call-avatar img,
@@ -1501,8 +1501,7 @@ onBeforeUnmount(() => {
 .island-layout--medium .medium-avatar {
     width: 11.75cqw;
     height: 11.75cqw;
-    margin-left: 1.5cqw;
-    margin-top: .25cqh;
+    margin: 0;
     border-radius: 50%;
     font-size: 3.2cqh;
 }
