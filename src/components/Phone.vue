@@ -230,6 +230,7 @@ const handleCallState = (call) => {
 const showIsland = (index) => {
     clearRuntimeMessage()
     incomingCall.value = null
+    activeCallState.value = null
     activeIslandIndex.value = index
     isIslandExpanded.value = islandExamples[index].type !== 'pill'
     if (islandExamples[index].variant === 'message') {
@@ -276,9 +277,33 @@ const openPhoneCall = (call) => {
     const phoneApplication = applications.find((application) => application.id === 'phone')
     if (!phoneApplication?.component) return
 
-    pendingPhoneCall.value = call
+    const normalizedCall = normalizeCallPayload(call)
+    activeCallState.value = {
+        ...normalizedCall,
+        startedAt: call?.startedAt || Date.now(),
+    }
+    pendingPhoneCall.value = activeCallState.value
     activeApplication.value = phoneApplication
 }
+
+const openActiveCall = () => {
+    if (activeCallState.value) openPhoneCall(activeCallState.value)
+}
+
+onMounted(() => {
+    window.addEventListener('phone:message', handlePhoneEvent)
+    window.addEventListener('phone:incoming-call', handlePhoneEvent)
+    window.addEventListener('message', handlePhoneEvent)
+    callTickerTimer = window.setInterval(() => { callTicker.value += 1 }, 1000)
+})
+
+onBeforeUnmount(() => {
+    window.removeEventListener('phone:message', handlePhoneEvent)
+    window.removeEventListener('phone:incoming-call', handlePhoneEvent)
+    window.removeEventListener('message', handlePhoneEvent)
+    if (messageNotificationTimer) window.clearTimeout(messageNotificationTimer)
+    if (callTickerTimer) window.clearInterval(callTickerTimer)
+})
 
 </script>
 
