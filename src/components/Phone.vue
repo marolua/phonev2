@@ -462,8 +462,8 @@ onBeforeUnmount(() => {
                             <section v-else-if="activeIsland.type === 'medium'" key="medium"
                                 class="island-layout island-layout--medium">
                                 <div class="medium-top">
-                                    <div class="medium-image">
-                                        <img :src="Inconnu" alt="Inconnu" />
+                                    <div class="medium-avatar" style="background: linear-gradient(145deg, #52628e, #282c42)">
+                                        <span>JM</span>
                                     </div>
                                     <div class="medium-text">
                                         <span>John McKenzie</span>
@@ -490,10 +490,12 @@ onBeforeUnmount(() => {
                             <section v-else-if="activeIsland.type === 'small'" key="small"
                                 class="island-layout island-layout--small">
                                 <div class="left-part">
-                                    <img :src="Inconnu" alt="">
+                                    <div class="incoming-call-avatar" style="background: linear-gradient(145deg, #52628e, #282c42)">
+                                        <span>JM</span>
+                                    </div>
                                     <div class="content">
-                                        <span>mobile</span>
-                                        <span class="name">Terence McKenzie</span>
+                                        <span>Appel entrant</span>
+                                        <span class="name">John McKenzie</span>
                                     </div>
                                 </div>
                                 <div class="right-part">
