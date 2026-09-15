@@ -2530,4 +2530,94 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
     opacity: 0;
     transform: translate(50%, 1cqh);
 }
+
+/* Lisibilité et identité : le fil reste dense, mais chaque niveau est immédiatement identifiable. */
+.kwiker-brand strong {
+    font-size: 2.35cqh;
+}
+
+.kwiker-feed-tabs button {
+    font-size: 1.8cqh;
+}
+
+.kwiker-post-author strong {
+    font-size: 1.9cqh;
+}
+
+.kwiker-post-author span,
+.kwiker-post-author time {
+    font-size: 1.55cqh;
+}
+
+.kwiker-post-text {
+    font-size: 1.95cqh;
+    line-height: 1.42;
+}
+
+.kwiker-post-actions button {
+    min-height: 4.2cqh;
+    font-size: 1.5cqh;
+}
+
+.kwiker-nav-item span {
+    font-size: 1.5cqh;
+}
+
+.kwiker-profile-labels {
+    gap: 1.2cqw;
+    margin-top: 1cqh;
+}
+
+.kwiker-profile-type,
+.kwiker-profile-certified {
+    min-height: 3.2cqh;
+    box-sizing: border-box;
+    padding: .55cqh 1.5cqw;
+    font-size: 1.4cqh;
+}
+
+.kwiker-profile-certified {
+    gap: .8cqw;
+    border-color: rgba(89, 166, 255, .5);
+    color: #d8ecff;
+    background: linear-gradient(135deg, rgba(29, 155, 240, .3), rgba(88, 101, 242, .22));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12), 0 .35cqh 1cqh rgba(29, 155, 240, .16);
+}
+
+.kwiker-profile-certified svg {
+    color: #7ec6ff;
+    filter: drop-shadow(0 0 .35cqh rgba(126, 198, 255, .45));
+}
+
+.kwiker-profile-intro h2 {
+    font-size: 3.45cqh;
+}
+
+.kwiker-profile-handle {
+    font-size: 1.8cqh;
+}
+
+.kwiker-profile-intro p {
+    font-size: 1.95cqh;
+    line-height: 1.42;
+}
+
+.kwiker-profile-meta,
+.kwiker-profile-stats {
+    font-size: 1.65cqh;
+}
+
+.kwiker-profile-stats strong {
+    font-size: 1.85cqh;
+}
+
+.kwiker-settings-row strong,
+.kwiker-account-preview strong {
+    font-size: 1.85cqh;
+}
+
+.kwiker-settings-row small,
+.kwiker-account-preview small {
+    font-size: 1.5cqh;
+}
 </style>
