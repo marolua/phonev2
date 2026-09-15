@@ -71,13 +71,15 @@ const isIslandExpanded = ref(false)
 const runtimeMessage = ref(null)
 const incomingCall = ref(null)
 const activeCallState = ref(null)
+const activeApplication = ref(null)
 const callTicker = ref(0)
 let messageNotificationTimer = null
 let callTickerTimer = null
 
 const activeIsland = computed(() => islandExamples[activeIslandIndex.value])
+const showCallPill = computed(() => Boolean(activeCallState.value && activeApplication.value?.id !== 'phone'))
 const runtimeIsland = computed(() => {
-    if (activeCallState.value) return { type: 'pill', variant: 'call' }
+    if (showCallPill.value) return { type: 'pill', variant: 'call' }
     if (incomingCall.value) return { type: 'small', variant: 'call', width: '87cqw', height: '8.5cqh' }
     if (runtimeMessage.value) return { type: 'small', variant: 'message', width: '87cqw', height: '8.5cqh' }
     return activeIsland.value
@@ -85,32 +87,31 @@ const runtimeIsland = computed(() => {
 const isRuntimeIsland = computed(() => Boolean(activeCallState.value || incomingCall.value || runtimeMessage.value))
 const isPillActive = computed(() => runtimeIsland.value.type === 'pill')
 const islandExpanded = computed(() => {
-    if (activeCallState.value) return false
+    if (showCallPill.value) return false
     if (incomingCall.value || runtimeMessage.value) return true
     return isIslandExpanded.value
 })
-const islandHoverable = computed(() => Boolean(activeCallState.value) || (!isRuntimeIsland.value && runtimeIsland.value.type === 'pill'))
+const islandHoverable = computed(() => Boolean(showCallPill.value) || (!isRuntimeIsland.value && runtimeIsland.value.type === 'pill'))
 const islandWidth = computed(() => {
-    if (activeCallState.value) return '60cqw'
+    if (showCallPill.value) return '60cqw'
     if (incomingCall.value || runtimeMessage.value) return '87cqw'
     if (runtimeIsland.value.type === 'pill') return '60cqw'
     return '32cqw'
 })
 const islandHeight = computed(() => {
-    if (activeCallState.value) return '6cqh'
+    if (showCallPill.value) return '6cqh'
     if (incomingCall.value || runtimeMessage.value) return '8.5cqh'
     if (runtimeIsland.value.type === 'pill') return '6cqh'
     return '4.8cqh'
 })
-const islandExpandedWidth = computed(() => activeCallState.value ? '88cqw' : runtimeIsland.value.width)
-const islandExpandedHeight = computed(() => activeCallState.value ? '17cqh' : runtimeIsland.value.height)
+const islandExpandedWidth = computed(() => showCallPill.value ? '88cqw' : runtimeIsland.value.width)
+const islandExpandedHeight = computed(() => showCallPill.value ? '17cqh' : runtimeIsland.value.height)
 const callDuration = computed(() => {
     callTicker.value;
     if (!activeCallState.value?.startedAt) return '0:00';
     const seconds = Math.max(0, Math.floor((Date.now() - activeCallState.value.startedAt) / 1000));
     return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
 })
-const activeApplication = ref(null)
 const pendingPhoneCall = ref(null)
 const screenElement = ref(null)
 const applicationTransitionOrigin = ref({ x: 50, y: 50 })

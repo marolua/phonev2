@@ -214,14 +214,14 @@ const publish = async () => {
                         <div class="news-section-heading">
                             <span>{{ activeCategory === 'Pour toi' ? 'Dernières nouvelles' : activeCategory }}</span>
                             <small>{{ visibleArticles.length }} article{{ visibleArticles.length > 1 ? 's' : ''
-                            }}</small>
+                                }}</small>
                         </div>
                         <button v-for="article in visibleArticles" :key="article.id" type="button"
                             class="news-article-row" @click="openArticle(article)">
                             <span class="news-article-image" :style="articleImageStyle(article)"></span>
                             <span class="news-article-info">
                                 <span class="news-article-meta"><span>{{ article.category
-                                }}</span><span>·</span><span>{{ formatRelativeDate(article.publishedAt)
+                                        }}</span><span>·</span><span>{{ formatRelativeDate(article.publishedAt)
                                         }}</span></span>
                                 <strong>{{ article.title }}</strong>
                                 <span class="news-article-excerpt">{{ article.excerpt }}</span>
