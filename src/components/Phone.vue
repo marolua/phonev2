@@ -429,7 +429,7 @@ onBeforeUnmount(() => {
                                 </div>
                             </section>
                             <!-- Dynamic Island large : fond grand format. Ajoute tes divs dedans. -->
-                            <section v-if="activeIsland.type === 'large'" key="large"
+                            <section v-else-if="activeIsland.type === 'large'" key="large"
                                 class="island-layout island-layout--large">
                                 <div class="large-top">
                                     <div class="island-left-part">
