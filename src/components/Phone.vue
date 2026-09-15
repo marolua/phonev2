@@ -373,6 +373,7 @@ onBeforeUnmount(() => {
                                     @click.stop="answerIncomingCall"><img :src="PhoneWhite" alt="" /></button>
                             </div>
                         </section>
+                        <div v-else class="dynamic-island__camera"></div>
                     </template>
                     <template #expanded>
                         <Transition name="island-layout-swap" mode="out-in">
