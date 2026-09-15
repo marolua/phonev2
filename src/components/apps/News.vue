@@ -164,8 +164,10 @@ const publish = async () => {
                     <span class="news-brand__mark">
                         <Newspaper :size="16" />
                     </span>
-                    <div>
+                    <div class="news-brand-copy">
+                        <span class="news-brand-kicker">Rédaction de Los Santos</span>
                         <h1>News</h1>
+                        <span class="news-brand-edition">L’actualité locale, en un coup d’œil</span>
                     </div>
                 </div>
                 <div class="news-header-actions">
@@ -177,6 +179,12 @@ const publish = async () => {
                     </button>
                 </div>
             </header>
+
+            <div class="news-deskline">
+                <span class="news-deskline__live"><i></i> ÉDITION DU JOUR</span>
+                <span class="news-deskline__separator"></span>
+                <span>Les informations essentielles de Los Santos</span>
+            </div>
 
             <div v-if="searchQuery" class="news-search">
                 <Search :size="16" />
