@@ -305,7 +305,7 @@ const answerIncomingCall = (call) => {
         <template v-if="!selectedCompany && activeView === 'directory'">
             <header class="services-header">
                 <div>
-                    <h1 style="font-size: 8cqw;">Companies</h1>
+                    <h1>Entreprises</h1>
                 </div>
                 <button v-if="isEmployee" type="button" class="services-inbox-button" aria-label="Boîte entreprise"
                     @click="activeView = 'messages'">
@@ -1743,6 +1743,138 @@ const answerIncomingCall = (call) => {
 .services-sheet-leave-to {
     opacity: 0;
     transform: translateY(100%);
+}
+
+/* Annuaire : hiérarchie claire, carte compacte et actions faciles à atteindre. */
+.services-app {
+    --services-card: rgba(29, 29, 32, .96);
+    --services-card-border: rgba(255, 255, 255, .1);
+}
+
+.services-header h1 {
+    font-size: 5.6cqh;
+    letter-spacing: -.06cqw;
+}
+
+.services-search {
+    border: 1px solid rgba(255, 255, 255, .08);
+    background: rgba(35, 35, 38, .9);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04);
+}
+
+.services-search input {
+    font-size: 1.9cqh;
+}
+
+.service-company-row {
+    column-gap: 1.5cqw;
+    row-gap: 1.15cqh;
+    margin-bottom: 1.2cqh;
+    border-color: var(--services-card-border);
+    border-radius: 2.2cqh;
+    padding: 1.5cqh 1.6cqw 1.4cqh;
+    background: var(--services-card);
+    box-shadow: 0 .7cqh 1.8cqh rgba(0, 0, 0, .2), inset 0 1px 0 rgba(255, 255, 255, .035);
+}
+
+.service-company-main {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    justify-content: initial;
+    flex-direction: row;
+    gap: 1.5cqw;
+    padding: .25cqh .5cqw .55cqh;
+    text-align: left;
+}
+
+.service-company-icon {
+    width: 7.2cqh;
+    height: 7.2cqh;
+    border: 1px solid rgba(255, 255, 255, .14);
+    border-radius: 1.9cqh;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .08);
+}
+
+.service-company-info {
+    align-items: flex-start;
+    justify-content: center;
+    gap: .55cqh;
+}
+
+.service-company-info strong {
+    max-width: 100%;
+    font-size: 1.95cqh;
+    line-height: 1.15;
+}
+
+.service-company-info small {
+    max-width: 100%;
+    font-size: 1.5cqh;
+}
+
+.service-company-chevron {
+    position: static;
+    align-self: center;
+    transform: none;
+}
+
+.service-company-call,
+.service-company-message {
+    height: 5.2cqh;
+    border: 1px solid transparent;
+    border-radius: 1.35cqh;
+    font-size: 1.5cqh;
+    font-weight: 600;
+    transition: filter .2s ease, border-color .2s ease, background .2s ease;
+}
+
+.service-company-call {
+    border-color: rgba(77, 141, 255, .22);
+}
+
+.service-company-message {
+    border-color: rgba(255, 59, 107, .2);
+}
+
+.service-company-call:focus-visible,
+.service-company-message:focus-visible,
+.service-company-main:focus-visible {
+    outline: 2px solid rgba(109, 164, 255, .95);
+    outline-offset: 2px;
+}
+
+.services-intro {
+    margin-top: 1.8cqh;
+    margin-bottom: 1.4cqh;
+    font-size: 1.8cqh;
+}
+
+.services-intro small {
+    font-size: 1.45cqh;
+}
+
+.services-company-hero {
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 -7cqh 8cqh rgba(0, 0, 0, .2);
+}
+
+.services-company-hero::after {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 9cqh;
+    content: '';
+    background: linear-gradient(transparent, rgba(0, 0, 0, .24));
+    pointer-events: none;
+}
+
+.services-company-hero>span {
+    position: relative;
+    z-index: 1;
+    border: 1px solid rgba(255, 255, 255, .2);
+    box-shadow: 0 1cqh 2cqh rgba(0, 0, 0, .2);
 }
 
 /* Improve readability across the Services screens. */
