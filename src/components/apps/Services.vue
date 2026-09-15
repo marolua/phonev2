@@ -324,7 +324,7 @@ const answerIncomingCall = (call) => {
                 <div class="services-intro"><span>
                         <Building2 :size="17" /> Entreprises disponibles
                     </span><small>{{ visibleCompanies.length }} résultat{{ visibleCompanies.length > 1 ? 's' : ''
-                        }}</small></div>
+                    }}</small></div>
                 <div v-if="isLoading" class="services-empty"><span>Chargement de l’annuaire…</span></div>
                 <template v-else>
                     <div v-for="company in visibleCompanies" :key="company.id" class="service-company-row"
@@ -337,11 +337,14 @@ const answerIncomingCall = (call) => {
                             <span class="service-company-info">
                                 <small class="service-company-category">{{ company.category }}</small>
                                 <strong>{{ company.name }}</strong>
-                                <small class="service-company-address"><MapPin :size="12" /> {{ company.address
-                                    }}</small>
+                                <small class="service-company-address">
+                                    <MapPin :size="12" /> {{ company.address
+                                    }}
+                                </small>
                             </span>
-                            <span class="service-company-open"><span>Fiche</span><ChevronRight :size="16"
-                                    class="service-company-chevron" /></span>
+                            <span class="service-company-open"><span>Fiche</span>
+                                <ChevronRight :size="16" class="service-company-chevron" />
+                            </span>
                         </button>
                         <button type="button" class="service-company-call" aria-label="Appeler l’entreprise"
                             @click="callCompany(company)">
@@ -380,7 +383,7 @@ const answerIncomingCall = (call) => {
                     <div v-for="message in conversationMessages" :key="message.id" class="services-conversation-row"
                         :class="{ 'services-conversation-row--outgoing': message.outgoing }">
                         <span class="services-conversation-sender">{{ message.outgoing ? 'Moi' : message.senderName
-                        }}</span>
+                            }}</span>
                         <button v-if="message.type === 'location'" type="button" class="services-location-message"
                             @click="setMessageWaypoint(message)">
                             <MapPin :size="22" />
@@ -438,7 +441,7 @@ const answerIncomingCall = (call) => {
                             <span class="services-message-avatar services-message-avatar--company">{{
                                 message.companyName.slice(0, 1).toUpperCase() }}</span>
                             <span class="services-personal-message__content"><strong>{{ message.companyName
-                                    }}</strong><span>{{ message.text }}</span></span>
+                            }}</strong><span>{{ message.text }}</span></span>
                             <span class="services-personal-message__meta">{{ message.time }}
                                 <ChevronRight :size="15" />
                             </span>
@@ -486,7 +489,7 @@ const answerIncomingCall = (call) => {
             <main class="services-scroll">
                 <div class="services-empty services-messages-empty">
                     <ShieldCheck :size="31" /><strong>{{ activeView === 'actions' ? 'Actions rapides' : 'Mesentreprises'
-                    }}</strong><span>{{ activeView === 'actions' ? 'Les actions liées aux entreprises seront disponibles ici.' : 'Les entreprises liées à ton personnage apparaîtrontici.'}}</span>
+                        }}</strong><span>{{ activeView === 'actions' ? 'Les actions liées aux entreprises seront disponibles ici.' : 'Les entreprises liées à ton personnage apparaîtrontici.'}}</span>
                 </div>
             </main>
         </template>
@@ -562,10 +565,10 @@ const answerIncomingCall = (call) => {
                             </span><button type="button" @click="callCompany(selectedCompany)">Appeler</button></div>
                         <div class="services-company-details"><span>
                                 <MapPin :size="16" /><span><small>Adresse</small><strong>{{ selectedCompany.address
-                                        }}</strong></span>
+                                }}</strong></span>
                             </span><span>
                                 <Clock3 :size="16" /><span><small>Horaires</small><strong>{{ selectedCompany.hours
-                                        }}</strong></span>
+                                }}</strong></span>
                             </span></div>
                         <button type="button" class="services-message-button"
                             @click="openMessageComposer(selectedCompany)">
@@ -597,14 +600,14 @@ const answerIncomingCall = (call) => {
                                     :src="companyImage(composeTarget?.company)" alt="" />
                                 <Building2 v-else :size="18" />
                             </span><span><small>{{ composeTarget?.replyTo ? 'Réponse à' : 'Destinataire'
-                                    }}</small><strong>{{
+                            }}</small><strong>{{
                                         composeTarget?.company?.name }}</strong></span>
                             <Check :size="17" />
                         </div>
                         <textarea v-model="messageDraft" rows="5" maxlength="500" autofocus
                             :placeholder="composeTarget?.replyTo ? 'Écris ta réponse…' : 'Écris ton message à l’entreprise…'"></textarea>
                         <p v-if="messageNotice || lastError" class="services-form-notice">{{ messageNotice || lastError
-                            }}</p>
+                        }}</p>
                         <p class="services-form-footnote">
                             <ShieldCheck :size="14" /> Message transmis à la réception de l’entreprise
                         </p>
