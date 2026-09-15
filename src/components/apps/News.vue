@@ -1237,7 +1237,6 @@ const publish = async () => {
     line-height: 1.3;
     white-space: normal;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
 }
 
 .news-featured-content small {
@@ -1289,7 +1288,6 @@ const publish = async () => {
     line-height: 1.18;
     white-space: normal;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
 }
 
 .news-article-excerpt {
@@ -1300,7 +1298,6 @@ const publish = async () => {
     line-height: 1.28;
     white-space: normal;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
 }
 
 .news-article-info small {
