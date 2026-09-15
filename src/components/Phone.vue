@@ -577,7 +577,8 @@ onBeforeUnmount(() => {
             <Transition name="application-open">
                 <div v-if="activeApplication" class="application-overlay" :style="applicationTransitionStyle">
                     <component :is="activeApplication.component" :application="activeApplication"
-                        :initial-call="pendingPhoneCall" @call-contact="openPhoneCall" />
+                        :initial-call="pendingPhoneCall || (activeApplication.id === 'phone' ? activeCallState : null)"
+                        @call-contact="openPhoneCall" @call-state="handleCallState" />
                 </div>
             </Transition>
 
