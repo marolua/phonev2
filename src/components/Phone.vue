@@ -78,8 +78,8 @@ let callTickerTimer = null
 const activeIsland = computed(() => islandExamples[activeIslandIndex.value])
 const runtimeIsland = computed(() => {
     if (activeCallState.value) return { type: 'pill', variant: 'call' }
-    if (incomingCall.value) return { type: 'small', variant: 'call' }
-    if (runtimeMessage.value) return { type: 'small', variant: 'message' }
+    if (incomingCall.value) return { type: 'small', variant: 'call', width: '87cqw', height: '8.5cqh' }
+    if (runtimeMessage.value) return { type: 'small', variant: 'message', width: '87cqw', height: '8.5cqh' }
     return activeIsland.value
 })
 const isRuntimeIsland = computed(() => Boolean(activeCallState.value || incomingCall.value || runtimeMessage.value))
