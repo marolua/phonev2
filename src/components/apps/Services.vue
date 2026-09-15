@@ -327,15 +327,21 @@ const answerIncomingCall = (call) => {
                         }}</small></div>
                 <div v-if="isLoading" class="services-empty"><span>Chargement de l’annuaire…</span></div>
                 <template v-else>
-                    <div v-for="company in visibleCompanies" :key="company.id" class="service-company-row">
+                    <div v-for="company in visibleCompanies" :key="company.id" class="service-company-row"
+                        :style="{ '--company-color': company.color }">
                         <button type="button" class="service-company-main" @click="openCompany(company)">
                             <span class="service-company-icon" :style="{ background: company.color }">
                                 <img v-if="companyImage(company)" :src="companyImage(company)" alt="" />
                                 <component v-else :is="companyIcon(company.category)" :size="21" />
                             </span>
-                            <span class="service-company-info"><strong>{{ company.name }}</strong><small>{{
-                                company.category }} · {{ company.address }}</small></span>
-                            <ChevronRight :size="17" class="service-company-chevron" />
+                            <span class="service-company-info">
+                                <small class="service-company-category">{{ company.category }}</small>
+                                <strong>{{ company.name }}</strong>
+                                <small class="service-company-address"><MapPin :size="12" /> {{ company.address
+                                    }}</small>
+                            </span>
+                            <span class="service-company-open"><span>Fiche</span><ChevronRight :size="16"
+                                    class="service-company-chevron" /></span>
                         </button>
                         <button type="button" class="service-company-call" aria-label="Appeler l’entreprise"
                             @click="callCompany(company)">
@@ -2090,5 +2096,123 @@ const answerIncomingCall = (call) => {
 
 .services-location-message:hover strong {
     text-decoration: underline;
+}
+
+/* Nouvelle carte entreprise : identité, contexte et action principale séparés. */
+.service-company-row {
+    position: relative;
+    overflow: hidden;
+    gap: 1.2cqw;
+    border-color: rgba(255, 255, 255, .11);
+    border-radius: 2.4cqh;
+    padding: 1.35cqh 1.4cqw 1.3cqh;
+    background: linear-gradient(145deg, rgba(37, 37, 40, .98), rgba(25, 25, 27, .98));
+    box-shadow: 0 .8cqh 2cqh rgba(0, 0, 0, .24), inset 0 1px 0 rgba(255, 255, 255, .045);
+}
+
+.service-company-row::before {
+    position: absolute;
+    top: 1.5cqh;
+    bottom: 1.5cqh;
+    left: 0;
+    width: .55cqw;
+    border-radius: 0 .5cqw .5cqw 0;
+    content: '';
+    background: var(--company-color, var(--services-accent));
+    box-shadow: 0 0 1.5cqh var(--company-color, rgba(77, 141, 255, .3));
+}
+
+.service-company-main {
+    z-index: 1;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 1.45cqw;
+    padding: .4cqh .5cqw .85cqh .75cqw;
+}
+
+.service-company-icon {
+    width: 7.5cqh;
+    height: 7.5cqh;
+    border: 1px solid rgba(255, 255, 255, .18);
+    border-radius: 2.1cqh;
+    box-shadow: 0 .45cqh 1.2cqh rgba(0, 0, 0, .2), inset 0 1px 0 rgba(255, 255, 255, .16);
+}
+
+.service-company-icon svg {
+    width: 2.7cqh;
+    height: 2.7cqh;
+    filter: drop-shadow(0 .25cqh .35cqh rgba(0, 0, 0, .18));
+}
+
+.service-company-info {
+    align-items: flex-start;
+    justify-content: center;
+    gap: .38cqh;
+}
+
+.service-company-info strong {
+    max-width: 100%;
+    color: rgba(255, 255, 255, .96);
+    font-size: 2cqh;
+    line-height: 1.14;
+}
+
+.service-company-info small.service-company-category {
+    overflow: visible;
+    color: #79aaff;
+    font-size: 1.22cqh;
+    font-weight: 700;
+    letter-spacing: .08cqw;
+    text-transform: uppercase;
+}
+
+.service-company-info small.service-company-address {
+    display: flex;
+    align-items: center;
+    gap: .55cqw;
+    max-width: 100%;
+    color: rgba(255, 255, 255, .5);
+    font-size: 1.42cqh;
+}
+
+.service-company-address svg {
+    flex-shrink: 0;
+    color: rgba(255, 255, 255, .42);
+}
+
+.service-company-open {
+    display: flex;
+    align-items: center;
+    gap: .35cqw;
+    align-self: center;
+    color: rgba(255, 255, 255, .46);
+    font-size: 1.2cqh;
+    font-weight: 600;
+}
+
+.service-company-open span {
+    opacity: .8;
+}
+
+.service-company-chevron {
+    color: rgba(255, 255, 255, .38);
+}
+
+.service-company-call,
+.service-company-message {
+    z-index: 1;
+    height: 5.1cqh;
+    border-radius: 1.45cqh;
+    font-size: 1.48cqh;
+    transition: filter .2s ease, transform .2s ease, border-color .2s ease;
+}
+
+.service-company-call:hover,
+.service-company-message:hover {
+    transform: translateY(-1px);
+}
+
+.service-company-call:active,
+.service-company-message:active {
+    transform: translateY(0) scale(.98);
 }
 </style>
