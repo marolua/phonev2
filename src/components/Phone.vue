@@ -335,10 +335,96 @@ onBeforeUnmount(() => {
             <div class="top">
                 <div v-show="!isPillActive" class="hour">22:50</div>
 
-                <DynamicIsland :expanded="isIslandExpanded" :expanded-width="activeIsland.width"
-                    :expanded-height="activeIsland.height" :hoverable="false">
+                <DynamicIsland :expanded="islandExpanded" :compact-width="islandWidth" :compact-height="islandHeight"
+                    :expanded-width="islandExpandedWidth" :expanded-height="islandExpandedHeight"
+                    :hoverable="islandHoverable" @click="activeCallState && openActiveCall()">
+                    <template #compact>
+                        <section v-if="activeCallState"
+                            class="island-layout island-layout--pill island-layout--pill-call island-layout--runtime-pill">
+                            <div class="pill-left">
+                                <img :src="PhoneGreen" alt="Appel en cours" />
+                                <span>{{ callDuration }}</span>
+                            </div>
+                            <div class="pill-right"><AudioLines size="3.5cqh" color="rgb(255, 255, 255)" /></div>
+                        </section>
+                        <section v-else-if="runtimeMessage"
+                            class="island-layout island-layout--small island-layout--small-message">
+                            <div class="message-notification-avatar" :style="{ background: runtimeMessage.color }">
+                                <img v-if="runtimeMessage.image" :src="runtimeMessage.image" :alt="runtimeMessage.name" />
+                                <span v-else>{{ runtimeMessage.initials }}</span>
+                            </div>
+                            <div class="message-notification-text">
+                                <strong>{{ runtimeMessage.name }}</strong><span>{{ runtimeMessage.preview }}</span>
+                            </div>
+                            <span class="message-notification-time">{{ runtimeMessage.time }}</span>
+                        </section>
+                        <section v-else-if="incomingCall"
+                            class="island-layout island-layout--incoming-call">
+                            <div class="incoming-call-avatar" :style="{ background: incomingCall.contact.color }">
+                                <img v-if="incomingCall.contact.photo" :src="incomingCall.contact.photo"
+                                    :alt="incomingCall.name" />
+                                <span v-else>{{ incomingCall.initials }}</span>
+                            </div>
+                            <div class="incoming-call-copy"><span>Appel entrant</span><strong>{{ incomingCall.name
+                                    }}</strong></div>
+                            <div class="incoming-call-actions">
+                                <button type="button" aria-label="Refuser l’appel" class="incoming-call-action incoming-call-action--reject"
+                                    @click.stop="rejectIncomingCall"><PhoneWhite /></button>
+                                <button type="button" aria-label="Répondre" class="incoming-call-action incoming-call-action--answer"
+                                    @click.stop="answerIncomingCall"><PhoneWhite /></button>
+                            </div>
+                        </section>
+                    </template>
                     <template #expanded>
                         <Transition name="island-layout-swap" mode="out-in">
+                            <section v-if="activeCallState" key="runtime-call"
+                                class="island-layout island-layout--medium island-layout--medium-call">
+                                <div class="medium-top">
+                                    <div class="medium-avatar" :style="{ background: activeCallState.contact.color }">
+                                        <img v-if="activeCallState.contact.photo" :src="activeCallState.contact.photo"
+                                            :alt="activeCallState.contact.name" />
+                                        <span v-else>{{ activeCallState.contact.initials }}</span>
+                                    </div>
+                                    <div class="medium-text">
+                                        <span>{{ activeCallState.contact.name }}</span>
+                                        <span>{{ callDuration }}</span>
+                                    </div>
+                                </div>
+                                <div class="medium-bottom">
+                                    <div class="medium-button"><Video size="3cqh" color="white" /></div>
+                                    <div class="medium-button"><Mic size="3cqh" color="white" /></div>
+                                    <div class="medium-button"><Volume2 size="3cqh" color="white" /></div>
+                                    <button type="button" class="medium-button" id="last" aria-label="Fermer l’appel"
+                                        @click.stop="activeCallState = null"><X size="3cqh" color="white" /></button>
+                                </div>
+                            </section>
+                            <section v-else-if="runtimeMessage" key="runtime-message"
+                                class="island-layout island-layout--small island-layout--small-message">
+                                <div class="message-notification-avatar" :style="{ background: runtimeMessage.color }">
+                                    <img v-if="runtimeMessage.image" :src="runtimeMessage.image" :alt="runtimeMessage.name" />
+                                    <span v-else>{{ runtimeMessage.initials }}</span>
+                                </div>
+                                <div class="message-notification-text">
+                                    <strong>{{ runtimeMessage.name }}</strong><span>{{ runtimeMessage.preview }}</span>
+                                </div>
+                                <span class="message-notification-time">{{ runtimeMessage.time }}</span>
+                            </section>
+                            <section v-else-if="incomingCall" key="runtime-incoming-call"
+                                class="island-layout island-layout--incoming-call">
+                                <div class="incoming-call-avatar" :style="{ background: incomingCall.contact.color }">
+                                    <img v-if="incomingCall.contact.photo" :src="incomingCall.contact.photo"
+                                        :alt="incomingCall.name" />
+                                    <span v-else>{{ incomingCall.initials }}</span>
+                                </div>
+                                <div class="incoming-call-copy"><span>Appel entrant</span><strong>{{ incomingCall.name
+                                        }}</strong></div>
+                                <div class="incoming-call-actions">
+                                    <button type="button" aria-label="Refuser l’appel" class="incoming-call-action incoming-call-action--reject"
+                                        @click.stop="rejectIncomingCall"><PhoneWhite /></button>
+                                    <button type="button" aria-label="Répondre" class="incoming-call-action incoming-call-action--answer"
+                                        @click.stop="answerIncomingCall"><PhoneWhite /></button>
+                                </div>
+                            </section>
                             <!-- Dynamic Island large : fond grand format. Ajoute tes divs dedans. -->
                             <section v-if="activeIsland.type === 'large'" key="large"
                                 class="island-layout island-layout--large">
