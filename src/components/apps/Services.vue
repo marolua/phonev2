@@ -334,7 +334,7 @@ const answerIncomingCall = (call) => {
                                 <component v-else :is="companyIcon(company.category)" :size="21" />
                             </span>
                             <span class="service-company-info"><strong>{{ company.name }}</strong><small>{{
-                                company.address }}</small></span>
+                                company.category }} · {{ company.address }}</small></span>
                             <ChevronRight :size="17" class="service-company-chevron" />
                         </button>
                         <button type="button" class="service-company-call" aria-label="Appeler l’entreprise"
