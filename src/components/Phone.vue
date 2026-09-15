@@ -128,9 +128,120 @@ const phoneStyle = computed(() => ({
     '--phone-scale': displayScale.value / 100,
 }))
 
-const showIsland = (index) => {
-    activeIslandIndex.value = index
+const initialsFromName = (name = '') => name
+    .split(/\s+/)
+    .filter(Boolean)
+    .map((part) => part[0])
+    .join('')
+    .slice(0, 2)
+    .toUpperCase() || '?'
+
+const truncatePreview = (text = '', maxLength = 48) => {
+    const preview = String(text).replace(/\s+/g, ' ').trim()
+    return preview.length > maxLength ? `${preview.slice(0, maxLength).trimEnd()}...` : preview
+}
+
+const normalizeContact = (contact = {}, fallbackName = '') => {
+    const firstName = contact.firstName || contact.firstname || ''
+    const lastName = contact.lastName || contact.lastname || ''
+    const name = `${firstName} ${lastName}`.trim() || contact.name || fallbackName || 'Contact inconnu'
+    return {
+        firstName: firstName || name.split(/\s+/)[0],
+        lastName: lastName || name.split(/\s+/).slice(1).join(' '),
+        phone: contact.phone || contact.number || '',
+        name,
+        initials: contact.initials || initialsFromName(name),
+        color: contact.color || 'linear-gradient(145deg, #52628e, #282c42)',
+        photo: contact.photo || contact.image || '',
+    }
+}
+
+const normalizeCallPayload = (payload = {}) => {
+    const contact = normalizeContact(payload.contact || payload, payload.name || payload.callerName)
+    const number = String(payload.number || payload.phone || contact.phone || '').trim()
+    return {
+        number,
+        contact,
+        initials: contact.initials,
+        name: contact.name,
+        color: contact.color,
+    }
+}
+
+const clearRuntimeMessage = () => {
+    runtimeMessage.value = null
+    if (messageNotificationTimer) window.clearTimeout(messageNotificationTimer)
+    messageNotificationTimer = null
+}
+
+const showRuntimeMessage = (payload) => {
+    const contact = normalizeContact(payload.contact || payload.sender || payload, payload.name || payload.senderName)
+    runtimeMessage.value = {
+        name: contact.name,
+        initials: contact.initials,
+        color: contact.color,
+        image: contact.photo,
+        preview: truncatePreview(payload.text || payload.body || payload.message || ''),
+        time: 'maintenant',
+    }
+    activeIslandIndex.value = 2
     isIslandExpanded.value = true
+    if (messageNotificationTimer) window.clearTimeout(messageNotificationTimer)
+    messageNotificationTimer = window.setTimeout(clearRuntimeMessage, 7000)
+}
+
+const showIncomingCall = (payload) => {
+    incomingCall.value = normalizeCallPayload(payload)
+    activeIslandIndex.value = 3
+    isIslandExpanded.value = true
+}
+
+const answerIncomingCall = () => {
+    if (!incomingCall.value) return
+    const call = incomingCall.value
+    incomingCall.value = null
+    openPhoneCall(call)
+}
+
+const rejectIncomingCall = () => {
+    incomingCall.value = null
+    isIslandExpanded.value = false
+}
+
+const handlePhoneEvent = (event) => {
+    const payload = event?.detail || event?.data || {}
+    const eventName = payload.event || payload.action || payload.type || ''
+    const messageEvents = ['phone:message', 'message:received', 'messageReceived', 'newMessage', 'new_message']
+    const callEvents = ['phone:incoming-call', 'incomingCall', 'incoming_call', 'call:incoming']
+    const messagePayload = payload.message || payload.notification
+    if (messageEvents.includes(eventName) || (eventName === 'message' && messagePayload)) {
+        showRuntimeMessage(messagePayload || payload)
+        return
+    }
+    if (callEvents.includes(eventName) || (eventName === 'call' && payload.incoming)) {
+        showIncomingCall(payload.call || payload)
+    }
+}
+
+const handleCallState = (call) => {
+    activeCallState.value = call ? { ...call, startedAt: call.startedAt || Date.now() } : null
+}
+
+const showIsland = (index) => {
+    clearRuntimeMessage()
+    incomingCall.value = null
+    activeIslandIndex.value = index
+    isIslandExpanded.value = islandExamples[index].type !== 'pill'
+    if (islandExamples[index].variant === 'message') {
+        runtimeMessage.value = islandExamples[index].notification
+    } else if (islandExamples[index].id === 'small') {
+        incomingCall.value = normalizeCallPayload({
+            number: '555-2048',
+            contact: { firstName: 'John', lastName: 'McKenzie', initials: 'JM', color: 'linear-gradient(145deg, #52628e, #282c42)' },
+        })
+    } else if (islandExamples[index].variant === 'call') {
+        activeCallState.value = { number: '555-2048', contact: normalizeContact({ firstName: 'John', lastName: 'McKenzie' }), startedAt: Date.now() - 3000 }
+    }
 }
 
 const hideIsland = () => {
