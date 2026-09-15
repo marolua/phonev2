@@ -17,6 +17,8 @@ const props = defineProps({
     },
 });
 
+const emit = defineEmits(['call-contact', 'call-state']);
+
 const activeCategory = ref(props.contactsOnly ? 'contacts' : 'calls');
 
 const categories = [
@@ -206,24 +208,30 @@ const confirmDeleteContact = () => {
     closeContact();
 };
 
-const startCall = (number, contact = null) => {
+const startCall = (number, contact = null, previousCall = null) => {
     if (!number?.trim()) return;
     isSpeakerOn.value = false;
     isMuted.value = false;
-    activeCall.value = { number: number.trim(), contact };
+    activeCall.value = {
+        number: number.trim(),
+        contact,
+        startedAt: previousCall?.startedAt || Date.now(),
+    };
+    emit('call-state', activeCall.value);
 };
 
 const getContactName = (contact) => `${contact?.firstName || ''} ${contact?.lastName || ''}`.trim();
 
 watch(() => props.initialCall, (call) => {
     if (!call) return;
-    startCall(call.number, call.contact);
+    startCall(call.number, call.contact, call);
 }, { immediate: true });
 
 const endCall = () => {
     activeCall.value = null;
     isSpeakerOn.value = false;
     isMuted.value = false;
+    emit('call-state', null);
 };
 
 const blockContact = () => {
