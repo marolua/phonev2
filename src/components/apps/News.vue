@@ -175,12 +175,6 @@ const publish = async () => {
                 </div>
             </header>
 
-            <div class="news-deskline">
-                <span class="news-deskline__live"><i></i> ÉDITION DU JOUR</span>
-                <span class="news-deskline__separator"></span>
-                <span>Les informations essentielles de Los Santos</span>
-            </div>
-
             <div v-if="searchQuery" class="news-search">
                 <Search :size="16" />
                 <input v-model="searchQuery" type="search" placeholder="Rechercher un article" autofocus />
