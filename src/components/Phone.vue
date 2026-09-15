@@ -94,13 +94,13 @@ const islandWidth = computed(() => {
     if (activeCallState.value) return '60cqw'
     if (incomingCall.value || runtimeMessage.value) return '87cqw'
     if (runtimeIsland.value.type === 'pill') return '60cqw'
-    return '32cqw'
+    return runtimeIsland.value.width
 })
 const islandHeight = computed(() => {
     if (activeCallState.value) return '6cqh'
     if (incomingCall.value || runtimeMessage.value) return '8.5cqh'
     if (runtimeIsland.value.type === 'pill') return '6cqh'
-    return '4.8cqh'
+    return runtimeIsland.value.height
 })
 const islandExpandedWidth = computed(() => activeCallState.value ? '88cqw' : runtimeIsland.value.width)
 const islandExpandedHeight = computed(() => activeCallState.value ? '17cqh' : runtimeIsland.value.height)
