@@ -75,7 +75,7 @@ const conversationMessages = computed(() => {
 });
 
 const serviceCategories = [
-    { id: 'directory', label: 'Companies', icon: Building2 },
+    { id: 'directory', label: 'Entreprises', icon: Building2 },
     { id: 'messages', label: 'Messages', icon: MessageCircle, badge: () => unreadCount.value },
 ];
 
