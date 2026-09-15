@@ -144,7 +144,7 @@ const requestBrowserCoordinates = () => new Promise((resolve) => {
 const requestCoordinates = async () => getPlayerCoordinates() || requestBrowserCoordinates();
 
 const openCompany = (company) => {
-    openMessageComposer(company);
+    selectedCompany.value = company;
 };
 const closeCompany = () => { selectedCompany.value = null; };
 
@@ -328,7 +328,7 @@ const answerIncomingCall = (call) => {
                 <div v-if="isLoading" class="services-empty"><span>Chargement de l’annuaire…</span></div>
                 <template v-else>
                     <div v-for="company in visibleCompanies" :key="company.id" class="service-company-row">
-                        <button type="button" class="service-company-main" @click="openConversation(company)">
+                        <button type="button" class="service-company-main" @click="openCompany(company)">
                             <span class="service-company-icon" :style="{ background: company.color }">
                                 <img v-if="companyImage(company)" :src="companyImage(company)" alt="" />
                                 <component v-else :is="companyIcon(company.category)" :size="21" />
