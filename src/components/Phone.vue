@@ -342,9 +342,9 @@ onBeforeUnmount(() => {
 
                 <DynamicIsland :expanded="islandExpanded" :compact-width="islandWidth" :compact-height="islandHeight"
                     :expanded-width="islandExpandedWidth" :expanded-height="islandExpandedHeight"
-                    :hoverable="islandHoverable" @click="activeCallState && openActiveCall()">
+                    :hoverable="islandHoverable" @click="showCallPill && openActiveCall()">
                     <template #compact>
-                        <section v-if="activeCallState"
+                        <section v-if="showCallPill"
                             class="island-layout island-layout--pill island-layout--pill-call island-layout--runtime-pill">
                             <div class="pill-left">
                                 <img :src="PhoneGreen" alt="Appel en cours" />
@@ -387,13 +387,15 @@ onBeforeUnmount(() => {
                     </template>
                     <template #expanded>
                         <Transition name="island-layout-swap" mode="out-in">
-                            <section v-if="activeCallState" key="runtime-call"
+                            <section v-if="showCallPill" key="runtime-call"
                                 class="island-layout island-layout--medium island-layout--medium-call">
                                 <div class="medium-top">
-                                    <div class="medium-avatar" :style="{ background: activeCallState.contact.color }">
-                                        <img v-if="activeCallState.contact.photo" :src="activeCallState.contact.photo"
-                                            :alt="activeCallState.contact.name" />
-                                        <span v-else>{{ activeCallState.contact.initials }}</span>
+                                    <div class="medium-image">
+                                        <div class="medium-avatar" :style="{ background: activeCallState.contact.color }">
+                                            <img v-if="activeCallState.contact.photo" :src="activeCallState.contact.photo"
+                                                :alt="activeCallState.contact.name" />
+                                            <span v-else>{{ activeCallState.contact.initials }}</span>
+                                        </div>
                                     </div>
                                     <div class="medium-text">
                                         <span>{{ activeCallState.contact.name }}</span>
@@ -481,9 +483,11 @@ onBeforeUnmount(() => {
                             <section v-else-if="activeIsland.type === 'medium'" key="medium"
                                 class="island-layout island-layout--medium">
                                 <div class="medium-top">
-                                    <div class="medium-avatar"
-                                        style="background: linear-gradient(145deg, #52628e, #282c42)">
-                                        <span>JM</span>
+                                    <div class="medium-image">
+                                        <div class="medium-avatar"
+                                            style="background: linear-gradient(145deg, #52628e, #282c42)">
+                                            <span>JM</span>
+                                        </div>
                                     </div>
                                     <div class="medium-text">
                                         <span>John McKenzie</span>
