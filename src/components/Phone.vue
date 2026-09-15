@@ -1428,7 +1428,6 @@ onBeforeUnmount(() => {
     overflow: hidden;
     color: white;
     font-weight: 700;
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .18), 0 .35cqh .8cqh rgba(0, 0, 0, .25);
 }
 
 .incoming-call-avatar {
@@ -1503,7 +1502,8 @@ onBeforeUnmount(() => {
     height: 11.75cqw;
     margin: 0;
     border-radius: 50%;
-    font-size: 3.2cqh;
+    font-size: 2.5cqh;
+    font-weight: 600;
 }
 
 .island-layout--medium-call .medium-bottom {
