@@ -213,7 +213,8 @@ const handlePhoneEvent = (event) => {
     const messageEvents = ['phone:message', 'message:received', 'messageReceived', 'newMessage', 'new_message']
     const callEvents = ['phone:incoming-call', 'incomingCall', 'incoming_call', 'call:incoming']
     const messagePayload = payload.message || payload.notification
-    if (messageEvents.includes(eventName) || (eventName === 'message' && messagePayload)) {
+    if (messageEvents.includes(eventName)
+        || (eventName === 'message' && (messagePayload || payload.text || payload.body || payload.senderName))) {
         showRuntimeMessage(messagePayload || payload)
         return
     }
