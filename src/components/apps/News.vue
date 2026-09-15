@@ -4,6 +4,7 @@ import {
     ArrowLeft,
     Bell,
     Bookmark,
+    Camera,
     Check,
     ChevronRight,
     ChevronDown,
@@ -1147,6 +1148,192 @@ const publish = async () => {
 .news-page-leave-to {
     opacity: 0;
     transform: translateX(100%);
+}
+
+/* Lecture rapide : catégories en puces, cartes mieux séparées et texte plus confortable. */
+.news-header h1 {
+    font-size: 5.8cqh;
+    letter-spacing: -.1cqw;
+}
+
+.news-header-actions button {
+    border: 1px solid rgba(255, 255, 255, .08);
+    background: rgba(38, 38, 41, .9);
+    transition: color .2s ease, background .2s ease, transform .2s ease;
+}
+
+.news-header-actions button:hover {
+    color: #fff;
+    background: rgba(255, 59, 107, .2);
+    transform: translateY(-1px);
+}
+
+.news-search {
+    border: 1px solid rgba(255, 255, 255, .1);
+    background: rgba(35, 35, 38, .94);
+}
+
+.news-search input {
+    font-size: 1.9cqh;
+}
+
+.news-categories {
+    gap: 1.2cqw;
+    margin-top: 2.1cqh;
+    margin-bottom: 1.8cqh;
+    padding-bottom: .2cqh;
+}
+
+.news-categories button {
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 999px;
+    padding: .75cqh 1.6cqw;
+    color: rgba(255, 255, 255, .58);
+    background: rgba(38, 38, 41, .85);
+    font-size: 1.6cqh;
+    font-weight: 600;
+    transition: color .2s ease, border-color .2s ease, background .2s ease, transform .2s ease;
+}
+
+.news-categories button.news-category--active {
+    border-color: rgba(255, 59, 107, .6);
+    color: #fff;
+    background: rgba(255, 59, 107, .2);
+    box-shadow: 0 .35cqh 1cqh rgba(255, 59, 107, .12);
+}
+
+.news-categories button:hover {
+    border-color: rgba(255, 59, 107, .45);
+    transform: translateY(-1px);
+}
+
+.news-section-heading {
+    margin-top: 1.8cqh;
+    font-size: 2.2cqh;
+}
+
+.news-section-heading small {
+    font-size: 1.5cqh;
+}
+
+.news-featured-card {
+    height: 32cqh;
+    border: 1px solid rgba(255, 255, 255, .1);
+    box-shadow: 0 1cqh 2.5cqh rgba(0, 0, 0, .3), inset 0 1px 0 rgba(255, 255, 255, .08);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.news-featured-card:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 1.3cqh 3cqh rgba(0, 0, 0, .35), inset 0 1px 0 rgba(255, 255, 255, .1);
+}
+
+.news-featured-content strong {
+    font-size: 3.25cqh;
+    line-height: 1.1;
+}
+
+.news-featured-content>span:not(.news-pill) {
+    display: -webkit-box;
+    overflow: hidden;
+    font-size: 1.7cqh;
+    line-height: 1.3;
+    white-space: normal;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.news-featured-content small {
+    font-size: 1.4cqh;
+}
+
+.news-article-row {
+    min-height: 15.5cqh;
+    margin-bottom: 1.15cqh;
+    border: 1px solid rgba(255, 255, 255, .09);
+    border-radius: 1.8cqh;
+    padding: 1.35cqh 1.35cqw;
+    background: rgba(28, 28, 30, .95);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .025);
+    transition: border-color .2s ease, background .2s ease, transform .2s ease;
+}
+
+.news-article-row:hover {
+    border-color: rgba(255, 59, 107, .32);
+    background: rgba(39, 29, 34, .98);
+    transform: translateY(-1px);
+}
+
+.news-article-row:focus-visible,
+.news-featured-card:focus-visible {
+    outline: 2px solid rgba(255, 124, 153, .95);
+    outline-offset: 2px;
+}
+
+.news-article-image {
+    width: 21cqw;
+    height: 13.2cqh;
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 1.35cqh;
+}
+
+.news-article-info {
+    gap: .7cqh;
+}
+
+.news-article-meta {
+    font-size: 1.4cqh;
+}
+
+.news-article-info strong {
+    display: -webkit-box;
+    overflow: hidden;
+    font-size: 2.05cqh;
+    line-height: 1.18;
+    white-space: normal;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.news-article-excerpt {
+    display: -webkit-box;
+    overflow: hidden;
+    color: rgba(255, 255, 255, .58);
+    font-size: 1.6cqh;
+    line-height: 1.28;
+    white-space: normal;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.news-article-info small {
+    font-size: 1.35cqh;
+}
+
+.news-empty strong {
+    font-size: 2.25cqh;
+}
+
+.news-empty span,
+.news-loading {
+    font-size: 1.65cqh;
+}
+
+.news-detail-content h2 {
+    font-size: 4.35cqh;
+    line-height: 1.08;
+}
+
+.news-detail-excerpt,
+.news-detail-body {
+    font-size: 2.1cqh;
+}
+
+.news-detail-actions button {
+    min-height: 5.2cqh;
+    border-color: rgba(255, 255, 255, .16);
+    font-size: 1.6cqh;
+    font-weight: 600;
 }
 
 .news-sheet-enter-from,
