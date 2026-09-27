@@ -268,7 +268,9 @@ const showDemoCall = () => {
 const showDemoMessage = () => {
     resetIslandState()
     showRuntimeMessage({
+        id: 'demo-message',
         name: 'John McKenzie',
+        phone: '555-2048',
         text: 'Salut, tu es disponible ce soir ?',
         contact: { initials: 'JM', color: 'linear-gradient(145deg, #52628e, #282c42)' },
     })
@@ -276,8 +278,69 @@ const showDemoMessage = () => {
 
 const showDemoAirDrop = () => {
     resetIslandState()
+    incomingAirDrop.value = {
+        firstName: 'Pete',
+        lastName: 'Peterson',
+        name: 'Pete Peterson',
+        phone: '555-4821',
+        photo: '',
+    }
     activeIslandIndex.value = 0
     isIslandExpanded.value = true
+}
+
+const dismissAirDrop = () => {
+    incomingAirDrop.value = null
+    isIslandExpanded.value = false
+}
+
+const rejectAirDrop = () => {
+    dismissAirDrop()
+}
+
+const acceptAirDrop = () => {
+    if (!incomingAirDrop.value) return
+
+    const airdropContact = incomingAirDrop.value
+    const phone = formatPhoneNumber(airdropContact.phone)
+    const alreadySaved = contacts.value.some((contact) => formatPhoneNumber(contact.phone) === phone)
+
+    if (!alreadySaved) {
+        contacts.value.push({
+            id: Date.now(),
+            firstName: airdropContact.firstName,
+            lastName: airdropContact.lastName,
+            phone,
+            photo: airdropContact.photo,
+        })
+    }
+
+    dismissAirDrop()
+}
+
+const openRuntimeMessage = () => {
+    if (!runtimeMessage.value) return
+
+    const message = runtimeMessage.value
+    clearRuntimeMessage()
+    const messagesApplication = applications.find((application) => application.id === 'messages')
+    if (!messagesApplication?.component) return
+
+    pendingPhoneCall.value = null
+    pendingMessage.value = {
+        id: message.id,
+        name: message.name,
+        phone: message.phone,
+        initials: message.initials,
+        color: message.color,
+        text: message.preview,
+    }
+    activeApplication.value = messagesApplication
+}
+
+const handleIslandClick = () => {
+    if (showCallPill.value) return openActiveCall()
+    if (runtimeMessage.value) return openRuntimeMessage()
 }
 
 const openApplication = (application, event) => {
@@ -296,12 +359,14 @@ const openApplication = (application, event) => {
         }
     }
 
+    pendingMessage.value = null
     activeApplication.value = application
 }
 
 const closeApplication = () => {
     activeApplication.value = null
     pendingPhoneCall.value = null
+    pendingMessage.value = null
 }
 
 const openPhoneCall = (call) => {
@@ -371,7 +436,7 @@ onBeforeUnmount(() => {
 
                 <DynamicIsland :expanded="islandExpanded" :compact-width="islandWidth" :compact-height="islandHeight"
                     :expanded-width="islandExpandedWidth" :expanded-height="islandExpandedHeight"
-                    :hoverable="islandHoverable" @click="showCallPill && openActiveCall()">
+                    :hoverable="islandHoverable" @click="handleIslandClick">
                     <template #compact>
                         <section v-if="showCallPill"
                             class="island-layout island-layout--pill island-layout--pill-call island-layout--runtime-pill">
@@ -487,8 +552,8 @@ onBeforeUnmount(() => {
                                     </div>
                                 </div>
                                 <div class="large-bottom">
-                                    <div class="button-first">Refuser</div>
-                                    <div class="button-second">Accepter</div>
+                                    <button type="button" class="button-first" @click.stop="rejectAirDrop">Refuser</button>
+                                    <button type="button" class="button-second" @click.stop="acceptAirDrop">Accepter</button>
                                 </div>
                             </section>
 
@@ -632,6 +697,7 @@ onBeforeUnmount(() => {
                 <div v-if="activeApplication" class="application-overlay" :style="applicationTransitionStyle">
                     <component :is="activeApplication.component" :application="activeApplication"
                         :initial-call="pendingPhoneCall || (activeApplication.id === 'phone' ? activeCallState : null)"
+                        :initial-conversation="pendingMessage"
                         @call-contact="openPhoneCall" @call-state="handleCallState" />
                 </div>
             </Transition>
@@ -1079,8 +1145,13 @@ onBeforeUnmount(() => {
             height: 5cqh;
             border-radius: 3cqh;
             background-color: rgb(51, 51, 51);
+            border: 0;
+            padding: 0;
+            color: white;
+            font-family: inherit;
             font-weight: 450;
             font-size: 1.85cqh;
+            cursor: pointer;
         }
 
         .button-second {
@@ -1092,9 +1163,13 @@ onBeforeUnmount(() => {
             height: 5cqh;
             border-radius: 3cqh;
             background-color: rgba(18, 53, 100);
+            border: 0;
+            padding: 0;
+            font-family: inherit;
             font-weight: 450;
             font-size: 1.85cqh;
             color: rgb(43, 112, 200);
+            cursor: pointer;
         }
     }
 }
