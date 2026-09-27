@@ -183,6 +183,8 @@ const normalizeCallPayload = (payload = {}) => {
 
 const clearRuntimeMessage = () => {
     runtimeMessage.value = null
+    activeIslandIndex.value = 0
+    isIslandExpanded.value = false
     if (messageNotificationTimer) window.clearTimeout(messageNotificationTimer)
     messageNotificationTimer = null
 }
