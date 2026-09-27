@@ -73,8 +73,10 @@ const incomingCall = ref(null)
 const activeCallState = ref(null)
 const activeApplication = ref(null)
 const callTicker = ref(0)
+const currentTime = ref('')
 let messageNotificationTimer = null
 let callTickerTimer = null
+let clockTimer = null
 
 const activeIsland = computed(() => islandExamples[activeIslandIndex.value])
 const showCallPill = computed(() => Boolean(activeCallState.value && activeApplication.value?.id !== 'phone'))
@@ -112,6 +114,11 @@ const callDuration = computed(() => {
     const seconds = Math.max(0, Math.floor((Date.now() - activeCallState.value.startedAt) / 1000));
     return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
 })
+const formatCurrentTime = () => new Intl.DateTimeFormat('fr-FR', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+}).format(new Date())
 const pendingPhoneCall = ref(null)
 const screenElement = ref(null)
 const applicationTransitionOrigin = ref({ x: 50, y: 50 })
@@ -232,26 +239,35 @@ const handleCallState = (call) => {
     activeCallState.value = call ? { ...call, startedAt: call.startedAt || Date.now() } : null
 }
 
-const showIsland = (index) => {
+const resetIslandState = () => {
     clearRuntimeMessage()
     incomingCall.value = null
     activeCallState.value = null
-    activeIslandIndex.value = index
-    isIslandExpanded.value = islandExamples[index].type !== 'pill'
-    if (islandExamples[index].variant === 'message') {
-        runtimeMessage.value = islandExamples[index].notification
-    } else if (islandExamples[index].id === 'small') {
-        incomingCall.value = normalizeCallPayload({
-            number: '555-2048',
-            contact: { firstName: 'John', lastName: 'McKenzie', initials: 'JM', color: 'linear-gradient(145deg, #52628e, #282c42)' },
-        })
-    } else if (islandExamples[index].variant === 'call') {
-        activeCallState.value = { number: '555-2048', contact: normalizeContact({ firstName: 'John', lastName: 'McKenzie' }), startedAt: Date.now() - 3000 }
-    }
 }
 
-const hideIsland = () => {
-    isIslandExpanded.value = false
+const showDemoCall = () => {
+    resetIslandState()
+    activeIslandIndex.value = 3
+    isIslandExpanded.value = true
+    incomingCall.value = normalizeCallPayload({
+        number: '555-2048',
+        contact: { firstName: 'John', lastName: 'McKenzie', initials: 'JM', color: 'linear-gradient(145deg, #52628e, #282c42)' },
+    })
+}
+
+const showDemoMessage = () => {
+    resetIslandState()
+    showRuntimeMessage({
+        name: 'John McKenzie',
+        text: 'Salut, tu es disponible ce soir ?',
+        contact: { initials: 'JM', color: 'linear-gradient(145deg, #52628e, #282c42)' },
+    })
+}
+
+const showDemoAirDrop = () => {
+    resetIslandState()
+    activeIslandIndex.value = 0
+    isIslandExpanded.value = true
 }
 
 const openApplication = (application, event) => {
@@ -299,6 +315,8 @@ onMounted(() => {
     window.addEventListener('phone:message', handlePhoneEvent)
     window.addEventListener('phone:incoming-call', handlePhoneEvent)
     window.addEventListener('message', handlePhoneEvent)
+    currentTime.value = formatCurrentTime()
+    clockTimer = window.setInterval(() => { currentTime.value = formatCurrentTime() }, 1000)
     callTickerTimer = window.setInterval(() => { callTicker.value += 1 }, 1000)
 })
 
@@ -307,6 +325,7 @@ onBeforeUnmount(() => {
     window.removeEventListener('phone:incoming-call', handlePhoneEvent)
     window.removeEventListener('message', handlePhoneEvent)
     if (messageNotificationTimer) window.clearTimeout(messageNotificationTimer)
+    if (clockTimer) window.clearInterval(clockTimer)
     if (callTickerTimer) window.clearInterval(callTickerTimer)
 })
 
@@ -314,14 +333,14 @@ onBeforeUnmount(() => {
 
 <template>
     <div class="dev-island-controls">
-        <button class="dev-island-controls__button" type="button" @click="hideIsland">
-            Masquer
+        <button class="dev-island-controls__button" type="button" @click="showDemoCall">
+            Appel entrant
         </button>
-
-        <button v-for="(island, index) in islandExamples" :key="island.id" class="dev-island-controls__button"
-            :class="{ 'dev-island-controls__button--active': activeIslandIndex === index }" type="button"
-            @click="showIsland(index)">
-            {{ island.label ?? island.type }}
+        <button class="dev-island-controls__button" type="button" @click="showDemoMessage">
+            Message reçu
+        </button>
+        <button class="dev-island-controls__button" type="button" @click="showDemoAirDrop">
+            AirDrop reçu
         </button>
     </div>
 
@@ -338,7 +357,7 @@ onBeforeUnmount(() => {
 
         <div ref="screenElement" class="screen" :style="screenStyle">
             <div class="top">
-                <div v-show="!isPillActive" class="hour">22:50</div>
+                <div v-show="!isPillActive" class="hour">{{ currentTime }}</div>
 
                 <DynamicIsland :expanded="islandExpanded" :compact-width="islandWidth" :compact-height="islandHeight"
                     :expanded-width="islandExpandedWidth" :expanded-height="islandExpandedHeight"
