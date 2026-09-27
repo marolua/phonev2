@@ -8,14 +8,37 @@ const getResourceName = () => {
     return null;
   }
 
-  return window.GetParentResourceName();
+  try {
+    return window.GetParentResourceName();
+  } catch {
+    return null;
+  }
 };
+
+const parseResponse = async (response) => {
+  if (!response.ok) return null;
+
+  const body = await response.text();
+  if (!body) return { success: true };
+
+  try {
+    return JSON.parse(body);
+  } catch {
+    return body;
+  }
+};
+
+const getMessagePayload = (event) => event?.detail || event?.data || {};
+
+const getMessageAction = (payload) => String(
+  payload?.action || payload?.event || payload?.type || "",
+).toLowerCase();
 
 export const useFiveMBridge = () => {
   const resourceName = computed(getResourceName);
   const isFiveM = computed(() => Boolean(resourceName.value));
 
-  const invoke = async (endpoint, payload = {}) => {
+  const invoke = async (endpoint, payload = {}, options = {}) => {
     if (!resourceName.value) return null;
 
     try {
@@ -25,15 +48,29 @@ export const useFiveMBridge = () => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
+          signal: options.signal,
         },
       );
 
-      if (!response.ok) return null;
-      return await response.json();
+      return await parseResponse(response);
     } catch {
       return null;
     }
   };
 
-  return { invoke, isFiveM, resourceName };
+  const listen = (actions, handler) => {
+    const acceptedActions = Array.isArray(actions)
+      ? actions.map((action) => String(action).toLowerCase())
+      : [String(actions).toLowerCase()];
+    const listener = (event) => {
+      const payload = getMessagePayload(event);
+      if (!acceptedActions.includes(getMessageAction(payload))) return;
+      handler(payload, event);
+    };
+
+    window.addEventListener("message", listener);
+    return () => window.removeEventListener("message", listener);
+  };
+
+  return { invoke, isFiveM, listen, resourceName };
 };

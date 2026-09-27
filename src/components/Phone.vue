@@ -12,6 +12,10 @@ import { contacts } from '../stores/contacts';
 import { brightness, displayScale, selectedWallpaper } from '../stores/phoneSettings';
 import { unreadMessageCount } from '../stores/messages';
 import { formatPhoneNumber } from '../utils/phoneNumber';
+import { useFiveMBridge } from '../composables/useFiveMBridge';
+import { phoneNuiActions, phoneNuiCallbacks } from '../config/phoneNuiContract';
+
+const { invoke, isFiveM } = useFiveMBridge();
 
 const islandExamples = [
     {
@@ -76,11 +80,16 @@ const incomingAirDrop = ref(null)
 const activeCallState = ref(null)
 const activeApplication = ref(null)
 const pendingMessage = ref(null)
+const isPhoneVisible = ref(true)
 const callTicker = ref(0)
 const currentTime = ref('')
 let messageNotificationTimer = null
 let callTickerTimer = null
 let clockTimer = null
+
+const notifyFiveM = (endpoint, payload = {}) => {
+    if (isFiveM.value) void invoke(endpoint, payload)
+}
 
 const activeIsland = computed(() => islandExamples[activeIslandIndex.value])
 const showCallPill = computed(() => Boolean(activeCallState.value && activeApplication.value?.id !== 'phone'))
@@ -215,15 +224,31 @@ const showIncomingCall = (payload) => {
     isIslandExpanded.value = true
 }
 
+const showIncomingAirDrop = (payload = {}) => {
+    resetIslandState()
+    const contact = normalizeContact(payload.contact || payload.sender || payload, payload.name || payload.senderName)
+    incomingAirDrop.value = {
+        ...contact,
+        firstName: contact.firstName,
+        lastName: contact.lastName,
+        name: contact.name,
+        phone: payload.phone || payload.number || contact.phone,
+    }
+    activeIslandIndex.value = 0
+    isIslandExpanded.value = true
+}
+
 const answerIncomingCall = () => {
     if (!incomingCall.value) return
     const call = incomingCall.value
     incomingCall.value = null
     isIslandExpanded.value = false
+    notifyFiveM(phoneNuiCallbacks.answerCall, call)
     openPhoneCall(call)
 }
 
 const rejectIncomingCall = () => {
+    if (incomingCall.value) notifyFiveM(phoneNuiCallbacks.rejectCall, incomingCall.value)
     incomingCall.value = null
     isIslandExpanded.value = false
 }
@@ -232,22 +257,44 @@ const handlePhoneEvent = (event) => {
     const payload = event?.detail || event?.data || {}
     const eventName = payload.event || payload.action || payload.type || ''
     const normalizedEventName = String(eventName).toLowerCase()
-    const messageEvents = ['phone:message', 'message:received', 'messageReceived', 'newMessage', 'new_message']
-    const callEvents = ['phone:incoming-call', 'incomingCall', 'incoming_call', 'call:incoming']
+    if ([phoneNuiActions.show, 'setphonevisible', 'phone:visibility'].includes(normalizedEventName)) {
+        isPhoneVisible.value = payload.visible !== false
+        return
+    }
+    if (normalizedEventName === phoneNuiActions.hide) {
+        isPhoneVisible.value = false
+        return
+    }
+    if (normalizedEventName === phoneNuiActions.show) {
+        isPhoneVisible.value = true
+        return
+    }
+    if (normalizedEventName === phoneNuiActions.toggle) {
+        isPhoneVisible.value = !isPhoneVisible.value
+        return
+    }
+
+    const messageEvents = ['phone:message', 'message:received', 'messagereceived', 'newmessage', 'new_message']
+    const callEvents = ['phone:incoming-call', 'incomingcall', 'incoming_call', 'call:incoming']
     const messagePayload = payload.message || payload.serviceMessage || payload.notification
     const callPayload = payload.call || payload.serviceCall
-    if (messageEvents.includes(eventName)
+    if (messageEvents.includes(normalizedEventName)
         || (normalizedEventName.includes('message') && (messagePayload || payload.text || payload.body || payload.senderName))) {
         showRuntimeMessage(messagePayload || payload)
         return
     }
-    if (callEvents.includes(eventName) || (normalizedEventName.includes('call') && (callPayload || payload.incoming))) {
+    if (normalizedEventName === phoneNuiActions.airdrop || normalizedEventName === 'airdropreceived') {
+        showIncomingAirDrop(payload.airdrop || payload.contact || payload)
+        return
+    }
+    if (callEvents.includes(normalizedEventName) || (normalizedEventName.includes('call') && (callPayload || payload.incoming))) {
         showIncomingCall(callPayload || payload)
     }
 }
 
 const handleCallState = (call) => {
     activeCallState.value = call ? { ...call, startedAt: call.startedAt || Date.now() } : null
+    if (!call) notifyFiveM(phoneNuiCallbacks.endCall)
 }
 
 const resetIslandState = () => {
@@ -297,6 +344,10 @@ const dismissAirDrop = () => {
 }
 
 const rejectAirDrop = () => {
+    if (incomingAirDrop.value) notifyFiveM(phoneNuiCallbacks.airdropResponse, {
+        accepted: false,
+        contact: incomingAirDrop.value,
+    })
     dismissAirDrop()
 }
 
@@ -317,6 +368,10 @@ const acceptAirDrop = () => {
         })
     }
 
+    notifyFiveM(phoneNuiCallbacks.airdropResponse, {
+        accepted: true,
+        contact: airdropContact,
+    })
     dismissAirDrop()
 }
 
@@ -325,6 +380,7 @@ const openRuntimeMessage = () => {
 
     const message = runtimeMessage.value
     clearRuntimeMessage()
+    notifyFiveM(phoneNuiCallbacks.messageOpened, message)
     const messagesApplication = applications.find((application) => application.id === 'messages')
     if (!messagesApplication?.component) return
 
@@ -363,9 +419,11 @@ const openApplication = (application, event) => {
 
     pendingMessage.value = null
     activeApplication.value = application
+    notifyFiveM(phoneNuiCallbacks.appOpened, { appId: application.id })
 }
 
 const closeApplication = () => {
+    if (activeApplication.value) notifyFiveM(phoneNuiCallbacks.appClosed, { appId: activeApplication.value.id })
     activeApplication.value = null
     pendingPhoneCall.value = null
     pendingMessage.value = null
@@ -382,10 +440,17 @@ const openPhoneCall = (call) => {
     }
     pendingPhoneCall.value = activeCallState.value
     activeApplication.value = phoneApplication
+    notifyFiveM(phoneNuiCallbacks.startCall, activeCallState.value)
 }
 
 const openActiveCall = () => {
     if (activeCallState.value) openPhoneCall(activeCallState.value)
+}
+
+const endActiveCall = () => {
+    activeCallState.value = null
+    pendingPhoneCall.value = null
+    notifyFiveM(phoneNuiCallbacks.endCall)
 }
 
 onMounted(() => {
@@ -395,6 +460,7 @@ onMounted(() => {
     currentTime.value = formatCurrentTime()
     clockTimer = window.setInterval(() => { currentTime.value = formatCurrentTime() }, 1000)
     callTickerTimer = window.setInterval(() => { callTicker.value += 1 }, 1000)
+    notifyFiveM(phoneNuiCallbacks.ready)
 })
 
 onBeforeUnmount(() => {
@@ -409,7 +475,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-    <div class="dev-island-controls">
+    <div v-if="!isFiveM" class="dev-island-controls">
         <button class="dev-island-controls__button" type="button" @click="showDemoCall">
             Appel entrant
         </button>
@@ -421,7 +487,7 @@ onBeforeUnmount(() => {
         </button>
     </div>
 
-    <div class="full-phone-coque" :style="phoneStyle">
+    <div v-show="isPhoneVisible" class="full-phone-coque" :style="phoneStyle">
         <div class="button">
             <div class="button-left">
                 <div class="button-left-volume"></div>
@@ -507,7 +573,7 @@ onBeforeUnmount(() => {
                                         <Volume2 size="3cqh" color="white" />
                                     </div>
                                     <button type="button" class="medium-button" id="last" aria-label="Fermer l’appel"
-                                        @click.stop="activeCallState = null">
+                                        @click.stop="endActiveCall">
                                         <X size="3cqh" color="white" />
                                     </button>
                                 </div>
