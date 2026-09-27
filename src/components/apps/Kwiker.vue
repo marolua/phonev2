@@ -2620,4 +2620,139 @@ const saveAccount = () => { const name = accountDraft.value.name.trim(); const h
 .kwiker-account-preview small {
     font-size: 1.5cqh;
 }
+
+/* Adaptation finale pour l'ecran du telephone : contenu lisible et actions toujours accessibles. */
+.kwiker-app,
+.kwiker-app * {
+    box-sizing: border-box;
+}
+
+.kwiker-app button {
+    touch-action: manipulation;
+}
+
+.kwiker-feed {
+    width: 100%;
+    min-width: 0;
+    flex: 1 1 auto;
+    padding-bottom: 1.5cqh;
+    overscroll-behavior-y: contain;
+}
+
+.kwiker-post,
+.kwiker-post-body,
+.kwiker-post-header,
+.kwiker-post-author {
+    min-width: 0;
+}
+
+.kwiker-post-actions {
+    gap: .5cqw;
+}
+
+.kwiker-post-actions button {
+    flex: 1 1 0;
+    justify-content: center;
+    min-width: 0;
+    min-height: 4.8cqh;
+    white-space: nowrap;
+}
+
+.kwiker-post-actions button svg {
+    flex: 0 0 auto;
+}
+
+.kwiker-bottom-nav {
+    flex: 0 0 9.5cqh;
+    width: auto;
+    height: 9.5cqh;
+    min-height: 9.5cqh;
+    margin: 0 3cqw .8cqh;
+    transform: none;
+}
+
+.kwiker-bottom-nav :deep(.bottom-navigation--kwiker) {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    transform: none;
+}
+
+.kwiker-bottom-nav :deep(.bottom-navigation__item) {
+    min-height: 5.8cqh;
+}
+
+.kwiker-bottom-nav :deep(.bottom-navigation__item span) {
+    max-width: 100%;
+    overflow: hidden;
+    font-size: 1.35cqh;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.kwiker-page-scroll {
+    width: 100%;
+    flex: 1 1 auto;
+    min-width: 0;
+    overscroll-behavior-y: contain;
+}
+
+.kwiker-page-header {
+    min-height: 6.8cqh;
+}
+
+.kwiker-page-header button,
+.kwiker-icon-button,
+.kwiker-post-header > button {
+    flex: 0 0 auto;
+}
+
+.kwiker-profile-meta,
+.kwiker-profile-stats {
+    flex-wrap: wrap;
+    row-gap: .8cqh;
+}
+
+.kwiker-profile-stats span {
+    white-space: nowrap;
+}
+
+.kwiker-settings-row > span:nth-child(2) {
+    overflow: hidden;
+}
+
+.kwiker-settings-row strong,
+.kwiker-settings-row small {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.kwiker-sheet {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.kwiker-sheet-header {
+    position: sticky;
+    z-index: 2;
+    top: 0;
+    flex: 0 0 auto;
+    background: #1c1c1e;
+}
+
+.kwiker-sheet-content,
+.kwiker-composer-content {
+    min-width: 0;
+}
+
+.kwiker-comments-sheet {
+    min-height: 0;
+}
+
+.kwiker-comments-scroll {
+    width: 100%;
+    overscroll-behavior-y: contain;
+}
 </style>
