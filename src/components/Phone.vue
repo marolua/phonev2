@@ -752,8 +752,8 @@ onBeforeUnmount(() => {
     display: flex;
     justify-content: center;
     align-items: center;
-    top: 50%;
-    left: 60%;
+    top: 65%;
+    right: 0%;
     transform: translate(-50%, -50%) scale(var(--phone-scale, 1));
     transform-origin: bottom right;
     width: 16.11vw;
