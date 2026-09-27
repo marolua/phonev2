@@ -189,8 +189,11 @@ const clearRuntimeMessage = () => {
 
 const showRuntimeMessage = (payload) => {
     const contact = normalizeContact(payload.contact || payload.sender || payload, payload.name || payload.senderName)
+    incomingAirDrop.value = null
     runtimeMessage.value = {
+        id: payload.id || `runtime-message-${Date.now()}`,
         name: contact.name,
+        phone: payload.phone || payload.number || contact.phone,
         initials: contact.initials,
         color: contact.color,
         image: contact.photo,
@@ -200,10 +203,11 @@ const showRuntimeMessage = (payload) => {
     activeIslandIndex.value = 2
     isIslandExpanded.value = true
     if (messageNotificationTimer) window.clearTimeout(messageNotificationTimer)
-    messageNotificationTimer = window.setTimeout(clearRuntimeMessage, 7000)
+    messageNotificationTimer = window.setTimeout(clearRuntimeMessage, 5000)
 }
 
 const showIncomingCall = (payload) => {
+    incomingAirDrop.value = null
     incomingCall.value = normalizeCallPayload(payload)
     activeIslandIndex.value = 3
     isIslandExpanded.value = true
@@ -213,6 +217,7 @@ const answerIncomingCall = () => {
     if (!incomingCall.value) return
     const call = incomingCall.value
     incomingCall.value = null
+    isIslandExpanded.value = false
     openPhoneCall(call)
 }
 
@@ -246,6 +251,7 @@ const handleCallState = (call) => {
 const resetIslandState = () => {
     clearRuntimeMessage()
     incomingCall.value = null
+    incomingAirDrop.value = null
     activeCallState.value = null
 }
 
