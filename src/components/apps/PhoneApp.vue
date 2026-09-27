@@ -1,10 +1,12 @@
 <script setup>
-import { computed, ref, watch } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import { ArrowLeft, Camera, ClockFading, Delete, Grid3X3, ImagePlus, Keyboard, Mail, MessageCircle, MicOff, MoreHorizontal, Phone, PhoneOff, Search, User, UserPlus, Video, Volume2, X } from '@lucide/vue';
 import Prompt from '../../utils/Prompt.vue';
 import BottomNavigation from '../BottomNavigation.vue';
 import { blockedContacts, contacts } from '../../stores/contacts';
 import { formatPhoneNumber, isPhoneSuffixValid, phoneDigits } from '../../utils/phoneNumber';
+import { useFiveMBridge } from '../../composables/useFiveMBridge';
+import { phoneNuiCallbacks } from '../../config/phoneNuiContract';
 
 const props = defineProps({
     contactsOnly: {
@@ -18,6 +20,7 @@ const props = defineProps({
 });
 
 const emit = defineEmits(['call-contact', 'call-state']);
+const { invoke, isFiveM } = useFiveMBridge();
 
 const activeCategory = ref(props.contactsOnly ? 'contacts' : 'calls');
 
@@ -44,6 +47,20 @@ const activeCall = ref(null);
 const isSpeakerOn = ref(false);
 const isMuted = ref(false);
 const contactAnimationDuration = 450;
+
+const loadContacts = async () => {
+    if (!isFiveM.value) return;
+
+    const response = await invoke(phoneNuiCallbacks.getContacts);
+    const remoteContacts = Array.isArray(response) ? response : response?.contacts;
+    if (Array.isArray(remoteContacts)) contacts.value = remoteContacts;
+};
+
+const syncContact = (endpoint, contact) => {
+    if (isFiveM.value) void invoke(endpoint, { contact });
+};
+
+onMounted(loadContacts);
 
 const recentCalls = [
     {
@@ -188,6 +205,7 @@ const saveContact = () => {
         phone: formatPhoneNumber(phone),
         photo: editableContact.value.photo,
     });
+    syncContact(phoneNuiCallbacks.updateContact, selectedContact.value);
     editingContact.value = false;
 };
 
@@ -204,6 +222,7 @@ const confirmDeleteContact = () => {
     if (!selectedContact.value) return;
 
     contacts.value = contacts.value.filter((contact) => contact.id !== selectedContact.value.id);
+    if (isFiveM.value) void invoke(phoneNuiCallbacks.deleteContact, { contactId: selectedContact.value.id });
     showDeleteContactPrompt.value = false;
     closeContact();
 };
@@ -250,6 +269,7 @@ const blockContact = () => {
 
     const contactId = selectedContact.value.id;
     contacts.value = contacts.value.filter((contact) => contact.id !== contactId);
+    if (isFiveM.value) void invoke(phoneNuiCallbacks.blockContact, { contact: selectedContact.value });
     closeContact();
 };
 
@@ -262,13 +282,15 @@ const addContact = () => {
     const phone = phoneDigits(newContact.value.phone);
     if (!newContact.value.firstName.trim() || !isPhoneSuffixValid(phone)) return;
 
-    contacts.value.push({
+    const contact = {
         id: Date.now(),
         firstName: newContact.value.firstName.trim(),
         lastName: newContact.value.lastName.trim(),
         phone: formatPhoneNumber(phone),
         photo: newContact.value.photo,
-    });
+    };
+    contacts.value.push(contact);
+    syncContact(phoneNuiCallbacks.createContact, contact);
     closeCreateContact();
 };
 </script>

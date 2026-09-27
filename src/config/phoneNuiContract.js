@@ -20,6 +20,7 @@ export const phoneNuiCallbacks = Object.freeze({
   deleteContact: 'deleteContact',
   blockContact: 'blockContact',
   getConversations: 'getConversations',
+  createConversation: 'createConversation',
   sendMessage: 'sendMessage',
   getPhotos: 'getPhotos',
   savePhoto: 'savePhoto',
