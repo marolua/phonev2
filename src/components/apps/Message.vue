@@ -1,5 +1,5 @@
 <script setup>
-import { computed, nextTick, ref } from 'vue';
+import { computed, nextTick, ref, watch } from 'vue';
 import { ArrowLeft, Check, ImagePlus, MapPin, Phone, Plus, Search, Send, X } from '@lucide/vue';
 import { contacts } from '../../stores/contacts';
 import { markMessagesAsRead } from '../../stores/messages';
@@ -17,6 +17,13 @@ const showNewConversation = ref(false);
 const showContactSuggestions = ref(false);
 const newConversation = ref({ name: '', phone: '' });
 const emit = defineEmits(['call-contact']);
+
+const props = defineProps({
+    initialConversation: {
+        type: Object,
+        default: null,
+    },
+});
 
 const conversations = ref([
     {
@@ -210,6 +217,45 @@ const openConversation = async (conversation) => {
     await nextTick();
     scrollToLatestMessage();
 };
+
+const openInitialConversation = async (initialConversation) => {
+    if (!initialConversation) return;
+
+    const normalizedPhone = initialConversation.phone
+        ? formatPhoneNumber(initialConversation.phone)
+        : '';
+    let conversation = conversations.value.find((item) => normalizedPhone && item.phone === normalizedPhone);
+
+    if (!conversation) {
+        conversation = conversations.value.find((item) => item.name === initialConversation.name);
+    }
+
+    if (!conversation) {
+        conversation = {
+            id: Date.now(),
+            name: initialConversation.name,
+            phone: normalizedPhone,
+            initials: initialConversation.initials || conversationInitials(initialConversation.name),
+            color: initialConversation.color || 'linear-gradient(145deg, #7a6ab0, #342b5c)',
+            unread: 0,
+            messages: [],
+        };
+        conversations.value.unshift(conversation);
+    }
+
+    if (initialConversation.text && conversation.messages.at(-1)?.text !== initialConversation.text) {
+        conversation.messages.push({
+            id: initialConversation.id || Date.now(),
+            author: 'them',
+            text: initialConversation.text,
+            time: 'À l’instant',
+        });
+    }
+
+    await openConversation(conversation);
+};
+
+watch(() => props.initialConversation, openInitialConversation, { immediate: true });
 
 const closeConversation = () => {
     selectedConversation.value = null;
