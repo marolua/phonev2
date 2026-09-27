@@ -8,8 +8,10 @@ import WeatherWidget from './widgets/WeatherWidget.vue';
 import Prompt from '../utils/Prompt.vue';
 import { applications } from '../config/applications';
 import { X, Volume2, Video, Mic, Clock3, AudioLines, Signal } from '@lucide/vue';
+import { contacts } from '../stores/contacts';
 import { brightness, displayScale, selectedWallpaper } from '../stores/phoneSettings';
 import { unreadMessageCount } from '../stores/messages';
+import { formatPhoneNumber } from '../utils/phoneNumber';
 
 const islandExamples = [
     {
@@ -70,8 +72,10 @@ const activeIslandIndex = ref(0)
 const isIslandExpanded = ref(false)
 const runtimeMessage = ref(null)
 const incomingCall = ref(null)
+const incomingAirDrop = ref(null)
 const activeCallState = ref(null)
 const activeApplication = ref(null)
+const pendingMessage = ref(null)
 const callTicker = ref(0)
 const currentTime = ref('')
 let messageNotificationTimer = null
